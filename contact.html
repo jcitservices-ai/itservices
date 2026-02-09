@@ -108,8 +108,8 @@
               </div>
               <div class="card">
                 <h3>Calendly</h3>
-                <p>Book a discovery call or technical review.</p>
-                <a class="button secondary" href="https://calendly.com/jerahmeelconcha/30min" target="_blank" rel="noreferrer">Schedule Time</a>
+                <p>Use the booking form to schedule a call.</p>
+                <a class="button secondary" href="#book-call">Book a Call</a>
               </div>
               <div class="card">
                 <h3>AI Agent</h3>
@@ -139,6 +139,45 @@
             <h3>AI Agent Portfolio</h3>
             <p>Additional AI agent samples and use cases.</p>
             <a class="button secondary" href="https://engrjakeconcha.github.io/aiagent" target="_blank" rel="noreferrer">View Samples</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section reveal" id="book-call">
+        <h3 class="section-title">Book a Call</h3>
+        <div class="contact-panel">
+          <div class="card">
+            <p>
+              Share your preferred schedule and we’ll confirm a time for a
+              discovery call.
+            </p>
+            <form
+              action="https://formspree.io/f/xreabold"
+              method="POST"
+            >
+              <input type="hidden" name="_next" value="booking-confirmation.html" />
+              <input type="hidden" name="_subject" value="JC IT Services - Call Booking Request" />
+              <input type="text" name="name" placeholder="Full name" required />
+              <input type="email" name="email" placeholder="Email address" required />
+              <input type="text" name="timezone" placeholder="Time zone (e.g., GMT+8)" required />
+              <input type="text" name="preferred_date" placeholder="Preferred date (e.g., March 5)" required />
+              <input type="text" name="preferred_time" placeholder="Preferred time (e.g., 2:00 PM)" required />
+              <select name="call_type" required>
+                <option value="" disabled selected>Call type</option>
+                <option>Discovery Call</option>
+                <option>Technical Review</option>
+                <option>Project Planning</option>
+              </select>
+              <textarea name="notes" placeholder="Notes or agenda (optional)"></textarea>
+              <button class="button" type="submit">Request Call</button>
+            </form>
+          </div>
+          <div class="card">
+            <h3>What Happens Next</h3>
+            <p>
+              We will confirm the schedule and send a meeting link. Expect a
+              response within one business day.
+            </p>
           </div>
         </div>
       </section>
