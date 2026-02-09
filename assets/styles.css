@@ -140,6 +140,35 @@ main {
   padding: 40px 0 20px;
 }
 
+.hero-stack {
+  display: grid;
+  gap: 18px;
+}
+
+.hero-media {
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  position: relative;
+  min-height: 240px;
+}
+
+.hero-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.hero-media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(3, 11, 18, 0.05), rgba(3, 11, 18, 0.55));
+  pointer-events: none;
+}
+
 .hero h2 {
   font-size: clamp(2.2rem, 4vw, 3.5rem);
   line-height: 1.1;
@@ -166,6 +195,10 @@ main {
   background: linear-gradient(120deg, var(--accent-1), var(--accent-2));
   color: #03131e;
   box-shadow: 0 12px 25px rgba(0, 255, 204, 0.25);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
 }
 
 .button.secondary {
@@ -176,7 +209,20 @@ main {
 }
 
 .button:hover {
-  transform: translateY(-2px) scale(1.02);
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 16px 30px rgba(0, 255, 204, 0.35);
+  filter: brightness(1.05);
+}
+
+.card .button {
+  display: block;
+  text-align: center;
+  width: 100%;
+  margin-top: 12px;
+}
+
+.card .button + .button {
+  margin-top: 10px;
 }
 
 .hero-card {
@@ -242,6 +288,7 @@ main {
   background: linear-gradient(130deg, rgba(0, 240, 255, 0.08), transparent 60%);
   opacity: 0;
   transition: opacity 0.3s ease;
+  pointer-events: none;
 }
 
 .card:hover {
@@ -256,6 +303,16 @@ main {
 .card h3 {
   font-size: 1.15rem;
   margin-bottom: 10px;
+}
+
+.card .card-media {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  margin-bottom: 14px;
+  display: block;
 }
 
 .card p {
