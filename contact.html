@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JC IT Services | Contact</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/styles.css" />
+  </head>
+  <body data-page="contact">
+    <header>
+      <nav class="nav">
+        <div class="brand">
+          <img src="assets/logo.webp" alt="JC IT Services logo" />
+          <div class="brand-text">
+            <h1>JC IT Services</h1>
+            <span>Modern IT &amp; AI Enablement</span>
+          </div>
+        </div>
+        <div class="nav-links">
+          <a href="index.html" data-page="home">Home</a>
+          <a href="services.html" data-page="services">Services</a>
+          <a href="contact.html" data-page="contact">Contact</a>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <div class="orb" style="top: 120px; right: 110px"></div>
+      <div class="orb two" style="top: 360px; left: 60px"></div>
+      <div class="orb three" style="top: 860px; right: 160px"></div>
+
+      <section class="hero">
+        <div class="reveal">
+          <h2>Let’s design your next technology move.</h2>
+          <p>
+            Partner directly with Jerahmeel “Jay” Concha, Senior IT Consultant and
+            VOIP/PBX Engineer. Tell us about your goals, and we’ll outline the
+            next best steps.
+          </p>
+        </div>
+        <div class="hero-card reveal">
+          <h3>Fast Access</h3>
+          <div class="hero-meta">
+            <span>Calendly sessions for rapid scoping</span>
+            <span>LinkedIn for credentials and updates</span>
+            <span>JC IT Services AI Agent for instant answers</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="section reveal">
+        <div class="contact-panel">
+          <div>
+            <h3 class="section-title">Project Inquiry</h3>
+            <p class="section-copy">
+              Share your scope, timelines, and system requirements. We respond with
+              a tailored plan and clear next steps.
+            </p>
+            <form
+              data-contact
+              action="https://formspree.io/f/xreabold"
+              method="POST"
+            >
+              <input type="hidden" name="_next" value="thank-you.html" />
+              <input type="text" name="name" placeholder="Full name" required />
+              <input type="email" name="email" placeholder="Email address" required />
+              <select name="service" required>
+                <option value="" disabled selected>Select a service</option>
+                <option>Website Creation &amp; Development</option>
+                <option>PBX Support &amp; VOIP Engineering</option>
+                <option>Custom AI Workflow &amp; Tools</option>
+                <option>App Development</option>
+                <option>Telegram Bot Development</option>
+              </select>
+              <textarea name="message" placeholder="Tell us about your project" required></textarea>
+              <button class="button" type="submit">Send Request</button>
+              <p data-form-response></p>
+            </form>
+          </div>
+          <div>
+            <h3 class="section-title">Direct Channels</h3>
+            <div class="cards">
+              <div class="card">
+                <h3>LinkedIn</h3>
+                <p>Professional profile and endorsements.</p>
+                <a class="button secondary" href="https://www.linkedin.com/in/jerahmeelconcha" target="_blank" rel="noreferrer">View Profile</a>
+              </div>
+              <div class="card">
+                <h3>CV (PDF)</h3>
+                <p>Detailed credentials and project history.</p>
+                <a class="button secondary" href="https://drive.google.com/file/d/1AH5LYUKh2kyi7OBVw1msIfud90IhB8Iy/view" target="_blank" rel="noreferrer">Open CV</a>
+              </div>
+              <div class="card">
+                <h3>Calendly</h3>
+                <p>Book a discovery call or technical review.</p>
+                <a class="button secondary" href="https://calendly.com/jerahmeelconcha/30min" target="_blank" rel="noreferrer">Schedule Time</a>
+              </div>
+              <div class="card">
+                <h3>AI Agent</h3>
+                <p>Quick answers and service guidance.</p>
+                <a class="button secondary" href="https://chatgpt.com/g/g-67f172634db48191a6c6230c1e01ffa6-jc-it-services-ai" target="_blank" rel="noreferrer">Open Agent</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section reveal">
+        <h3 class="section-title">Live Samples</h3>
+        <div class="cards">
+          <div class="card">
+            <h3>Telegram Bots</h3>
+            <p>Active automation bots on Telegram.</p>
+            <a class="button secondary" href="https://t.me/VALENTINOregbot" target="_blank" rel="noreferrer">@VALENTINOregbot</a>
+            <a class="button secondary" href="https://t.me/Delulubesbot" target="_blank" rel="noreferrer">@Delulubesbot</a>
+          </div>
+          <div class="card">
+            <h3>AI Chat Agent Demo</h3>
+            <p>AI consultation and workflow assistant demo.</p>
+            <a class="button secondary" href="https://jcitservices-ai.github.io/demosalon/" target="_blank" rel="noreferrer">Open Demo</a>
+          </div>
+          <div class="card">
+            <h3>AI Agent Portfolio</h3>
+            <p>Additional AI agent samples and use cases.</p>
+            <a class="button secondary" href="https://engrjakeconcha.github.io/aiagent" target="_blank" rel="noreferrer">View Samples</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>JC IT Services · Precision support for modern operations.</p>
+    </footer>
+
+    <script src="assets/main.js"></script>
+  </body>
+</html>
