@@ -23,6 +23,15 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="assets/styles.css" />
+      <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YYFC0NYBXB"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-YYFC0NYBXB');
+    </script>
+
   </head>
   <body data-page="team">
     <div class="ai-overlay"></div>
@@ -172,6 +181,18 @@
       </section>
     </main>
 
+    <div class="cookie-banner" data-cookie-banner>
+      <p>
+        We use cookies and similar technologies to improve site experience and
+        measure performance. By using this site, you agree to our
+        <a href="privacy.html">privacy</a> and
+        <a href="terms.html">cookie/usage</a> policy.
+      </p>
+      <div class="cookie-actions">
+        <button class="button" type="button" data-cookie-accept>Accept</button>
+        <button class="button secondary" type="button" data-cookie-dismiss>Dismiss</button>
+      </div>
+    </div>
     <footer>
       <div class="footer-grid">
         <div>
@@ -198,9 +219,12 @@
             AI-powered IT, PBX/VOIP, and automation delivery for SME clients across
             the US, AU, and PH.
           </p>
+          <p><a href="contact.html">Contact Us</a></p>
         </div>
       </div>
     </footer>
+
+
 
 
 
