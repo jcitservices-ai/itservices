@@ -16,7 +16,7 @@
     />
     <link rel="stylesheet" href="assets/styles.css" />
   </head>
-  <body data-page="booking">
+  <body data-page="join">
     <div class="ai-overlay"></div>
     <div class="ai-grid"></div>
     <div class="ai-nodes"></div>
@@ -46,38 +46,71 @@
 
       <section class="hero">
         <div class="reveal">
-          <h2>Your call request is confirmed.</h2>
+          <h2>Join JC IT Services.</h2>
           <p>
-            Thanks for sharing your schedule. We will follow up shortly with a
-            confirmed time and meeting link.
+            We are building a high-performance team focused on AI-powered IT
+            solutions. If you are driven, reliable, and want to work on modern
+            systems for SMEs in the US, AU, and PH, we want to hear from you.
           </p>
-          <div class="hero-actions">
-            <a class="button" href="contact.html#book-call">Request Another Call</a>
-            <a class="button secondary" href="services.html">Explore Services</a>
+          <div class="micro-labels">
+            <span>REMOTE READY</span>
+            <span>AI FIRST</span>
+            <span>OPS FOCUSED</span>
           </div>
         </div>
         <div class="hero-stack reveal">
           <div class="hero-media">
             <img
-              src="assets/images/hero-contact.jpg"
-              alt="Modern workspace with laptop and notebook"
+              src="assets/images/hero-services.jpg"
+              alt="Modern tech workspace"
               loading="lazy"
             />
           </div>
           <div class="hero-card">
-            <h3>What Happens Next</h3>
+            <h3>Positions Available</h3>
             <div class="hero-meta">
-              <span>Confirmation email within one business day</span>
-              <span>Meeting link and agenda outline</span>
-              <span>Optional pre-call questionnaire</span>
+              <span>AI Engineer</span>
+              <span>PBX Engineer</span>
+              <span>Help Desk</span>
+              <span>Sales Development Representative</span>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section reveal">
+        <h3 class="section-title">Apply Now</h3>
+        <div class="contact-panel">
+          <div class="card">
+            <form
+              action="https://formspree.io/f/xreabold"
+              method="POST"
+            >
+              <input type="hidden" name="_next" value="https://jcitservices-ai.github.io/itservices/join-confirmation.html" />
+              <input type="hidden" name="_subject" value="JC IT Services - Recruitment Application" />
+              <input type="text" name="name" placeholder="Full name" required />
+              <input type="email" name="email" placeholder="Email address" required />
+              <input type="text" name="position" placeholder="Position applied for" required />
+              <input type="text" name="location" placeholder="Location / Time zone" required />
+              <input type="url" name="resume_link" placeholder="Resume link (Google Drive / Dropbox)" required />
+              <textarea name="message" placeholder="Brief intro and relevant experience" required></textarea>
+              <button class="button" type="submit">Submit Application</button>
+            </form>
+          </div>
+          <div class="card">
+            <h3>What We Look For</h3>
+            <p>
+              Strong communication, proven reliability, and a mindset for modern
+              systems and automation. Include your best work or portfolio links
+              in the message.
+            </p>
           </div>
         </div>
       </section>
     </main>
 
     <footer>
-      <p>JC IT Services · Call booking confirmation.</p>
+      <p>JC IT Services · Building the next generation of IT talent.</p>
     </footer>
 
     <script src="assets/main.js"></script>

@@ -37,3 +37,28 @@ if (formResponse) {
   formResponse.textContent =
     "Submitting the form will send your request directly to JC IT Services.";
 }
+
+const openRetellWidget = () => {
+  const candidates = [
+    window.Retell,
+    window.retellWidget,
+    window.RetellWidget,
+    window.retellAI,
+  ];
+  for (const candidate of candidates) {
+    if (candidate && typeof candidate.open === "function") {
+      candidate.open();
+      return true;
+    }
+  }
+  return false;
+};
+
+document.querySelectorAll("[data-open-retell]").forEach((button) => {
+  button.addEventListener("click", (event) => {
+    event.preventDefault();
+    if (!openRetellWidget()) {
+      console.warn("Retell widget is not ready yet.");
+    }
+  });
+});
