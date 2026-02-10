@@ -38,6 +38,22 @@ if (formResponse) {
     "Submitting the form will send your request directly to JC IT Services.";
 }
 
+const cookieBanner = document.querySelector("[data-cookie-banner]");
+if (cookieBanner) {
+  const accepted = localStorage.getItem("jc_cookie_ack") === "true";
+  if (!accepted) {
+    cookieBanner.classList.add("visible");
+  }
+  const acceptBtn = cookieBanner.querySelector("[data-cookie-accept]");
+  const dismissBtn = cookieBanner.querySelector("[data-cookie-dismiss]");
+  const hide = () => {
+    cookieBanner.classList.remove("visible");
+    localStorage.setItem("jc_cookie_ack", "true");
+  };
+  if (acceptBtn) acceptBtn.addEventListener("click", hide);
+  if (dismissBtn) dismissBtn.addEventListener("click", hide);
+}
+
 const openRetellWidget = () => {
   const candidates = [
     window.Retell,

@@ -4,6 +4,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>JC IT Services | a PH tech company</title>
+    <meta name="description" content="Explore JC IT Services: AI workflows, PBX/VOIP engineering, web & app development, helpdesk, and automation for SMEs." />
+    <link rel="canonical" href="https://jcitservices-ai.github.io/itservices/services.html" />
+    <meta property="og:title" content="JC IT Services Services" />
+    <meta property="og:description" content="AI workflows, PBX/VOIP engineering, web & app development, helpdesk, and automation for SMEs." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://jcitservices-ai.github.io/itservices/services.html" />
+    <meta property="og:image" content="https://raw.githubusercontent.com/jcitservices-ai/itservices/main/assets/logo.webp" />
+    <meta name="twitter:card" content="summary_large_image" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -22,19 +30,32 @@
     <div class="ai-nodes"></div>
     <header>
       <nav class="nav">
-        <div class="brand">
+        <a class="brand" href="index.html">
           <img src="assets/logo.webp" alt="JC IT Services logo" />
           <div class="brand-text">
             <h1>JC IT Services</h1>
             <span>Modern IT &amp; AI Enablement</span>
           </div>
-        </div>
+        </a>
         <div class="nav-links">
-          <a href="index.html" data-page="home">Home</a>
           <a href="services.html" data-page="services">Services</a>
-          <a href="about.html" data-page="about">About JC</a>
-          <a href="join.html" data-page="join">Join Our Team</a>
-          <a href="contact.html" data-page="contact">Contact</a>
+          <div class="nav-dropdown">
+            <a class="nav-dropdown-toggle" href="#" data-page="about">About Us</a>
+            <div class="nav-dropdown-menu">
+              <a href="team.html" data-page="team">Team</a>
+              <a href="about.html" data-page="about">About JC</a>
+            </div>
+          </div>
+          <a href="join.html" data-page="join">Join Our Team!</a>
+          <a href="contact.html" data-page="contact">Contact Us</a>
+          <a class="nav-social" href="https://www.linkedin.com/company/jc-it-services/" target="_blank" rel="noreferrer" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.37V9h3.41v1.56h.05c.47-.9 1.62-1.85 3.34-1.85 3.57 0 4.23 2.35 4.23 5.41v6.33zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.78C.8 0 0 .78 0 1.74v20.52C0 23.22.8 24 1.78 24h20.44C23.2 24 24 23.22 24 22.26V1.74C24 .78 23.2 0 22.22 0z"/>
+            </svg>
+          </a>
+          <a class="nav-social" href="#" aria-label="Google Business Profile">
+            <img src="assets/google-business.svg" alt="Google Business Profile" />
+          </a>
         </div>
       </nav>
     </header>
@@ -85,12 +106,14 @@
         <h3 class="section-title">What We Deliver</h3>
         <div class="cards">
           <div class="card">
-            <img
-              class="card-media"
-              src="assets/images/service-website.jpg"
-              alt="Modern workstation with laptop and design tools"
-              loading="lazy"
-            />
+            <div class="card-media-wrap">
+              <img
+                class="card-media"
+                src="assets/images/service-website.jpg"
+                alt="Team collaborating on a web project"
+                loading="lazy"
+              />
+            </div>
             <h3>Website Creation &amp; Development</h3>
             <p>
               Modern, responsive websites with strategic messaging, clean UX, and
@@ -98,12 +121,14 @@
             </p>
           </div>
           <div class="card">
-            <img
-              class="card-media"
-              src="assets/images/service-pbx.jpg"
-              alt="Desk setup with headset and communication tools"
-              loading="lazy"
-            />
+            <div class="card-media-wrap">
+              <img
+                class="card-media"
+                src="assets/images/service-pbx.jpg"
+                alt="Team planning communications and support workflows"
+                loading="lazy"
+              />
+            </div>
             <h3>PBX Support &amp; VOIP Engineering</h3>
             <p>
               3CX-ready call systems, routing logic, monitoring, and troubleshooting
@@ -111,12 +136,14 @@
             </p>
           </div>
           <div class="card">
-            <img
-              class="card-media"
-              src="assets/images/service-ai.jpg"
-              alt="Minimalist workspace with laptop and productivity setup"
-              loading="lazy"
-            />
+            <div class="card-media-wrap">
+              <img
+                class="card-media"
+                src="assets/images/service-ai.jpg"
+                alt="Team discussing AI workflows"
+                loading="lazy"
+              />
+            </div>
             <h3>Custom AI Workflow &amp; Tools</h3>
             <p>
               Tailored AI agents, automation playbooks, and internal tools that
@@ -124,12 +151,14 @@
             </p>
           </div>
           <div class="card">
-            <img
-              class="card-media"
-              src="assets/images/service-ops.jpg"
-              alt="AI visualization on a futuristic digital interface"
-              loading="lazy"
-            />
+            <div class="card-media-wrap">
+              <img
+                class="card-media"
+                src="assets/images/service-ops.jpg"
+                alt="Team collaborating on operational strategy"
+                loading="lazy"
+              />
+            </div>
             <h3>AI-Driven Operations</h3>
             <p>
               AI copilots, knowledge bases, and automations that unify support,
@@ -137,12 +166,14 @@
             </p>
           </div>
           <div class="card">
-            <img
-              class="card-media"
-              src="assets/images/service-helpdesk.jpg"
-              alt="Support desk with headset and monitor setup"
-              loading="lazy"
-            />
+            <div class="card-media-wrap">
+              <img
+                class="card-media"
+                src="assets/images/service-helpdesk.jpg"
+                alt="Support team coordinating helpdesk work"
+                loading="lazy"
+              />
+            </div>
             <h3>Helpdesk Support</h3>
             <p>
               Fast-response support workflows with clear documentation and rapid
@@ -150,12 +181,14 @@
             </p>
           </div>
           <div class="card">
-            <img
-              class="card-media"
-              src="assets/images/service-virtual.jpg"
-              alt="Virtual assistant working at a desk with a laptop"
-              loading="lazy"
-            />
+            <div class="card-media-wrap">
+              <img
+                class="card-media"
+                src="assets/images/service-virtual.jpg"
+                alt="Virtual assistant collaborating with a team"
+                loading="lazy"
+              />
+            </div>
             <h3>Virtual Assistants</h3>
             <p>
               Dedicated support for scheduling, research, customer responses, and
@@ -163,12 +196,14 @@
             </p>
           </div>
           <div class="card">
-            <img
-              class="card-media"
-              src="assets/images/service-appdev.jpg"
-              alt="Developer workspace with code on screen"
-              loading="lazy"
-            />
+            <div class="card-media-wrap">
+              <img
+                class="card-media"
+                src="assets/images/service-appdev.jpg"
+                alt="Team working on app development"
+                loading="lazy"
+              />
+            </div>
             <h3>App Development</h3>
             <p>
               Lightweight web and mobile applications built to support business
@@ -176,12 +211,14 @@
             </p>
           </div>
           <div class="card">
-            <img
-              class="card-media"
-              src="assets/images/service-bots.jpg"
-              alt="Team workspace with devices and automation tools"
-              loading="lazy"
-            />
+            <div class="card-media-wrap">
+              <img
+                class="card-media"
+                src="assets/images/service-bots.jpg"
+                alt="Team building automation tools"
+                loading="lazy"
+              />
+            </div>
             <h3>Telegram Bot Development</h3>
             <p>
               Bots for alerts, customer engagement, and workflow triggers that
@@ -244,6 +281,11 @@
             <p>Additional AI agent prototypes and workflows.</p>
             <a class="button secondary" href="https://engrjakeconcha.github.io/aiagent" target="_blank" rel="noreferrer">Open Portfolio</a>
           </div>
+          <div class="card">
+            <h3>Sample Website</h3>
+            <p>Recent website project sample.</p>
+            <a class="button secondary" href="https://grindrspot.github.io/gspot/index.html" target="_blank" rel="noreferrer">View Website</a>
+          </div>
         </div>
       </section>
 
@@ -273,11 +315,61 @@
           </div>
         </div>
       </section>
+
+      <section class="section reveal">
+        <h3 class="section-title">Work With Us</h3>
+        <div class="cards">
+          <div class="card">
+            <h3>Hire Our Team</h3>
+            <p>
+              Need a reliable partner for AI automation, PBX, or web delivery?
+              Start a project with us and we’ll respond quickly.
+            </p>
+            <a class="button" href="contact.html">Start a Project</a>
+          </div>
+          <div class="card">
+            <h3>Join the Team</h3>
+            <p>
+              Interested in working with JC IT Services? Apply for open roles and
+              help us deliver AI-powered IT solutions.
+            </p>
+            <a class="button secondary" href="join.html">Apply Now</a>
+          </div>
+        </div>
+      </section>
     </main>
 
     <footer>
-      <p>Ready to build? JC IT Services keeps your systems future-ready.</p>
+      <div class="footer-grid">
+        <div>
+          <h4>Quicklinks</h4>
+          <div class="footer-links">
+            <a href="services.html">Services</a>
+            <a href="team.html">Team</a>
+            <a href="join.html">Join Our Team</a>
+            <a href="contact.html">Contact Us</a>
+          </div>
+        </div>
+        <div>
+          <h4>Legal</h4>
+          <div class="footer-links">
+            <a href="sla.html">SLA Agreement</a>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms of Service</a>
+            <a href="copyright.html">Copyright</a>
+          </div>
+        </div>
+        <div>
+          <h4>About JC IT Services</h4>
+          <p>
+            AI-powered IT, PBX/VOIP, and automation delivery for SME clients across
+            the US, AU, and PH.
+          </p>
+        </div>
+      </div>
     </footer>
+
+
 
     <script src="assets/main.js"></script>
     <script
