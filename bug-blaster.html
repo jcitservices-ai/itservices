@@ -147,11 +147,19 @@
       let spawnTimer = 0;
       let spawnInterval = 1200;
       let bugLifetime = 2500;
+      let isMobileGame = false;
+      let bugSize = 48;
       let tickId;
+
+      const detectMobileGame = () =>
+        window.matchMedia('(max-width: 900px)').matches ||
+        window.matchMedia('(pointer: coarse)').matches;
 
       const resizeArena = () => {
         const bounds = arena.getBoundingClientRect();
         if (!bounds.width || !bounds.height) return;
+        isMobileGame = detectMobileGame();
+        bugSize = isMobileGame ? 62 : 48;
       };
 
       const spawnBug = () => {
@@ -160,12 +168,15 @@
         bug.type = 'button';
         bug.className = 'arena-bug';
         bug.textContent = 'bug';
-        const size = 48;
+        const size = bugSize;
         const maxX = Math.max(0, bounds.width - size - 16);
         const maxY = Math.max(0, bounds.height - size - 16);
         const x = 8 + Math.random() * maxX;
         const y = 8 + Math.random() * maxY;
         bug.style.transform = `translate(${x}px, ${y}px)`;
+        bug.style.width = `${size}px`;
+        bug.style.height = `${size}px`;
+        bug.style.fontSize = isMobileGame ? '0.8rem' : '0.7rem';
 
         const timeout = window.setTimeout(() => {
           if (!bug.isConnected) return;
@@ -185,8 +196,8 @@
           if (score % 500 === 0) {
             wave += 1;
             waveEl.textContent = wave;
-            spawnInterval = Math.max(500, spawnInterval - 120);
-            bugLifetime = Math.max(1200, bugLifetime - 120);
+            spawnInterval = Math.max(isMobileGame ? 700 : 500, spawnInterval - (isMobileGame ? 90 : 120));
+            bugLifetime = Math.max(isMobileGame ? 1500 : 1200, bugLifetime - (isMobileGame ? 80 : 120));
           }
         });
 
@@ -225,8 +236,10 @@
         score = 0;
         lives = 3;
         wave = 1;
-        spawnInterval = 1200;
-        bugLifetime = 2500;
+        isMobileGame = detectMobileGame();
+        bugSize = isMobileGame ? 62 : 48;
+        spawnInterval = isMobileGame ? 1450 : 1200;
+        bugLifetime = isMobileGame ? 3000 : 2500;
         arena.innerHTML = '';
         scoreEl.textContent = score;
         livesEl.textContent = lives;

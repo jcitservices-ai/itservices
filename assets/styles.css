@@ -1039,6 +1039,7 @@ footer {
     rgba(6, 18, 29, 0.9);
   position: relative;
   overflow: hidden;
+  touch-action: manipulation;
 }
 
 .arena-bug {
@@ -1169,8 +1170,12 @@ footer {
 
 @media (max-width: 900px) {
   .game-hud {
-    flex-direction: column;
-    align-items: flex-start;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
   }
   .game-controls {
     flex-direction: column;
@@ -1180,5 +1185,47 @@ footer {
   }
   .game-promo-grid {
     grid-template-columns: 1fr;
+  }
+  .bug-hero {
+    gap: 24px;
+  }
+  .game-panel {
+    padding: 14px;
+  }
+  .game-arena {
+    min-height: 380px;
+    aspect-ratio: auto;
+  }
+  .arena-bug {
+    width: 62px;
+    height: 62px;
+    border-radius: 18px;
+    font-size: 0.8rem;
+  }
+  .game-status {
+    bottom: 12px;
+    padding: 8px 14px;
+    font-size: 0.78rem;
+    max-width: calc(100% - 20px);
+    text-align: center;
+  }
+  .game-status-large {
+    width: min(92%, 92%);
+    padding: 16px 14px;
+    font-size: 0.95rem;
+    line-height: 1.4;
+  }
+}
+
+@media (max-width: 520px) {
+  .game-hud {
+    font-size: 0.68rem;
+    gap: 8px;
+  }
+  .game-arena {
+    min-height: 420px;
+  }
+  .hero-actions .button {
+    width: 100%;
   }
 }
