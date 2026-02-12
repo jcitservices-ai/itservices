@@ -394,6 +394,7 @@ main {
   transform: translateY(-2px) scale(1.03);
   box-shadow: 0 16px 30px rgba(0, 255, 204, 0.35);
   filter: brightness(1.05);
+  animation: shakeX 0.35s ease-in-out 1;
 }
 
 .card .button {
@@ -570,6 +571,10 @@ main {
   object-fit: cover;
   display: block;
   filter: saturate(0.85) contrast(1.05) hue-rotate(-8deg);
+}
+
+.card-media-wrap:hover .card-media {
+  animation: shakeX 0.4s ease-in-out 1;
 }
 
 .card p {
@@ -892,6 +897,24 @@ footer {
   }
   100% {
     transform: translateX(-50%);
+  }
+}
+
+@keyframes shakeX {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-3px);
+  }
+  50% {
+    transform: translateX(3px);
+  }
+  75% {
+    transform: translateX(-2px);
+  }
+  100% {
+    transform: translateX(0);
   }
 }
 
