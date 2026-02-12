@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bug Blaster | JC IT Services</title>
+    <meta name="description" content="Play Bug Blaster, a debugging game where you squash bugs to keep systems stable." />
+    <link rel="canonical" href="https://jcit.digital/bug-blaster.html" />
+    <meta property="og:title" content="Bug Blaster | JC IT Services" />
+    <meta property="og:description" content="Squash incoming bugs and keep the system stable in this fast debugging game." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://jcit.digital/bug-blaster.html" />
+    <meta property="og:image" content="https://jcit.digital/assets/logo.webp" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/styles.css" />
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YYFC0NYBXB"></script>
+    <script src="assets/main.js"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-YYFC0NYBXB');
+    </script>
+  </head>
+  <body data-page="bug-blaster">
+    <div class="ai-overlay"></div>
+    <div class="ai-grid"></div>
+    <div class="ai-nodes"></div>
+    <header>
+      <nav class="nav">
+        <a class="brand" href="index.html">
+          <img src="assets/logo.webp" alt="JC IT Services logo" />
+          <div class="brand-text">
+            <h1>JC IT Services</h1>
+            <span>Modern IT &amp; AI Enablement</span>
+          </div>
+        </a>
+        <div class="nav-links">
+          <a href="services.html" data-page="services">Services</a>
+          <div class="nav-dropdown">
+            <a class="nav-dropdown-toggle" href="#" data-page="about">About Us</a>
+            <div class="nav-dropdown-menu">
+              <a href="team.html" data-page="team">Team</a>
+              <a href="about.html" data-page="about">About JC</a>
+            </div>
+          </div>
+          <a href="join.html" data-page="join">Join Our Team!</a>
+          <a href="contact.html" data-page="contact">Contact Us</a>
+          <a href="bug-blaster.html" data-page="bug-blaster">Bug Blaster</a>
+          <a class="nav-social" href="https://www.linkedin.com/company/jc-it-services/" target="_blank" rel="noreferrer" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.37V9h3.41v1.56h.05c.47-.9 1.62-1.85 3.34-1.85 3.57 0 4.23 2.35 4.23 5.41v6.33zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.78C.8 0 0 .78 0 1.74v20.52C0 23.22.8 24 1.78 24h20.44C23.2 24 24 23.22 24 22.26V1.74C24 .78 23.2 0 22.22 0z"/>
+            </svg>
+          </a>
+          <a class="nav-social" href="#" aria-label="Google Business Profile">
+            <img src="assets/google-business.svg" alt="Google Business Profile" />
+          </a>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <div class="orb" style="top: 120px; right: 80px"></div>
+      <div class="orb two" style="top: 420px; left: 70px"></div>
+      <div class="orb three" style="top: 860px; right: 140px"></div>
+
+      <section class="hero bug-hero">
+        <div class="reveal visible">
+          <h2>Bug Blaster: Debug Defense</h2>
+          <p>
+            A debugging arcade where you defend the stack by squashing incoming
+            bugs. Keep the system stable, chain combos, and protect your deployment.
+          </p>
+          <div class="micro-labels">
+            <span>ARCADE</span>
+            <span>DEBUG READY</span>
+            <span>FAST REACTION</span>
+          </div>
+          <div class="hero-actions">
+            <button class="button" id="startGame" type="button">Start Game</button>
+            <button class="button secondary" id="restartGame" type="button">Restart</button>
+          </div>
+          <p class="bug-tip">Controls: click/tap the bugs to squash them before they time out.</p>
+        </div>
+        <div class="hero-stack reveal visible">
+          <div class="game-shell">
+            <div class="game-panel">
+              <div class="game-hud">
+                <div>Score <span id="scoreValue">0</span></div>
+                <div>Lives <span id="livesValue">3</span></div>
+                <div>Wave <span id="waveValue">1</span></div>
+              </div>
+              <div id="bugArena" class="game-arena" role="application" aria-label="Debugging game arena"></div>
+              <div class="game-status" id="gameStatus">Press Start Game</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section reveal visible">
+        <h3 class="section-title">How It Works</h3>
+        <div class="cards">
+          <div class="card">
+            <h3>Stabilize the Stack</h3>
+            <p>Each bug that slips through reduces system health. Hold the line and protect your deployment.</p>
+          </div>
+          <div class="card">
+            <h3>Chain Combos</h3>
+            <p>Land consecutive hits to ramp your score and clear waves faster.</p>
+          </div>
+          <div class="card">
+            <h3>Level Up</h3>
+            <p>Every wave moves faster. Reset and challenge your reflexes again.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>Need a real-world bug fix? Talk to JC IT Services.</p>
+    </footer>
+
+    <script>
+      const arena = document.getElementById('bugArena');
+      const statusEl = document.getElementById('gameStatus');
+      const scoreEl = document.getElementById('scoreValue');
+      const livesEl = document.getElementById('livesValue');
+      const waveEl = document.getElementById('waveValue');
+      const startBtn = document.getElementById('startGame');
+      const restartBtn = document.getElementById('restartGame');
+
+      let running = false;
+      let score = 0;
+      let lives = 3;
+      let wave = 1;
+      let spawnTimer = 0;
+      let spawnInterval = 1200;
+      let bugLifetime = 2500;
+      let tickId;
+
+      const resizeArena = () => {
+        const bounds = arena.getBoundingClientRect();
+        if (!bounds.width || !bounds.height) return;
+      };
+
+      const spawnBug = () => {
+        const bounds = arena.getBoundingClientRect();
+        const bug = document.createElement('button');
+        bug.type = 'button';
+        bug.className = 'arena-bug';
+        bug.textContent = 'bug';
+        const size = 48;
+        const maxX = Math.max(0, bounds.width - size - 16);
+        const maxY = Math.max(0, bounds.height - size - 16);
+        const x = 8 + Math.random() * maxX;
+        const y = 8 + Math.random() * maxY;
+        bug.style.transform = `translate(${x}px, ${y}px)`;
+
+        const timeout = window.setTimeout(() => {
+          if (!bug.isConnected) return;
+          bug.remove();
+          lives -= 1;
+          livesEl.textContent = lives;
+          if (lives <= 0) {
+            endGame("System breached. It's hard to fight bugs, especially in IT systems. You need a professional.", true);
+          }
+        }, bugLifetime);
+
+        bug.addEventListener('click', () => {
+          window.clearTimeout(timeout);
+          bug.remove();
+          score += 100;
+          scoreEl.textContent = score;
+          if (score % 500 === 0) {
+            wave += 1;
+            waveEl.textContent = wave;
+            spawnInterval = Math.max(500, spawnInterval - 120);
+            bugLifetime = Math.max(1200, bugLifetime - 120);
+          }
+        });
+
+        arena.appendChild(bug);
+      };
+
+      const gameTick = () => {
+        if (!running) return;
+        const now = performance.now();
+        if (now >= spawnTimer) {
+          spawnBug();
+          spawnTimer = now + spawnInterval;
+        }
+      };
+
+      const setStatus = (message, options = {}) => {
+        const { includeLink = false, large = false } = options;
+        if (includeLink) {
+          statusEl.innerHTML = `${message} <a href="contact.html">Contact Us</a>`;
+        } else {
+          statusEl.textContent = message;
+        }
+        statusEl.classList.toggle('game-status-large', large);
+      };
+
+      const startGame = () => {
+        if (running) return;
+        resetGame();
+        running = true;
+        setStatus('Debug the stack!');
+        spawnTimer = performance.now() + 400;
+        tickId = window.setInterval(gameTick, 80);
+      };
+
+      const resetGame = () => {
+        score = 0;
+        lives = 3;
+        wave = 1;
+        spawnInterval = 1200;
+        bugLifetime = 2500;
+        arena.innerHTML = '';
+        scoreEl.textContent = score;
+        livesEl.textContent = lives;
+        waveEl.textContent = wave;
+        setStatus('Ready.');
+      };
+
+      const endGame = (message, includeLink = false) => {
+        running = false;
+        if (tickId) window.clearInterval(tickId);
+        setStatus(message, { includeLink, large: includeLink });
+      };
+
+      startBtn.addEventListener('click', () => {
+        if (!running) {
+          startGame();
+        }
+      });
+
+      restartBtn.addEventListener('click', () => {
+        endGame('Restarting...');
+        startGame();
+      });
+
+      arena.addEventListener('click', () => {
+        if (!running) startGame();
+      });
+
+      window.addEventListener('resize', resizeArena);
+
+      resizeArena();
+      resetGame();
+    </script>
+  </body>
+</html>
