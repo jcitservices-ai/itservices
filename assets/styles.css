@@ -160,11 +160,13 @@ header {
   font-size: 1.1rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+  white-space: nowrap;
 }
 
 .brand-text span {
   font-size: 0.8rem;
   color: var(--text-2);
+  white-space: nowrap;
 }
 
 .nav-links {
@@ -932,6 +934,10 @@ footer {
   .brand img {
     width: 48px;
     height: 48px;
+  }
+
+  .brand-text h1 {
+    font-size: 1rem;
   }
 }
 
