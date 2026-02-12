@@ -1,3 +1,21 @@
+const attachLoader = () => {
+  const loader = document.createElement("div");
+  loader.className = "site-loader";
+  loader.setAttribute("aria-hidden", "true");
+  loader.innerHTML = `
+    <div class="site-loader-panel">
+      <img class="site-loader-logo" src="/assets/logo.webp" alt="" />
+      <div class="site-loader-ring"></div>
+      <span class="site-loader-text">Booting AI Systems</span>
+    </div>
+  `;
+  document.body.classList.add("loader-active");
+  document.body.appendChild(loader);
+  return loader;
+};
+
+const pageLoader = attachLoader();
+
 const revealElements = document.querySelectorAll(".reveal");
 
 const revealObserver = new IntersectionObserver(
@@ -78,3 +96,15 @@ document.querySelectorAll("[data-open-retell]").forEach((button) => {
     }
   });
 });
+
+const hideLoader = () => {
+  if (!pageLoader) return;
+  pageLoader.classList.add("hidden");
+  document.body.classList.remove("loader-active");
+  window.setTimeout(() => {
+    pageLoader.remove();
+  }, 460);
+};
+
+window.addEventListener("load", hideLoader);
+window.setTimeout(hideLoader, 2600);
