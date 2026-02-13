@@ -3,8 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#06121d" />
     <title>JC IT Services | a PH tech company</title>
     <meta name="description" content="Join JC IT Services. Open roles for AI Engineer, PBX Engineer, Help Desk, and Sales Development Representative." />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
     <link rel="canonical" href="https://jcit.digital/join/" />
     <meta property="og:title" content="Join JC IT Services" />
     <meta property="og:description" content="Apply for AI, PBX, Help Desk, or Sales Development roles." />
@@ -46,19 +48,22 @@
             <span>Modern IT &amp; AI Enablement</span>
           </div>
         </a>
-        <div class="nav-links">
+        <button class="nav-toggle" type="button" aria-label="Toggle menu" aria-expanded="false" data-nav-toggle>
+          <span></span><span></span><span></span>
+        </button>
+        <div class="nav-links" data-nav-links>
           <a href="/services/" data-page="services">Services</a>
           <div class="nav-dropdown">
             <a class="nav-dropdown-toggle" href="#" data-page="about">About Us</a>
             <div class="nav-dropdown-menu">
               <a href="/team/" data-page="team">Team</a>
               <a href="/about/" data-page="about">About JC</a>
+              <a href="/team-login/" data-page="team-login">Team Login</a>
+              <a href="/bug-blaster/" data-page="bug-blaster">Bug Blaster</a>
             </div>
           </div>
           <a href="/join/" data-page="join">Join Our Team!</a>
           <a href="/contact/" data-page="contact">Contact Us</a>
-          <a href="/team-login/" data-page="team-login">Team Login</a>
-          <a href="/bug-blaster/" data-page="bug-blaster">Bug Blaster</a>
           <a class="nav-social" href="https://www.linkedin.com/company/jc-it-services/" target="_blank" rel="noreferrer" aria-label="LinkedIn">
             <svg viewBox="0 0 24 24" aria-hidden="true">
               <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.37V9h3.41v1.56h.05c.47-.9 1.62-1.85 3.34-1.85 3.57 0 4.23 2.35 4.23 5.41v6.33zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.78C.8 0 0 .78 0 1.74v20.52C0 23.22.8 24 1.78 24h20.44C23.2 24 24 23.22 24 22.26V1.74C24 .78 23.2 0 22.22 0z"/>

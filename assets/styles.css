@@ -139,17 +139,18 @@ header {
 .nav {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 18px 24px;
+  padding: 12px 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 20px;
+  gap: 14px;
 }
 
 .brand {
   display: flex;
   align-items: center;
   gap: 14px;
+  min-width: 0;
 }
 
 .brand img {
@@ -165,30 +166,66 @@ header {
   letter-spacing: 0.08em;
   text-transform: uppercase;
   white-space: nowrap;
+  line-height: 1.1;
 }
 
 .brand-text span {
   font-size: 0.8rem;
   color: var(--text-2);
   white-space: nowrap;
+  line-height: 1.2;
 }
 
 .nav-links {
   display: flex;
-  gap: 14px;
-  font-size: 0.95rem;
-  flex-wrap: wrap;
+  gap: 10px;
+  font-size: 0.92rem;
+  flex-wrap: nowrap;
   align-items: center;
   justify-content: flex-end;
   white-space: nowrap;
 }
 
 .nav-links a {
-  padding: 8px 14px;
+  padding: 7px 12px;
   border-radius: 999px;
   border: 1px solid transparent;
   transition: 0.3s ease;
   white-space: nowrap;
+}
+
+.nav-toggle {
+  display: none;
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: rgba(6, 18, 29, 0.55);
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.nav-toggle span {
+  width: 18px;
+  height: 2px;
+  background: var(--text-1);
+  border-radius: 99px;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.nav-toggle.active span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.nav-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.nav-toggle.active span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
 }
 
 .nav-dropdown {
@@ -1028,14 +1065,45 @@ footer {
 
 @media (max-width: 980px) {
   .nav {
-    flex-direction: column;
-    align-items: flex-start;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 10px 14px;
+  }
+
+  .brand {
+    gap: 10px;
+    flex: 1 1 auto;
   }
 
   .nav-links {
+    display: none;
     width: 100%;
-    gap: 10px;
-    flex-wrap: wrap;
+    gap: 8px;
+    flex-direction: column;
+    align-items: stretch;
+    margin-top: 10px;
+    padding: 12px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: rgba(6, 18, 29, 0.92);
+  }
+
+  .nav-links.open {
+    display: flex;
+  }
+
+  .nav-links a,
+  .nav-dropdown {
+    width: 100%;
+  }
+
+  .nav-links a {
+    border-radius: 10px;
+  }
+
+  .nav-toggle {
+    display: inline-flex;
+    margin-left: auto;
   }
 
   .hero-actions {
@@ -1058,9 +1126,20 @@ footer {
   .nav-dropdown-menu {
     position: static;
     box-shadow: none;
-    background: transparent;
-    border: none;
-    padding: 0;
+    background: rgba(5, 14, 22, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 8px;
+    margin-top: 6px;
+    border-radius: 10px;
+    display: none;
+  }
+
+  .nav-dropdown.open .nav-dropdown-menu {
+    display: flex;
+  }
+
+  .nav-dropdown-toggle::after {
+    margin-left: auto;
   }
 
   .nav-dropdown-menu a {
@@ -1080,12 +1159,42 @@ footer {
   }
 
   .brand img {
-    width: 48px;
-    height: 48px;
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
   }
 
   .brand-text h1 {
-    font-size: 1rem;
+    font-size: 0.92rem;
+    letter-spacing: 0.06em;
+    max-width: 170px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .brand-text span {
+    font-size: 0.72rem;
+  }
+
+  main {
+    padding: 28px 14px 64px;
+  }
+
+  .section-title {
+    font-size: 1.35rem;
+  }
+
+  .marquee-track .testimonial-card {
+    min-width: 280px;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+
+  .footer-grid h4 {
+    margin-bottom: 8px;
   }
 }
 
@@ -1102,7 +1211,7 @@ footer {
 
 @media (max-width: 520px) {
   .nav {
-    padding: 14px 18px;
+    padding: 10px 12px;
   }
 
   .nav-links a {
@@ -1112,6 +1221,31 @@ footer {
 
   .hero-card {
     padding: 20px;
+  }
+
+  .hero h2 {
+    font-size: clamp(1.6rem, 8vw, 2.2rem);
+  }
+
+  .hero p {
+    margin-top: 12px;
+    font-size: 0.95rem;
+  }
+
+  .hero-media {
+    min-height: 180px;
+    max-height: 220px;
+  }
+
+  .card .card-media {
+    height: 145px;
+  }
+
+  .cookie-banner {
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+    padding: 14px;
   }
 
   .section {
