@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#06121d" />
+    <title>JCIT Sales Bot Admin Manual</title>
+    <meta
+      name="description"
+      content="Admin instruction manual for the JCIT Sales Bot system, including orders, promos, tickets, Lalamove, tracking, and customer handling."
+    />
+    <meta name="robots" content="noindex,nofollow,max-image-preview:large" />
+    <link rel="canonical" href="https://jcit.digital/salesbot/admin-manual/" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/assets/styles.css" />
+    <style>
+      .manual-wrap {
+        display: grid;
+        gap: 24px;
+      }
+
+      .manual-note {
+        margin-top: 14px;
+        padding: 14px 16px;
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        background: rgba(255, 255, 255, 0.04);
+      }
+
+      .manual-list,
+      .manual-steps {
+        display: grid;
+        gap: 12px;
+        margin-top: 16px;
+      }
+
+      .manual-list li,
+      .manual-steps li {
+        margin-left: 18px;
+      }
+
+      .manual-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 18px;
+      }
+
+      .manual-grid .card {
+        height: 100%;
+      }
+
+      .manual-code {
+        font-family: "Space Mono", monospace;
+        font-size: 0.92rem;
+        color: var(--accent-1);
+      }
+    </style>
+  </head>
+  <body data-page="salesbot-admin-manual">
+    <div class="ai-overlay"></div>
+    <div class="ai-grid"></div>
+    <div class="ai-nodes"></div>
+    <header>
+      <nav class="nav">
+        <a class="brand" href="/">
+          <img src="/assets/logo.webp" alt="JC IT Services logo" />
+          <div class="brand-text">
+            <h1>JC IT Services</h1>
+            <span>Modern IT &amp; AI Enablement</span>
+          </div>
+        </a>
+        <button class="nav-toggle" type="button" aria-label="Toggle menu" aria-expanded="false" data-nav-toggle>
+          <span></span><span></span><span></span>
+        </button>
+        <div class="nav-links" data-nav-links>
+          <a href="/services/" data-page="services">Services</a>
+          <div class="nav-dropdown">
+            <a class="nav-dropdown-toggle" href="#" data-page="about">About Us</a>
+            <div class="nav-dropdown-menu">
+              <a href="/team/" data-page="team">Team</a>
+              <a href="/about/" data-page="about">About JC</a>
+              <a href="/team-login/" data-page="team-login">Team Login</a>
+              <a href="/bug-blaster/" data-page="bug-blaster">Bug Blaster</a>
+            </div>
+          </div>
+          <a href="/join/" data-page="join">Join Our Team!</a>
+          <a href="/contact/" data-page="contact">Contact Us</a>
+          <a class="nav-social" href="https://www.linkedin.com/company/jc-it-services/" target="_blank" rel="noreferrer" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.37V9h3.41v1.56h.05c.47-.9 1.62-1.85 3.34-1.85 3.57 0 4.23 2.35 4.23 5.41v6.33zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.78C.8 0 0 .78 0 1.74v20.52C0 23.22.8 24 1.78 24h20.44C23.2 24 24 23.22 24 22.26V1.74C24 .78 23.2 0 22.22 0z"/>
+            </svg>
+          </a>
+          <a class="nav-social" href="#" aria-label="Google Business Profile">
+            <img src="/assets/google-business.svg" alt="Google Business Profile" />
+          </a>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <div class="orb" style="top: 120px; right: 80px"></div>
+      <div class="orb two" style="top: 520px; left: 60px"></div>
+      <div class="orb three" style="top: 980px; right: 140px"></div>
+
+      <section class="hero">
+        <div class="reveal">
+          <h2>Sales Bot Admin Instruction Manual</h2>
+          <p>
+            Internal guide for store admins handling orders, promos, tickets, Lalamove,
+            customer updates, and admin-only actions in the JCIT Sales Bot system.
+          </p>
+          <div class="micro-labels">
+            <span>ADMIN ONLY</span>
+            <span>DIRECT LINK PAGE</span>
+            <span>OPERATIONS READY</span>
+          </div>
+          <div class="hero-actions">
+            <a class="button" href="https://poppers.jcit.digital/admin" target="_blank" rel="noreferrer">Open Admin Portal</a>
+            <a class="button secondary" href="https://poppers.jcit.digital/" target="_blank" rel="noreferrer">Open Poppers Store</a>
+          </div>
+          <div class="manual-note">
+            <strong>Important:</strong> This page is intentionally not linked in the public navigation.
+            Share it directly with authorized admins only.
+          </div>
+        </div>
+        <div class="hero-stack reveal">
+          <div class="hero-card">
+            <h3>Quick Access</h3>
+            <div class="hero-meta">
+              <span class="manual-code">Store: https://poppers.jcit.digital/</span>
+              <span class="manual-code">Admin: https://poppers.jcit.digital/admin</span>
+              <span class="manual-code">Tracking: https://poppers.jcit.digital/poppers/track</span>
+              <span>Telegram-only action: Contact Customer</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section reveal">
+        <h3 class="section-title">Daily Workflow</h3>
+        <div class="cards">
+          <div class="card">
+            <h3>1. Log in to Admin</h3>
+            <p>Use your admin username and passcode in the admin portal.</p>
+          </div>
+          <div class="card">
+            <h3>2. Review Orders</h3>
+            <p>Check pending, awaiting payment, and Lalamove-ready orders first.</p>
+          </div>
+          <div class="card">
+            <h3>3. Verify or Update</h3>
+            <p>Confirm payment, book delivery, upload order photos, and move statuses forward.</p>
+          </div>
+          <div class="card">
+            <h3>4. Monitor Support</h3>
+            <p>Resolve tickets, keep promos current, and review customer surveys regularly.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section reveal">
+        <h3 class="section-title">Orders Tab</h3>
+        <div class="manual-grid">
+          <div class="card">
+            <h3>Statuses You Can Use</h3>
+            <ul class="manual-list">
+              <li>Pending Confirmation</li>
+              <li>Awaiting Payment Verification</li>
+              <li>Confirmed</li>
+              <li>Preparing</li>
+              <li>Out for Delivery</li>
+              <li>Delivered</li>
+              <li>Completed</li>
+              <li>Cancelled</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Order Actions</h3>
+            <ul class="manual-list">
+              <li>Save Update: changes status and tracking details</li>
+              <li>Verify Payment: confirms prepaid orders and can auto-book Lalamove</li>
+              <li>Book Lalamove: manually trigger Lalamove booking</li>
+              <li>Send Tracking Link: works globally; browser orders use the tracking page</li>
+              <li>Cancel Order: marks the order cancelled</li>
+              <li>Upload Order Photos: can upload multiple photos that show on tracking</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Contact Customer</h3>
+            <p>
+              This is the only Telegram-only admin action. It works only when the order
+              has a real Telegram chat ID. Browser orders should be handled through the
+              saved contact number and tracking page instead.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section reveal">
+        <h3 class="section-title">Payments and Delivery</h3>
+        <div class="timeline">
+          <div class="timeline-item">
+            <strong>Prepaid Orders</strong>
+            <p>
+              Verify payment first. For same-day Lalamove orders, the delivery fee is
+              already included in the final bill. The customer should not pay the rider separately.
+            </p>
+          </div>
+          <div class="timeline-item">
+            <strong>Cash on Delivery</strong>
+            <p>
+              COD orders include the COD fee in the bill. Only COD remains payable on delivery.
+            </p>
+          </div>
+          <div class="timeline-item">
+            <strong>Pickup Points</strong>
+            <p>
+              When booking Lalamove, choose the correct pickup point in admin before submitting:
+              Jay Concha or Josh at Vine Residences.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section reveal">
+        <h3 class="section-title">Promos, Rewards, and Referrals</h3>
+        <div class="cards">
+          <div class="card">
+            <h3>Promo Rules</h3>
+            <p>Only one promo code can be used per order. Promo codes cannot stack.</p>
+          </div>
+          <div class="card">
+            <h3>Rewards Rules</h3>
+            <p>
+              Rewards and promo codes are not stackable. Customers can redeem PHP 100 for every 1000 points.
+            </p>
+          </div>
+          <div class="card">
+            <h3>Repeat Buyer Logic</h3>
+            <p>
+              Repeat buyers can auto-receive <span class="manual-code">LOYAL30</span> when no other promo is entered.
+            </p>
+          </div>
+          <div class="card">
+            <h3>Referral Credit</h3>
+            <p>
+              Referral points are awarded after the referred order is completed. Review promo and rewards behavior before making manual adjustments.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section reveal">
+        <h3 class="section-title">Other Admin Tabs</h3>
+        <div class="manual-grid">
+          <div class="card">
+            <h3>Tickets</h3>
+            <p>Open, close, and monitor support, bulk-order, and related service requests.</p>
+          </div>
+          <div class="card">
+            <h3>Promos</h3>
+            <p>Create or update promo codes, set discounts, and toggle active or inactive status.</p>
+          </div>
+          <div class="card">
+            <h3>Inventory</h3>
+            <p>View and update stock, price, and active status. Inventory should stay admin-only.</p>
+          </div>
+          <div class="card">
+            <h3>Admins</h3>
+            <p>Add admin users, reset passcodes, and manage internal access. Telegram-native 2FA is not available via Bot API.</p>
+          </div>
+          <div class="card">
+            <h3>Surveys</h3>
+            <p>Review customer ratings, comments, and the average satisfaction score for completed orders.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section reveal">
+        <h3 class="section-title">Admin Notes and Best Practices</h3>
+        <div class="cards">
+          <div class="card">
+            <h3>Browser Orders</h3>
+            <p>Browser orders may not have Telegram chat IDs. Use saved contact details and tracking links instead.</p>
+          </div>
+          <div class="card">
+            <h3>Telegram Orders</h3>
+            <p>These can receive direct Telegram admin messages when Contact Customer is available.</p>
+          </div>
+          <div class="card">
+            <h3>Admin Notifications</h3>
+            <p>All admin actions should send a Telegram admin notification so the team has an audit trail.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-grid">
+        <div>
+          <h4>Manual Scope</h4>
+          <div class="footer-links">
+            <a href="https://poppers.jcit.digital/admin" target="_blank" rel="noreferrer">Admin Portal</a>
+            <a href="https://poppers.jcit.digital/" target="_blank" rel="noreferrer">Poppers Store</a>
+            <a href="https://poppers.jcit.digital/poppers/track" target="_blank" rel="noreferrer">Tracking Page</a>
+          </div>
+        </div>
+        <div>
+          <h4>Support</h4>
+          <p>
+            Need changes to the workflow, admin actions, or store automation?
+            Contact JC IT Services for updates.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="/assets/main.js"></script>
+  </body>
+</html>
