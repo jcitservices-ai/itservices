@@ -27,9 +27,13 @@
       href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="/assets/styles.css" />
     <link rel="stylesheet" href="./styles.css" />
   </head>
-  <body>
+  <body data-page="salesbot">
+    <div class="ai-overlay"></div>
+    <div class="ai-grid"></div>
+    <div class="ai-nodes"></div>
     <div class="page-bg" aria-hidden="true">
       <div class="page-grid"></div>
       <div class="orb orb--one"></div>
@@ -38,20 +42,40 @@
     </div>
 
     <header class="site-header">
-      <div class="nav">
+      <nav class="nav">
         <a class="brand" href="/">
-          <span class="brand__mark">JC</span>
-          <span class="brand__copy">
-            <strong>JC IT Services</strong>
-            <small>Modern IT &amp; AI Enablement</small>
-          </span>
+          <img src="/assets/logo.webp" alt="JC IT Services logo" />
+          <div class="brand-text">
+            <h1>JC IT Services</h1>
+            <span>Modern IT &amp; AI Enablement</span>
+          </div>
         </a>
-        <div class="nav__actions">
-          <a class="nav__link" href="#functions">Functions</a>
-          <a class="nav__link" href="#operations">Operations</a>
-          <a class="nav__link" href="https://calendar.app.google/pd83py39DPTjBJU27" target="_blank" rel="noreferrer">Book a Call</a>
+        <button class="nav-toggle" type="button" aria-label="Toggle menu" aria-expanded="false" data-nav-toggle>
+          <span></span><span></span><span></span>
+        </button>
+        <div class="nav-links" data-nav-links>
+          <a href="/services/" data-page="services">Services</a>
+          <div class="nav-dropdown">
+            <a class="nav-dropdown-toggle" href="#" data-page="about">About Us</a>
+            <div class="nav-dropdown-menu">
+              <a href="/team/" data-page="team">Team</a>
+              <a href="/about/" data-page="about">About JC</a>
+              <a href="/team-login/" data-page="team-login">Team Login</a>
+              <a href="/bug-blaster/" data-page="bug-blaster">Bug Blaster</a>
+            </div>
+          </div>
+          <a href="/join/" data-page="join">Join Our Team!</a>
+          <a href="/contact/" data-page="contact">Contact Us</a>
+          <a class="nav-social" href="https://www.linkedin.com/company/jc-it-services/" target="_blank" rel="noreferrer" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.37V9h3.41v1.56h.05c.47-.9 1.62-1.85 3.34-1.85 3.57 0 4.23 2.35 4.23 5.41v6.33zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.78C.8 0 0 .78 0 1.74v20.52C0 23.22.8 24 1.78 24h20.44C23.2 24 24 23.22 24 22.26V1.74C24 .78 23.2 0 22.22 0z"/>
+            </svg>
+          </a>
+          <a class="nav-social" href="#" aria-label="Google Business Profile">
+            <img src="/assets/google-business.svg" alt="Google Business Profile" />
+          </a>
         </div>
-      </div>
+      </nav>
     </header>
 
     <main>
@@ -336,5 +360,6 @@
         </div>
       </section>
     </main>
+    <script src="/assets/main.js"></script>
   </body>
 </html>
