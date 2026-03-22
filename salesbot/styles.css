@@ -579,6 +579,19 @@ main {
   padding-top: 8px;
 }
 
+.section--top-demos {
+  padding-top: 28px;
+  padding-bottom: 20px;
+}
+
+.section--top-demos .section-heading {
+  margin-bottom: 22px;
+}
+
+.section--top-demos .section-heading h2 {
+  max-width: 14ch;
+}
+
 .gallery-grid {
   grid-template-columns: minmax(0, 1.3fr) repeat(2, minmax(0, 0.85fr));
   align-items: stretch;
