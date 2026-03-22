@@ -617,6 +617,7 @@ main {
 
 .media-card__video {
   background: #091724;
+  object-fit: contain;
 }
 
 .media-card--demo {
@@ -643,6 +644,7 @@ main {
 .media-card--demo .media-card__video {
   height: 100%;
   min-height: 280px;
+  width: 100%;
 }
 
 .media-card--demo::after {
