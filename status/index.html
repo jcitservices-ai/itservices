@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#06121d" />
+    <title>JC IT Services | Status Board</title>
+    <meta
+      name="description"
+      content="Live health and outage board for JC IT Services bots, storefronts, and automation systems."
+    />
+    <link rel="canonical" href="https://jcit.digital/status/" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/assets/styles.css" />
+  </head>
+  <body data-page="status">
+    <div class="ai-overlay"></div>
+    <div class="ai-grid"></div>
+    <div class="ai-nodes"></div>
+    <header>
+      <nav class="nav">
+        <a class="brand" href="/">
+          <img src="/assets/logo.webp" alt="JC IT Services logo" />
+          <div class="brand-text">
+            <h1>JC IT Services</h1>
+            <span>Operations Status Board</span>
+          </div>
+        </a>
+        <button class="nav-toggle" type="button" aria-label="Toggle menu" aria-expanded="false" data-nav-toggle>
+          <span></span><span></span><span></span>
+        </button>
+        <div class="nav-links" data-nav-links>
+          <a href="/services/" data-page="services">Services</a>
+          <a href="/contact/" data-page="contact">Contact</a>
+          <a href="/status/" data-page="status">Status</a>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="reveal">
+          <h2>Operational health for bots, storefronts, and support systems.</h2>
+          <div class="chip-row">
+            <span class="chip">10 Minute Checks</span>
+            <span class="chip">Automatic Outage Reporting</span>
+            <span class="chip">Formspree Email + Telegram Flow</span>
+          </div>
+          <p>
+            This board shows the latest known service state published by the JC IT Services operations monitor.
+            When a monitored service fails, an automated fault report is submitted through Formspree and routed through your existing notification flow.
+          </p>
+          <div class="hero-actions">
+            <a class="button" href="#service-status">View Live Status</a>
+            <a class="button secondary" href="#fault-report">Report an Issue</a>
+          </div>
+        </div>
+        <div class="hero-stack reveal">
+          <div class="hero-card status-summary-card">
+            <h3>Board Summary</h3>
+            <div class="hero-meta" id="status-summary-meta">
+              <span>Loading current monitor data...</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section reveal" id="service-status">
+        <div class="section-heading">
+          <div>
+            <h3 class="section-title">Service Health</h3>
+            <p class="section-copy">
+              Live rollout state based on the most recent monitor cycle.
+            </p>
+          </div>
+          <div class="status-board-meta" id="board-meta">Loading status feed...</div>
+        </div>
+        <div class="status-kpis" id="status-kpis"></div>
+        <div class="status-grid" id="status-grid"></div>
+      </section>
+
+      <section class="section reveal" id="fault-report">
+        <div class="contact-panel">
+          <div>
+            <h3 class="section-title">Report a Fault</h3>
+            <p class="section-copy">
+              Use this form to report a service issue, degraded behavior, or suspected outage. Reports follow the same Formspree flow already used on the site.
+            </p>
+            <form data-contact action="https://formspree.io/f/xreabold" method="POST">
+              <input type="text" name="company" style="display:none" tabindex="-1" autocomplete="off" />
+              <input type="hidden" name="_next" value="https://jcit.digital/thank-you/" />
+              <input type="hidden" name="_subject" value="JC IT Services - Fault Report" />
+              <input type="hidden" name="report_type" value="Manual Fault Report" />
+              <input type="text" name="name" placeholder="Full name" required />
+              <input type="email" name="email" placeholder="Email address" required />
+              <input type="text" name="service" placeholder="Affected bot, store, or system" required />
+              <select name="severity" required>
+                <option value="" disabled selected>Select severity</option>
+                <option>Critical - Down</option>
+                <option>Major - Degraded</option>
+                <option>Minor - Issue observed</option>
+              </select>
+              <textarea name="message" placeholder="Describe the problem, URL, bot name, and what you observed" required></textarea>
+              <button class="button" type="submit">Submit Fault Report</button>
+              <p data-form-response></p>
+            </form>
+          </div>
+          <div>
+            <h3 class="section-title">How Alerts Work</h3>
+            <div class="cards">
+              <div class="card">
+                <h3>Scheduled Checks</h3>
+                <p>Monitor jobs run every 10 minutes and test storefronts, APIs, and bots.</p>
+              </div>
+              <div class="card">
+                <h3>Automatic Fault Filing</h3>
+                <p>When a monitored service fails, the system submits a structured Formspree report automatically.</p>
+              </div>
+              <div class="card">
+                <h3>Notification Flow</h3>
+                <p>Formspree remains the source of truth for alert submission and downstream notifications.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-grid">
+        <div>
+          <h4>JC IT Services</h4>
+          <p>Operations, automation, and support systems built for reliable digital delivery.</p>
+        </div>
+        <div>
+          <h4>Quicklinks</h4>
+          <div class="footer-links">
+            <a href="/">Home</a>
+            <a href="/services/">Services</a>
+            <a href="/contact/">Contact</a>
+            <a href="/status/">Status</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="/assets/main.js"></script>
+    <script src="/assets/status-page.js"></script>
+  </body>
+</html>

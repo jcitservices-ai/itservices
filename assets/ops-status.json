@@ -1,0 +1,90 @@
+{
+  "generated_at": "2026-03-24T00:58:00+00:00",
+  "interval_minutes": 10,
+  "summary": {
+    "total_checks": 7,
+    "up": 4,
+    "down": 3,
+    "degraded": 0,
+    "auto_reports_enabled": true
+  },
+  "checks": [
+    {
+      "id": "poppers_storefront",
+      "label": "PoppersGuy Storefront",
+      "type": "http_text",
+      "target": "https://poppers.jcit.digital/poppers",
+      "status": "up",
+      "checked_at": "2026-03-24T00:57:56+00:00",
+      "response_ms": 255,
+      "last_error": "",
+      "consecutive_failures": 0
+    },
+    {
+      "id": "poppers_catalog_api",
+      "label": "PoppersGuy Catalog API",
+      "type": "http_json",
+      "target": "https://poppers.jcit.digital/api/storefront/poppers-checkout",
+      "status": "up",
+      "checked_at": "2026-03-24T00:57:57+00:00",
+      "response_ms": 2647,
+      "last_error": "",
+      "consecutive_failures": 0
+    },
+    {
+      "id": "poppers_bot",
+      "label": "PoppersGuy Telegram Bot",
+      "type": "telegram_getme",
+      "target": "POPPERS_BOT_TOKEN",
+      "status": "down",
+      "checked_at": "2026-03-24T00:57:59+00:00",
+      "response_ms": 0,
+      "last_error": "Missing bot token env: POPPERS_BOT_TOKEN",
+      "consecutive_failures": 1
+    },
+    {
+      "id": "delu_storefront",
+      "label": "deluLubes Storefront",
+      "type": "http_text",
+      "target": "https://delu.jcit.digital/delu",
+      "status": "up",
+      "checked_at": "2026-03-24T00:57:59+00:00",
+      "response_ms": 191,
+      "last_error": "",
+      "consecutive_failures": 0
+    },
+    {
+      "id": "delu_bot",
+      "label": "deluLubes Telegram Bot",
+      "type": "telegram_getme",
+      "target": "DELU_BOT_TOKEN",
+      "status": "down",
+      "checked_at": "2026-03-24T00:57:59+00:00",
+      "response_ms": 0,
+      "last_error": "Missing bot token env: DELU_BOT_TOKEN",
+      "consecutive_failures": 1
+    },
+    {
+      "id": "euphoria_storefront",
+      "label": "EuphoriaX Storefront",
+      "type": "http_text",
+      "target": "https://eux-weld.vercel.app/euphoria",
+      "status": "up",
+      "checked_at": "2026-03-24T00:57:59+00:00",
+      "response_ms": 187,
+      "last_error": "",
+      "consecutive_failures": 0
+    },
+    {
+      "id": "euphoria_bot",
+      "label": "EuphoriaX Telegram Bot",
+      "type": "telegram_getme",
+      "target": "EUPHORIA_BOT_TOKEN",
+      "status": "down",
+      "checked_at": "2026-03-24T00:58:00+00:00",
+      "response_ms": 0,
+      "last_error": "Missing bot token env: EUPHORIA_BOT_TOKEN",
+      "consecutive_failures": 2
+    }
+  ]
+}
