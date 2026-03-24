@@ -53,7 +53,19 @@
 
   async function loadStatus() {
     try {
-      const response = await fetch(`/assets/ops-status.json?ts=${Date.now()}`, { cache: "no-store" });
+      const sources = ["https://aibots.jcit.digital/ops-status.json", `/assets/ops-status.json?ts=${Date.now()}`];
+      let response = null;
+      for (const source of sources) {
+        try {
+          response = await fetch(source, { cache: "no-store" });
+          if (response.ok) break;
+        } catch (_) {
+          response = null;
+        }
+      }
+      if (!response || !response.ok) {
+        throw new Error("Status feed unavailable.");
+      }
       if (!response.ok) {
         throw new Error("Status feed unavailable.");
       }
