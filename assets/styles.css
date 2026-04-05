@@ -1408,6 +1408,19 @@ footer {
   overflow: hidden;
 }
 
+.product-stack {
+  display: grid;
+  gap: 24px;
+}
+
+.product-card-full {
+  overflow: hidden;
+}
+
+.game-promo-copy h3 {
+  margin-bottom: 12px;
+}
+
 .game-promo-grid {
   display: grid;
   grid-template-columns: 1.6fr 1fr;
