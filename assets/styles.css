@@ -406,6 +406,11 @@ main {
   line-height: 1.1;
 }
 
+.hero-name-bubbles {
+  font-size: clamp(2rem, 3.45vw, 3rem);
+  white-space: nowrap;
+}
+
 .hero p {
   color: var(--text-2);
   margin-top: 16px;
@@ -1225,6 +1230,10 @@ footer {
 
   .hero h2 {
     font-size: clamp(1.6rem, 8vw, 2.2rem);
+  }
+
+  .hero-name-bubbles {
+    white-space: normal;
   }
 
   .hero p {
