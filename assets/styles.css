@@ -346,6 +346,14 @@ main {
   min-width: 0;
 }
 
+.hero-profile-left > .reveal {
+  order: 2;
+}
+
+.hero-profile-left > .hero-stack {
+  order: 1;
+}
+
 .chip-row {
   margin-top: 18px;
   display: flex;
@@ -1153,6 +1161,11 @@ footer {
 
   .hero-bubbles {
     grid-template-columns: 1fr;
+  }
+
+  .hero-profile-left > .reveal,
+  .hero-profile-left > .hero-stack {
+    order: initial;
   }
 
   .hero h2 {
