@@ -336,6 +336,16 @@ main {
   padding: 40px 0 20px;
 }
 
+.hero-bubbles {
+  grid-template-columns: minmax(0, 1.08fr) minmax(320px, 0.92fr);
+  align-items: start;
+}
+
+.hero-bubbles > .reveal,
+.hero-bubbles > .hero-stack {
+  min-width: 0;
+}
+
 .chip-row {
   margin-top: 18px;
   display: flex;
@@ -407,8 +417,14 @@ main {
 }
 
 .hero-name-bubbles {
-  font-size: clamp(2rem, 3.45vw, 3rem);
-  white-space: nowrap;
+  font-size: clamp(2.35rem, 4vw, 4.1rem);
+  line-height: 0.96;
+  letter-spacing: -0.04em;
+  max-width: 11.5ch;
+}
+
+.hero-name-bubbles span {
+  display: block;
 }
 
 .hero p {
@@ -1124,6 +1140,10 @@ footer {
     padding: 24px 0 10px;
   }
 
+  .hero-bubbles {
+    grid-template-columns: 1fr;
+  }
+
   .hero h2 {
     font-size: clamp(1.8rem, 6vw, 2.6rem);
   }
@@ -1233,7 +1253,8 @@ footer {
   }
 
   .hero-name-bubbles {
-    white-space: normal;
+    max-width: none;
+    line-height: 1.02;
   }
 
   .hero p {
