@@ -392,6 +392,10 @@ main {
   object-position: center 35%;
 }
 
+.hero-media img.portrait-monochrome {
+  filter: grayscale(1) contrast(1.08);
+}
+
 .hero-media::after {
   content: "";
   position: absolute;
