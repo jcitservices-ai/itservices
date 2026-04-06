@@ -835,6 +835,13 @@ footer {
   color: var(--text-1);
 }
 
+.footer-note {
+  margin-top: 12px;
+  color: var(--text-2);
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
 .cookie-banner {
   position: fixed;
   left: 24px;
