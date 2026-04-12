@@ -274,6 +274,45 @@
         border: 1px solid rgba(102, 255, 204, 0.18);
       }
 
+      .proposal-approval-form {
+        display: grid;
+        gap: 12px;
+        margin-top: 18px;
+      }
+
+      .proposal-approval-form input[type="text"],
+      .proposal-approval-form input[type="email"],
+      .proposal-approval-form input[type="tel"] {
+        width: 100%;
+        padding: 12px 14px;
+        border-radius: 12px;
+        border: 1px solid var(--border);
+        background: rgba(5, 15, 25, 0.8);
+        color: var(--text-1);
+        font-family: inherit;
+      }
+
+      .proposal-checkbox {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        padding: 14px 16px;
+        border-radius: 14px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: rgba(255, 255, 255, 0.04);
+        color: var(--text-2);
+      }
+
+      .proposal-checkbox input {
+        width: auto;
+        margin-top: 2px;
+        accent-color: #66ffcc;
+      }
+
+      .proposal-checkbox span {
+        line-height: 1.5;
+      }
+
       @media (max-width: 980px) {
         .proposal-grid,
         .proposal-next,
@@ -355,7 +394,7 @@
             one branded experience designed to convert more of the audience you already have.
           </p>
           <div class="proposal-actions">
-            <a class="button" href="/contact/">Approve And Kick Off</a>
+            <a class="button" href="#approve-form">Approve And Kick Off</a>
             <a class="button secondary" href="tel:+639165257684">Call JCIT</a>
             <a class="button secondary" href="#investment">View Project Cost</a>
           </div>
@@ -599,25 +638,33 @@
             approve the proposal, confirm the project cost, and begin the kickoff session so the build window can start.
           </p>
           <div class="proposal-actions">
-            <a class="button" href="/contact/">Approve And Kick Off</a>
+            <a class="button" href="#approve-form">Approve And Kick Off</a>
             <a class="button secondary" href="/contact/">Talk To JCIT First</a>
           </div>
         </article>
 
-        <article>
-          <p class="eyebrow">Contact</p>
-          <h3>Jake A. Concha</h3>
-          <p>JCIT Representative</p>
-          <div class="proposal-list">
-            <article>
-              <h4>Email</h4>
-              <p><a href="mailto:jake@jcit.digital">jake@jcit.digital</a></p>
-            </article>
-            <article>
-              <h4>Phone</h4>
-              <p><a href="tel:+639165257684">+63 916 525 7684</a></p>
-            </article>
-          </div>
+        <article id="approve-form">
+          <p class="eyebrow">Approve And Kick Off</p>
+          <h3>Start the project</h3>
+          <p>Complete this quick form and JCIT will treat it as a project-start request for Daddy Grab.</p>
+          <form
+            class="proposal-approval-form"
+            action="https://formspree.io/f/xreabold"
+            method="POST"
+          >
+            <input type="text" name="company" style="display:none" tabindex="-1" autocomplete="off" />
+            <input type="hidden" name="_next" value="https://jcit.digital/thank-you/" />
+            <input type="hidden" name="_subject" value="Daddy Grab - Approve and Kick Off" />
+            <input type="hidden" name="project" value="Daddy Grab x JCIT Digital" />
+            <input type="text" name="client_name" placeholder="Client name" required />
+            <input type="tel" name="contact_number" placeholder="Contact number" required />
+            <input type="email" name="email" placeholder="Email address" required />
+            <label class="proposal-checkbox">
+              <input type="checkbox" name="project_approval" value="Let's go and start the project" required />
+              <span>Let’s go and start the project.</span>
+            </label>
+            <button class="button" type="submit">Submit Approval</button>
+          </form>
         </article>
       </section>
     </main>
