@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#06121d" />
+    <title>Daddy Grab x JCIT Digital Proposal</title>
+    <meta
+      name="description"
+      content="Sales proposal for Daddy Grab by JCIT Digital: a Grab-inspired storefront with AI concierge, event discovery, integrated payments, and rollout plan."
+    />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://jcit.digital/daddygrab" />
+    <meta property="og:title" content="Daddy Grab x JCIT Digital Proposal" />
+    <meta
+      property="og:description"
+      content="A sales-driven proposal page for Daddy Grab showing the unified storefront concept, launch scope, pricing, and next steps."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://jcit.digital/daddygrab" />
+    <meta property="og:image" content="https://jcit.digital/daddygrab/assets/daddygrab-app-preview.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/assets/styles.css" />
+    <style>
+      .proposal-shell {
+        display: grid;
+        gap: 32px;
+      }
+
+      .proposal-hero {
+        align-items: stretch;
+      }
+
+      .proposal-kicker {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 8px 14px;
+        border-radius: 999px;
+        border: 1px solid rgba(102, 255, 204, 0.28);
+        background: rgba(3, 10, 16, 0.52);
+        color: rgba(232, 251, 255, 0.82);
+        font-family: "Space Mono", monospace;
+        font-size: 0.76rem;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+      }
+
+      .proposal-hero h2 {
+        max-width: 12ch;
+      }
+
+      .proposal-hero p {
+        max-width: 58ch;
+      }
+
+      .proposal-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 24px;
+      }
+
+      .proposal-proof {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 14px;
+        margin-top: 28px;
+      }
+
+      .proposal-proof article,
+      .proposal-brief,
+      .proposal-price,
+      .proposal-box,
+      .proposal-timeline .timeline-item,
+      .proposal-next article {
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        background: rgba(7, 20, 35, 0.72);
+        box-shadow: var(--shadow);
+      }
+
+      .proposal-proof article {
+        padding: 18px;
+      }
+
+      .proposal-proof strong {
+        display: block;
+        color: var(--accent-2);
+        font-size: 1.6rem;
+      }
+
+      .proposal-proof span {
+        display: block;
+        margin-top: 6px;
+        color: var(--text-2);
+        font-size: 0.94rem;
+      }
+
+      .proposal-visual {
+        display: grid;
+        gap: 18px;
+      }
+
+      .proposal-visual-frame {
+        overflow: hidden;
+        border-radius: 28px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        background: linear-gradient(180deg, rgba(16, 50, 74, 0.88), rgba(6, 18, 29, 0.92));
+        padding: 14px;
+      }
+
+      .proposal-visual-frame img {
+        width: 100%;
+        border-radius: 20px;
+      }
+
+      .proposal-brief {
+        padding: 20px;
+      }
+
+      .proposal-brief h3,
+      .proposal-box h3,
+      .proposal-price h3 {
+        margin-bottom: 14px;
+      }
+
+      .proposal-brief dl {
+        display: grid;
+        gap: 12px;
+      }
+
+      .proposal-brief div {
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        padding-bottom: 12px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .proposal-brief div:last-child {
+        border-bottom: 0;
+        padding-bottom: 0;
+      }
+
+      .proposal-brief dt {
+        color: var(--text-2);
+      }
+
+      .proposal-brief dd {
+        text-align: right;
+        font-weight: 600;
+      }
+
+      .proposal-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr);
+        gap: 24px;
+      }
+
+      .proposal-box {
+        padding: 28px;
+      }
+
+      .proposal-list {
+        display: grid;
+        gap: 14px;
+        margin-top: 22px;
+      }
+
+      .proposal-list article {
+        padding: 18px;
+        border-radius: 16px;
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .proposal-list p,
+      .proposal-box p,
+      .proposal-brief p,
+      .proposal-price p,
+      .proposal-next p {
+        color: var(--text-2);
+      }
+
+      .proposal-price-stack {
+        display: grid;
+        gap: 16px;
+        margin-top: 18px;
+      }
+
+      .proposal-price {
+        padding: 20px;
+      }
+
+      .proposal-price small {
+        color: var(--text-2);
+        font-family: "Space Mono", monospace;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .proposal-price strong {
+        display: block;
+        margin: 10px 0 8px;
+        font-size: 2rem;
+        color: var(--accent-2);
+      }
+
+      .proposal-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 18px;
+      }
+
+      .proposal-table th,
+      .proposal-table td {
+        padding: 12px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        text-align: left;
+      }
+
+      .proposal-table th:last-child,
+      .proposal-table td:last-child {
+        text-align: right;
+      }
+
+      .proposal-table tfoot td {
+        color: var(--accent-2);
+        font-weight: 700;
+      }
+
+      .proposal-timeline {
+        display: grid;
+        gap: 14px;
+        margin-top: 20px;
+      }
+
+      .proposal-timeline .timeline-item {
+        padding: 18px;
+      }
+
+      .proposal-timeline strong {
+        display: block;
+        margin-bottom: 6px;
+        color: var(--accent-2);
+      }
+
+      .proposal-next {
+        display: grid;
+        grid-template-columns: minmax(0, 1.2fr) minmax(300px, 0.8fr);
+        gap: 24px;
+      }
+
+      .proposal-next article {
+        padding: 28px;
+      }
+
+      .proposal-note {
+        margin-top: 18px;
+        padding: 16px 18px;
+        border-radius: 16px;
+        background: rgba(102, 255, 204, 0.08);
+        border: 1px solid rgba(102, 255, 204, 0.18);
+      }
+
+      @media (max-width: 980px) {
+        .proposal-grid,
+        .proposal-next,
+        .proposal-proof,
+        .proposal-hero {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body data-page="daddygrab">
+    <div class="ai-overlay"></div>
+    <div class="ai-grid"></div>
+    <div class="ai-nodes"></div>
+    <header>
+      <nav class="nav">
+        <a class="brand" href="/">
+          <img src="/assets/logo.webp" alt="JC IT Services logo" />
+          <div class="brand-text">
+            <h1>JC IT Services</h1>
+            <span>Modern IT &amp; AI Enablement</span>
+          </div>
+        </a>
+        <button class="nav-toggle" type="button" aria-label="Toggle menu" aria-expanded="false" data-nav-toggle>
+          <span></span><span></span><span></span>
+        </button>
+        <div class="nav-links" data-nav-links>
+          <a href="/services/" data-page="services">Services</a>
+          <div class="nav-dropdown">
+            <a class="nav-dropdown-toggle" href="#" data-page="about">About Us</a>
+            <div class="nav-dropdown-menu">
+              <a href="/team/" data-page="team">Team</a>
+              <a href="/about/" data-page="about">About JC</a>
+              <a href="/bubbles/" data-page="bubbles">About Bubbles</a>
+              <a href="/team-login/" data-page="team-login">Team Login</a>
+              <a href="/bug-blaster/" data-page="bug-blaster">Bug Blaster</a>
+            </div>
+          </div>
+          <a href="/join/" data-page="join">Join Our Team!</a>
+          <a href="/contact/" data-page="contact">Contact Us</a>
+          <a class="nav-social" href="https://www.linkedin.com/company/jc-it-services/" target="_blank" rel="noreferrer" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.37V9h3.41v1.56h.05c.47-.9 1.62-1.85 3.34-1.85 3.57 0 4.23 2.35 4.23 5.41v6.33zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.78C.8 0 0 .78 0 1.74v20.52C0 23.22.8 24 1.78 24h20.44C23.2 24 24 23.22 24 22.26V1.74C24 .78 23.2 0 22.22 0z"/>
+            </svg>
+          </a>
+          <a class="nav-social" href="#" aria-label="Google Business Profile">
+            <img src="/assets/google-business.svg" alt="Google Business Profile" />
+          </a>
+        </div>
+      </nav>
+    </header>
+
+    <main class="proposal-shell">
+      <div class="orb" style="top: 140px; right: 120px"></div>
+      <div class="orb two" style="top: 480px; left: 60px"></div>
+      <div class="orb three" style="top: 980px; right: 160px"></div>
+
+      <section class="hero proposal-hero">
+        <div class="reveal">
+          <span class="proposal-kicker">Powered by AI • Built for Conversion</span>
+          <h2>Daddy Grab x JCIT Digital</h2>
+          <div class="chip-row">
+            <span class="chip">Grab-Style Interface</span>
+            <span class="chip">AI Concierge</span>
+            <span class="chip">PayMongo Ready</span>
+            <span class="chip">Lalamove Ready</span>
+            <span class="chip">Event Discovery</span>
+            <span class="chip">Multi-Product Hub</span>
+          </div>
+          <div class="micro-labels">
+            <span>SALES FIRST</span>
+            <span>MOBILE READY</span>
+            <span>OPS READY</span>
+            <span>BRAND FORWARD</span>
+          </div>
+          <p>
+            This proposal positions Daddy Grab as a premium digital storefront with a familiar super-app
+            buying flow: products, events, logistics, and AI-assisted customer support working together in
+            one branded experience designed to convert more of the audience you already have.
+          </p>
+          <div class="proposal-actions">
+            <a class="button" href="mailto:jake@jcit.digital?subject=Daddy%20Grab%20Proposal%20Approval">Approve And Kick Off</a>
+            <a class="button secondary" href="tel:+639165257684">Call JCIT</a>
+            <a class="button secondary" href="#investment">View Investment</a>
+          </div>
+          <div class="proposal-proof reveal">
+            <article>
+              <strong>PHP 5,100</strong>
+              <span>Initial investment covering setup, domain, and first-month activation.</span>
+            </article>
+            <article>
+              <strong>PHP 3,100</strong>
+              <span>Monthly service package for the storefront stack and support.</span>
+            </article>
+            <article>
+              <strong>14 Days</strong>
+              <span>Target rollout window from onboarding through staging and go-live.</span>
+            </article>
+          </div>
+        </div>
+
+        <div class="proposal-visual reveal">
+          <div class="proposal-visual-frame">
+            <img
+              src="/daddygrab/assets/daddygrab-app-preview.png"
+              alt="Daddy Grab concept UI showing category tiles, event cards, and AI-curated product suggestions."
+            />
+          </div>
+          <aside class="proposal-brief">
+            <h3>Proposal Snapshot</h3>
+            <dl>
+              <div>
+                <dt>Prepared For</dt>
+                <dd>Daddy Grab</dd>
+              </div>
+              <div>
+                <dt>Prepared By</dt>
+                <dd>JCIT Digital</dd>
+              </div>
+              <div>
+                <dt>Date</dt>
+                <dd>April 12, 2026</dd>
+              </div>
+              <div>
+                <dt>Live Route</dt>
+                <dd>jcit.digital/daddygrab</dd>
+              </div>
+            </dl>
+            <p class="proposal-note">
+              The included concept visual shows how Daddy Grab can merge category-led shopping,
+              event merchandising, and AI-guided recommendations inside one polished mobile-first hub.
+            </p>
+          </aside>
+        </div>
+      </section>
+
+      <section class="proposal-grid section reveal">
+        <article class="proposal-box" id="solution">
+          <p class="eyebrow">The Sales Story</p>
+          <h3>Why this concept is built to sell</h3>
+          <p>
+            The goal is not just a nicer landing page. The goal is a cleaner buying system that captures
+            social traffic, keeps customers inside one funnel, and reduces the friction between interest,
+            questions, and completed orders.
+          </p>
+          <div class="proposal-list">
+            <article>
+              <h4>Multi-product architecture</h4>
+              <p>Organize physical goods, lubes, digital offers, and future retail categories under one scalable storefront.</p>
+            </article>
+            <article>
+              <h4>Grab-style landing experience</h4>
+              <p>Give Daddy Grab a familiar tap-first interface that feels intuitive, modern, and conversion-friendly from the first screen.</p>
+            </article>
+            <article>
+              <h4>AI concierge support</h4>
+              <p>Answer inquiries, recommend products, and support bookings 24/7 with a branded assistant that reduces manual chat workload.</p>
+            </article>
+            <article>
+              <h4>Operational readiness</h4>
+              <p>Prepare for PayMongo payments and Lalamove logistics so the storefront is positioned for live fulfillment, not just browsing.</p>
+            </article>
+          </div>
+        </article>
+
+        <aside class="proposal-box">
+          <p class="eyebrow">Why It Wins</p>
+          <h3>Commercial upside for Daddy Grab</h3>
+          <div class="proposal-list">
+            <article>
+              <h4>Turn social attention into orders</h4>
+              <p>A central hub converts scattered clicks from content, messages, and promos into one cleaner checkout path.</p>
+            </article>
+            <article>
+              <h4>Increase bundle opportunities</h4>
+              <p>Merchandising categories and featured event placements create more room for upsells and combination purchases.</p>
+            </article>
+            <article>
+              <h4>Strengthen the brand</h4>
+              <p>A premium, app-like interface makes Daddy Grab feel larger, sharper, and more organized in the customer’s mind.</p>
+            </article>
+          </div>
+        </aside>
+      </section>
+
+      <section class="proposal-grid section reveal" id="investment">
+        <article class="proposal-box">
+          <p class="eyebrow">Investment</p>
+          <h3>Fast-start pricing built for launch</h3>
+          <div class="proposal-price-stack">
+            <div class="proposal-price">
+              <small>Initial Investment</small>
+              <strong>PHP 5,100</strong>
+              <p>Project kickoff, setup fee, domain activation, and the first month of service.</p>
+            </div>
+            <div class="proposal-price">
+              <small>Monthly Subscription</small>
+              <strong>PHP 3,100</strong>
+              <p>Core storefront package, maintenance, support, and one major product configuration per month.</p>
+            </div>
+          </div>
+          <p class="proposal-note">
+            This proposal covers a fully functional system. Any selected add-ons can still be adjusted around Daddy Grab’s actual rollout priorities.
+          </p>
+        </article>
+
+        <aside class="proposal-box">
+          <p class="eyebrow">Cost Breakdown</p>
+          <h3>One-time and monthly details</h3>
+          <table class="proposal-table">
+            <thead>
+              <tr>
+                <th>Initial Costs</th>
+                <th>Amount</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Setup Fee</td>
+                <td>PHP 1,500</td>
+              </tr>
+              <tr>
+                <td>Custom Domain Fee</td>
+                <td>PHP 500</td>
+              </tr>
+              <tr>
+                <td>First Month Subscription</td>
+                <td>PHP 3,100</td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr>
+                <td>Total Initial Investment</td>
+                <td>PHP 5,100</td>
+              </tr>
+            </tfoot>
+          </table>
+          <table class="proposal-table">
+            <thead>
+              <tr>
+                <th>Monthly Services</th>
+                <th>Amount</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Basic Storefront</td>
+                <td>PHP 1,500</td>
+              </tr>
+              <tr>
+                <td>Event Scheduling</td>
+                <td>PHP 500</td>
+              </tr>
+              <tr>
+                <td>Group Management</td>
+                <td>PHP 500</td>
+              </tr>
+              <tr>
+                <td>Google Workspace</td>
+                <td>PHP 600</td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr>
+                <td>Total Monthly</td>
+                <td>PHP 3,100</td>
+              </tr>
+            </tfoot>
+          </table>
+        </aside>
+      </section>
+
+      <section class="proposal-grid section reveal">
+        <article class="proposal-box">
+          <p class="eyebrow">Timeline</p>
+          <h3>Proposed rollout plan</h3>
+          <div class="proposal-timeline">
+            <div class="timeline-item">
+              <strong>Day 1 • Onboarding</strong>
+              <p>Approve the proposal, settle the initial payment, and lock the custom domain.</p>
+            </div>
+            <div class="timeline-item">
+              <strong>Days 2-7 • Development</strong>
+              <p>Customize the UI, shape the core information architecture, and load the Daddy Grab product structure.</p>
+            </div>
+            <div class="timeline-item">
+              <strong>Days 8-10 • Integrations</strong>
+              <p>Prepare payment and delivery logic through PayMongo and Lalamove operational flows.</p>
+            </div>
+            <div class="timeline-item">
+              <strong>Days 11-14 • Staging and UAT</strong>
+              <p>Run review, revisions, testing, and final deployment for public launch.</p>
+            </div>
+          </div>
+        </article>
+
+        <aside class="proposal-box">
+          <p class="eyebrow">Positioning</p>
+          <h3>What Daddy Grab gets beyond a landing page</h3>
+          <div class="proposal-list">
+            <article>
+              <h4>A stronger first impression</h4>
+              <p>Customers immediately see a branded platform instead of a loose collection of links and chats.</p>
+            </article>
+            <article>
+              <h4>A more repeatable sales process</h4>
+              <p>Clear categories, structured discovery, and assisted buying reduce reliance on manual selling.</p>
+            </article>
+            <article>
+              <h4>A foundation for future automation</h4>
+              <p>The build is positioned for future campaigns, concierge improvements, and additional operational modules.</p>
+            </article>
+          </div>
+        </aside>
+      </section>
+
+      <section class="proposal-next section reveal" id="next-steps">
+        <article>
+          <p class="eyebrow">Next Steps</p>
+          <h3>Ready to move forward?</h3>
+          <p>
+            Once approved, JCIT Digital can begin onboarding immediately. The fastest path is simple:
+            approve the proposal, activate the initial investment, and begin the kickoff session so the build window can start.
+          </p>
+          <div class="proposal-actions">
+            <a class="button" href="mailto:jake@jcit.digital?subject=Daddy%20Grab%20Proposal%20Approval">Approve And Kick Off</a>
+            <a class="button secondary" href="/contact/">Talk To JCIT First</a>
+          </div>
+        </article>
+
+        <article>
+          <p class="eyebrow">Contact</p>
+          <h3>Jake A. Concha</h3>
+          <p>JCIT Representative</p>
+          <div class="proposal-list">
+            <article>
+              <h4>Email</h4>
+              <p><a href="mailto:jake@jcit.digital">jake@jcit.digital</a></p>
+            </article>
+            <article>
+              <h4>Phone</h4>
+              <p><a href="tel:+639165257684">+63 916 525 7684</a></p>
+            </article>
+          </div>
+        </article>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-grid">
+        <div>
+          <h4>Quicklinks</h4>
+          <div class="footer-links">
+            <a href="/services/">Services</a>
+            <a href="/team/">Team</a>
+            <a href="/join/">Join Our Team</a>
+            <a href="/contact/">Contact Us</a>
+            <a href="/storefront/">StoreFront</a>
+          </div>
+        </div>
+        <div>
+          <h4>Legal</h4>
+          <div class="footer-links">
+            <a href="/legal/">Business Registration</a>
+            <a href="/sla/">SLA Agreement</a>
+            <a href="/privacy/">Privacy Policy</a>
+            <a href="/terms/">Terms of Service</a>
+            <a href="/copyright/">Copyright</a>
+          </div>
+        </div>
+        <div>
+          <h4>About JC IT Services</h4>
+          <p>AI-powered IT, PBX/VOIP, and automation delivery for SME clients across the US, AU, and PH.</p>
+          <p class="footer-note">
+            JCIT Services operates under JCO IT SOLUTIONS, a duly registered business in the Republic of the Philippines.
+          </p>
+          <p><a href="/contact/">Contact Us</a></p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="/assets/main.js"></script>
+  </body>
+</html>
