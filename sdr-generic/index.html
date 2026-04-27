@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#06121d" />
+    <title>Sales Development Representative Job Posting</title>
+    <meta
+      name="description"
+      content="Generic Sales Development Representative job posting for a results-driven sales professional focused on prospecting, outreach, closing, and customer follow-up."
+    />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://jcit.digital/sdr-generic/" />
+    <meta property="og:title" content="Sales Development Representative Job Posting" />
+    <meta
+      property="og:description"
+      content="Apply for a flexible SDR role focused on active outreach, customer engagement, closing, order coordination, and retention."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://jcit.digital/sdr-generic/" />
+    <meta property="og:image" content="https://jcit.digital/assets/images/hero-join.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/assets/styles.css" />
+    <style>
+      .posting-shell {
+        display: grid;
+        gap: 32px;
+      }
+
+      .posting-hero {
+        align-items: stretch;
+      }
+
+      .posting-kicker {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 8px 14px;
+        border-radius: 999px;
+        border: 1px solid rgba(102, 255, 204, 0.28);
+        background: rgba(3, 10, 16, 0.52);
+        color: rgba(232, 251, 255, 0.82);
+        font-family: "Space Mono", monospace;
+        font-size: 0.76rem;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+      }
+
+      .posting-hero h2 {
+        max-width: 13ch;
+      }
+
+      .posting-hero p {
+        max-width: 60ch;
+      }
+
+      .posting-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 24px;
+      }
+
+      .posting-proof,
+      .posting-grid,
+      .posting-next {
+        display: grid;
+        gap: 24px;
+      }
+
+      .posting-proof {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 14px;
+        margin-top: 28px;
+      }
+
+      .posting-proof article,
+      .posting-card,
+      .posting-brief,
+      .posting-next article {
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        background: rgba(7, 20, 35, 0.72);
+        box-shadow: var(--shadow);
+      }
+
+      .posting-proof article {
+        padding: 18px;
+      }
+
+      .posting-proof strong {
+        display: block;
+        color: var(--accent-2);
+        font-size: 1.45rem;
+        line-height: 1.25;
+      }
+
+      .posting-proof span {
+        display: block;
+        margin-top: 6px;
+        color: var(--text-2);
+        font-size: 0.94rem;
+      }
+
+      .posting-visual {
+        display: grid;
+        gap: 18px;
+      }
+
+      .posting-visual-frame {
+        overflow: hidden;
+        border-radius: 28px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        background:
+          linear-gradient(180deg, rgba(16, 50, 74, 0.78), rgba(6, 18, 29, 0.94)),
+          url("/assets/images/hero-join.jpg") center/cover;
+        min-height: 430px;
+        padding: 24px;
+        display: flex;
+        align-items: flex-end;
+      }
+
+      .posting-visual-card {
+        width: 100%;
+        border-radius: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        background: rgba(3, 10, 16, 0.72);
+        backdrop-filter: blur(18px);
+        padding: 20px;
+      }
+
+      .posting-card,
+      .posting-brief,
+      .posting-next article {
+        padding: 28px;
+      }
+
+      .posting-card h3,
+      .posting-brief h3,
+      .posting-visual-card h3 {
+        margin-bottom: 14px;
+      }
+
+      .posting-card p,
+      .posting-brief p,
+      .posting-next p,
+      .posting-list p,
+      .posting-note,
+      .posting-visual-card p {
+        color: var(--text-2);
+      }
+
+      .posting-grid {
+        grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr);
+      }
+
+      .posting-list {
+        display: grid;
+        gap: 14px;
+        margin-top: 22px;
+      }
+
+      .posting-list article {
+        padding: 18px;
+        border-radius: 16px;
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .posting-list h4 {
+        margin-bottom: 6px;
+      }
+
+      .posting-note {
+        margin-top: 18px;
+        padding: 16px 18px;
+        border-radius: 16px;
+        background: rgba(102, 255, 204, 0.08);
+        border: 1px solid rgba(102, 255, 204, 0.18);
+      }
+
+      .posting-brief dl {
+        display: grid;
+        gap: 12px;
+      }
+
+      .posting-brief div {
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        padding-bottom: 12px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .posting-brief div:last-child {
+        border-bottom: 0;
+        padding-bottom: 0;
+      }
+
+      .posting-brief dt {
+        color: var(--text-2);
+      }
+
+      .posting-brief dd {
+        text-align: right;
+        font-weight: 600;
+      }
+
+      .posting-next {
+        grid-template-columns: minmax(0, 1.2fr) minmax(300px, 0.8fr);
+      }
+
+      .posting-application-form {
+        display: grid;
+        gap: 12px;
+        margin-top: 18px;
+      }
+
+      .posting-application-form input,
+      .posting-application-form select,
+      .posting-application-form textarea {
+        width: 100%;
+        padding: 12px 14px;
+        border-radius: 12px;
+        border: 1px solid var(--border);
+        background: rgba(5, 15, 25, 0.8);
+        color: var(--text-1);
+        font-family: inherit;
+      }
+
+      .posting-application-form textarea {
+        min-height: 120px;
+        resize: vertical;
+      }
+
+      .posting-checkbox {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        padding: 14px 16px;
+        border-radius: 14px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: rgba(255, 255, 255, 0.04);
+        color: var(--text-2);
+      }
+
+      .posting-checkbox input {
+        width: auto;
+        margin-top: 2px;
+        accent-color: #66ffcc;
+      }
+
+      @media (max-width: 980px) {
+        .posting-grid,
+        .posting-next,
+        .posting-proof,
+        .posting-hero {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body data-page="join">
+    <div class="ai-overlay"></div>
+    <div class="ai-grid"></div>
+    <div class="ai-nodes"></div>
+    <header>
+      <nav class="nav">
+        <a class="brand" href="/">
+          <img src="/assets/logo.webp" alt="Site logo" />
+          <div class="brand-text">
+            <h1>Hiring Team</h1>
+            <span>Sales Recruitment</span>
+          </div>
+        </a>
+        <button class="nav-toggle" type="button" aria-label="Toggle menu" aria-expanded="false" data-nav-toggle>
+          <span></span><span></span><span></span>
+        </button>
+        <div class="nav-links" data-nav-links>
+          <a href="#role">Role</a>
+          <a href="#requirements">Requirements</a>
+          <a href="#apply-form">Apply</a>
+        </div>
+      </nav>
+    </header>
+
+    <main class="posting-shell">
+      <div class="orb" style="top: 140px; right: 120px"></div>
+      <div class="orb two" style="top: 480px; left: 60px"></div>
+      <div class="orb three" style="top: 980px; right: 160px"></div>
+
+      <section class="hero posting-hero">
+        <div class="reveal">
+          <span class="posting-kicker">Flexible Sales Role</span>
+          <h2>Sales Development Representative</h2>
+          <div class="chip-row">
+            <span class="chip">Prospecting</span>
+            <span class="chip">Outreach</span>
+            <span class="chip">Social Selling</span>
+            <span class="chip">Customer Follow-Up</span>
+            <span class="chip">Remote / Field</span>
+          </div>
+          <div class="micro-labels">
+            <span>FIND</span>
+            <span>ENGAGE</span>
+            <span>QUALIFY</span>
+            <span>CLOSE</span>
+          </div>
+          <p>
+            We are hiring a results-driven Sales Development Representative to actively
+            find potential customers, start conversations, qualify opportunities, and
+            move leads toward closed sales. This role is built for someone who is
+            proactive, persuasive, organized, and comfortable working across multiple
+            sales channels.
+          </p>
+          <div class="posting-actions">
+            <a class="button" href="#apply-form">Apply Now</a>
+            <a class="button secondary" href="#role">View Responsibilities</a>
+            <a class="button secondary" href="#requirements">Review Requirements</a>
+          </div>
+          <div class="posting-proof reveal">
+            <article>
+              <strong>Active Outreach</strong>
+              <span>Find, contact, and engage prospects through digital and direct channels.</span>
+            </article>
+            <article>
+              <strong>Sales Ownership</strong>
+              <span>Manage conversations from first inquiry through decision and next steps.</span>
+            </article>
+            <article>
+              <strong>Growth Mindset</strong>
+              <span>Build a repeatable pipeline through daily activity and disciplined follow-up.</span>
+            </article>
+          </div>
+        </div>
+
+        <div class="posting-visual reveal">
+          <div class="posting-visual-frame">
+            <div class="posting-visual-card">
+              <p class="eyebrow">Role Snapshot</p>
+              <h3>For self-driven sales builders</h3>
+              <p>
+                Ideal for someone who can prospect independently, respond quickly,
+                keep accurate records, handle objections, and turn interest into
+                committed customers.
+              </p>
+            </div>
+          </div>
+          <aside class="posting-brief">
+            <h3>Posting Details</h3>
+            <dl>
+              <div>
+                <dt>Job Title</dt>
+                <dd>Sales Development Representative</dd>
+              </div>
+              <div>
+                <dt>Work Type</dt>
+                <dd>Independent Contractor</dd>
+              </div>
+              <div>
+                <dt>Setup</dt>
+                <dd>Remote / Field</dd>
+              </div>
+              <div>
+                <dt>Schedule</dt>
+                <dd>Flexible</dd>
+              </div>
+              <div>
+                <dt>Focus</dt>
+                <dd>Lead generation and sales conversion</dd>
+              </div>
+            </dl>
+            <p class="posting-note">
+              This is a sales-focused role. The right candidate is expected to create
+              opportunities, maintain consistent activity, and communicate clearly with
+              prospects and internal contacts.
+            </p>
+          </aside>
+        </div>
+      </section>
+
+      <section class="posting-grid section reveal" id="role">
+        <article class="posting-card">
+          <p class="eyebrow">Key Responsibilities</p>
+          <h3>Own the sales motion from outreach to follow-up</h3>
+          <p>
+            The SDR will support customer acquisition by finding new prospects,
+            starting conversations, qualifying interest, and helping move customers
+            through the buying journey.
+          </p>
+          <div class="posting-list">
+            <article>
+              <h4>Sales and lead generation</h4>
+              <p>Identify potential customers, perform daily outreach, and build a consistent pipeline of qualified leads.</p>
+            </article>
+            <article>
+              <h4>Social and chat selling</h4>
+              <p>Post offers or updates when needed, respond to inquiries, and guide prospects toward clear next steps.</p>
+            </article>
+            <article>
+              <h4>Sales discussions</h4>
+              <p>Set up conversations, explain offers clearly, handle objections, and help close sales efficiently.</p>
+            </article>
+          </div>
+        </article>
+
+        <aside class="posting-card">
+          <p class="eyebrow">Customer Handling</p>
+          <h3>Keep details clean and follow-ups timely</h3>
+          <div class="posting-list">
+            <article>
+              <h4>Order coordination</h4>
+              <p>Collect and confirm customer details accurately, then coordinate next steps with the appropriate internal contact.</p>
+            </article>
+            <article>
+              <h4>Tracking and reporting</h4>
+              <p>Maintain clear records of prospects, customer conversations, sales progress, and completed transactions.</p>
+            </article>
+            <article>
+              <h4>Retention and upsell</h4>
+              <p>Follow up with unconverted leads, encourage repeat purchases, and identify natural upsell opportunities.</p>
+            </article>
+          </div>
+        </aside>
+      </section>
+
+      <section class="posting-grid section reveal" id="requirements">
+        <article class="posting-card">
+          <p class="eyebrow">Requirements</p>
+          <h3>What we are looking for</h3>
+          <div class="posting-list">
+            <article>
+              <h4>Strong communication skills</h4>
+              <p>You can write and speak clearly, respond professionally, and adapt your message to different customer types.</p>
+            </article>
+            <article>
+              <h4>Comfort with direct selling</h4>
+              <p>You are comfortable with outreach, follow-ups, objections, and sales targets.</p>
+            </article>
+            <article>
+              <h4>Self-driven work style</h4>
+              <p>You can manage your own activity, prioritize leads, and stay consistent without close supervision.</p>
+            </article>
+            <article>
+              <h4>Sales experience is a plus</h4>
+              <p>Experience in online selling, chat sales, outbound calls, retail, or field sales can help you ramp quickly.</p>
+            </article>
+          </div>
+        </article>
+
+        <aside class="posting-card">
+          <p class="eyebrow">Performance Expectations</p>
+          <h3>How success is measured</h3>
+          <div class="posting-list">
+            <article>
+              <h4>Consistent daily activity</h4>
+              <p>Regular outreach, timely replies, active prospecting, and disciplined follow-up.</p>
+            </article>
+            <article>
+              <h4>Quality conversations</h4>
+              <p>Clear discovery, accurate qualification, and confident objection handling.</p>
+            </article>
+            <article>
+              <h4>Reliable coordination</h4>
+              <p>Accurate customer details, clean handoffs, and proper tracking of every sales opportunity.</p>
+            </article>
+          </div>
+        </aside>
+      </section>
+
+      <section class="posting-grid section reveal">
+        <article class="posting-card">
+          <p class="eyebrow">Who This Role Is For</p>
+          <h3>People who like building their own pipeline</h3>
+          <p>
+            This role is a fit for someone who enjoys sales activity, customer
+            conversations, and the discipline of turning outreach into measurable
+            business opportunities.
+          </p>
+          <div class="posting-list">
+            <article>
+              <h4>Proactive sellers</h4>
+              <p>You do not wait for leads to arrive. You create opportunities through consistent action.</p>
+            </article>
+            <article>
+              <h4>Organized communicators</h4>
+              <p>You can keep customer details, follow-ups, and next steps clear.</p>
+            </article>
+          </div>
+        </article>
+
+        <aside class="posting-card">
+          <p class="eyebrow">Growth Opportunity</p>
+          <h3>Strong performers can grow</h3>
+          <p>
+            Candidates who show consistent sales activity, professional customer
+            handling, and reliable reporting may be considered for expanded
+            responsibilities, senior sales support, or team lead opportunities.
+          </p>
+          <p class="posting-note">
+            Evaluation may be based on activity level, conversion quality, response
+            time, customer feedback, and reliability.
+          </p>
+        </aside>
+      </section>
+
+      <section class="posting-next section reveal" id="apply-form">
+        <article>
+          <p class="eyebrow">Next Step</p>
+          <h3>Apply for the SDR role</h3>
+          <p>
+            Submit your details, sales background, and a short note explaining how
+            you approach outreach and customer conversion. Selected applicants will
+            be contacted for next steps.
+          </p>
+          <div class="posting-actions">
+            <a class="button" href="#application">Start Application</a>
+            <a class="button secondary" href="#role">Review Role</a>
+          </div>
+        </article>
+
+        <article id="application">
+          <p class="eyebrow">Apply Now</p>
+          <h3>Application form</h3>
+          <p>Use this quick form to apply for the Sales Development Representative role.</p>
+          <form
+            class="posting-application-form"
+            action="https://formspree.io/f/xreabold"
+            method="POST"
+          >
+            <input type="text" name="company" style="display:none" tabindex="-1" autocomplete="off" />
+            <input type="hidden" name="_next" value="https://jcit.digital/join-confirmation/" />
+            <input type="hidden" name="_subject" value="Generic SDR Job Posting - Application" />
+            <input type="hidden" name="position" value="Sales Development Representative (Generic Posting)" />
+            <input type="text" name="name" placeholder="Full name" required />
+            <input type="email" name="email" placeholder="Email address" required />
+            <input type="tel" name="contact_number" placeholder="Contact number" required />
+            <input type="text" name="location" placeholder="Location / city" required />
+            <select name="sales_experience" required>
+              <option value="" disabled selected>Sales experience</option>
+              <option>Online selling</option>
+              <option>Chat sales</option>
+              <option>Field sales</option>
+              <option>Calls / outbound sales</option>
+              <option>Retail sales</option>
+              <option>No formal experience yet, but ready to sell</option>
+            </select>
+            <input type="url" name="profile_or_resume_link" placeholder="Resume or profile link (optional)" />
+            <textarea name="message" placeholder="Tell us how you find leads and move customers toward a sale" required></textarea>
+            <label class="posting-checkbox">
+              <input type="checkbox" name="role_acknowledgement" value="I understand this is an active sales and outreach role." required />
+              <span>I understand this is an active sales and outreach role.</span>
+            </label>
+            <button class="button" type="submit">Submit Application</button>
+          </form>
+        </article>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-grid">
+        <div>
+          <h4>Posting</h4>
+          <div class="footer-links">
+            <a href="#role">Role</a>
+            <a href="#requirements">Requirements</a>
+            <a href="#apply-form">Apply</a>
+          </div>
+        </div>
+        <div>
+          <h4>Applicant Notes</h4>
+          <p>
+            Please include relevant sales experience, preferred channels, and examples
+            of how you approach lead generation or customer conversion.
+          </p>
+        </div>
+        <div>
+          <h4>Privacy</h4>
+          <p>
+            Application details are used only to review applicant fit and coordinate
+            next steps for the role.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="/assets/main.js"></script>
+  </body>
+</html>
