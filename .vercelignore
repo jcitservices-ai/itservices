@@ -1,0 +1,6 @@
+.env
+.env.*
+!.env.example
+.vercel
+.git
+.DS_Store

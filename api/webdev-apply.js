@@ -11,6 +11,12 @@ function sendJson(res, statusCode, payload) {
   res.end(JSON.stringify(payload));
 }
 
+function sendHtml(res, statusCode, html) {
+  res.statusCode = statusCode;
+  res.setHeader("Content-Type", "text/html; charset=utf-8");
+  res.end(html);
+}
+
 function redirect(res, location) {
   res.statusCode = 303;
   res.setHeader("Location", location);
@@ -59,6 +65,10 @@ function normalizeEmail(value) {
   return String(value || "").trim().toLowerCase();
 }
 
+function wantsHtml(req) {
+  return String(req.headers.accept || "").toLowerCase().includes("text/html");
+}
+
 function isEmail(value) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 }
@@ -71,12 +81,62 @@ function sanitizeFilename(value) {
   return cleaned || "resume";
 }
 
+function scrubLogMessage(value) {
+  return String(value || "")
+    .replace(/[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/gi, "[email]")
+    .replace(/re_[A-Za-z0-9_-]+/g, "[resend_key]")
+    .slice(0, 1200);
+}
+
+function logApplicationIssue(label, error) {
+  console.error(`[webdev-apply] ${label}`, {
+    name: error?.name || "Error",
+    message: scrubLogMessage(error?.message || error),
+    statusCode: error?.statusCode || null,
+    serviceStatus: error?.serviceStatus || null,
+  });
+}
+
+function sendErrorResponse(req, res, statusCode, message) {
+  if (!wantsHtml(req)) {
+    sendJson(res, statusCode, { ok: false, message });
+    return;
+  }
+
+  sendHtml(
+    res,
+    statusCode,
+    `<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Application not submitted | JC IT Services</title>
+    <style>
+      body{margin:0;min-height:100vh;display:grid;place-items:center;background:#06121d;color:#e8fbff;font-family:Arial,sans-serif}
+      main{width:min(680px,calc(100% - 36px));padding:34px;border:1px solid rgba(183,241,255,.16);border-radius:28px;background:linear-gradient(180deg,rgba(11,26,41,.96),rgba(7,18,29,.98));box-shadow:0 24px 60px rgba(0,0,0,.38)}
+      h1{margin:0 0 12px;font-size:clamp(28px,5vw,44px)}
+      p{margin:0 0 18px;line-height:1.7;color:#c9e7f2}
+      a{display:inline-block;padding:12px 16px;border-radius:999px;background:linear-gradient(120deg,#00f0ff,#66ffcc);color:#03131e;text-decoration:none;font-weight:800}
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Application not submitted</h1>
+      <p>${escapeHtml(message)}</p>
+      <a href="https://jcit.digital/webdev/#application">Go back to the application form</a>
+    </main>
+  </body>
+</html>`
+  );
+}
+
 function getEmailConfig() {
   const rawFrom = String(
     process.env.JCIT_RECRUITMENT_FROM_EMAIL ||
       process.env.SESSION_SUMMARY_FROM_EMAIL ||
       process.env.RESEND_FROM_EMAIL ||
-      "JC IT Services <jake@jcit.digital>"
+      "JC IT Services <noreplymightcheck@jcit.digital>"
   ).trim();
 
   return {
@@ -328,7 +388,12 @@ async function sendResendEmail({ to, subject, text, html, attachments = [] }) {
 
   const payload = await response.json().catch(() => ({}));
   if (!response.ok) {
-    throw new Error(payload?.message || payload?.error || `Resend failed with ${response.status}.`);
+    const error = new Error(
+      payload?.message || payload?.error || `Resend failed with ${response.status}.`
+    );
+    error.statusCode = 502;
+    error.serviceStatus = response.status;
+    throw error;
   }
 
   return payload;
@@ -352,20 +417,13 @@ async function forwardToFormspree({ fields, resumeFile }) {
     wordpress_experience: fields.wordpress_experience,
     cpanel_experience: fields.cpanel_experience,
     role_acknowledgement: fields.role_acknowledgement,
+    resume_filename: resumeFile?.filename,
     message: fields.message,
   };
 
   Object.entries(forwardedFields).forEach(([key, value]) => {
     form.append(key, String(value || ""));
   });
-
-  if (resumeFile?.content?.length) {
-    form.append(
-      "resume_file",
-      new Blob([resumeFile.content], { type: resumeFile.contentType || "application/octet-stream" }),
-      resumeFile.filename
-    );
-  }
 
   const response = await fetch(endpoint, {
     method: "POST",
@@ -377,9 +435,12 @@ async function forwardToFormspree({ fields, resumeFile }) {
 
   if (!response.ok) {
     const payload = await response.json().catch(() => ({}));
-    throw new Error(
+    const error = new Error(
       payload?.error || payload?.message || `Formspree forwarding failed with ${response.status}.`
     );
+    error.statusCode = 502;
+    error.serviceStatus = response.status;
+    throw error;
   }
 }
 
@@ -431,14 +492,32 @@ async function handleApplication(req, res) {
   });
 
   if (notifyEmail) {
-    await sendResendEmail({
-      to: notifyEmail,
-      ...internalEmail,
-      attachments: [attachment],
+    const notifications = [
+      {
+        label: "Internal applicant email failed",
+        promise: sendResendEmail({
+          to: notifyEmail,
+          ...internalEmail,
+          attachments: [attachment],
+        }),
+      },
+      {
+        label: "Formspree applicant notification failed",
+        promise: forwardToFormspree({ fields: { ...fields, email, position }, resumeFile }),
+      },
+    ];
+
+    const results = await Promise.allSettled(notifications.map((item) => item.promise));
+    results.forEach((result, index) => {
+      if (result.status === "rejected") {
+        logApplicationIssue(notifications[index].label, result.reason);
+      }
+    });
+  } else {
+    await forwardToFormspree({ fields: { ...fields, email, position }, resumeFile }).catch((error) => {
+      logApplicationIssue("Formspree applicant notification failed", error);
     });
   }
-
-  await forwardToFormspree({ fields: { ...fields, email, position }, resumeFile });
 
   redirect(res, "https://jcit.digital/join-confirmation/");
 }
@@ -460,12 +539,13 @@ async function handler(req, res) {
   try {
     await handleApplication(req, res);
   } catch (error) {
+    logApplicationIssue("Application submission failed", error);
     const statusCode = error.statusCode || 500;
     const message =
       statusCode >= 500
         ? "Application could not be submitted right now. Please try again later."
         : error.message;
-    sendJson(res, statusCode, { ok: false, message });
+    sendErrorResponse(req, res, statusCode, message);
   }
 }
 
