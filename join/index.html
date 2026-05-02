@@ -25,6 +25,26 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="/assets/styles.css" />
+    <style>
+      .role-routing-note {
+        display: grid;
+        gap: 14px;
+        margin-bottom: 18px;
+        padding: 16px;
+        border: 1px solid rgba(102, 255, 204, 0.24);
+        border-radius: 16px;
+        background: rgba(102, 255, 204, 0.08);
+        color: var(--text-2);
+      }
+
+      .role-routing-note strong {
+        color: var(--text-1);
+      }
+
+      .role-routing-note .button {
+        justify-self: start;
+      }
+    </style>
       <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-YYFC0NYBXB"></script>
     <script>
@@ -122,8 +142,17 @@
         <h3 class="section-title">Apply Now</h3>
         <div class="contact-panel">
           <div class="card">
+            <div class="role-routing-note">
+              <p>
+                <strong>Applying for Web Designer and Developer?</strong>
+                Use the dedicated application form so you can upload your
+                resume/CV and receive the next-step interview email.
+              </p>
+              <a class="button secondary" href="/webdev/#application">Apply for Web Designer and Developer</a>
+            </div>
             <form
               action="https://formspree.io/f/xreabold"
+              data-join-form
               method="POST"
             >
               <input type="text" name="company" style="display:none" tabindex="-1" autocomplete="off" />
@@ -131,7 +160,14 @@
               <input type="hidden" name="_subject" value="JC IT Services - Recruitment Application" />
               <input type="text" name="name" placeholder="Full name" required />
               <input type="email" name="email" placeholder="Email address" required />
-              <input type="text" name="position" placeholder="Position applied for" required />
+              <select name="position" required>
+                <option value="" disabled selected>Position applied for</option>
+                <option>AI Engineer</option>
+                <option>PBX Engineer</option>
+                <option>Help Desk</option>
+                <option>Sales Development Representative</option>
+                <option>Other</option>
+              </select>
               <input type="text" name="location" placeholder="Location / Time zone" required />
               <input type="url" name="resume_link" placeholder="Resume link (Google Drive / Dropbox)" required />
               <textarea name="message" placeholder="Brief intro and relevant experience" required></textarea>
@@ -204,6 +240,20 @@
 
 
 
+    <script>
+      (() => {
+        const form = document.querySelector("[data-join-form]");
+        if (!form) return;
+
+        form.addEventListener("submit", (event) => {
+          const position = String(form.elements.position?.value || "").toLowerCase();
+          if (position.includes("web") || position.includes("designer") || position.includes("developer")) {
+            event.preventDefault();
+            window.location.assign("/webdev/#application");
+          }
+        });
+      })();
+    </script>
     <script src="/assets/main.js"></script>
     <script
       id="retell-widget"
