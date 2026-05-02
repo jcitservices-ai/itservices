@@ -239,12 +239,12 @@
     <div class="ai-grid"></div>
     <div class="ai-nodes"></div>
     <header>
-      <nav class="nav">
+            <nav class="nav">
         <a class="brand" href="/">
           <img src="/assets/logo.webp" alt="JC IT Services logo" />
           <div class="brand-text">
             <h1>JC IT Services</h1>
-            <span>Web Hiring</span>
+            <span>Modern IT &amp; AI Enablement</span>
           </div>
         </a>
         <button class="nav-toggle" type="button" aria-label="Toggle menu" aria-expanded="false" data-nav-toggle>
@@ -252,10 +252,26 @@
         </button>
         <div class="nav-links" data-nav-links>
           <a href="/services/" data-page="services">Services</a>
-          <a href="/join/" data-page="join">Join Our Team</a>
-          <a href="#role">Role</a>
-          <a href="#requirements">Requirements</a>
-          <a href="#apply-form">Apply</a>
+          <div class="nav-dropdown">
+            <a class="nav-dropdown-toggle" href="#" data-page="about">About Us</a>
+            <div class="nav-dropdown-menu">
+              <a href="/team/" data-page="team">Team</a>
+              <a href="/about/" data-page="about">About JC</a>
+              <a href="/bubbles/" data-page="bubbles">About Bubbles</a>
+              <a href="/team-login/" data-page="team-login">Team Login</a>
+              <a href="/bug-blaster/" data-page="bug-blaster">Bug Blaster</a>
+            </div>
+          </div>
+          <a href="/join/" data-page="join">Join Our Team!</a>
+          <a href="/contact/" data-page="contact">Contact Us</a>
+          <a class="nav-social" href="https://www.linkedin.com/company/jc-it-services/" target="_blank" rel="noreferrer" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.37V9h3.41v1.56h.05c.47-.9 1.62-1.85 3.34-1.85 3.57 0 4.23 2.35 4.23 5.41v6.33zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.78C.8 0 0 .78 0 1.74v20.52C0 23.22.8 24 1.78 24h20.44C23.2 24 24 23.22 24 22.26V1.74C24 .78 23.2 0 22.22 0z"/>
+            </svg>
+          </a>
+          <a class="nav-social" href="#" aria-label="Google Business Profile">
+            <img src="/assets/google-business.svg" alt="Google Business Profile" />
+          </a>
         </div>
       </nav>
     </header>
@@ -514,30 +530,57 @@
     <footer>
       <div class="footer-grid">
         <div>
-          <h4>Posting</h4>
+          <h4>Quicklinks</h4>
           <div class="footer-links">
-            <a href="#role">Role</a>
-            <a href="#requirements">Requirements</a>
-            <a href="#apply-form">Apply</a>
+            <a href="/services/">Services</a>
+            <a href="/team/">Team</a>
+            <a href="/join/">Join Our Team</a>
+            <a href="/contact/">Contact Us</a>
+            <a href="/team-login/">Team Login</a>
           </div>
         </div>
         <div>
-          <h4>Applicant Notes</h4>
-          <p>
-            Please include website examples and describe the WordPress and cPanel
-            work you have handled directly.
-          </p>
+          <h4>Legal</h4>
+          <div class="footer-links">
+            <a href="/legal/">Business Registration</a>
+            <a href="/sla/">SLA Agreement</a>
+            <a href="/privacy/">Privacy Policy</a>
+            <a href="/terms/">Terms of Service</a>
+            <a href="/copyright/">Copyright</a>
+          </div>
         </div>
         <div>
-          <h4>JC IT Services</h4>
+          <h4>About JC IT Services</h4>
           <p>
-            Application details are used to review applicant fit and coordinate
-            next steps for this web design and development role.
+            AI-powered IT, PBX/VOIP, and automation delivery for SME clients across
+            the US, AU, and PH.
           </p>
+          <p class="footer-note">
+            JCIT Services operates under JCO IT SOLUTIONS, a duly registered business in
+            the Republic of the Philippines.
+          </p>
+          <p><a href="/contact/">Contact Us</a></p>
         </div>
       </div>
     </footer>
 
     <script src="/assets/main.js"></script>
+    <script
+      id="retell-widget"
+      src="https://dashboard.retellai.com/retell-widget.js"
+      type="module"
+      data-public-key="public_key_0b7796c09905009f2051b"
+      data-agent-id="agent_0a1c68ff5d8162a538111dd6f7"
+      data-agent-version="V1"
+      data-title="JayceeAi"
+      data-logo-url="https://jcit.digital/assets/logo.webp"
+      data-color="#66ffcc"
+      data-bot-name="JayceeAi"
+      data-popup-message="Let me help you!"
+      data-show-ai-popup="true"
+      data-show-ai-popup-time="5"
+      data-auto-open="false"
+      data-dynamic='{"key": "value"}'
+    ></script>
   </body>
 </html>
