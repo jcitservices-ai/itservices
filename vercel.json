@@ -1,0 +1,14 @@
+{
+  "redirects": [
+    {
+      "source": "/",
+      "destination": "https://jcit.digital/",
+      "permanent": true
+    },
+    {
+      "source": "/:path((?!api/).*)",
+      "destination": "https://jcit.digital/:path",
+      "permanent": true
+    }
+  ]
+}

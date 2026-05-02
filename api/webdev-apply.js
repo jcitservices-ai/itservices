@@ -69,6 +69,10 @@ function wantsHtml(req) {
   return String(req.headers.accept || "").toLowerCase().includes("text/html");
 }
 
+function wantsJson(req) {
+  return String(req.headers.accept || "").toLowerCase().includes("application/json");
+}
+
 function isEmail(value) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 }
@@ -97,38 +101,33 @@ function logApplicationIssue(label, error) {
   });
 }
 
+function getApplicationErrorUrl(statusCode, message) {
+  const url = new URL("https://jcit.digital/webdev/");
+  url.searchParams.set("application", "error");
+  url.searchParams.set("reason", statusCode >= 500 ? "server" : "validation");
+  if (statusCode < 500 && message) {
+    url.searchParams.set("message", String(message).slice(0, 180));
+  }
+  url.hash = "application";
+  return url.toString();
+}
+
+function sendSuccessResponse(req, res) {
+  const location = "https://jcit.digital/join-confirmation/";
+  if (wantsJson(req)) {
+    sendJson(res, 200, { ok: true, redirect: location });
+    return;
+  }
+  redirect(res, location);
+}
+
 function sendErrorResponse(req, res, statusCode, message) {
   if (!wantsHtml(req)) {
     sendJson(res, statusCode, { ok: false, message });
     return;
   }
 
-  sendHtml(
-    res,
-    statusCode,
-    `<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Application not submitted | JC IT Services</title>
-    <style>
-      body{margin:0;min-height:100vh;display:grid;place-items:center;background:#06121d;color:#e8fbff;font-family:Arial,sans-serif}
-      main{width:min(680px,calc(100% - 36px));padding:34px;border:1px solid rgba(183,241,255,.16);border-radius:28px;background:linear-gradient(180deg,rgba(11,26,41,.96),rgba(7,18,29,.98));box-shadow:0 24px 60px rgba(0,0,0,.38)}
-      h1{margin:0 0 12px;font-size:clamp(28px,5vw,44px)}
-      p{margin:0 0 18px;line-height:1.7;color:#c9e7f2}
-      a{display:inline-block;padding:12px 16px;border-radius:999px;background:linear-gradient(120deg,#00f0ff,#66ffcc);color:#03131e;text-decoration:none;font-weight:800}
-    </style>
-  </head>
-  <body>
-    <main>
-      <h1>Application not submitted</h1>
-      <p>${escapeHtml(message)}</p>
-      <a href="https://jcit.digital/webdev/#application">Go back to the application form</a>
-    </main>
-  </body>
-</html>`
-  );
+  redirect(res, getApplicationErrorUrl(statusCode, message));
 }
 
 function getEmailConfig() {
@@ -456,7 +455,7 @@ async function handleApplication(req, res) {
   const { fields, files } = parseMultipart(body, contentType);
 
   if (fields.company) {
-    redirect(res, "https://jcit.digital/join-confirmation/");
+    sendSuccessResponse(req, res);
     return;
   }
 
@@ -519,7 +518,7 @@ async function handleApplication(req, res) {
     });
   }
 
-  redirect(res, "https://jcit.digital/join-confirmation/");
+  sendSuccessResponse(req, res);
 }
 
 async function handler(req, res) {

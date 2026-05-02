@@ -200,6 +200,24 @@
         margin-top: 18px;
       }
 
+      .job-form-status {
+        padding: 14px 16px;
+        border: 1px solid rgba(102, 255, 204, 0.24);
+        border-radius: 14px;
+        background: rgba(102, 255, 204, 0.08);
+        color: var(--text);
+        line-height: 1.6;
+      }
+
+      .job-form-status.is-error {
+        border-color: rgba(255, 126, 126, 0.35);
+        background: rgba(255, 126, 126, 0.1);
+      }
+
+      .job-form-status[hidden] {
+        display: none;
+      }
+
       .job-checkbox {
         display: flex;
         align-items: flex-start;
@@ -505,9 +523,11 @@
           <form
             class="job-application-form"
             action="https://jcit-recruitment-api.vercel.app/api/webdev-apply"
+            data-webdev-form
             enctype="multipart/form-data"
             method="POST"
           >
+            <div class="job-form-status" data-application-status role="status" aria-live="polite" hidden></div>
             <input type="text" name="company" style="display:none" tabindex="-1" autocomplete="off" />
             <input type="hidden" name="position" value="Web Designer and Developer" />
             <input type="text" name="name" placeholder="Full name" required />
@@ -595,6 +615,68 @@
     </footer>
 
     <script src="/assets/main.js"></script>
+    <script>
+      (() => {
+        const form = document.querySelector("[data-webdev-form]");
+        if (!form || !window.fetch || !window.FormData) return;
+
+        const status = form.querySelector("[data-application-status]");
+        const submitButton = form.querySelector('button[type="submit"]');
+        const endpoint = form.action;
+        const successUrl = "https://jcit.digital/join-confirmation/";
+        const defaultError = "Application could not be submitted right now. Please try again later.";
+
+        function showStatus(message, isError = false) {
+          if (!status) return;
+          status.textContent = message;
+          status.hidden = false;
+          status.classList.toggle("is-error", isError);
+        }
+
+        const params = new URLSearchParams(window.location.search);
+        if (params.get("application") === "error") {
+          showStatus(params.get("message") || defaultError, true);
+          history.replaceState(null, "", `${window.location.pathname}#application`);
+        }
+
+        form.addEventListener("submit", async (event) => {
+          event.preventDefault();
+          if (!form.reportValidity()) return;
+
+          const originalLabel = submitButton ? submitButton.textContent : "";
+          if (submitButton) {
+            submitButton.disabled = true;
+            submitButton.textContent = "Submitting...";
+          }
+          showStatus("Submitting your application securely...", false);
+
+          try {
+            const response = await fetch(endpoint, {
+              method: "POST",
+              body: new FormData(form),
+              headers: {
+                Accept: "application/json",
+              },
+            });
+            const payload = await response.json().catch(() => ({}));
+
+            if (response.ok && payload.ok) {
+              window.location.assign(payload.redirect || successUrl);
+              return;
+            }
+
+            showStatus(payload.message || defaultError, true);
+          } catch (error) {
+            showStatus(defaultError, true);
+          } finally {
+            if (submitButton) {
+              submitButton.disabled = false;
+              submitButton.textContent = originalLabel;
+            }
+          }
+        });
+      })();
+    </script>
     <script
       id="retell-widget"
       src="https://dashboard.retellai.com/retell-widget.js"
