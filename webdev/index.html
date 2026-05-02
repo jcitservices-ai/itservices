@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#06121d" />
+    <title>Web Designer and Developer | JC IT Services</title>
+    <meta
+      name="description"
+      content="JC IT Services is hiring a Web Designer and Developer proficient in WordPress and cPanel for website design, build, launch, and maintenance work."
+    />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://jcit.digital/webdev/" />
+    <meta property="og:title" content="Web Designer and Developer | JC IT Services" />
+    <meta
+      property="og:description"
+      content="Apply for a JC IT Services Web Designer and Developer role requiring proficiency in WordPress and cPanel."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://jcit.digital/webdev/" />
+    <meta property="og:image" content="https://jcit.digital/assets/images/service-website.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/assets/styles.css" />
+    <style>
+      .job-shell {
+        display: grid;
+        gap: 34px;
+      }
+
+      .job-hero {
+        grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
+        align-items: stretch;
+      }
+
+      .job-kicker {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 8px 14px;
+        border: 1px solid rgba(102, 255, 204, 0.3);
+        border-radius: 999px;
+        background: rgba(3, 10, 16, 0.56);
+        color: rgba(232, 251, 255, 0.84);
+        font-family: "Space Mono", monospace;
+        font-size: 0.76rem;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+      }
+
+      .job-hero h2 {
+        max-width: 12ch;
+      }
+
+      .job-hero p {
+        max-width: 62ch;
+      }
+
+      .job-actions,
+      .job-link-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 24px;
+      }
+
+      .job-link-row {
+        margin-top: 18px;
+      }
+
+      .job-public-link {
+        display: inline-flex;
+        align-items: center;
+        padding: 10px 14px;
+        border: 1px solid rgba(0, 240, 255, 0.28);
+        border-radius: 999px;
+        background: rgba(0, 240, 255, 0.07);
+        color: var(--text-2);
+        font-family: "Space Mono", monospace;
+        font-size: 0.84rem;
+      }
+
+      .job-visual {
+        display: grid;
+        gap: 18px;
+      }
+
+      .job-visual-frame {
+        min-height: 430px;
+        display: flex;
+        align-items: flex-end;
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 28px;
+        padding: 24px;
+        background:
+          linear-gradient(180deg, rgba(6, 18, 29, 0.1), rgba(6, 18, 29, 0.92)),
+          url("/assets/images/service-website.jpg") center/cover;
+        box-shadow: var(--shadow);
+      }
+
+      .job-visual-card,
+      .job-card,
+      .job-brief {
+        border: 1px solid var(--border);
+        background: rgba(7, 20, 35, 0.74);
+        box-shadow: var(--shadow);
+      }
+
+      .job-visual-card {
+        width: 100%;
+        padding: 20px;
+        border-radius: 20px;
+        backdrop-filter: blur(18px);
+      }
+
+      .job-card,
+      .job-brief {
+        padding: 28px;
+        border-radius: var(--radius);
+      }
+
+      .job-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr);
+        gap: 24px;
+      }
+
+      .job-list {
+        display: grid;
+        gap: 14px;
+        margin-top: 22px;
+      }
+
+      .job-list article {
+        padding: 18px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 16px;
+        background: rgba(255, 255, 255, 0.04);
+      }
+
+      .job-list h4 {
+        margin-bottom: 6px;
+      }
+
+      .job-card p,
+      .job-brief p,
+      .job-list p,
+      .job-visual-card p {
+        color: var(--text-2);
+      }
+
+      .job-required {
+        margin-top: 22px;
+        padding: 18px;
+        border: 1px solid rgba(102, 255, 204, 0.22);
+        border-radius: 18px;
+        background: rgba(102, 255, 204, 0.08);
+      }
+
+      .job-brief dl {
+        display: grid;
+        gap: 12px;
+      }
+
+      .job-brief div {
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        padding-bottom: 12px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .job-brief div:last-child {
+        padding-bottom: 0;
+        border-bottom: 0;
+      }
+
+      .job-brief dt {
+        color: var(--text-2);
+      }
+
+      .job-brief dd {
+        text-align: right;
+        font-weight: 600;
+      }
+
+      .job-application-form {
+        display: grid;
+        gap: 12px;
+        margin-top: 18px;
+      }
+
+      .job-checkbox {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        padding: 14px 16px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 14px;
+        background: rgba(255, 255, 255, 0.04);
+        color: var(--text-2);
+      }
+
+      .job-checkbox input {
+        width: auto;
+        margin-top: 2px;
+        accent-color: #66ffcc;
+      }
+
+      @media (max-width: 980px) {
+        .job-hero,
+        .job-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+      <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YYFC0NYBXB"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-YYFC0NYBXB');
+    </script>
+
+  </head>
+  <body data-page="join">
+    <div class="ai-overlay"></div>
+    <div class="ai-grid"></div>
+    <div class="ai-nodes"></div>
+    <header>
+      <nav class="nav">
+        <a class="brand" href="/">
+          <img src="/assets/logo.webp" alt="JC IT Services logo" />
+          <div class="brand-text">
+            <h1>JC IT Services</h1>
+            <span>Web Hiring</span>
+          </div>
+        </a>
+        <button class="nav-toggle" type="button" aria-label="Toggle menu" aria-expanded="false" data-nav-toggle>
+          <span></span><span></span><span></span>
+        </button>
+        <div class="nav-links" data-nav-links>
+          <a href="/services/" data-page="services">Services</a>
+          <a href="/join/" data-page="join">Join Our Team</a>
+          <a href="#role">Role</a>
+          <a href="#requirements">Requirements</a>
+          <a href="#apply-form">Apply</a>
+        </div>
+      </nav>
+    </header>
+
+    <main class="job-shell">
+      <div class="orb" style="top: 140px; right: 120px"></div>
+      <div class="orb two" style="top: 480px; left: 60px"></div>
+      <div class="orb three" style="top: 980px; right: 160px"></div>
+
+      <section class="hero job-hero">
+        <div class="reveal">
+          <span class="job-kicker">JC IT Services Job Posting</span>
+          <h2>Web Designer and Developer</h2>
+          <div class="chip-row">
+            <span class="chip">WordPress</span>
+            <span class="chip">cPanel</span>
+            <span class="chip">Web Design</span>
+            <span class="chip">Responsive Builds</span>
+            <span class="chip">Site Maintenance</span>
+          </div>
+          <div class="micro-labels">
+            <span>DESIGN</span>
+            <span>BUILD</span>
+            <span>LAUNCH</span>
+            <span>SUPPORT</span>
+          </div>
+          <p>
+            JC IT Services is hiring a Web Designer and Developer to create,
+            improve, launch, and maintain business websites for clients. This
+            role is for someone who can combine sharp visual judgment with
+            practical website operations.
+          </p>
+          <div class="job-required">
+            <h3>Required Skills</h3>
+            <p>
+              Applicants must be proficient in WordPress and cPanel, including
+              day-to-day site updates, hosting controls, domains, email setup,
+              SSL, backups, and launch support.
+            </p>
+          </div>
+          <div class="job-actions">
+            <a class="button" href="#apply-form">Apply Now</a>
+            <a class="button secondary" href="#role">View Role</a>
+            <a class="button secondary" href="#requirements">Review Requirements</a>
+          </div>
+          <div class="job-link-row">
+            <a class="job-public-link" href="https://jcit.digital/webdev/">jcit.digital/webdev</a>
+          </div>
+        </div>
+
+        <div class="job-visual reveal">
+          <div class="job-visual-frame">
+            <div class="job-visual-card">
+              <p class="eyebrow">Role Snapshot</p>
+              <h3>Build polished websites that clients can trust</h3>
+              <p>
+                You will help turn client goals into clean, responsive sites,
+                then keep those sites healthy through practical hosting and
+                WordPress administration.
+              </p>
+            </div>
+          </div>
+          <aside class="job-brief">
+            <h3>Posting Details</h3>
+            <dl>
+              <div>
+                <dt>Company</dt>
+                <dd>JC IT Services</dd>
+              </div>
+              <div>
+                <dt>Job Title</dt>
+                <dd>Web Designer and Developer</dd>
+              </div>
+              <div>
+                <dt>Primary Tools</dt>
+                <dd>WordPress and cPanel</dd>
+              </div>
+              <div>
+                <dt>Setup</dt>
+                <dd>Remote Ready</dd>
+              </div>
+              <div>
+                <dt>Focus</dt>
+                <dd>Design, build, launch, maintenance</dd>
+              </div>
+            </dl>
+          </aside>
+        </div>
+      </section>
+
+      <section class="job-grid section reveal" id="role">
+        <article class="job-card">
+          <p class="eyebrow">Key Responsibilities</p>
+          <h3>Design, build, and maintain client websites</h3>
+          <p>
+            The Web Designer and Developer will support business websites from
+            initial layout through launch, then help keep them updated,
+            secure, and easy for clients to use.
+          </p>
+          <div class="job-list">
+            <article>
+              <h4>Website design and page builds</h4>
+              <p>Create clean, responsive pages that are easy to navigate and aligned with each client's brand and goals.</p>
+            </article>
+            <article>
+              <h4>WordPress administration</h4>
+              <p>Manage pages, themes, plugins, forms, menus, media, updates, basic troubleshooting, and content changes.</p>
+            </article>
+            <article>
+              <h4>cPanel and hosting support</h4>
+              <p>Handle common hosting tasks such as domains, DNS checks, email accounts, SSL, backups, redirects, and file access.</p>
+            </article>
+            <article>
+              <h4>Launch and QA</h4>
+              <p>Check mobile responsiveness, links, forms, performance basics, browser behavior, and launch readiness before handoff.</p>
+            </article>
+          </div>
+        </article>
+
+        <aside class="job-card">
+          <p class="eyebrow">Work Style</p>
+          <h3>Reliable, practical, and detail-oriented</h3>
+          <div class="job-list">
+            <article>
+              <h4>Client-ready communication</h4>
+              <p>Explain website updates clearly, ask for the right details, and keep task progress visible.</p>
+            </article>
+            <article>
+              <h4>Design judgment</h4>
+              <p>Use layout, spacing, typography, imagery, and calls to action thoughtfully instead of just filling templates.</p>
+            </article>
+            <article>
+              <h4>Ownership mindset</h4>
+              <p>Notice issues, fix what you can, escalate what needs help, and protect client sites from careless changes.</p>
+            </article>
+          </div>
+        </aside>
+      </section>
+
+      <section class="job-grid section reveal" id="requirements">
+        <article class="job-card">
+          <p class="eyebrow">Requirements</p>
+          <h3>What we need from applicants</h3>
+          <div class="job-list">
+            <article>
+              <h4>Proficient in WordPress</h4>
+              <p>You can confidently work inside WordPress, update content, manage plugins, adjust themes, and troubleshoot common site issues.</p>
+            </article>
+            <article>
+              <h4>Proficient in cPanel</h4>
+              <p>You understand the common cPanel tools needed for website hosting, files, emails, domains, SSL, backups, and redirects.</p>
+            </article>
+            <article>
+              <h4>Comfortable with HTML and CSS basics</h4>
+              <p>You can make practical frontend adjustments and understand how website structure and styling work.</p>
+            </article>
+            <article>
+              <h4>Portfolio or examples preferred</h4>
+              <p>Send links to websites, landing pages, mockups, or maintenance work that show your taste and execution.</p>
+            </article>
+          </div>
+        </article>
+
+        <aside class="job-card">
+          <p class="eyebrow">Nice To Have</p>
+          <h3>Skills that help you stand out</h3>
+          <div class="job-list">
+            <article>
+              <h4>Website speed and SEO basics</h4>
+              <p>Familiarity with image optimization, metadata, headings, clean URLs, and basic performance checks.</p>
+            </article>
+            <article>
+              <h4>Forms and integrations</h4>
+              <p>Experience setting up contact forms, tracking pixels, analytics, embedded widgets, or simple automations.</p>
+            </article>
+            <article>
+              <h4>Visual tools</h4>
+              <p>Comfort with tools such as Figma, Canva, Photoshop, or similar design and asset-preparation workflows.</p>
+            </article>
+          </div>
+        </aside>
+      </section>
+
+      <section class="job-grid section reveal" id="apply-form">
+        <article class="job-card">
+          <p class="eyebrow">Next Step</p>
+          <h3>Apply for the Web Designer and Developer role</h3>
+          <p>
+            Send your details, experience with WordPress and cPanel, and any
+            relevant portfolio or website links. Selected applicants will be
+            contacted for next steps.
+          </p>
+          <div class="job-actions">
+            <a class="button" href="#application">Start Application</a>
+            <a class="button secondary" href="#requirements">Review Requirements</a>
+          </div>
+        </article>
+
+        <article class="job-card" id="application">
+          <p class="eyebrow">Apply Now</p>
+          <h3>Application form</h3>
+          <p>Use this quick form to apply for the Web Designer and Developer role.</p>
+          <form
+            class="job-application-form"
+            action="https://formspree.io/f/xreabold"
+            method="POST"
+          >
+            <input type="text" name="company" style="display:none" tabindex="-1" autocomplete="off" />
+            <input type="hidden" name="_next" value="https://jcit.digital/join-confirmation/" />
+            <input type="hidden" name="_subject" value="JC IT Services - Web Designer and Developer Application" />
+            <input type="hidden" name="position" value="Web Designer and Developer" />
+            <input type="text" name="name" placeholder="Full name" required />
+            <input type="email" name="email" placeholder="Email address" required />
+            <input type="tel" name="contact_number" placeholder="Contact number" required />
+            <input type="text" name="location" placeholder="Location / time zone" required />
+            <input type="url" name="portfolio_link" placeholder="Portfolio or sample website link" required />
+            <input type="url" name="resume_link" placeholder="Resume link (optional)" />
+            <select name="wordpress_experience" required>
+              <option value="" disabled selected>WordPress experience level</option>
+              <option>Beginner</option>
+              <option>Intermediate</option>
+              <option>Advanced</option>
+              <option>Expert</option>
+            </select>
+            <select name="cpanel_experience" required>
+              <option value="" disabled selected>cPanel experience level</option>
+              <option>Beginner</option>
+              <option>Intermediate</option>
+              <option>Advanced</option>
+              <option>Expert</option>
+            </select>
+            <textarea name="message" placeholder="Tell us about your WordPress, cPanel, web design, and website maintenance experience" required></textarea>
+            <label class="job-checkbox">
+              <input type="checkbox" name="role_acknowledgement" value="I confirm I am proficient in WordPress and cPanel." required />
+              <span>I confirm I am proficient in WordPress and cPanel.</span>
+            </label>
+            <button class="button" type="submit">Submit Application</button>
+          </form>
+        </article>
+      </section>
+    </main>
+
+    <div class="cookie-banner" data-cookie-banner>
+      <p>
+        We use cookies and similar technologies to improve site experience and
+        measure performance. By using this site, you agree to our
+        <a href="/privacy/">privacy</a> and
+        <a href="/terms/">cookie/usage</a> policy.
+      </p>
+      <div class="cookie-actions">
+        <button class="button" type="button" data-cookie-accept>Accept</button>
+        <button class="button secondary" type="button" data-cookie-dismiss>Dismiss</button>
+      </div>
+    </div>
+
+    <footer>
+      <div class="footer-grid">
+        <div>
+          <h4>Posting</h4>
+          <div class="footer-links">
+            <a href="#role">Role</a>
+            <a href="#requirements">Requirements</a>
+            <a href="#apply-form">Apply</a>
+          </div>
+        </div>
+        <div>
+          <h4>Applicant Notes</h4>
+          <p>
+            Please include website examples and describe the WordPress and cPanel
+            work you have handled directly.
+          </p>
+        </div>
+        <div>
+          <h4>JC IT Services</h4>
+          <p>
+            Application details are used to review applicant fit and coordinate
+            next steps for this web design and development role.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="/assets/main.js"></script>
+  </body>
+</html>
