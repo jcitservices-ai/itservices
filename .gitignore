@@ -2,3 +2,8 @@
 knowledgebase.md
 
 .ops-monitor-state.json
+.env
+.env.*
+!.env.example
+.vercel/
+.vercel

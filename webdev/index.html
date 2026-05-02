@@ -217,6 +217,24 @@
         accent-color: #66ffcc;
       }
 
+      .job-upload {
+        display: grid;
+        gap: 8px;
+        padding: 14px 16px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 14px;
+        background: rgba(255, 255, 255, 0.04);
+        color: var(--text-2);
+      }
+
+      .job-upload span {
+        font-size: 0.92rem;
+      }
+
+      .job-upload input {
+        padding: 10px;
+      }
+
       @media (max-width: 980px) {
         .job-hero,
         .job-grid {
@@ -471,8 +489,8 @@
           <h3>Apply for the Web Designer and Developer role</h3>
           <p>
             Send your details, experience with WordPress and cPanel, and any
-            relevant portfolio or website links. Selected applicants will be
-            contacted for next steps.
+            relevant portfolio or website links. Upload your latest resume/CV
+            so we can review your background before the interview step.
           </p>
           <div class="job-actions">
             <a class="button" href="#application">Start Application</a>
@@ -483,22 +501,24 @@
         <article class="job-card" id="application">
           <p class="eyebrow">Apply Now</p>
           <h3>Application form</h3>
-          <p>Use this quick form to apply for the Web Designer and Developer role.</p>
+          <p>Use this quick form to apply for the Web Designer and Developer role. Upload your resume/CV as a PDF, DOC, or DOCX file.</p>
           <form
             class="job-application-form"
-            action="https://formspree.io/f/xreabold"
+            action="https://jcit-recruitment-api.vercel.app/api/webdev-apply"
+            enctype="multipart/form-data"
             method="POST"
           >
             <input type="text" name="company" style="display:none" tabindex="-1" autocomplete="off" />
-            <input type="hidden" name="_next" value="https://jcit.digital/join-confirmation/" />
-            <input type="hidden" name="_subject" value="JC IT Services - Web Designer and Developer Application" />
             <input type="hidden" name="position" value="Web Designer and Developer" />
             <input type="text" name="name" placeholder="Full name" required />
             <input type="email" name="email" placeholder="Email address" required />
             <input type="tel" name="contact_number" placeholder="Contact number" required />
             <input type="text" name="location" placeholder="Location / time zone" required />
             <input type="url" name="portfolio_link" placeholder="Portfolio or sample website link" required />
-            <input type="url" name="resume_link" placeholder="Resume link (optional)" />
+            <label class="job-upload">
+              <span>Resume/CV upload (PDF, DOC, or DOCX)</span>
+              <input type="file" name="resume_file" accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" required />
+            </label>
             <select name="wordpress_experience" required>
               <option value="" disabled selected>WordPress experience level</option>
               <option>Beginner</option>
