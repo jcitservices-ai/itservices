@@ -11,7 +11,7 @@
   --accent-2: #75f2c8;
   --accent-warm: #ffd369;
   --shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
-  --font-display: "Sora", "Helvetica Neue", sans-serif;
+  --font-display: "Poppins", "Helvetica Neue", sans-serif;
   --font-mono: "Space Mono", monospace;
   --radius-xl: 34px;
   --radius-lg: 24px;
@@ -979,5 +979,224 @@ main {
   .customer-logo-card {
     justify-content: flex-start;
     border-radius: 28px;
+  }
+}
+
+/* JCIT brand-kit alignment for product pages */
+:root {
+  --bg: #03080b;
+  --bg-soft: #061016;
+  --panel: rgba(4, 14, 18, 0.78);
+  --panel-strong: rgba(3, 10, 14, 0.92);
+  --line: rgba(242, 242, 242, 0.14);
+  --line-strong: rgba(29, 226, 204, 0.38);
+  --text: #f7fbfb;
+  --muted: #b6c8cc;
+  --accent: #1de2cc;
+  --accent-2: #0dbbbb;
+  --accent-warm: #f2f2f2;
+  --shadow: 0 22px 70px rgba(0, 0, 0, 0.48);
+  --font-display: "Poppins", "Inter", "Helvetica Neue", sans-serif;
+  --radius-xl: 8px;
+  --radius-lg: 8px;
+  --radius-md: 8px;
+}
+
+body {
+  background:
+    linear-gradient(116deg, transparent 0 64%, rgba(29, 226, 204, 0.13) 64.1% 64.8%, transparent 64.9%),
+    linear-gradient(180deg, #020609 0%, #061016 45%, #020609 100%);
+  letter-spacing: 0;
+}
+
+.page-grid {
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+
+.orb {
+  display: none;
+}
+
+.nav {
+  border-radius: 8px;
+  background: rgba(2, 8, 12, 0.82);
+  border-color: rgba(29, 226, 204, 0.22);
+}
+
+.brand img {
+  border-radius: 12px;
+}
+
+.nav-social,
+.button,
+.button--secondary,
+.chip,
+.device,
+.device__screen,
+.miniapp__search,
+.miniapp__chips span,
+.miniapp__card,
+.miniapp__thumb,
+.glass-card,
+.metric-card,
+.feature-card,
+.spotlight,
+.panel-stat,
+.ops-card,
+.showcase-card,
+.stack-card,
+.cta-section,
+.media-card,
+.customer-logo-card,
+.customer-logo-card img {
+  border-radius: 8px;
+}
+
+.hero h1,
+.section-heading h2,
+.spotlight__copy h2,
+.cta-section h2,
+.showcase-card__copy h2 {
+  letter-spacing: 0;
+  line-height: 0.98;
+  font-weight: 800;
+}
+
+.hero h1 {
+  max-width: 9.8ch;
+}
+
+.eyebrow,
+.micro-labels,
+.feature-card__number {
+  letter-spacing: 0;
+}
+
+.chip,
+.miniapp__chips span,
+.stack-card,
+.customer-logo-card {
+  background: rgba(255, 255, 255, 0.045);
+}
+
+.button {
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  color: #001313;
+  box-shadow: 0 16px 36px rgba(13, 187, 187, 0.22);
+}
+
+.button--secondary {
+  background: rgba(255, 255, 255, 0.035);
+  color: var(--text);
+  border: 1px solid rgba(242, 242, 242, 0.26);
+  box-shadow: none;
+}
+
+.button:hover,
+.customer-logo-card:hover {
+  border-color: rgba(29, 226, 204, 0.58);
+  transform: translateY(-2px);
+}
+
+.device,
+.glass-card,
+.metric-card,
+.feature-card,
+.spotlight,
+.ops-card,
+.showcase-card,
+.stack-card,
+.cta-section,
+.media-card {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.02)),
+    rgba(3, 10, 14, 0.76);
+  border-color: rgba(242, 242, 242, 0.14);
+}
+
+.device__screen {
+  background:
+    linear-gradient(116deg, transparent 0 63%, rgba(29, 226, 204, 0.18) 63.1% 64%, transparent 64.1%),
+    linear-gradient(180deg, #0a2d36, #061016);
+}
+
+.miniapp__thumb--cyan {
+  background: linear-gradient(135deg, #1de2cc, #0dbbbb);
+}
+
+.miniapp__thumb--gold {
+  background: linear-gradient(135deg, #f2f2f2, #0dbbbb);
+}
+
+.media-card::after {
+  background:
+    linear-gradient(116deg, transparent 0 68%, rgba(29, 226, 204, 0.42) 68.1% 69%, transparent 69.1%),
+    linear-gradient(180deg, rgba(2, 6, 9, 0.04), rgba(2, 6, 9, 0.82));
+}
+
+@media (max-width: 720px) {
+  .nav {
+    border-radius: 8px;
+  }
+
+  .customer-logo-card {
+    border-radius: 8px;
+  }
+}
+
+html body * {
+  letter-spacing: 0 !important;
+}
+
+html body .hero h1 {
+  font-size: 6rem !important;
+}
+
+html body .section-heading h2,
+html body .feature-band__copy h2,
+html body .spotlight__copy h2,
+html body .showcase-card__copy h2,
+html body .cta-section h2 {
+  font-size: 4.4rem !important;
+}
+
+html body .media-card__label h3,
+html body .media-card__overlay h3 {
+  font-size: 1.65rem !important;
+}
+
+@media (max-width: 1080px) {
+  html body .hero h1 {
+    font-size: 4.4rem !important;
+  }
+
+  html body .section-heading h2,
+  html body .feature-band__copy h2,
+  html body .spotlight__copy h2,
+  html body .showcase-card__copy h2,
+  html body .cta-section h2 {
+    font-size: 3.4rem !important;
+  }
+}
+
+@media (max-width: 720px) {
+  html body .hero h1 {
+    font-size: 2.9rem !important;
+  }
+
+  html body .section-heading h2,
+  html body .feature-band__copy h2,
+  html body .spotlight__copy h2,
+  html body .showcase-card__copy h2,
+  html body .cta-section h2 {
+    font-size: 2.4rem !important;
+  }
+
+  html body .media-card__label h3,
+  html body .media-card__overlay h3 {
+    font-size: 1.2rem !important;
   }
 }

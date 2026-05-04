@@ -1,0 +1,406 @@
+/* Final JCIT brand pass loaded after page-local styles. */
+:root {
+  --jc-bg: #03080b;
+  --jc-surface: rgba(4, 14, 18, 0.82);
+  --jc-surface-soft: rgba(255, 255, 255, 0.045);
+  --jc-line: rgba(242, 242, 242, 0.14);
+  --jc-line-strong: rgba(29, 226, 204, 0.44);
+  --jc-teal: #1de2cc;
+  --jc-teal-deep: #0dbbbb;
+  --jc-ink: #f7fbfb;
+  --jc-muted: #b6c8cc;
+}
+
+html body,
+html body * {
+  letter-spacing: 0 !important;
+}
+
+html body {
+  background:
+    linear-gradient(116deg, transparent 0 61%, rgba(29, 226, 204, 0.12) 61.1% 61.7%, transparent 61.8%),
+    linear-gradient(180deg, #020609 0%, #061016 44%, #020609 100%) !important;
+  color: var(--jc-ink);
+  font-family: "Poppins", "Inter", "Helvetica Neue", Arial, sans-serif !important;
+}
+
+html body main {
+  isolation: isolate;
+}
+
+html body .nav,
+html body .hero-card,
+html body .card,
+html body .stat,
+html body .timeline-item,
+html body .contact-panel > *,
+html body .role-routing-note,
+html body .manual-note,
+html body .manual-grid .card,
+html body .job-visual-card,
+html body .job-card,
+html body .job-brief,
+html body .proposal-proof article,
+html body .proposal-brief,
+html body .proposal-box,
+html body .proposal-price,
+html body .proposal-next article,
+html body .proposal-timeline .timeline-item,
+html body .comp-card,
+html body .game-panel,
+html body .status-kpi,
+html body .status-card {
+  border: 1px solid var(--jc-line) !important;
+  border-radius: 8px !important;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.02)),
+    var(--jc-surface) !important;
+  box-shadow: 0 18px 54px rgba(0, 0, 0, 0.34) !important;
+}
+
+html body .proposal-visual-frame,
+html body .job-visual-frame,
+html body .hero-media,
+html body .media-card,
+html body .device,
+html body .glass-card,
+html body .metric-card,
+html body .feature-card,
+html body .ops-card,
+html body .spotlight,
+html body .showcase-card,
+html body .stack-card,
+html body .cta-section,
+html body .customer-logo-card,
+html body .manual-note {
+  border-radius: 8px !important;
+  border-color: var(--jc-line) !important;
+}
+
+html body .proposal-visual-frame,
+html body .job-visual-frame {
+  background:
+    linear-gradient(116deg, transparent 0 64%, rgba(29, 226, 204, 0.28) 64.1% 64.8%, transparent 64.9%),
+    linear-gradient(180deg, rgba(2, 6, 9, 0.06), rgba(2, 6, 9, 0.78)),
+    var(--proposal-image, none),
+    linear-gradient(180deg, #0a2d36, #061016) !important;
+  background-position: center !important;
+  background-size: cover !important;
+}
+
+html body .proposal-visual-frame img {
+  border-radius: 8px !important;
+  filter: saturate(0.92) contrast(1.08);
+}
+
+html body .proposal-kicker,
+html body .job-kicker,
+html body .eyebrow,
+html body .manual-code,
+html body .feature-card__number,
+html body .job-public-link,
+html body .proposal-price small {
+  border-radius: 8px !important;
+  border-color: rgba(29, 226, 204, 0.34) !important;
+  color: var(--jc-teal) !important;
+  font-family: "Space Mono", "SFMono-Regular", Consolas, monospace !important;
+}
+
+html body .proposal-proof strong,
+html body .proposal-price strong,
+html body .stat h4,
+html body .timeline-item strong,
+html body .manual-code,
+html body .status-pill--up {
+  color: var(--jc-teal) !important;
+}
+
+html body .proposal-list article,
+html body .job-list article,
+html body .panel-stat,
+html body .miniapp__card,
+html body .stack-card,
+html body .role-routing-note {
+  border: 1px solid rgba(242, 242, 242, 0.12) !important;
+  border-radius: 8px !important;
+  background: rgba(255, 255, 255, 0.045) !important;
+}
+
+html body .button,
+html body .job-upload,
+html body .customer-logo-card {
+  border-radius: 8px !important;
+}
+
+html body .button:not(.secondary):not(.button--secondary) {
+  background: linear-gradient(135deg, var(--jc-teal), var(--jc-teal-deep)) !important;
+  border-color: rgba(29, 226, 204, 0.58) !important;
+  color: #001313 !important;
+}
+
+html body .button.secondary,
+html body .button--secondary,
+html body .job-public-link {
+  background: rgba(255, 255, 255, 0.035) !important;
+  border-color: rgba(242, 242, 242, 0.28) !important;
+  color: var(--jc-ink) !important;
+}
+
+html body .button:hover,
+html body .customer-logo-card:hover,
+html body .job-public-link:hover {
+  border-color: var(--jc-line-strong) !important;
+  transform: translateY(-2px);
+}
+
+html body a,
+html body button,
+html body .button,
+html body [role="button"],
+html body summary,
+html body label,
+html body .nav-toggle,
+html body .nav-dropdown-toggle,
+html body .customer-logo-card,
+html body .job-public-link {
+  cursor: pointer;
+}
+
+html body input,
+html body textarea,
+html body select {
+  cursor: text;
+}
+
+html body .button,
+html body button,
+html body .job-public-link {
+  min-height: 44px;
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    background 180ms ease,
+    opacity 180ms ease !important;
+}
+
+html body .button:active,
+html body button:active,
+html body .job-public-link:active {
+  transform: translateY(0) scale(0.98) !important;
+}
+
+html body .button:disabled,
+html body button:disabled,
+html body .button[aria-disabled="true"],
+html body .job-public-link[aria-disabled="true"] {
+  cursor: not-allowed !important;
+  opacity: 0.56 !important;
+  transform: none !important;
+}
+
+html body a:focus-visible,
+html body button:focus-visible,
+html body .button:focus-visible,
+html body input:focus-visible,
+html body textarea:focus-visible,
+html body select:focus-visible,
+html body summary:focus-visible,
+html body [role="button"]:focus-visible,
+html body .job-public-link:focus-visible {
+  outline: 2px solid var(--jc-teal) !important;
+  outline-offset: 3px !important;
+  box-shadow:
+    0 0 0 6px rgba(29, 226, 204, 0.16),
+    0 16px 44px rgba(29, 226, 204, 0.14) !important;
+}
+
+.jc-cursor,
+.jc-cursor-dot {
+  display: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  html body.has-custom-cursor,
+  html body.has-custom-cursor a,
+  html body.has-custom-cursor button,
+  html body.has-custom-cursor .button,
+  html body.has-custom-cursor [role="button"],
+  html body.has-custom-cursor input,
+  html body.has-custom-cursor textarea,
+  html body.has-custom-cursor select,
+  html body.has-custom-cursor summary,
+  html body.has-custom-cursor label,
+  html body.has-custom-cursor .nav-toggle,
+  html body.has-custom-cursor .nav-dropdown-toggle,
+  html body.has-custom-cursor .customer-logo-card,
+  html body.has-custom-cursor .job-public-link {
+    cursor: none !important;
+  }
+
+  .jc-cursor,
+  .jc-cursor-dot {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2147483000;
+    display: block;
+    pointer-events: none;
+    translate: -50% -50%;
+    will-change: transform, width, height, opacity;
+  }
+
+  .jc-cursor {
+    width: 26px;
+    height: 26px;
+    border: 1px solid rgba(29, 226, 204, 0.82);
+    border-radius: 999px;
+    background: rgba(29, 226, 204, 0.06);
+    box-shadow:
+      0 0 0 1px rgba(255, 255, 255, 0.06),
+      0 0 22px rgba(29, 226, 204, 0.26);
+    transition:
+      width 150ms ease,
+      height 150ms ease,
+      border-radius 150ms ease,
+      background 150ms ease,
+      opacity 150ms ease;
+  }
+
+  .jc-cursor-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 999px;
+    background: var(--jc-teal);
+    box-shadow: 0 0 18px rgba(29, 226, 204, 0.62);
+    transition: opacity 150ms ease, transform 150ms ease;
+  }
+
+  .jc-cursor.is-hovering {
+    width: 46px;
+    height: 46px;
+    background: rgba(29, 226, 204, 0.14);
+    border-color: var(--jc-teal);
+  }
+
+  .jc-cursor.is-pressed {
+    width: 34px;
+    height: 34px;
+    background: rgba(255, 255, 255, 0.16);
+  }
+
+  .jc-cursor.is-text-field {
+    width: 3px;
+    height: 34px;
+    border-radius: 2px;
+    background: var(--jc-teal);
+    border-color: var(--jc-teal);
+  }
+
+  .jc-cursor-dot.is-hovering,
+  .jc-cursor-dot.is-text-field {
+    opacity: 0;
+  }
+
+  .jc-cursor.is-hidden,
+  .jc-cursor-dot.is-hidden {
+    opacity: 0;
+  }
+}
+
+html body input,
+html body textarea,
+html body select,
+html body .job-upload {
+  border-radius: 8px !important;
+  border-color: var(--jc-line) !important;
+  background: rgba(2, 8, 12, 0.86) !important;
+}
+
+html body .proposal-grid,
+html body .job-grid,
+html body .section-heading--split {
+  align-items: stretch;
+}
+
+html body .proposal-next,
+html body .comp-grid,
+html body .manual-grid,
+html body .job-list,
+html body .proposal-list {
+  gap: 16px !important;
+}
+
+html body .section-title,
+html body .proposal-hero h2,
+html body .job-hero h2,
+html body .hero h2 {
+  text-wrap: balance;
+}
+
+html body .proposal-shell,
+html body .job-shell,
+html body .manual-wrap {
+  gap: 36px !important;
+}
+
+html body .manual-list,
+html body .manual-steps {
+  color: var(--jc-muted);
+}
+
+html body .site-loader-panel,
+html body .cookie-banner {
+  border-radius: 8px !important;
+}
+
+@media (max-width: 980px) {
+  html body .proposal-grid,
+  html body .job-grid,
+  html body .proposal-proof,
+  html body .comp-grid,
+  html body .section-heading--split {
+    grid-template-columns: 1fr !important;
+  }
+
+  html body .proposal-actions,
+  html body .job-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  html body .proposal-actions .button,
+  html body .job-actions .button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 520px) {
+  html body .proposal-brief div {
+    display: grid !important;
+    gap: 4px !important;
+  }
+
+  html body .proposal-brief dd {
+    text-align: left !important;
+  }
+
+  html body .proposal-proof article,
+  html body .proposal-brief,
+  html body .proposal-box,
+  html body .proposal-price,
+  html body .proposal-next article,
+  html body .job-card,
+  html body .job-brief,
+  html body .job-visual-card {
+    padding: 18px !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html body .button,
+  html body button,
+  html body .job-public-link {
+    transition: none !important;
+  }
+}

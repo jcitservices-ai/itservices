@@ -16,6 +16,126 @@ const attachLoader = () => {
 
 const pageLoader = attachLoader();
 
+const progressBar = document.createElement("div");
+progressBar.className = "site-progress";
+progressBar.setAttribute("aria-hidden", "true");
+document.body.appendChild(progressBar);
+
+const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+const setupCustomCursor = () => {
+  const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)");
+  if (!finePointer.matches || prefersReducedMotion.matches) return;
+
+  const cursor = document.createElement("div");
+  const dot = document.createElement("div");
+  cursor.className = "jc-cursor is-hidden";
+  dot.className = "jc-cursor-dot is-hidden";
+  cursor.setAttribute("aria-hidden", "true");
+  dot.setAttribute("aria-hidden", "true");
+  document.body.append(cursor, dot);
+  document.body.classList.add("has-custom-cursor");
+
+  const interactiveSelector = [
+    "a",
+    "button",
+    ".button",
+    "[role='button']",
+    "summary",
+    "label",
+    ".nav-toggle",
+    ".nav-dropdown-toggle",
+    ".customer-logo-card",
+    ".job-public-link",
+    ".card",
+    ".hero-card",
+    ".stat",
+    ".timeline-item",
+    ".status-card",
+    ".status-kpi",
+  ].join(",");
+  const textSelector = "input, textarea, select, [contenteditable='true']";
+
+  let targetX = window.innerWidth / 2;
+  let targetY = window.innerHeight / 2;
+  let currentX = targetX;
+  let currentY = targetY;
+  let rafId = 0;
+
+  const setCursorState = (event) => {
+    const target = event.target instanceof Element ? event.target : null;
+    const isTextField = Boolean(target?.closest(textSelector));
+    const isHovering = Boolean(target?.closest(interactiveSelector)) && !isTextField;
+    cursor.classList.toggle("is-hovering", isHovering);
+    dot.classList.toggle("is-hovering", isHovering);
+    cursor.classList.toggle("is-text-field", isTextField);
+    dot.classList.toggle("is-text-field", isTextField);
+  };
+
+  const render = () => {
+    currentX += (targetX - currentX) * 0.24;
+    currentY += (targetY - currentY) * 0.24;
+    cursor.style.transform = `translate3d(${currentX}px, ${currentY}px, 0)`;
+    dot.style.transform = `translate3d(${targetX}px, ${targetY}px, 0)`;
+    rafId = window.requestAnimationFrame(render);
+  };
+
+  const show = () => {
+    cursor.classList.remove("is-hidden");
+    dot.classList.remove("is-hidden");
+  };
+
+  const hide = () => {
+    cursor.classList.add("is-hidden");
+    dot.classList.add("is-hidden");
+  };
+
+  document.addEventListener(
+    "pointermove",
+    (event) => {
+      targetX = event.clientX;
+      targetY = event.clientY;
+      setCursorState(event);
+      show();
+      if (!rafId) render();
+    },
+    { passive: true }
+  );
+
+  document.addEventListener("pointerdown", () => {
+    cursor.classList.add("is-pressed");
+  });
+
+  document.addEventListener("pointerup", () => {
+    cursor.classList.remove("is-pressed");
+  });
+
+  document.addEventListener("pointerleave", hide);
+  window.addEventListener("blur", hide);
+
+  finePointer.addEventListener?.("change", (event) => {
+    if (!event.matches) {
+      window.cancelAnimationFrame(rafId);
+      document.body.classList.remove("has-custom-cursor");
+      cursor.remove();
+      dot.remove();
+    }
+  });
+};
+
+setupCustomCursor();
+
+const updateScrollState = () => {
+  const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+  const progress = maxScroll > 0 ? window.scrollY / maxScroll : 0;
+  progressBar.style.transform = `scaleX(${Math.min(1, Math.max(0, progress))})`;
+  document.body.classList.toggle("is-scrolled", window.scrollY > 8);
+};
+
+updateScrollState();
+window.addEventListener("scroll", updateScrollState, { passive: true });
+window.addEventListener("resize", updateScrollState);
+
 const revealElements = document.querySelectorAll(".reveal");
 
 const revealObserver = new IntersectionObserver(
@@ -95,6 +215,61 @@ window.addEventListener("mousemove", (event) => {
     orb.style.transform = `translate(${offsetX * factor}px, ${offsetY * factor}px)`;
   });
 });
+
+const canUsePointerEffects = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+const tiltTargets = document.querySelectorAll(
+  ".card, .stat, .timeline-item, .hero-card, .game-promo-grid, .status-card, .status-kpi, .job-card, .job-brief, .job-visual-card"
+);
+
+if (canUsePointerEffects && !prefersReducedMotion.matches) {
+  tiltTargets.forEach((target) => {
+    target.addEventListener("mousemove", (event) => {
+      const rect = target.getBoundingClientRect();
+      const x = (event.clientX - rect.left) / rect.width - 0.5;
+      const y = (event.clientY - rect.top) / rect.height - 0.5;
+      target.style.setProperty("--tilt-rx", `${(-y * 5).toFixed(2)}deg`);
+      target.style.setProperty("--tilt-ry", `${(x * 5).toFixed(2)}deg`);
+    });
+
+    target.addEventListener("mouseleave", () => {
+      target.style.removeProperty("--tilt-rx");
+      target.style.removeProperty("--tilt-ry");
+    });
+  });
+}
+
+const statNumbers = document.querySelectorAll(".stat h4");
+const statObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting || entry.target.dataset.counted === "true") return;
+      const label = entry.target.textContent.trim();
+      const match = label.match(/^(\d+)(.*)$/);
+      if (!match || prefersReducedMotion.matches) {
+        entry.target.dataset.counted = "true";
+        return;
+      }
+
+      const end = Number(match[1]);
+      const suffix = match[2];
+      const startedAt = performance.now();
+      const duration = 900;
+      entry.target.dataset.counted = "true";
+
+      const tick = (now) => {
+        const amount = Math.min(1, (now - startedAt) / duration);
+        const eased = 1 - Math.pow(1 - amount, 3);
+        entry.target.textContent = `${Math.round(end * eased)}${suffix}`;
+        if (amount < 1) requestAnimationFrame(tick);
+      };
+
+      requestAnimationFrame(tick);
+    });
+  },
+  { threshold: 0.45 }
+);
+
+statNumbers.forEach((stat) => statObserver.observe(stat));
 
 const formResponse = document.querySelector("[data-form-response]");
 if (formResponse) {
