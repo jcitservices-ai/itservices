@@ -349,6 +349,11 @@ html body .manual-steps {
   color: var(--jc-muted);
 }
 
+html body .chip-row,
+html body .micro-labels {
+  display: none !important;
+}
+
 html body .site-loader-panel,
 html body .cookie-banner {
   border-radius: 8px !important;
