@@ -226,6 +226,24 @@
         margin-top: 18px;
       }
 
+      .posting-form-status {
+        padding: 14px 16px;
+        border: 1px solid rgba(102, 255, 204, 0.24);
+        border-radius: 14px;
+        background: rgba(102, 255, 204, 0.08);
+        color: var(--text);
+        line-height: 1.6;
+      }
+
+      .posting-form-status.is-error {
+        border-color: rgba(255, 126, 126, 0.35);
+        background: rgba(255, 126, 126, 0.1);
+      }
+
+      .posting-form-status[hidden] {
+        display: none;
+      }
+
       .posting-application-form input,
       .posting-application-form select,
       .posting-application-form textarea {
@@ -258,6 +276,24 @@
         width: auto;
         margin-top: 2px;
         accent-color: #66ffcc;
+      }
+
+      .posting-upload {
+        display: grid;
+        gap: 8px;
+        padding: 14px 16px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 14px;
+        background: rgba(255, 255, 255, 0.04);
+        color: var(--text-2);
+      }
+
+      .posting-upload span {
+        font-size: 0.92rem;
+      }
+
+      .posting-upload input {
+        padding: 10px;
       }
 
       @media (max-width: 980px) {
@@ -529,8 +565,8 @@
           <h3>Apply for the SDR role</h3>
           <p>
             Submit your details, sales background, and a short note explaining how
-            you approach outreach and customer conversion. Selected applicants will
-            be contacted for next steps.
+            you approach outreach and customer conversion. Upload your latest CV or
+            resume so we can review your background before the interview step.
           </p>
           <div class="posting-actions">
             <a class="button" href="#application">Start Application</a>
@@ -541,20 +577,25 @@
         <article id="application">
           <p class="eyebrow">Apply Now</p>
           <h3>Application form</h3>
-          <p>Use this quick form to apply for the Sales Development Representative role.</p>
+          <p>Use this quick form to apply for the Sales Development Representative role. Upload your resume/CV as a PDF, DOC, or DOCX file.</p>
           <form
             class="posting-application-form"
-            action="https://formspree.io/f/xreabold"
+            action="https://jcit-recruitment-api.vercel.app/api/sdr-apply"
+            data-sdr-form
+            enctype="multipart/form-data"
             method="POST"
           >
+            <div class="posting-form-status" data-application-status role="status" aria-live="polite" hidden></div>
             <input type="text" name="company" style="display:none" tabindex="-1" autocomplete="off" />
-            <input type="hidden" name="_next" value="https://jcit.digital/join-confirmation/" />
-            <input type="hidden" name="_subject" value="JCIT Services - SDR Application" />
             <input type="hidden" name="position" value="Sales Development Representative" />
             <input type="text" name="name" placeholder="Full name" required />
             <input type="email" name="email" placeholder="Email address" required />
             <input type="tel" name="contact_number" placeholder="Contact number" required />
             <input type="text" name="location" placeholder="Location / city" required />
+            <label class="posting-upload">
+              <span>Resume/CV upload (PDF, DOC, or DOCX)</span>
+              <input type="file" name="resume_file" accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" required />
+            </label>
             <select name="sales_experience" required>
               <option value="" disabled selected>Sales experience</option>
               <option>Online selling</option>
@@ -564,7 +605,15 @@
               <option>Retail sales</option>
               <option>No formal experience yet, but ready to sell</option>
             </select>
-            <input type="url" name="profile_or_resume_link" placeholder="Resume or profile link (optional)" />
+            <select name="primary_channel" required>
+              <option value="" disabled selected>Preferred sales channel</option>
+              <option>Facebook / Marketplace</option>
+              <option>TikTok / Instagram</option>
+              <option>Telegram / chat sales</option>
+              <option>Calls / outbound sales</option>
+              <option>Field sales</option>
+              <option>Mixed channels</option>
+            </select>
             <textarea name="message" placeholder="Tell us how you find leads and move customers toward a sale" required></textarea>
             <label class="posting-checkbox">
               <input type="checkbox" name="role_acknowledgement" value="I understand this is an active sales and outreach role." required />
@@ -604,5 +653,67 @@
     </footer>
 
     <script src="/assets/main.js"></script>
+    <script>
+      (() => {
+        const form = document.querySelector("[data-sdr-form]");
+        if (!form || !window.fetch || !window.FormData) return;
+
+        const status = form.querySelector("[data-application-status]");
+        const submitButton = form.querySelector('button[type="submit"]');
+        const endpoint = form.action;
+        const successUrl = "https://jcit.digital/join-confirmation/";
+        const defaultError = "Application could not be submitted right now. Please try again later.";
+
+        function showStatus(message, isError = false) {
+          if (!status) return;
+          status.textContent = message;
+          status.hidden = false;
+          status.classList.toggle("is-error", isError);
+        }
+
+        const params = new URLSearchParams(window.location.search);
+        if (params.get("application") === "error") {
+          showStatus(params.get("message") || defaultError, true);
+          history.replaceState(null, "", `${window.location.pathname}#application`);
+        }
+
+        form.addEventListener("submit", async (event) => {
+          event.preventDefault();
+          if (!form.reportValidity()) return;
+
+          const originalLabel = submitButton ? submitButton.textContent : "";
+          if (submitButton) {
+            submitButton.disabled = true;
+            submitButton.textContent = "Submitting...";
+          }
+          showStatus("Submitting your application securely...", false);
+
+          try {
+            const response = await fetch(endpoint, {
+              method: "POST",
+              body: new FormData(form),
+              headers: {
+                Accept: "application/json",
+              },
+            });
+            const payload = await response.json().catch(() => ({}));
+
+            if (response.ok && payload.ok) {
+              window.location.assign(payload.redirect || successUrl);
+              return;
+            }
+
+            showStatus(payload.message || defaultError, true);
+          } catch (error) {
+            showStatus(defaultError, true);
+          } finally {
+            if (submitButton) {
+              submitButton.disabled = false;
+              submitButton.textContent = originalLabel;
+            }
+          }
+        });
+      })();
+    </script>
   </body>
 </html>
