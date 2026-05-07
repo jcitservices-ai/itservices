@@ -336,6 +336,24 @@ def make_hero(path: str, title: str, subtitle: str, label: str, source: str, see
     save_jpg(image, path)
 
 
+def make_home_media() -> None:
+    width, height = 1200, 760
+    image = overlay_photo(cover(source_panel("hero-laptop"), (width, height), (0.5, 0.5)), 86)
+    draw = ImageDraw.Draw(image, "RGBA")
+    image.alpha_composite(glow_layer(width, height, [(620, 100, 1120, 690)]))
+    add_diagonal(draw, width, height, 96)
+    logo_mark(image, draw, 58, 54, 66)
+    text(draw, (142, 62), "JC IT", FONTS["h2"], WHITE)
+    text(draw, (144, 104), "SERVICES", FONTS["mono"], MIST)
+    panel(draw, (724, 92, 1080, 298), 20, PANEL)
+    text(draw, (764, 132), "AI + IT OPS", font(34, "black"), ACCENT)
+    for index, label in enumerate(["Web systems", "PBX support", "AI workflows"]):
+        y = 192 + index * 42
+        draw.ellipse((766, y + 5, 778, y + 17), fill=hex_to_rgb(ACCENT))
+        text(draw, (794, y), label, FONTS["small"], MIST)
+    save_jpg(image, "assets/images/hero-home-media.jpg")
+
+
 def make_service(path: str, title: str, label: str, icon: str, source: str, seed: int, full_source: bool = False) -> None:
     width, height = 1200, 800
     base = source_full(source) if full_source else source_panel(source)
@@ -419,6 +437,7 @@ def main() -> None:
         "hero-laptop",
         1,
     )
+    make_home_media()
     make_hero(
         "assets/images/hero-services.jpg",
         "Services built as connected systems, not one-off deliverables.",
