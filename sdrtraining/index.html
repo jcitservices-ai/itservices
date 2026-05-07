@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#06121d" />
+    <title>SDR Training Program | JCIT</title>
+    <meta
+      name="description"
+      content="JCIT SDR Training Program covering grey market fundamentals, JCIT services, product education, marketing channels, and commission tracking."
+    />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://jcit.digital/sdrtraining/" />
+    <meta property="og:title" content="SDR Training Program | JCIT" />
+    <meta
+      property="og:description"
+      content="Grey market fundamentals, JCIT services, product education, marketing channels, and commission tracking — built for SDR execution."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://jcit.digital/sdrtraining/" />
+    <meta property="og:image" content="https://jcit.digital/assets/images/hero-join.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/assets/styles.css" />
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YYFC0NYBXB"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-YYFC0NYBXB');
+    </script>
+    <link rel="stylesheet" href="/assets/page-redesign.css" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png" />
+    <style>
+      .training-shell {
+        display: grid;
+        gap: 22px;
+      }
+
+      .training-kicker {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 8px 14px;
+        border-radius: 999px;
+        border: 1px solid rgba(102, 255, 204, 0.28);
+        background: rgba(3, 10, 16, 0.52);
+        color: rgba(232, 251, 255, 0.82);
+        font-family: "Space Mono", monospace;
+        font-size: 0.76rem;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+      }
+
+      .training-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(260px, 0.45fr);
+        gap: 20px;
+        align-items: start;
+      }
+
+      .training-sidebar {
+        position: sticky;
+        top: 92px;
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        background: rgba(7, 20, 35, 0.72);
+        box-shadow: var(--shadow);
+        padding: 18px;
+      }
+
+      .training-sidebar h3 {
+        margin-bottom: 10px;
+      }
+
+      .training-nav {
+        display: grid;
+        gap: 10px;
+        margin-top: 12px;
+      }
+
+      .training-nav a {
+        display: block;
+        padding: 10px 12px;
+        border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: rgba(255, 255, 255, 0.03);
+        color: var(--text-1);
+        text-decoration: none;
+        transition: transform 120ms ease, border-color 120ms ease, background 120ms ease;
+      }
+
+      .training-nav a:hover {
+        transform: translateY(-1px);
+        border-color: rgba(102, 255, 204, 0.22);
+        background: rgba(102, 255, 204, 0.06);
+      }
+
+      .training-nav small {
+        display: block;
+        color: var(--text-2);
+        font-family: "Space Mono", monospace;
+        font-size: 0.72rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        margin-bottom: 4px;
+      }
+
+      .training-panel {
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        background: rgba(7, 20, 35, 0.72);
+        box-shadow: var(--shadow);
+        padding: 24px;
+      }
+
+      .training-panel h3 {
+        margin-bottom: 10px;
+      }
+
+      .training-panel h4 {
+        margin-top: 18px;
+        margin-bottom: 8px;
+      }
+
+      .training-panel p,
+      .training-panel li {
+        color: var(--text-2);
+      }
+
+      .training-panel ul {
+        margin: 10px 0 0;
+        padding-left: 20px;
+      }
+
+      .callout {
+        margin-top: 14px;
+        padding: 14px 16px;
+        border-radius: 16px;
+        background: rgba(102, 255, 204, 0.08);
+        border: 1px solid rgba(102, 255, 204, 0.18);
+      }
+
+      .callout strong {
+        color: var(--accent-2);
+      }
+
+      .callout.red {
+        background: rgba(255, 92, 124, 0.09);
+        border-color: rgba(255, 92, 124, 0.22);
+      }
+
+      .callout.red strong {
+        color: rgba(255, 154, 173, 0.98);
+      }
+
+      .training-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 12px;
+        overflow: hidden;
+        border-radius: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.10);
+        background: rgba(255, 255, 255, 0.02);
+      }
+
+      .training-table th,
+      .training-table td {
+        text-align: left;
+        padding: 12px 14px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .training-table th {
+        color: var(--text-1);
+        font-family: "Space Mono", monospace;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        font-size: 0.76rem;
+        background: rgba(3, 10, 16, 0.45);
+      }
+
+      .training-table tr:last-child td {
+        border-bottom: 0;
+      }
+
+      @media (max-width: 980px) {
+        .training-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .training-sidebar {
+          position: static;
+        }
+      }
+    </style>
+  </head>
+  <body data-page="sdrtraining">
+    <div class="ai-overlay"></div>
+    <div class="ai-grid"></div>
+    <div class="ai-nodes"></div>
+    <header>
+      <nav class="nav">
+        <a class="brand" href="/">
+          <img src="/assets/logo.webp" alt="JC IT Services logo" />
+          <div class="brand-text">
+            <h1>JC IT Services</h1>
+            <span>Modern IT &amp; AI Enablement</span>
+          </div>
+        </a>
+        <button class="nav-toggle" type="button" aria-label="Toggle menu" aria-expanded="false" data-nav-toggle>
+          <span></span><span></span><span></span>
+        </button>
+        <div class="nav-links" data-nav-links>
+          <a href="/services/" data-page="services">Services</a>
+          <div class="nav-dropdown">
+            <a class="nav-dropdown-toggle" href="#" data-page="about">About Us</a>
+            <div class="nav-dropdown-menu">
+              <a href="/team/" data-page="team">Team</a>
+              <a href="/about/" data-page="about">About JC</a>
+              <a href="/bubbles/" data-page="bubbles">About Bubbles</a>
+              <a href="/team-login/" data-page="team-login">Team Login</a>
+              <a href="/bug-blaster/" data-page="bug-blaster">Bug Blaster</a>
+            </div>
+          </div>
+          <a href="/join/" data-page="join">Join Our Team!</a>
+          <a href="/contact/" data-page="contact">Contact Us</a>
+          <a class="nav-social" href="https://www.linkedin.com/company/jc-it-services/" target="_blank" rel="noreferrer" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.37V9h3.41v1.56h.05c.47-.9 1.62-1.85 3.34-1.85 3.57 0 4.23 2.35 4.23 5.41v6.33zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.78C.8 0 0 .78 0 1.74v20.52C0 23.22.8 24 1.78 24h20.44C23.2 24 24 23.22 24 22.26V1.74C24 .78 23.2 0 22.22 0z"/>
+            </svg>
+          </a>
+          <a class="nav-social" href="#" aria-label="Google Business Profile">
+            <img src="/assets/google-business.svg" alt="Google Business Profile" />
+          </a>
+        </div>
+      </nav>
+    </header>
+
+    <main class="training-shell">
+      <div class="orb" style="top: 140px; right: 120px"></div>
+      <div class="orb two" style="top: 520px; left: 60px"></div>
+      <div class="orb three" style="top: 1020px; right: 160px"></div>
+
+      <section class="hero">
+        <div class="reveal">
+          <span class="training-kicker">JCIT – Grey Market Products &amp; Services</span>
+          <h2>SDR Training Program</h2>
+          <p>
+            This training is designed to help SDRs sell professionally in grey market-adjacent categories
+            while staying compliant, building trust, and generating qualified leads for JCIT services and partner brands.
+          </p>
+          <div class="micro-labels">
+            <span>EDUCATE</span>
+            <span>QUALIFY</span>
+            <span>CLOSE</span>
+            <span>REPEAT</span>
+          </div>
+          <div class="hero-actions">
+            <a class="button" href="#module-1">Start Module 1</a>
+            <a class="button secondary" href="#module-4">Jump to Commissions</a>
+          </div>
+          <div class="callout red">
+            <strong>Compliance Rule:</strong>
+            Never make medical claims, guarantee outcomes, diagnose customers, or use prohibited platform terms.
+            Keep conversations professional and discreet.
+          </div>
+        </div>
+        <div class="hero-stack reveal">
+          <div class="hero-media">
+            <img
+              src="/assets/images/hero-services.jpg"
+              alt="Sales and enablement training for SDRs"
+              loading="lazy"
+            />
+          </div>
+          <div class="hero-card">
+            <h3>What You’ll Learn</h3>
+            <div class="hero-meta">
+              <span>Grey market fundamentals</span>
+              <span>JCIT service positioning</span>
+              <span>Safe product language</span>
+              <span>Channel playbooks</span>
+              <span>Commission tracking basics</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section reveal" aria-label="Training Modules">
+        <h3 class="section-title">Training Modules</h3>
+        <div class="training-grid">
+          <div class="training-panel">
+            <h3 id="module-1">Module 1: Introduction to the Grey Market</h3>
+            <h4>What is the Grey Market?</h4>
+            <p>
+              The grey market refers to products that are legally manufactured but sold through unofficial or unauthorized channels.
+              These products are not counterfeit/fake, are usually imported from other countries, may be sold without official local
+              distribution, and are common in wellness, supplements, fragrances, and niche lifestyle products.
+            </p>
+
+            <h4>Why Customers Buy Grey Market Products</h4>
+            <ul>
+              <li>Better pricing</li>
+              <li>Hard-to-find products</li>
+              <li>Faster availability</li>
+              <li>Niche or specialized products</li>
+              <li>Strong online communities and reviews</li>
+            </ul>
+
+            <h4>Risks &amp; Considerations</h4>
+            <ul>
+              <li>Some products may have legal or regulatory limitations</li>
+              <li>Marketing language must avoid medical claims</li>
+              <li>Customer education is important</li>
+              <li>Trust and discretion matter</li>
+            </ul>
+
+            <div class="callout">
+              <strong>SDR Goal:</strong>
+              Educate prospects, generate qualified leads, build trust, guide buyers through the funnel, and support repeat business.
+            </div>
+          </div>
+
+          <aside class="training-sidebar" aria-label="Module Navigation">
+            <h3>Quick Navigation</h3>
+            <p class="meta" style="margin: 0; color: var(--text-2)">
+              Use this outline during calls and chats.
+            </p>
+            <div class="training-nav" role="navigation" aria-label="Training anchors">
+              <a href="#module-1"><small>Module 1</small>Grey Market Fundamentals</a>
+              <a href="#module-2"><small>Module 2</small>JCIT Services + Products</a>
+              <a href="#module-3"><small>Module 3</small>Marketing Fundamentals</a>
+              <a href="#module-4"><small>Module 4</small>Sales + Commission Tracking</a>
+              <a href="#final-objectives"><small>Finish</small>Final SDR Objectives</a>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section reveal">
+        <div class="training-panel">
+          <h3 id="module-2">Module 2: JCIT Products &amp; Services (Tech)</h3>
+          <p>
+            JCIT provides digital solutions for businesses operating online. Your job is to listen for the business problem,
+            then connect it to an outcome-oriented service offer.
+          </p>
+
+          <h4>2.1 JCIT Services</h4>
+          <div class="cards" style="margin-top: 14px">
+            <div class="card">
+              <h3>Websites</h3>
+              <p><strong>What we offer:</strong> Business websites, landing pages, ecommerce websites, custom branded pages.</p>
+              <p><strong>SDR talking points:</strong> Professional presence, mobile-friendly, SEO optimized, fast deployment, conversion-focused.</p>
+              <p>
+                <strong>Ideal clients:</strong> SMEs, ecommerce brands, influencers, clinics, wellness brands, grey market stores.
+              </p>
+            </div>
+            <div class="card">
+              <h3>Apps</h3>
+              <p><strong>What we offer:</strong> Mobile applications, internal business systems, ordering systems, CRM dashboards.</p>
+              <p><strong>SDR talking points:</strong> Automation, better customer experience, scalability, real-time tracking.</p>
+            </div>
+            <div class="card">
+              <h3>Storefront</h3>
+              <p>
+                Online storefronts allow businesses to display products, accept payments, manage inventory, and process customer orders.
+              </p>
+              <p><strong>SDR talking points:</strong> Easy checkout, social media integration, conversion tracking, multiple payment options.</p>
+            </div>
+            <div class="card">
+              <h3>Dispatch &amp; Fulfillment</h3>
+              <p><strong>Services include:</strong> Order management, delivery coordination, inventory handling, customer notifications.</p>
+              <p><strong>SDR talking points:</strong> Faster delivery, better customer experience, reduced operational stress, scalable logistics.</p>
+            </div>
+          </div>
+
+          <h4>2.2 Product Training — PoppersGuyPH</h4>
+          <p>
+            Poppers are inhalant products commonly used for relaxation, recreational experiences, and enhanced sensory experiences.
+            In many regions, poppers are considered grey market products because regulations vary, distribution channels are limited,
+            and products are often imported.
+          </p>
+          <div class="callout red">
+            <strong>Important SDR Note:</strong>
+            Avoid medical claims, explicit sexual claims, and health guarantees. Focus on lifestyle positioning, community demand,
+            and product education.
+          </div>
+          <h4>Pricing Strategy</h4>
+          <p>
+            Pricing is affected by import costs, supply availability, brand reputation, product potency, and shipping risk. Position value as
+            reliability, authenticity, trusted sourcing, customer support, and discreet handling — not “cheap.”
+          </p>
+
+          <h4>2.3 Product Training — PepperzGlow</h4>
+          <p>
+            Peptides are short chains of amino acids commonly associated with wellness, recovery, fitness support, and skin/anti-aging communities.
+            Peptides often operate within grey market spaces because regulations vary internationally, some products are research-use only,
+            and distribution is community-driven.
+          </p>
+          <div class="callout red">
+            <strong>Important SDR Note:</strong>
+            Do not claim products cure diseases, promise medical outcomes, or diagnose customers. Use safe positioning such as:
+            “commonly used by…”, “popular among…”, and “customers report…”.
+          </div>
+          <p>
+            Pricing is affected by purity, supplier reputation, manufacturing source, storage requirements, and shipping conditions.
+            Position value as product consistency, trust, quality sourcing, and community credibility.
+          </p>
+        </div>
+      </section>
+
+      <section class="section reveal">
+        <div class="training-panel">
+          <h3 id="module-3">Module 3: Marketing Fundamentals</h3>
+          <h4>What are Leads?</h4>
+          <p>A lead is a person who may be interested in buying a product, using a service, or learning more about the brand.</p>
+
+          <h4>Lead Generation</h4>
+          <p>Lead generation is the process of finding potential customers. Common lead sources include social media, referrals, online communities, ads, and messaging platforms.</p>
+
+          <h4>Social Media Marketing Playbooks</h4>
+          <div class="cards" style="margin-top: 14px">
+            <div class="card">
+              <h3>Facebook Marketplace</h3>
+              <p><strong>Why it works:</strong> Massive audience, local targeting, easy inquiries.</p>
+              <p><strong>Best practices:</strong> Clean images, avoid banned words, reply quickly, move leads to Messenger or Telegram.</p>
+              <p><strong>Sample workflow:</strong> Comment/inquiry → fast reply → private chat → qualify → close or handoff.</p>
+            </div>
+            <div class="card">
+              <h3>Twitter/X</h3>
+              <p><strong>Why it works:</strong> Niche communities, viral potential, fast engagement.</p>
+              <p><strong>Best practices:</strong> Engage trends, build authority accounts, post educational content, reply to relevant posts.</p>
+              <p><strong>Content types:</strong> Product education, community memes, testimonials, lifestyle positioning.</p>
+            </div>
+            <div class="card">
+              <h3>Telegram</h3>
+              <p><strong>Why it works:</strong> Privacy-focused, community-driven, high retention.</p>
+              <p><strong>Best practices:</strong> Build active groups, provide updates, create exclusivity, support retention.</p>
+              <p><strong>Uses:</strong> VIP groups, flash sales, customer support, community engagement.</p>
+            </div>
+            <div class="card">
+              <h3>Marketing Partners</h3>
+              <p>
+                Marketing partners promote products in exchange for commission, revenue share, free products, or affiliate incentives.
+              </p>
+              <p><strong>Examples:</strong> Influencers, community admins, resellers, referral partners.</p>
+              <p><strong>SDR responsibilities:</strong> Recruit partners, maintain relationships, track performance, provide marketing assets.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section reveal">
+        <div class="training-panel">
+          <h3 id="module-4">Module 4: Sales &amp; Commission Tracking</h3>
+          <h4>SDR Sales Process</h4>
+          <ul>
+            <li><strong>Lead Generation:</strong> Find potential customers.</li>
+            <li><strong>Qualification:</strong> Determine budget, interest, urgency, and fit.</li>
+            <li><strong>Pitching:</strong> Present benefits, trust factors, and product fit.</li>
+            <li><strong>Closing:</strong> Guide customer to payment/order.</li>
+            <li><strong>Follow-Up:</strong> Encourage repeat purchases, referrals, and upsells.</li>
+          </ul>
+
+          <h4>Why Commission Tracking Matters</h4>
+          <p>Tracking commissions helps measure performance, motivate SDRs, and ensure transparency.</p>
+
+          <h4>Common Metrics</h4>
+          <ul>
+            <li><strong>Leads Generated:</strong> Number of prospects sourced.</li>
+            <li><strong>Qualified Leads:</strong> Leads that meet buying criteria.</li>
+            <li><strong>Closed Sales:</strong> Completed purchases.</li>
+            <li><strong>Conversion Rate:</strong> Percentage of leads converted.</li>
+            <li><strong>Revenue Generated:</strong> Total sales value.</li>
+          </ul>
+
+          <h4>Example Commission Structure</h4>
+          <table class="training-table" aria-label="Example Commission Structure">
+            <thead>
+              <tr>
+                <th scope="col">Metric</th>
+                <th scope="col">Example</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Per Qualified Lead</td>
+                <td>₱100</td>
+              </tr>
+              <tr>
+                <td>Per Closed Sale</td>
+                <td>5%–10%</td>
+              </tr>
+              <tr>
+                <td>Monthly Target Bonus</td>
+                <td>₱5,000</td>
+              </tr>
+              <tr>
+                <td>Team Incentive</td>
+                <td>Shared pool</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="section reveal">
+        <div class="training-panel">
+          <h3>SDR Best Practices</h3>
+          <div class="cards" style="margin-top: 14px">
+            <div class="card">
+              <h3>Communication</h3>
+              <ul>
+                <li>Be professional</li>
+                <li>Be responsive</li>
+                <li>Build trust</li>
+                <li>Stay discreet</li>
+              </ul>
+            </div>
+            <div class="card">
+              <h3>Compliance</h3>
+              <p><strong>Never:</strong></p>
+              <ul>
+                <li>Make medical claims</li>
+                <li>Promise guaranteed results</li>
+                <li>Use prohibited platform terms</li>
+                <li>Mislead customers</li>
+              </ul>
+            </div>
+            <div class="card">
+              <h3>Relationship Building</h3>
+              <p>Top SDRs follow up consistently, remember repeat customers, build communities, and focus on long-term trust.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section reveal">
+        <div class="training-panel">
+          <h3 id="final-objectives">Final SDR Objectives</h3>
+          <p>By the end of training, SDRs should be able to:</p>
+          <ul>
+            <li>Understand grey market business models</li>
+            <li>Explain JCIT products and services</li>
+            <li>Generate and qualify leads</li>
+            <li>Use social platforms effectively</li>
+            <li>Track commissions and sales</li>
+            <li>Maintain professional and compliant communication</li>
+          </ul>
+          <div class="hero-actions" style="margin-top: 18px">
+            <a class="button" href="/contact/">Need a Sales System?</a>
+            <a class="button secondary" href="#module-1">Back to Top</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-grid">
+        <div>
+          <h4>Quicklinks</h4>
+          <div class="footer-links">
+            <a href="/services/">Services</a>
+            <a href="/team/">Team</a>
+            <a href="/join/">Join Our Team</a>
+            <a href="/contact/">Contact Us</a>
+            <a href="/storefront/">StoreFront</a>
+          </div>
+        </div>
+        <div>
+          <h4>Legal</h4>
+          <div class="footer-links">
+            <a href="/legal/">Business Registration</a>
+            <a href="/sla/">SLA Agreement</a>
+            <a href="/privacy/">Privacy Policy</a>
+            <a href="/terms/">Terms of Service</a>
+            <a href="/copyright/">Copyright</a>
+          </div>
+        </div>
+        <div>
+          <h4>About JC IT Services</h4>
+          <p>AI-powered IT, PBX/VOIP, and automation delivery for SME clients across the US, AU, and PH.</p>
+          <p class="footer-note">
+            JCIT Services operates under JCO IT SOLUTIONS, a duly registered business in the Republic of the Philippines.
+          </p>
+          <p><a href="/contact/">Contact Us</a></p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="/assets/main.js"></script>
+  </body>
+</html>
+
