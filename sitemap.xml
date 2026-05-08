@@ -6,6 +6,9 @@
   <url><loc>https://jcit.digital/bubbles/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://jcit.digital/team/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://jcit.digital/join/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://jcit.digital/AVTechnician/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://jcit.digital/SurveillanceOperator/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://jcit.digital/CADDesigner/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://jcit.digital/webdev/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://jcit.digital/sdr/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://jcit.digital/sdr-generic/</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
