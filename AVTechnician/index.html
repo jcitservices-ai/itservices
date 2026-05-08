@@ -111,21 +111,11 @@
         z-index: 0;
       }
 
-      .job-visual-card,
       .job-card,
       .job-brief {
         border: 1px solid var(--border);
         background: rgba(7, 20, 35, 0.74);
         box-shadow: var(--shadow);
-      }
-
-      .job-visual-card {
-        width: 100%;
-        padding: 20px;
-        border-radius: 20px;
-        backdrop-filter: blur(18px);
-        position: relative;
-        z-index: 2;
       }
 
       .job-card,
@@ -159,8 +149,7 @@
 
       .job-card p,
       .job-brief p,
-      .job-list p,
-      .job-visual-card p {
+      .job-list p {
         color: var(--text-2);
       }
 
@@ -351,17 +340,18 @@
 
         <div class="job-visual reveal">
           <div class="job-visual-frame">
-            <img class="job-visual-image" src="/assets/images/hero-services.jpg" alt="Audio and video systems support" loading="lazy" />
-            <div class="job-visual-card">
-              <p class="eyebrow">Role Snapshot</p>
-              <h3>Remote AV support with Q-SYS focus</h3>
-              <p>
-                You will configure, troubleshoot, and help keep systems performing
-                reliably for client deployments, coordinating closely with engineering
-                and project teams.
-              </p>
-            </div>
+            <img class="job-visual-image" src="/assets/images/hero-jobs-collage.png" alt="JCIT Services team working remotely" loading="lazy" />
           </div>
+
+          <article class="job-card">
+            <p class="eyebrow">Role Snapshot</p>
+            <h3>Remote AV support with Q-SYS focus</h3>
+            <p>
+              You will configure, troubleshoot, and help keep systems performing
+              reliably for client deployments, coordinating closely with engineering
+              and project teams.
+            </p>
+          </article>
 
           <aside class="job-brief">
             <p class="eyebrow">Details</p>
