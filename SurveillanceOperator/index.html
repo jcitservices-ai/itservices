@@ -33,7 +33,7 @@
     <link rel="stylesheet" href="/assets/styles.css" />
     <style>
       .job-shell { display: grid; gap: 34px; }
-      .job-hero { grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr); align-items: stretch; }
+      .job-hero { grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr); align-items: start; }
       .job-kicker {
         display: inline-flex; align-items: center; gap: 10px; padding: 8px 14px;
         border: 1px solid rgba(102, 255, 204, 0.3); border-radius: 999px;
@@ -45,15 +45,38 @@
       .job-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
       .job-visual { display: grid; gap: 18px; }
       .job-visual-frame {
-        min-height: 430px; display: flex; align-items: flex-end; overflow: hidden;
-        border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 28px; padding: 24px;
-        background:
-          linear-gradient(180deg, rgba(6, 18, 29, 0.08), rgba(6, 18, 29, 0.92)),
-          url("/assets/images/service-ops.jpg") center/cover;
+        position: relative;
+        min-height: 360px;
+        display: flex;
+        align-items: flex-end;
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 28px;
+        padding: 24px;
         box-shadow: var(--shadow);
       }
+      .job-visual-frame::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(180deg, rgba(6, 18, 29, 0.12), rgba(6, 18, 29, 0.92));
+        pointer-events: none;
+        z-index: 1;
+      }
+      .job-visual-image {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        display: block;
+        transform-origin: center;
+        animation: subtleZoom 12s ease-in-out infinite alternate;
+        z-index: 0;
+      }
       .job-visual-card, .job-card, .job-brief { border: 1px solid var(--border); background: rgba(7, 20, 35, 0.74); box-shadow: var(--shadow); }
-      .job-visual-card { width: 100%; padding: 20px; border-radius: 20px; backdrop-filter: blur(18px); }
+      .job-visual-card { width: 100%; padding: 20px; border-radius: 20px; backdrop-filter: blur(18px); position: relative; z-index: 2; }
       .job-card, .job-brief { padding: 28px; border-radius: var(--radius); }
       .job-grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr); gap: 24px; }
       .job-list { display: grid; gap: 14px; margin-top: 22px; }
@@ -170,6 +193,7 @@
 
         <div class="job-visual reveal">
           <div class="job-visual-frame">
+            <img class="job-visual-image" src="/assets/images/service-ops.jpg" alt="Surveillance monitoring operations" loading="lazy" />
             <div class="job-visual-card">
               <p class="eyebrow">Role Snapshot</p>
               <h3>Real-time monitoring and incident documentation</h3>
@@ -391,4 +415,3 @@
     ></script>
   </body>
 </html>
-

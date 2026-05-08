@@ -39,7 +39,7 @@
 
       .job-hero {
         grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
-        align-items: stretch;
+        align-items: start;
       }
 
       .job-kicker {
@@ -78,17 +78,37 @@
       }
 
       .job-visual-frame {
-        min-height: 430px;
+        position: relative;
+        min-height: 360px;
         display: flex;
         align-items: flex-end;
         overflow: hidden;
         border: 1px solid rgba(255, 255, 255, 0.12);
         border-radius: 28px;
         padding: 24px;
-        background:
-          linear-gradient(180deg, rgba(6, 18, 29, 0.08), rgba(6, 18, 29, 0.92)),
-          url("/assets/images/hero-services.jpg") center/cover;
         box-shadow: var(--shadow);
+      }
+
+      .job-visual-frame::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(180deg, rgba(6, 18, 29, 0.12), rgba(6, 18, 29, 0.92));
+        pointer-events: none;
+        z-index: 1;
+      }
+
+      .job-visual-image {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        display: block;
+        transform-origin: center;
+        animation: subtleZoom 12s ease-in-out infinite alternate;
+        z-index: 0;
       }
 
       .job-visual-card,
@@ -104,6 +124,8 @@
         padding: 20px;
         border-radius: 20px;
         backdrop-filter: blur(18px);
+        position: relative;
+        z-index: 2;
       }
 
       .job-card,
@@ -329,6 +351,7 @@
 
         <div class="job-visual reveal">
           <div class="job-visual-frame">
+            <img class="job-visual-image" src="/assets/images/hero-services.jpg" alt="Audio and video systems support" loading="lazy" />
             <div class="job-visual-card">
               <p class="eyebrow">Role Snapshot</p>
               <h3>Remote AV support with Q-SYS focus</h3>
@@ -601,4 +624,3 @@
     ></script>
   </body>
 </html>
-
