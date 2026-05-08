@@ -75,6 +75,7 @@
       .job-visual {
         display: grid;
         gap: 18px;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
       }
 
       .job-visual-frame {
@@ -87,6 +88,7 @@
         border-radius: 28px;
         padding: 24px;
         box-shadow: var(--shadow);
+        grid-column: 1 / -1;
       }
 
       .job-visual-frame::after {
@@ -243,6 +245,14 @@
         .job-hero,
         .job-grid {
           grid-template-columns: 1fr;
+        }
+
+        .job-visual {
+          grid-template-columns: 1fr;
+        }
+
+        .job-visual-frame {
+          grid-column: auto;
         }
       }
     </style>
