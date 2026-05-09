@@ -2,12 +2,13 @@ function scrub(value) {
   return String(value || "").slice(0, 1200);
 }
 
-async function verifyTurnstile({ token, ip, secretKey }) {
+async function verifyRecaptchaV2({ token, ip, secretKey }) {
   const payloadToken = String(token || "").trim();
   const payloadSecret = String(secretKey || "").trim();
-  if (!payloadSecret) {
-    return { skipped: true };
-  }
+
+  // Soft enforcement until keys are configured in prod.
+  if (!payloadSecret) return { skipped: true };
+
   if (!payloadToken) {
     const error = new Error("Captcha is required.");
     error.statusCode = 400;
@@ -19,7 +20,7 @@ async function verifyTurnstile({ token, ip, secretKey }) {
   form.set("response", payloadToken);
   if (ip) form.set("remoteip", String(ip));
 
-  const response = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
+  const response = await fetch("https://www.google.com/recaptcha/api/siteverify", {
     method: "POST",
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
     body: form.toString(),
@@ -44,4 +45,5 @@ async function verifyTurnstile({ token, ip, secretKey }) {
   return data;
 }
 
-module.exports = { verifyTurnstile };
+module.exports = { verifyRecaptchaV2 };
+

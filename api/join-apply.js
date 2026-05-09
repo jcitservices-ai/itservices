@@ -1,6 +1,6 @@
 const FORMSPREE_ENDPOINT = "https://formspree.io/f/xreabold";
 const SOURCE_LABEL = "jcit.digital/join";
-const { verifyTurnstile } = require("./_turnstile");
+const { verifyRecaptchaV2 } = require("./_recaptcha");
 const { forwardToFormspree } = require("./_formspree");
 
 function sendJson(res, statusCode, payload) {
@@ -99,10 +99,10 @@ module.exports = async function handler(req, res) {
       return redirect(res, location);
     }
 
-    await verifyTurnstile({
-      token: fields["cf-turnstile-response"] || fields.turnstile_token,
+    await verifyRecaptchaV2({
+      token: fields["g-recaptcha-response"] || fields.recaptcha_token,
       ip: getClientIp(req),
-      secretKey: process.env.TURNSTILE_SECRET_KEY,
+      secretKey: process.env.RECAPTCHA_SECRET_KEY,
     });
 
     const nextUrl = String(fields._next || "https://jcit.digital/join-confirmation/").trim();
@@ -110,8 +110,8 @@ module.exports = async function handler(req, res) {
 
     const forwarded = { ...fields };
     delete forwarded.company;
-    delete forwarded["cf-turnstile-response"];
-    delete forwarded.turnstile_token;
+    delete forwarded["g-recaptcha-response"];
+    delete forwarded.recaptcha_token;
 
     forwarded._subject = subject;
     forwarded.source = SOURCE_LABEL;
@@ -133,4 +133,3 @@ module.exports = async function handler(req, res) {
     redirect(res, `https://jcit.digital/join/?application=error&message=${encodeURIComponent(message)}`);
   }
 };
-

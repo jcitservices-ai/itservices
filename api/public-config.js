@@ -36,7 +36,6 @@ module.exports = function handler(req, res) {
     return;
   }
 
-  const siteKey = String(process.env.TURNSTILE_SITE_KEY || "").trim();
-  sendJson(res, 200, { ok: true, turnstileSiteKey: siteKey });
+  const siteKey = String(process.env.RECAPTCHA_SITE_KEY || "").trim();
+  sendJson(res, 200, { ok: true, recaptchaSiteKey: siteKey });
 };
-

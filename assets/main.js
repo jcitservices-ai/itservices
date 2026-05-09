@@ -205,8 +205,8 @@ if (dropdownToggle && dropdown) {
   });
 }
 
-const setupTurnstile = async () => {
-  const placeholders = Array.from(document.querySelectorAll("[data-turnstile]"));
+const setupRecaptcha = async () => {
+  const placeholders = Array.from(document.querySelectorAll("[data-recaptcha]"));
   if (!placeholders.length) return;
 
   const configUrl = "https://jcit-recruitment-api.vercel.app/api/public-config";
@@ -234,7 +234,7 @@ const setupTurnstile = async () => {
       headers: { Accept: "application/json" },
     });
     const payload = await response.json().catch(() => ({}));
-    siteKey = String(payload.turnstileSiteKey || "").trim();
+    siteKey = String(payload.recaptchaSiteKey || "").trim();
   } catch {
     siteKey = "";
   }
@@ -249,13 +249,13 @@ const setupTurnstile = async () => {
 
   const loadScript = () =>
     new Promise((resolve, reject) => {
-      if (window.turnstile) return resolve();
+      if (window.grecaptcha && typeof window.grecaptcha.render === "function") return resolve();
       const script = document.createElement("script");
-      script.src = "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
+      script.src = "https://www.google.com/recaptcha/api.js?render=explicit";
       script.async = true;
       script.defer = true;
       script.onload = () => resolve();
-      script.onerror = () => reject(new Error("Turnstile failed to load"));
+      script.onerror = () => reject(new Error("reCAPTCHA failed to load"));
       document.head.appendChild(script);
     });
 
@@ -270,48 +270,35 @@ const setupTurnstile = async () => {
   }
 
   placeholders.forEach((el) => {
-    if (!window.turnstile || el.dataset.turnstileRendered) return;
-    const widgetId = window.turnstile.render(el, { sitekey: siteKey, theme: "dark" });
-    el.dataset.turnstileRendered = "true";
-    el.dataset.turnstileWidget = String(widgetId);
+    if (!window.grecaptcha || el.dataset.recaptchaRendered) return;
+    const widgetId = window.grecaptcha.render(el, { sitekey: siteKey, theme: "dark" });
+    el.dataset.recaptchaRendered = "true";
+    el.dataset.recaptchaWidget = String(widgetId);
   });
-
-  const ensureHiddenTokenField = (form) => {
-    let input = form.querySelector('input[name="cf-turnstile-response"]');
-    if (!input) {
-      input = document.createElement("input");
-      input.type = "hidden";
-      input.name = "cf-turnstile-response";
-      form.appendChild(input);
-    }
-    return input;
-  };
 
   document.addEventListener(
     "submit",
     (event) => {
       const form = event.target instanceof HTMLFormElement ? event.target : null;
       if (!form) return;
-      const placeholder = form.querySelector("[data-turnstile]");
+      const placeholder = form.querySelector("[data-recaptcha]");
       if (!placeholder) return;
-      if (!window.turnstile) return;
+      if (!window.grecaptcha) return;
 
-      const widgetId = placeholder.dataset.turnstileWidget;
-      const token = widgetId ? window.turnstile.getResponse(widgetId) : "";
+      const widgetId = placeholder.dataset.recaptchaWidget;
+      const token = widgetId ? window.grecaptcha.getResponse(widgetId) : "";
       if (!token) {
         event.preventDefault();
         event.stopImmediatePropagation?.();
         showMessage(form, defaultError);
         return;
       }
-
-      ensureHiddenTokenField(form).value = token;
     },
     true
   );
 };
 
-setupTurnstile();
+setupRecaptcha();
 
 const orbs = document.querySelectorAll(".orb");
 window.addEventListener("mousemove", (event) => {

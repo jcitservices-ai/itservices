@@ -4,7 +4,7 @@ const FORMSPREE_ENDPOINT = "https://formspree.io/f/xreabold";
 const DEFAULT_POSITION = "Web Designer and Developer";
 const DEFAULT_NOTIFY_EMAIL = "jake@jcit.digital";
 const DEFAULT_REPLY_TO = "jake@jcit.digital";
-const { verifyTurnstile } = require("./_turnstile");
+const { verifyRecaptchaV2 } = require("./_recaptcha");
 
 function sendJson(res, statusCode, payload) {
   res.statusCode = statusCode;
@@ -465,10 +465,10 @@ async function handleApplication(req, res) {
     return;
   }
 
-  await verifyTurnstile({
-    token: fields["cf-turnstile-response"] || fields.turnstile_token,
+  await verifyRecaptchaV2({
+    token: fields["g-recaptcha-response"] || fields.recaptcha_token,
     ip: getClientIp(req),
-    secretKey: process.env.TURNSTILE_SECRET_KEY,
+    secretKey: process.env.RECAPTCHA_SECRET_KEY,
   });
 
   const name = toSafeLine(fields.name);
