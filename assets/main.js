@@ -205,6 +205,114 @@ if (dropdownToggle && dropdown) {
   });
 }
 
+const setupTurnstile = async () => {
+  const placeholders = Array.from(document.querySelectorAll("[data-turnstile]"));
+  if (!placeholders.length) return;
+
+  const configUrl = "https://jcit-recruitment-api.vercel.app/api/public-config";
+  const defaultError = "Please complete the captcha and try again.";
+
+  const showMessage = (form, message) => {
+    const target =
+      form.querySelector("[data-form-response]") ||
+      form.querySelector("[data-application-status]") ||
+      form.querySelector("[data-application-status]");
+
+    if (target) {
+      target.textContent = message;
+      target.hidden = false;
+      target.classList?.add?.("is-error");
+      return;
+    }
+
+    alert(message);
+  };
+
+  let siteKey = "";
+  try {
+    const response = await fetch(`${configUrl}?t=${Date.now()}`, {
+      headers: { Accept: "application/json" },
+    });
+    const payload = await response.json().catch(() => ({}));
+    siteKey = String(payload.turnstileSiteKey || "").trim();
+  } catch {
+    siteKey = "";
+  }
+
+  if (!siteKey) {
+    placeholders.forEach((el) => {
+      const form = el.closest("form");
+      if (form) showMessage(form, "Captcha is not configured yet. Please try again later.");
+    });
+    return;
+  }
+
+  const loadScript = () =>
+    new Promise((resolve, reject) => {
+      if (window.turnstile) return resolve();
+      const script = document.createElement("script");
+      script.src = "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
+      script.async = true;
+      script.defer = true;
+      script.onload = () => resolve();
+      script.onerror = () => reject(new Error("Turnstile failed to load"));
+      document.head.appendChild(script);
+    });
+
+  try {
+    await loadScript();
+  } catch {
+    placeholders.forEach((el) => {
+      const form = el.closest("form");
+      if (form) showMessage(form, defaultError);
+    });
+    return;
+  }
+
+  placeholders.forEach((el) => {
+    if (!window.turnstile || el.dataset.turnstileRendered) return;
+    const widgetId = window.turnstile.render(el, { sitekey: siteKey, theme: "dark" });
+    el.dataset.turnstileRendered = "true";
+    el.dataset.turnstileWidget = String(widgetId);
+  });
+
+  const ensureHiddenTokenField = (form) => {
+    let input = form.querySelector('input[name="cf-turnstile-response"]');
+    if (!input) {
+      input = document.createElement("input");
+      input.type = "hidden";
+      input.name = "cf-turnstile-response";
+      form.appendChild(input);
+    }
+    return input;
+  };
+
+  document.addEventListener(
+    "submit",
+    (event) => {
+      const form = event.target instanceof HTMLFormElement ? event.target : null;
+      if (!form) return;
+      const placeholder = form.querySelector("[data-turnstile]");
+      if (!placeholder) return;
+      if (!window.turnstile) return;
+
+      const widgetId = placeholder.dataset.turnstileWidget;
+      const token = widgetId ? window.turnstile.getResponse(widgetId) : "";
+      if (!token) {
+        event.preventDefault();
+        event.stopImmediatePropagation?.();
+        showMessage(form, defaultError);
+        return;
+      }
+
+      ensureHiddenTokenField(form).value = token;
+    },
+    true
+  );
+};
+
+setupTurnstile();
+
 const orbs = document.querySelectorAll(".orb");
 window.addEventListener("mousemove", (event) => {
   const { innerWidth, innerHeight } = window;

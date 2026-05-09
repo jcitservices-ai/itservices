@@ -94,7 +94,7 @@
             <p class="section-copy">
               Use this form to report a service issue, degraded behavior, or suspected outage. Reports follow the same Formspree flow already used on the site.
             </p>
-            <form data-contact action="https://formspree.io/f/xreabold" method="POST">
+            <form data-contact action="https://jcit-recruitment-api.vercel.app/api/status-fault-report" method="POST">
               <input type="text" name="company" style="display:none" tabindex="-1" autocomplete="off" />
               <input type="hidden" name="_next" value="https://jcit.digital/thank-you/" />
               <input type="hidden" name="_subject" value="JC IT Services - Fault Report" />
@@ -109,6 +109,7 @@
                 <option>Minor - Issue observed</option>
               </select>
               <textarea name="message" placeholder="Describe the problem, URL, bot name, and what you observed" required></textarea>
+              <div data-turnstile></div>
               <button class="button" type="submit">Submit Fault Report</button>
               <p data-form-response></p>
             </form>

@@ -6,6 +6,7 @@ const DEFAULT_NOTIFY_EMAIL = "jake@jcit.digital";
 const DEFAULT_REPLY_TO = "jake@jcit.digital";
 const APPLICATION_PAGE_URL = "https://jcit.digital/sdr-generic/";
 const APPLICATION_SOURCE = "jcit.digital/sdr-generic";
+const { verifyTurnstile } = require("./_turnstile");
 
 function sendJson(res, statusCode, payload) {
   res.statusCode = statusCode;
@@ -35,6 +36,11 @@ function setCors(req, res) {
 
   res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+}
+
+function getClientIp(req) {
+  const forwarded = String(req.headers["x-forwarded-for"] || "").split(",")[0]?.trim();
+  return forwarded || String(req.socket?.remoteAddress || "").trim();
 }
 
 function escapeHtml(value) {
@@ -441,6 +447,12 @@ async function handleApplication(req, res) {
     sendSuccessResponse(req, res);
     return;
   }
+
+  await verifyTurnstile({
+    token: fields["cf-turnstile-response"] || fields.turnstile_token,
+    ip: getClientIp(req),
+    secretKey: process.env.TURNSTILE_SECRET_KEY,
+  });
 
   const name = toSafeLine(fields.name);
   const email = normalizeEmail(fields.email);

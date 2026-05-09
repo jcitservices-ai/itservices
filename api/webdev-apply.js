@@ -4,6 +4,7 @@ const FORMSPREE_ENDPOINT = "https://formspree.io/f/xreabold";
 const DEFAULT_POSITION = "Web Designer and Developer";
 const DEFAULT_NOTIFY_EMAIL = "jake@jcit.digital";
 const DEFAULT_REPLY_TO = "jake@jcit.digital";
+const { verifyTurnstile } = require("./_turnstile");
 
 function sendJson(res, statusCode, payload) {
   res.statusCode = statusCode;
@@ -25,6 +26,11 @@ function redirect(res, location) {
 
 function getOrigin(req) {
   return String(req.headers.origin || "").trim();
+}
+
+function getClientIp(req) {
+  const forwarded = String(req.headers["x-forwarded-for"] || "").split(",")[0]?.trim();
+  return forwarded || String(req.socket?.remoteAddress || "").trim();
 }
 
 function setCors(req, res) {
@@ -458,6 +464,12 @@ async function handleApplication(req, res) {
     sendSuccessResponse(req, res);
     return;
   }
+
+  await verifyTurnstile({
+    token: fields["cf-turnstile-response"] || fields.turnstile_token,
+    ip: getClientIp(req),
+    secretKey: process.env.TURNSTILE_SECRET_KEY,
+  });
 
   const name = toSafeLine(fields.name);
   const email = normalizeEmail(fields.email);

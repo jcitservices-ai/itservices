@@ -654,7 +654,7 @@
           <p>Complete this quick form and JCIT will treat it as a project-start request for Daddy Grab.</p>
           <form
             class="proposal-approval-form"
-            action="https://formspree.io/f/xreabold"
+            action="https://jcit-recruitment-api.vercel.app/api/daddygrab-kickoff"
             method="POST"
           >
             <input type="text" name="company" style="display:none" tabindex="-1" autocomplete="off" />
@@ -668,6 +668,7 @@
               <input type="checkbox" name="project_approval" value="Let's go and start the project" required />
               <span>Let’s go and start the project.</span>
             </label>
+            <div data-turnstile></div>
             <button class="button" type="submit">Submit Approval</button>
           </form>
         </article>

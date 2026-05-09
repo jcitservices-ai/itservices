@@ -637,7 +637,7 @@
           <p>Use this quick application form to apply for the commission-based SDR role.</p>
           <form
             class="proposal-application-form"
-            action="https://formspree.io/f/xreabold"
+            action="https://jcit-recruitment-api.vercel.app/api/sdr-interest-apply"
             method="POST"
           >
             <input type="text" name="company" style="display:none" tabindex="-1" autocomplete="off" />
@@ -666,6 +666,7 @@
               <input type="checkbox" name="exclusivity_acknowledgement" value="I understand the PoppersGuyPH exclusivity and non-compete requirement." required />
               <span>I understand the PoppersGuyPH exclusivity and non-compete requirement.</span>
             </label>
+            <div data-turnstile></div>
             <button class="button" type="submit">Submit SDR Application</button>
           </form>
         </article>

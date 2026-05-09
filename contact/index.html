@@ -130,7 +130,7 @@
             </p>
             <form
               data-contact
-              action="https://formspree.io/f/xreabold"
+              action="https://jcit-recruitment-api.vercel.app/api/contact-inquiry"
               method="POST"
             >
               <input type="text" name="company" style="display:none" tabindex="-1" autocomplete="off" />
@@ -146,6 +146,7 @@
                 <option>Telegram Bot Development</option>
               </select>
               <textarea name="message" placeholder="Tell us about your project" required></textarea>
+              <div data-turnstile></div>
               <button class="button" type="submit">Send Request</button>
               <p data-form-response></p>
             </form>
@@ -214,7 +215,7 @@
               discovery call.
             </p>
             <form
-              action="https://formspree.io/f/xreabold"
+              action="https://jcit-recruitment-api.vercel.app/api/contact-book-call"
               method="POST"
             >
               <input type="text" name="company" style="display:none" tabindex="-1" autocomplete="off" />
@@ -232,6 +233,7 @@
                 <option>Project Planning</option>
               </select>
               <textarea name="notes" placeholder="Notes or agenda (optional)"></textarea>
+              <div data-turnstile></div>
               <button class="button" type="submit">Request Call</button>
             </form>
           </div>
