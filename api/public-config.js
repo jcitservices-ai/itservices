@@ -36,6 +36,5 @@ module.exports = function handler(req, res) {
     return;
   }
 
-  const siteKey = String(process.env.RECAPTCHA_SITE_KEY || "").trim();
-  sendJson(res, 200, { ok: true, recaptchaSiteKey: siteKey });
+  sendJson(res, 200, { ok: true, recaptchaSiteKey: "" });
 };
