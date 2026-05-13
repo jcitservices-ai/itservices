@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#06121d" />
+    <title>Virtual Assistant | JC IT Services</title>
+    <meta
+      name="description"
+      content="JCIT Services is hiring a Virtual Assistant (remote, US time zone) to support operations, scheduling, communications, and task coordination across client and internal workflows."
+    />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://jcit.digital/VirtualAssistant/" />
+    <meta property="og:title" content="Virtual Assistant | JC IT Services" />
+    <meta
+      property="og:description"
+      content="Apply for the JCIT Services Virtual Assistant role (remote, US time zone) supporting admin operations, customer coordination, and task execution."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://jcit.digital/VirtualAssistant/" />
+    <meta property="og:image" content="https://jcit.digital/assets/images/hero-jobs-collage.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/assets/styles.css" />
+    <style>
+      .job-shell {
+        display: grid;
+        gap: 34px;
+      }
+
+      .job-hero {
+        grid-template-columns: minmax(0, 0.95fr) minmax(360px, 1.05fr);
+        align-items: start;
+      }
+
+      .job-kicker {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 8px 14px;
+        border: 1px solid rgba(102, 255, 204, 0.3);
+        border-radius: 999px;
+        background: rgba(3, 10, 16, 0.56);
+        color: rgba(232, 251, 255, 0.84);
+        font-family: "Space Mono", monospace;
+        font-size: 0.76rem;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+      }
+
+      .job-hero h2 {
+        max-width: 18ch;
+      }
+
+      .job-hero p {
+        max-width: 62ch;
+      }
+
+      .job-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 24px;
+      }
+
+      .job-visual {
+        display: grid;
+        gap: 18px;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      }
+
+      .job-visual-frame {
+        position: relative;
+        min-height: 360px;
+        display: flex;
+        align-items: flex-end;
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 28px;
+        padding: 24px;
+        box-shadow: var(--shadow);
+        grid-column: 1 / -1;
+      }
+
+      .job-visual-frame::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(180deg, rgba(6, 18, 29, 0.12), rgba(6, 18, 29, 0.92));
+        pointer-events: none;
+        z-index: 1;
+      }
+
+      .job-visual-image {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        display: block;
+        transform-origin: center;
+        animation: subtleZoom 12s ease-in-out infinite alternate;
+        z-index: 0;
+      }
+
+      .job-card,
+      .job-brief {
+        border: 1px solid var(--border);
+        background: rgba(7, 20, 35, 0.74);
+        box-shadow: var(--shadow);
+      }
+
+      .job-card,
+      .job-brief {
+        padding: 28px;
+        border-radius: var(--radius);
+      }
+
+      .job-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr);
+        gap: 24px;
+      }
+
+      .job-list {
+        display: grid;
+        gap: 14px;
+        margin-top: 22px;
+      }
+
+      .job-list article {
+        padding: 18px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 16px;
+        background: rgba(255, 255, 255, 0.04);
+      }
+
+      .job-list h4 {
+        margin-bottom: 6px;
+      }
+
+      .job-card p,
+      .job-brief p,
+      .job-list p {
+        color: var(--text-2);
+      }
+
+      .job-brief dl {
+        display: grid;
+        gap: 12px;
+      }
+
+      .job-brief div {
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        padding-bottom: 12px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .job-brief div:last-child {
+        padding-bottom: 0;
+        border-bottom: 0;
+      }
+
+      .job-brief dt {
+        color: var(--text-2);
+      }
+
+      .job-brief dd {
+        text-align: right;
+        font-weight: 600;
+      }
+
+      .job-application-form {
+        display: grid;
+        gap: 12px;
+        margin-top: 18px;
+      }
+
+      .job-form-status {
+        padding: 14px 16px;
+        border: 1px solid rgba(102, 255, 204, 0.24);
+        border-radius: 14px;
+        background: rgba(102, 255, 204, 0.08);
+        color: var(--text);
+        line-height: 1.6;
+      }
+
+      .job-form-status.is-error {
+        border-color: rgba(255, 126, 126, 0.35);
+        background: rgba(255, 126, 126, 0.1);
+      }
+
+      .job-form-status[hidden] {
+        display: none;
+      }
+
+      .job-checkbox {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        padding: 14px 16px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 14px;
+        background: rgba(255, 255, 255, 0.04);
+        color: var(--text-2);
+      }
+
+      .job-checkbox input {
+        width: auto;
+        margin-top: 2px;
+        accent-color: #66ffcc;
+      }
+
+      .job-upload {
+        display: grid;
+        gap: 8px;
+        padding: 14px 16px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 14px;
+        background: rgba(255, 255, 255, 0.04);
+        color: var(--text-2);
+      }
+
+      .job-upload span {
+        font-size: 0.92rem;
+      }
+
+      .job-upload input {
+        padding: 10px;
+      }
+
+      @media (max-width: 980px) {
+        .job-hero,
+        .job-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .job-visual {
+          grid-template-columns: 1fr;
+        }
+
+        .job-visual-frame {
+          grid-column: auto;
+        }
+      }
+    </style>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YYFC0NYBXB"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-YYFC0NYBXB');
+    </script>
+    <link rel="stylesheet" href="/assets/page-redesign.css" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png" />
+  </head>
+  <body data-page="join">
+    <div class="ai-overlay"></div>
+    <div class="ai-grid"></div>
+    <div class="ai-nodes"></div>
+    <header>
+      <nav class="nav">
+        <a class="brand" href="/">
+          <img src="/assets/logo.webp" alt="JC IT Services logo" />
+          <div class="brand-text">
+            <h1>JC IT Services</h1>
+            <span>Modern IT &amp; AI Enablement</span>
+          </div>
+        </a>
+        <button class="nav-toggle" type="button" aria-label="Toggle menu" aria-expanded="false" data-nav-toggle>
+          <span></span><span></span><span></span>
+        </button>
+        <div class="nav-links" data-nav-links>
+          <a href="/services/" data-page="services">Services</a>
+          <div class="nav-dropdown">
+            <a class="nav-dropdown-toggle" href="#" data-page="about">About Us</a>
+            <div class="nav-dropdown-menu">
+              <a href="/team/" data-page="team">Team</a>
+              <a href="/about/" data-page="about">About JC</a>
+              <a href="/bubbles/" data-page="bubbles">About Bubbles</a>
+              <a href="/team-login/" data-page="team-login">Team Login</a>
+              <a href="/bug-blaster/" data-page="bug-blaster">Bug Blaster</a>
+            </div>
+          </div>
+          <a href="/join/" data-page="join">Join Our Team!</a>
+          <a href="/contact/" data-page="contact">Contact Us</a>
+          <a class="nav-social" href="https://www.linkedin.com/company/jc-it-services/" target="_blank" rel="noreferrer" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.37V9h3.41v1.56h.05c.47-.9 1.62-1.85 3.34-1.85 3.57 0 4.23 2.35 4.23 5.41v6.33zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.78C.8 0 0 .78 0 1.74v20.52C0 23.22.8 24 1.78 24h20.44C23.2 24 24 23.22 24 22.26V1.74C24 .78 23.2 0 22.22 0z"/>
+            </svg>
+          </a>
+          <a class="nav-social" href="#" aria-label="Google Business Profile">
+            <img src="/assets/google-business.svg" alt="Google Business Profile" />
+          </a>
+        </div>
+      </nav>
+    </header>
+
+    <main class="job-shell">
+      <div class="orb" style="top: 140px; right: 120px"></div>
+      <div class="orb two" style="top: 480px; left: 60px"></div>
+      <div class="orb three" style="top: 980px; right: 160px"></div>
+
+      <section class="hero job-hero">
+        <div class="reveal">
+          <span class="job-kicker">JCIT Services Job Posting</span>
+          <h2>Virtual Assistant</h2>
+          <div class="chip-row">
+            <span class="chip">Remote</span>
+            <span class="chip">US Time Zone</span>
+            <span class="chip">Operations</span>
+            <span class="chip">Scheduling</span>
+            <span class="chip">Customer Comms</span>
+            <span class="chip">Task Tracking</span>
+          </div>
+          <div class="micro-labels">
+            <span>ORGANIZE</span>
+            <span>COMMUNICATE</span>
+            <span>EXECUTE</span>
+            <span>FOLLOW-UP</span>
+          </div>
+          <p>
+            JCIT SERVICES is looking for a dependable Virtual Assistant to support
+            day-to-day operations. You will help keep requests organized, follow-ups
+            timely, and internal workflows moving smoothly across US time zones.
+          </p>
+          <div class="job-actions">
+            <a class="button" href="#application">Apply Now</a>
+            <a class="button secondary" href="#role">Review Role</a>
+          </div>
+        </div>
+
+        <div class="job-visual reveal">
+          <div class="job-visual-frame">
+            <img class="job-visual-image" src="/assets/images/hero-jobs-collage.png" alt="JCIT Services team working remotely" loading="lazy" />
+          </div>
+
+          <article class="job-card">
+            <p class="eyebrow">Role Snapshot</p>
+            <h3>Operations support that keeps things moving</h3>
+            <p>
+              Own the basics: inbox triage, task updates, scheduling support,
+              documentation, and quick follow-ups so clients and the team stay aligned.
+            </p>
+          </article>
+
+          <aside class="job-brief">
+            <p class="eyebrow">Details</p>
+            <h3>Work setup</h3>
+            <dl>
+              <div><dt>Employment Type</dt><dd>Full-Time</dd></div>
+              <div><dt>Work Setup</dt><dd>Remote</dd></div>
+              <div><dt>Work Hours</dt><dd>US Time Zone</dd></div>
+              <div><dt>Compensation</dt><dd>Competitive package</dd></div>
+            </dl>
+          </aside>
+        </div>
+      </section>
+
+      <section class="job-grid section reveal" id="role">
+        <article class="job-card">
+          <p class="eyebrow">Responsibilities</p>
+          <h3>What you will do</h3>
+          <div class="job-list">
+            <article><h4>Scheduling and coordination</h4><p>Support scheduling, coordination, and reminders for internal tasks and client needs.</p></article>
+            <article><h4>Inbox and request triage</h4><p>Organize incoming requests, capture details, and route items to the right owner.</p></article>
+            <article><h4>Task tracking and follow-ups</h4><p>Update task status, ensure follow-ups happen, and keep handoffs clear.</p></article>
+            <article><h4>Documentation</h4><p>Maintain simple notes, checklists, and documentation so workflows stay consistent.</p></article>
+            <article><h4>Client-ready communication</h4><p>Write clear messages, ask the right questions, and keep communications professional.</p></article>
+          </div>
+        </article>
+
+        <aside class="job-card" id="requirements">
+          <p class="eyebrow">Qualifications</p>
+          <h3>What we need from applicants</h3>
+          <div class="job-list">
+            <article><h4>Strong written communication</h4><p>Clear, concise writing and professional customer communication.</p></article>
+            <article><h4>Organized and reliable</h4><p>Consistent follow-through, attention to detail, and accountability.</p></article>
+            <article><h4>Tool comfort</h4><p>Comfort with email, calendars, spreadsheets, and simple task tracking.</p></article>
+            <article><h4>Stable setup</h4><p>Stable internet with backup options, plus your own computer/laptop and headset.</p></article>
+          </div>
+        </aside>
+      </section>
+
+      <section class="job-grid section reveal" id="apply-form">
+        <article class="job-card">
+          <p class="eyebrow">Next Step</p>
+          <h3>Apply for the Virtual Assistant role</h3>
+          <p>
+            Share your background, tools you’ve used, and how you manage tasks and
+            follow-ups. Upload your latest resume/CV as a PDF, DOC, or DOCX file.
+          </p>
+          <div class="job-actions">
+            <a class="button" href="#application">Start Application</a>
+            <a class="button secondary" href="#requirements">Review Qualifications</a>
+          </div>
+        </article>
+
+        <article class="job-card" id="application">
+          <p class="eyebrow">Apply Now</p>
+          <h3>Application form</h3>
+          <p>Use this quick form to apply for the Virtual Assistant role.</p>
+          <form
+            class="job-application-form"
+            action="https://jcit-recruitment-api.vercel.app/api/virtual-assistant-apply"
+            data-application-form
+            enctype="multipart/form-data"
+            method="POST"
+          >
+            <div class="job-form-status" data-application-status role="status" aria-live="polite" hidden></div>
+            <input type="text" name="company" style="display:none" tabindex="-1" autocomplete="off" />
+            <input type="hidden" name="position" value="Virtual Assistant" />
+            <input type="text" name="name" placeholder="Full name" required />
+            <input type="email" name="email" placeholder="Email address" required />
+            <input type="tel" name="contact_number" placeholder="Contact number" required />
+            <input type="text" name="location" placeholder="Location / time zone" required />
+            <label class="job-upload">
+              <span>Resume/CV upload (PDF, DOC, or DOCX)</span>
+              <input type="file" name="resume_file" accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" required />
+            </label>
+            <input type="text" name="tools_experience" placeholder="Tools experience (Google Workspace, Trello, Asana, etc.) (optional)" />
+            <textarea name="message" placeholder="Brief intro and your virtual assistant / operations support experience" required></textarea>
+            <label class="job-checkbox">
+              <input type="checkbox" name="role_acknowledgement" value="I confirm I have a stable internet connection with backup options, and I own a computer/laptop and headset." required />
+              <span>I confirm I have a stable internet connection with backup options, and I own a computer/laptop and headset.</span>
+            </label>
+            <button class="button" type="submit">Submit Application</button>
+          </form>
+        </article>
+      </section>
+    </main>
+
+    <div class="cookie-banner" data-cookie-banner>
+      <p>
+        We use cookies and similar technologies to improve site experience and
+        measure performance. By using this site, you agree to our
+        <a href="/privacy/">privacy</a> and
+        <a href="/terms/">cookie/usage</a> policy.
+      </p>
+      <div class="cookie-actions">
+        <button class="button" type="button" data-cookie-accept>Accept</button>
+        <button class="button secondary" type="button" data-cookie-dismiss>Dismiss</button>
+      </div>
+    </div>
+
+    <footer>
+      <div class="footer-grid">
+        <div>
+          <h4>Quicklinks</h4>
+          <div class="footer-links">
+            <a href="/services/">Services</a>
+            <a href="/team/">Team</a>
+            <a href="/join/">Join Our Team</a>
+            <a href="/contact/">Contact Us</a>
+            <a href="/team-login/">Team Login</a>
+          </div>
+        </div>
+        <div>
+          <h4>Legal</h4>
+          <div class="footer-links">
+            <a href="/legal/">Business Registration</a>
+            <a href="/sla/">SLA Agreement</a>
+            <a href="/privacy/">Privacy Policy</a>
+            <a href="/terms/">Terms of Service</a>
+            <a href="/copyright/">Copyright</a>
+          </div>
+        </div>
+        <div>
+          <h4>About JC IT Services</h4>
+          <p>AI-powered IT, PBX/VOIP, and automation delivery for SME clients across the US, AU, and PH.</p>
+          <p class="footer-note">JCIT Services operates under JCO IT SOLUTIONS, a duly registered business in the Republic of the Philippines.</p>
+          <p><a href="/contact/">Contact Us</a></p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="/assets/main.js"></script>
+    <script>
+      (() => {
+        const form = document.querySelector("[data-application-form]");
+        if (!form || !window.fetch || !window.FormData) return;
+
+        const status = form.querySelector("[data-application-status]");
+        const submitButton = form.querySelector('button[type="submit"]');
+        const endpoint = form.action;
+        const successUrl = "https://jcit.digital/join-confirmation/";
+        const defaultError = "Application could not be submitted right now. Please try again later.";
+
+        function showStatus(message, isError = false) {
+          if (!status) return;
+          status.textContent = message;
+          status.hidden = false;
+          status.classList.toggle("is-error", isError);
+        }
+
+        const params = new URLSearchParams(window.location.search);
+        if (params.get("application") === "error") {
+          showStatus(params.get("message") || defaultError, true);
+          history.replaceState(null, "", `${window.location.pathname}#application`);
+        }
+
+        form.addEventListener("submit", async (event) => {
+          event.preventDefault();
+          if (!form.reportValidity()) return;
+
+          const originalLabel = submitButton ? submitButton.textContent : "";
+          if (submitButton) {
+            submitButton.disabled = true;
+            submitButton.textContent = "Submitting...";
+          }
+          showStatus("Submitting your application securely...", false);
+
+          try {
+            const response = await fetch(endpoint, {
+              method: "POST",
+              body: new FormData(form),
+              headers: { Accept: "application/json" },
+            });
+            const payload = await response.json().catch(() => ({}));
+
+            if (response.ok && payload.ok) {
+              window.location.assign(payload.redirect || successUrl);
+              return;
+            }
+
+            showStatus(payload.message || defaultError, true);
+          } catch (error) {
+            showStatus(defaultError, true);
+          } finally {
+            if (submitButton) {
+              submitButton.disabled = false;
+              submitButton.textContent = originalLabel;
+            }
+          }
+        });
+      })();
+    </script>
+    <script
+      id="retell-widget"
+      src="https://dashboard.retellai.com/retell-widget.js"
+      type="module"
+      data-public-key="public_key_0b7796c09905009f2051b"
+      data-agent-id="agent_0a1c68ff5d8162a538111dd6f7"
+      data-agent-version="V1"
+      data-title="JayceeAi"
+      data-logo-url="https://jcit.digital/assets/logo.webp"
+      data-color="#66ffcc"
+      data-bot-name="JayceeAi"
+      data-popup-message="Let me help you!"
+      data-show-ai-popup="true"
+      data-show-ai-popup-time="5"
+      data-auto-open="false"
+      data-dynamic='{"key": "value"}'
+    ></script>
+  </body>
+</html>
+
