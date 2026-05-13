@@ -1,7 +1,7 @@
 const FORMSPREE_ENDPOINT = "https://formspree.io/f/xreabold";
 const SOURCE_LABEL = "jcit.digital/contact (book-call)";
-const { verifyRecaptchaV2 } = require("./_recaptcha");
-const { forwardToFormspree } = require("./_formspree");
+const { verifyRecaptchaV2 } = require("../lib/recaptcha");
+const { forwardToFormspree } = require("../lib/formspree");
 
 function sendJson(res, statusCode, payload) {
   res.statusCode = statusCode;

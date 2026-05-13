@@ -4,7 +4,7 @@ const FORMSPREE_ENDPOINT = "https://formspree.io/f/xreabold";
 const DEFAULT_POSITION = "Web Designer and Developer";
 const DEFAULT_NOTIFY_EMAIL = "jake@jcit.digital";
 const DEFAULT_REPLY_TO = "jake@jcit.digital";
-const { verifyRecaptchaV2 } = require("./_recaptcha");
+const { verifyRecaptchaV2 } = require("../lib/recaptcha");
 
 function sendJson(res, statusCode, payload) {
   res.statusCode = statusCode;

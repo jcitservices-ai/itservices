@@ -5,6 +5,7 @@ const DEFAULT_POSITION = "Virtual Assistant";
 const DEFAULT_NOTIFY_EMAIL = "jake@jcit.digital";
 const DEFAULT_REPLY_TO = "jake@jcit.digital";
 const SOURCE_LABEL = "jcit.digital/VirtualAssistant";
+const { verifyRecaptchaV2 } = require("../lib/recaptcha");
 
 function sendJson(res, statusCode, payload) {
   res.statusCode = statusCode;
@@ -424,6 +425,8 @@ async function handleApplication(req, res) {
     return;
   }
 
+  await verifyRecaptchaV2();
+
   const name = toSafeLine(fields.name);
   const email = normalizeEmail(fields.email);
   const position = toSafeLine(fields.position) || DEFAULT_POSITION;
@@ -516,4 +519,3 @@ module.exports.config = {
     bodyParser: false,
   },
 };
-
