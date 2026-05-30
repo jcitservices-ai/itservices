@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#06121d" />
+    <title>Xur Homes x JCIT Digital Proposal</title>
+    <meta
+      name="description"
+      content="Website development proposal for Xur Homes Real Estate Agency by JCIT Digital, covering the core website scope, premium subscription package, pricing, and project team."
+    />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://jcit.digital/xurhomes" />
+    <meta property="og:title" content="Xur Homes x JCIT Digital Proposal" />
+    <meta
+      property="og:description"
+      content="A polished proposal page for Xur Homes outlining the website build, premium interactive features, pricing, and delivery team."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://jcit.digital/xurhomes" />
+    <meta
+      property="og:image"
+      content="https://jcit.digital/real-estate-demo/assets/apartment-exterior.jpg"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/assets/styles.css" />
+    <style>
+      .proposal-shell {
+        display: grid;
+        gap: 32px;
+      }
+
+      .proposal-hero {
+        align-items: stretch;
+      }
+
+      .proposal-kicker {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 8px 14px;
+        border-radius: 999px;
+        border: 1px solid rgba(102, 255, 204, 0.28);
+        background: rgba(3, 10, 16, 0.52);
+        color: rgba(232, 251, 255, 0.82);
+        font-family: "Space Mono", monospace;
+        font-size: 0.76rem;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+      }
+
+      .proposal-hero h2 {
+        max-width: 12ch;
+      }
+
+      .proposal-hero p {
+        max-width: 60ch;
+      }
+
+      .proposal-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 24px;
+      }
+
+      .proposal-proof {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 14px;
+        margin-top: 28px;
+      }
+
+      .proposal-proof article,
+      .proposal-brief,
+      .proposal-price,
+      .proposal-box,
+      .proposal-timeline .timeline-item,
+      .proposal-next article {
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        background: rgba(7, 20, 35, 0.72);
+        box-shadow: var(--shadow);
+      }
+
+      .proposal-proof article {
+        padding: 18px;
+      }
+
+      .proposal-proof strong {
+        display: block;
+        color: var(--accent-2);
+        font-size: 1.6rem;
+      }
+
+      .proposal-proof span {
+        display: block;
+        margin-top: 6px;
+        color: var(--text-2);
+        font-size: 0.94rem;
+      }
+
+      .proposal-visual {
+        display: grid;
+        gap: 18px;
+      }
+
+      .proposal-visual-frame {
+        overflow: hidden;
+        border-radius: 28px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        background: linear-gradient(180deg, rgba(16, 50, 74, 0.88), rgba(6, 18, 29, 0.92));
+        padding: 14px;
+      }
+
+      .proposal-visual-frame img {
+        width: 100%;
+        border-radius: 20px;
+        min-height: 100%;
+        object-fit: cover;
+      }
+
+      .proposal-brief {
+        padding: 20px;
+      }
+
+      .proposal-brief h3,
+      .proposal-box h3,
+      .proposal-price h3 {
+        margin-bottom: 14px;
+      }
+
+      .proposal-brief dl {
+        display: grid;
+        gap: 12px;
+      }
+
+      .proposal-brief div {
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        padding-bottom: 12px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .proposal-brief div:last-child {
+        border-bottom: 0;
+        padding-bottom: 0;
+      }
+
+      .proposal-brief dt {
+        color: var(--text-2);
+      }
+
+      .proposal-brief dd {
+        text-align: right;
+        font-weight: 600;
+      }
+
+      .proposal-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr);
+        gap: 24px;
+      }
+
+      .proposal-box {
+        padding: 28px;
+      }
+
+      .proposal-list {
+        display: grid;
+        gap: 14px;
+        margin-top: 22px;
+      }
+
+      .proposal-list article {
+        padding: 18px;
+        border-radius: 16px;
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .proposal-list p,
+      .proposal-box p,
+      .proposal-brief p,
+      .proposal-price p,
+      .proposal-next p {
+        color: var(--text-2);
+      }
+
+      .proposal-price-stack {
+        display: grid;
+        gap: 16px;
+        margin-top: 18px;
+      }
+
+      .proposal-price {
+        padding: 20px;
+      }
+
+      .proposal-price small {
+        color: var(--text-2);
+        font-family: "Space Mono", monospace;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .proposal-price strong {
+        display: block;
+        margin: 10px 0 8px;
+        font-size: 2rem;
+        color: var(--accent-2);
+      }
+
+      .proposal-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 18px;
+      }
+
+      .proposal-table th,
+      .proposal-table td {
+        padding: 12px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        text-align: left;
+        vertical-align: top;
+      }
+
+      .proposal-table th:last-child,
+      .proposal-table td:last-child {
+        text-align: right;
+      }
+
+      .proposal-table tfoot td {
+        color: var(--accent-2);
+        font-weight: 700;
+      }
+
+      .proposal-timeline {
+        display: grid;
+        gap: 14px;
+        margin-top: 20px;
+      }
+
+      .proposal-timeline .timeline-item {
+        padding: 18px;
+      }
+
+      .proposal-timeline strong {
+        display: block;
+        margin-bottom: 6px;
+        color: var(--accent-2);
+      }
+
+      .proposal-next {
+        display: grid;
+        grid-template-columns: minmax(0, 1.2fr) minmax(300px, 0.8fr);
+        gap: 24px;
+      }
+
+      .proposal-next article {
+        padding: 28px;
+      }
+
+      .proposal-note {
+        margin-top: 18px;
+        padding: 16px 18px;
+        border-radius: 16px;
+        background: rgba(102, 255, 204, 0.08);
+        border: 1px solid rgba(102, 255, 204, 0.18);
+      }
+
+      .proposal-gallery {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 14px;
+        margin-top: 22px;
+      }
+
+      .proposal-gallery figure {
+        margin: 0;
+        overflow: hidden;
+        border-radius: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: rgba(255, 255, 255, 0.04);
+      }
+
+      .proposal-gallery img {
+        display: block;
+        width: 100%;
+        height: 220px;
+        object-fit: cover;
+      }
+
+      .proposal-gallery figcaption {
+        padding: 12px 14px;
+        color: var(--text-2);
+        font-size: 0.92rem;
+      }
+
+      .proposal-approval-form {
+        display: grid;
+        gap: 12px;
+        margin-top: 18px;
+      }
+
+      .proposal-approval-form input[type="text"],
+      .proposal-approval-form input[type="email"],
+      .proposal-approval-form input[type="tel"],
+      .proposal-approval-form textarea {
+        width: 100%;
+        padding: 12px 14px;
+        border-radius: 12px;
+        border: 1px solid var(--border);
+        background: rgba(5, 15, 25, 0.8);
+        color: var(--text-1);
+        font-family: inherit;
+      }
+
+      .proposal-approval-form textarea {
+        min-height: 110px;
+        resize: vertical;
+      }
+
+      .proposal-checkbox {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        padding: 14px 16px;
+        border-radius: 14px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: rgba(255, 255, 255, 0.04);
+        color: var(--text-2);
+      }
+
+      .proposal-checkbox input {
+        width: auto;
+        margin-top: 2px;
+        accent-color: #66ffcc;
+      }
+
+      .proposal-checkbox span {
+        line-height: 1.5;
+      }
+
+      @media (max-width: 980px) {
+        .proposal-grid,
+        .proposal-next,
+        .proposal-proof,
+        .proposal-hero,
+        .proposal-gallery {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+    <link rel="stylesheet" href="/assets/page-redesign.css" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png" />
+  </head>
+  <body data-page="xurhomes">
+    <div class="ai-overlay"></div>
+    <div class="ai-grid"></div>
+    <div class="ai-nodes"></div>
+    <header>
+      <nav class="nav">
+        <a class="brand" href="/">
+          <img src="/assets/logo.webp" alt="JC IT Services logo" />
+          <div class="brand-text">
+            <h1>JC IT Services</h1>
+            <span>Modern IT &amp; AI Enablement</span>
+          </div>
+        </a>
+        <button class="nav-toggle" type="button" aria-label="Toggle menu" aria-expanded="false" data-nav-toggle>
+          <span></span><span></span><span></span>
+        </button>
+        <div class="nav-links" data-nav-links>
+          <a href="/services/" data-page="services">Services</a>
+          <div class="nav-dropdown">
+            <a class="nav-dropdown-toggle" href="#" data-page="about">About Us</a>
+            <div class="nav-dropdown-menu">
+              <a href="/team/" data-page="team">Team</a>
+              <a href="/about/" data-page="about">About JC</a>
+              <a href="/bubbles/" data-page="bubbles">About Bubbles</a>
+              <a href="/team-login/" data-page="team-login">Team Login</a>
+              <a href="/bug-blaster/" data-page="bug-blaster">Bug Blaster</a>
+            </div>
+          </div>
+          <a href="/join/" data-page="join">Join Our Team!</a>
+          <a href="/contact/" data-page="contact">Contact Us</a>
+          <a class="nav-social" href="https://www.linkedin.com/company/jc-it-services/" target="_blank" rel="noreferrer" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.37V9h3.41v1.56h.05c.47-.9 1.62-1.85 3.34-1.85 3.57 0 4.23 2.35 4.23 5.41v6.33zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.78C.8 0 0 .78 0 1.74v20.52C0 23.22.8 24 1.78 24h20.44C23.2 24 24 23.22 24 22.26V1.74C24 .78 23.2 0 22.22 0z"/>
+            </svg>
+          </a>
+          <a class="nav-social" href="#" aria-label="Google Business Profile">
+            <img src="/assets/google-business.svg" alt="Google Business Profile" />
+          </a>
+        </div>
+      </nav>
+    </header>
+
+    <main class="proposal-shell">
+      <div class="orb" style="top: 140px; right: 120px"></div>
+      <div class="orb two" style="top: 480px; left: 60px"></div>
+      <div class="orb three" style="top: 980px; right: 160px"></div>
+
+      <section class="hero proposal-hero">
+        <div class="reveal">
+          <span class="proposal-kicker">Real Estate Web Proposal • Built for Lead Capture</span>
+          <h2>Xur Homes x JCIT Digital</h2>
+          <div class="chip-row">
+            <span class="chip">4 Core Pages</span>
+            <span class="chip">Responsive Build</span>
+            <span class="chip">Property Gallery</span>
+            <span class="chip">Lead Form</span>
+            <span class="chip">AI Chatbot Ready</span>
+            <span class="chip">Booking Ready</span>
+          </div>
+          <div class="micro-labels">
+            <span>TRUST FIRST</span>
+            <span>MOBILE READY</span>
+            <span>LEAD DRIVEN</span>
+            <span>REAL ESTATE FOCUSED</span>
+          </div>
+          <p>
+            In today’s competitive real estate market, a strong online presence is essential for building
+            trust and generating quality leads. This proposal outlines a professional, user-friendly
+            website for Xur Homes Real Estate Agency that showcases properties beautifully, strengthens
+            your brand, and captures inquiries with less friction.
+          </p>
+          <div class="proposal-actions">
+            <a class="button" href="#investment">View Pricing</a>
+            <a class="button secondary" href="#next-steps">Review Next Steps</a>
+            <a class="button secondary" href="/contact/">Talk To JCIT</a>
+          </div>
+          <div class="proposal-proof reveal">
+            <article>
+              <strong>4 Pages</strong>
+              <span>About Us, Property Gallery, Blog, and Contact page built for real estate conversion.</span>
+            </article>
+            <article>
+              <strong>3 Premium Tools</strong>
+              <span>AI chatbot, live chat, and scheduling features available as an add-on package.</span>
+            </article>
+            <article>
+              <strong>6 Months</strong>
+              <span>Minimum lock-in period for the premium subscription package and optimization phase.</span>
+            </article>
+          </div>
+        </div>
+
+        <div class="proposal-visual reveal">
+          <div class="proposal-visual-frame">
+            <img
+              src="/real-estate-demo/assets/apartment-exterior.jpg"
+              alt="Modern residential property exterior representing the Xur Homes real estate listing experience."
+            />
+          </div>
+          <aside class="proposal-brief">
+            <h3>Proposal Snapshot</h3>
+            <dl>
+              <div>
+                <dt>Prepared For</dt>
+                <dd>Xur Homes Management</dd>
+              </div>
+              <div>
+                <dt>Project Head</dt>
+                <dd>Jay Concha</dd>
+              </div>
+              <div>
+                <dt>Date</dt>
+                <dd>May 30, 2026</dd>
+              </div>
+              <div>
+                <dt>Live Route</dt>
+                <dd>jcit.digital/xurhomes</dd>
+              </div>
+            </dl>
+            <p class="proposal-note">
+              The project goal is to give Xur Homes a polished digital storefront that builds confidence,
+              presents listings clearly, and makes it easy for interested buyers to inquire.
+            </p>
+          </aside>
+        </div>
+      </section>
+
+      <section class="proposal-grid section reveal" id="overview">
+        <article class="proposal-box">
+          <p class="eyebrow">Project Overview</p>
+          <h3>A digital storefront designed to build trust and capture qualified leads</h3>
+          <p>
+            The website is intended to do more than simply present information. It should help Xur Homes
+            communicate credibility, explain the agency’s value, and guide buyers toward taking action.
+            Every section is structured to support real estate conversion: stronger first impressions,
+            clearer listing discovery, and easier inquiry capture.
+          </p>
+          <div class="proposal-list">
+            <article>
+              <h4>Professional online presence</h4>
+              <p>A stronger website helps Xur Homes stand out in a competitive market and gives prospects a more polished first impression.</p>
+            </article>
+            <article>
+              <h4>Property-first browsing flow</h4>
+              <p>Listings and agency information are organized so buyers can quickly understand what is available and how to reach your team.</p>
+            </article>
+            <article>
+              <h4>Lead-friendly structure</h4>
+              <p>The site is designed to turn interest into inquiries through clear calls to action and a streamlined contact experience.</p>
+            </article>
+          </div>
+        </article>
+
+        <aside class="proposal-box">
+          <p class="eyebrow">Project Team</p>
+          <h3>Experienced leadership and execution</h3>
+          <div class="proposal-list">
+            <article>
+              <h4>Jay Concha – Project Head</h4>
+              <p>Oversees the full development process and ensures the final website aligns with the Xur Homes brand and business goals.</p>
+            </article>
+            <article>
+              <h4>John Lloyd Guevarra – Head Admin</h4>
+              <p>Handles technical deployment, feature integration, and backend setup to keep the platform running smoothly.</p>
+            </article>
+          </div>
+        </aside>
+      </section>
+
+      <section class="proposal-grid section reveal" id="scope">
+        <article class="proposal-box">
+          <p class="eyebrow">Scope Of Work</p>
+          <h3>The core website build</h3>
+          <p>
+            We will develop a customized, responsive four-page website designed specifically for real
+            estate conversion. Each page has a defined role in helping Xur Homes inform, impress, and
+            convert prospects.
+          </p>
+          <div class="proposal-list">
+            <article>
+              <h4>About Us</h4>
+              <p>A dedicated page covering the agency’s history, mission, core values, and team expertise to build trust with potential clients.</p>
+            </article>
+            <article>
+              <h4>Property Gallery</h4>
+              <p>A visually organized digital catalog with high-quality images, brief descriptions, and key property details for listings currently for sale.</p>
+            </article>
+            <article>
+              <h4>Blog</h4>
+              <p>A content hub for real estate tips, market updates, and neighborhood guides to support organic traffic growth through SEO.</p>
+            </article>
+            <article>
+              <h4>Contact Us &amp; Lead Form</h4>
+              <p>A streamlined contact page with a secure inquiry form so clients can submit details and interests directly to the sales team.</p>
+            </article>
+          </div>
+        </article>
+
+        <aside class="proposal-box">
+          <p class="eyebrow">Premium Package</p>
+          <h3>Interactive features that keep the site working around the clock</h3>
+          <div class="proposal-list">
+            <article>
+              <h4>AI Chat Bot Assistant</h4>
+              <p>An automated assistant trained to answer common client questions and capture leads even outside office hours.</p>
+            </article>
+            <article>
+              <h4>Interactive Live Chat</h4>
+              <p>Allows agents to step in and chat with site visitors in real time, helping the team respond faster and close deals sooner.</p>
+            </article>
+            <article>
+              <h4>Schedule Management System</h4>
+              <p>An integrated booking calendar where clients can schedule viewings or consultations without the usual back-and-forth.</p>
+            </article>
+          </div>
+        </aside>
+      </section>
+
+      <section class="section reveal">
+        <article class="proposal-box">
+          <p class="eyebrow">Visual Direction</p>
+          <h3>Real estate presentation that feels premium from the first scroll</h3>
+          <p>
+            The site can combine elegant listing imagery, cleaner information hierarchy, and stronger
+            calls to action so each property and service touchpoint feels more credible and easier to act on.
+          </p>
+          <div class="proposal-gallery">
+            <figure>
+              <img
+                src="/real-estate-demo/assets/luxury-living-room.jpg"
+                alt="Luxury living room interior representing premium property presentation for Xur Homes."
+              />
+              <figcaption>Premium property presentation for stronger first impressions.</figcaption>
+            </figure>
+            <figure>
+              <img
+                src="/real-estate-demo/assets/condo-interior-living.jpg"
+                alt="Condo interior image representing modern residential listing layouts."
+              />
+              <figcaption>Interior-focused visuals to support listing quality and buyer confidence.</figcaption>
+            </figure>
+            <figure>
+              <img
+                src="/real-estate-demo/assets/agent-viewing.jpg"
+                alt="Agent showing a property to clients, representing consultation and viewing workflows."
+              />
+              <figcaption>Consultation and viewing flows tied directly into lead capture and booking.</figcaption>
+            </figure>
+          </div>
+        </article>
+      </section>
+
+      <section class="proposal-grid section reveal" id="investment">
+        <article class="proposal-box">
+          <p class="eyebrow">Pricing &amp; Financial Investment</p>
+          <h3>Core build plus optional premium subscription</h3>
+          <div class="proposal-price-stack">
+            <div class="proposal-price">
+              <small>Basic 4-Page Website</small>
+              <strong>6,000</strong>
+              <p>Custom development of the About, Gallery, Blog, and Contact pages as a one-time project fee.</p>
+            </div>
+            <div class="proposal-price">
+              <small>Premium Interactive Package</small>
+              <strong>1,500</strong>
+              <p>Subscription-based access to the AI chatbot, live chat, and schedule management system.</p>
+            </div>
+          </div>
+          <p class="proposal-note">
+            Subscription Terms: The premium interactive package requires a minimum commitment of 6 months
+            to allow proper AI optimization and system calibration for your business workflow.
+          </p>
+        </article>
+
+        <aside class="proposal-box">
+          <p class="eyebrow">Cost Breakdown</p>
+          <h3>Service items and pricing structure</h3>
+          <table class="proposal-table">
+            <thead>
+              <tr>
+                <th>Service Item</th>
+                <th>Cost</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Basic 4-Page Website</td>
+                <td>6,000</td>
+              </tr>
+              <tr>
+                <td>Premium Interactive Package</td>
+                <td>1,500</td>
+              </tr>
+            </tbody>
+          </table>
+          <table class="proposal-table">
+            <thead>
+              <tr>
+                <th>Description</th>
+                <th>Terms</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Custom development of About, Gallery, Blog, and Contact pages.</td>
+                <td>One-time fee</td>
+              </tr>
+              <tr>
+                <td>AI chatbot, live chat, and schedule management integration.</td>
+                <td>Subscription basis</td>
+              </tr>
+              <tr>
+                <td>Premium package commitment period.</td>
+                <td>Minimum 6 months</td>
+              </tr>
+            </tbody>
+          </table>
+        </aside>
+      </section>
+
+      <section class="proposal-grid section reveal">
+        <article class="proposal-box">
+          <p class="eyebrow">Delivery Focus</p>
+          <h3>Why this website structure works for real estate</h3>
+          <div class="proposal-timeline">
+            <div class="timeline-item">
+              <strong>Trust Building</strong>
+              <p>The About page and brand presentation help prospects feel more confident about the team behind the listings.</p>
+            </div>
+            <div class="timeline-item">
+              <strong>Listing Discovery</strong>
+              <p>The property gallery gives buyers an easy way to browse available homes and understand key details quickly.</p>
+            </div>
+            <div class="timeline-item">
+              <strong>Organic Reach</strong>
+              <p>The blog supports long-term marketing with educational content, local guides, and real estate updates.</p>
+            </div>
+            <div class="timeline-item">
+              <strong>Lead Capture</strong>
+              <p>Clear inquiry and scheduling paths help turn browsing visitors into active prospects for your sales team.</p>
+            </div>
+          </div>
+        </article>
+
+        <aside class="proposal-box">
+          <p class="eyebrow">Business Impact</p>
+          <h3>What Xur Homes gets from the build</h3>
+          <div class="proposal-list">
+            <article>
+              <h4>A stronger brand presence</h4>
+              <p>The website gives Xur Homes a polished online identity that is easier to trust and easier to recommend.</p>
+            </article>
+            <article>
+              <h4>A cleaner sales funnel</h4>
+              <p>Clients can move from discovery to inquiry more smoothly, reducing missed opportunities and manual friction.</p>
+            </article>
+            <article>
+              <h4>A scalable digital foundation</h4>
+              <p>The premium add-ons create a path toward automation, faster response times, and a better buyer experience over time.</p>
+            </article>
+          </div>
+        </aside>
+      </section>
+
+      <section class="proposal-next section reveal" id="next-steps">
+        <article>
+          <p class="eyebrow">Next Steps</p>
+          <h3>Ready to discuss the build?</h3>
+          <p>
+            Once approved, JCIT can move into kickoff planning and align the final website build with the
+            Xur Homes brand, listing priorities, and preferred customer workflow. The next step is a short
+            discussion to confirm launch priorities and premium feature requirements.
+          </p>
+          <div class="proposal-actions">
+            <a class="button" href="#approve-form">Approve And Kick Off</a>
+            <a class="button secondary" href="/contact/">Talk To JCIT First</a>
+            <a class="button secondary" href="https://calendar.app.google/pd83py39DPTjBJU27" target="_blank" rel="noreferrer">Book A Call</a>
+          </div>
+        </article>
+
+        <article id="approve-form">
+          <p class="eyebrow">Approve And Kick Off</p>
+          <h3>Start the project</h3>
+          <p>
+            Complete this quick form and JCIT will treat it as a kickoff request for the Xur Homes website project.
+          </p>
+          <form
+            class="proposal-approval-form"
+            action="https://jcit.digital/api/xurhomes-kickoff"
+            method="POST"
+          >
+            <input type="text" name="company" style="display:none" tabindex="-1" autocomplete="off" />
+            <input type="hidden" name="_next" value="https://jcit.digital/thank-you/" />
+            <input type="hidden" name="_subject" value="Xur Homes - Approve and Kick Off" />
+            <input type="hidden" name="project" value="Xur Homes Real Estate Website" />
+            <input type="text" name="client_name" placeholder="Client name" required />
+            <input type="tel" name="contact_number" placeholder="Contact number" required />
+            <input type="email" name="email" placeholder="Email address" required />
+            <textarea name="notes" placeholder="Optional notes, launch goals, or preferred schedule"></textarea>
+            <label class="proposal-checkbox">
+              <input type="checkbox" name="project_approval" value="Approved and ready for kickoff" required />
+              <span>I approve this proposal and I’m ready to begin the Xur Homes website project kickoff.</span>
+            </label>
+            <button class="button" type="submit">Submit Approval</button>
+          </form>
+          <p class="proposal-note">
+            Proposal route: <strong>jcit.digital/xurhomes</strong><br />
+            Project head: <strong>Jay Concha</strong>
+          </p>
+        </article>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-grid">
+        <div>
+          <h4>Quicklinks</h4>
+          <div class="footer-links">
+            <a href="/services/">Services</a>
+            <a href="/team/">Team</a>
+            <a href="/join/">Join Our Team</a>
+            <a href="/contact/">Contact Us</a>
+            <a href="/storefront/">StoreFront</a>
+          </div>
+        </div>
+        <div>
+          <h4>Legal</h4>
+          <div class="footer-links">
+            <a href="/legal/">Business Registration</a>
+            <a href="/sla/">SLA Agreement</a>
+            <a href="/privacy/">Privacy Policy</a>
+            <a href="/terms/">Terms of Service</a>
+            <a href="/copyright/">Copyright</a>
+          </div>
+        </div>
+        <div>
+          <h4>About JC IT Services</h4>
+          <p>AI-powered IT, PBX/VOIP, and automation delivery for SME clients across the US, AU, and PH.</p>
+          <p class="footer-note">
+            JCIT Services operates under JCO IT SOLUTIONS, a duly registered business in the Republic of the Philippines.
+          </p>
+          <p><a href="/contact/">Contact Us</a></p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="/assets/main.js"></script>
+  </body>
+</html>
