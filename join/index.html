@@ -140,6 +140,7 @@
               <span><a href="/SurveillanceOperator/">Surveillance Operator</a></span>
               <span><a href="/CADDesigner/">CAD Designer</a></span>
               <span><a href="/VirtualAssistant/">Virtual Assistant</a></span>
+              <span><a href="/smm/">Social Media Manager</a></span>
             </div>
             <div class="hero-actions">
               <a class="button secondary" href="/webdev/">View Web Designer and Developer</a>
@@ -147,6 +148,7 @@
               <a class="button secondary" href="/SurveillanceOperator/">View Surveillance Operator</a>
               <a class="button secondary" href="/CADDesigner/">View CAD Designer</a>
               <a class="button secondary" href="/VirtualAssistant/">View Virtual Assistant</a>
+              <a class="button secondary" href="/smm/">View Social Media Manager</a>
             </div>
           </div>
         </div>
@@ -184,6 +186,7 @@
                 <option>Surveillance Operator</option>
                 <option>CAD Designer</option>
                 <option>Virtual Assistant</option>
+                <option>Social Media Manager</option>
                 <option>Other</option>
               </select>
               <input type="text" name="location" placeholder="Location / Time zone" required />
@@ -265,9 +268,13 @@
 
         form.addEventListener("submit", (event) => {
           const position = String(form.elements.position?.value || "").toLowerCase();
-          if (position.includes("web") || position.includes("designer") || position.includes("developer")) {
+          if (position.includes("web designer") || position.includes("web developer")) {
             event.preventDefault();
             window.location.assign("/webdev/#application");
+          }
+          if (position.includes("social media") || position.includes("smm")) {
+            event.preventDefault();
+            window.location.assign("/smm/#application");
           }
         });
       })();
