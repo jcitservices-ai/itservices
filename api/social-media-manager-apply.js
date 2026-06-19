@@ -479,34 +479,43 @@ async function handleApplication(req, res) {
   const applicantEmail = buildApplicantEmail({ name, position });
   const internalEmail = buildInternalEmail({ fields: { ...fields, email, position }, resumeFile });
 
-  await sendResendEmail({ to: email, ...applicantEmail });
+  const notifications = [
+    {
+      label: "Applicant next-step email failed",
+      promise: sendResendEmail({ to: email, ...applicantEmail }),
+    },
+    {
+      label: "Formspree applicant notification failed",
+      promise: forwardToFormspree({ fields: { ...fields, email, position }, resumeFile }),
+    },
+  ];
 
   if (notifyEmail) {
-    const notifications = [
-      {
-        label: "Internal applicant email failed",
-        promise: sendResendEmail({
-          to: notifyEmail,
-          ...internalEmail,
-          attachments: [attachment],
-        }),
-      },
-      {
-        label: "Formspree applicant notification failed",
-        promise: forwardToFormspree({ fields: { ...fields, email, position }, resumeFile }),
-      },
-    ];
+    notifications.push({
+      label: "Internal applicant email failed",
+      promise: sendResendEmail({
+        to: notifyEmail,
+        ...internalEmail,
+        attachments: [attachment],
+      }),
+    });
+  }
 
-    const results = await Promise.allSettled(notifications.map((item) => item.promise));
-    results.forEach((result, index) => {
-      if (result.status === "rejected") {
-        logApplicationIssue(notifications[index].label, result.reason);
-      }
-    });
-  } else {
-    await forwardToFormspree({ fields: { ...fields, email, position }, resumeFile }).catch((error) => {
-      logApplicationIssue("Formspree applicant notification failed", error);
-    });
+  const results = await Promise.allSettled(notifications.map((item) => item.promise));
+  let successfulNotifications = 0;
+
+  results.forEach((result, index) => {
+    if (result.status === "fulfilled") {
+      successfulNotifications += 1;
+      return;
+    }
+    logApplicationIssue(notifications[index].label, result.reason);
+  });
+
+  if (successfulNotifications === 0) {
+    const error = new Error("Application notifications could not be delivered.");
+    error.statusCode = 502;
+    throw error;
   }
 
   sendSuccessResponse(req, res);
