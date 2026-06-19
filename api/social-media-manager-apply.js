@@ -30,6 +30,8 @@ function setCors(req, res) {
     "https://www.jcit.digital",
     "http://127.0.0.1:8765",
     "http://localhost:8765",
+    "http://127.0.0.1:4173",
+    "http://localhost:4173",
   ]);
 
   if (allowed.has(origin)) {
