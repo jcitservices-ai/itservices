@@ -21,6 +21,7 @@
   <url><loc>https://jcit.digital/dashboard</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://jcit.digital/xurhomes</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://jcit.digital/team-login/</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://jcit.digital/TiTo/</loc><changefreq>weekly</changefreq><priority>0.4</priority></url>
   <url><loc>https://jcit.digital/bug-blaster/</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
   <url><loc>https://jcit.digital/legal/</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
   <url><loc>https://jcit.digital/sla/</loc><changefreq>yearly</changefreq><priority>0.4</priority></url>

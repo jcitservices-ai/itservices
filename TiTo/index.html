@@ -1,0 +1,1117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#06121d" />
+    <title>TiTo Timekeeping | JC IT Services</title>
+    <meta
+      name="description"
+      content="JCIT Services team timekeeping portal for time in, time out, and leave requests."
+    />
+    <meta name="robots" content="noindex,nofollow" />
+    <link rel="canonical" href="https://jcit.digital/TiTo/" />
+    <meta property="og:title" content="TiTo Timekeeping | JC IT Services" />
+    <meta
+      property="og:description"
+      content="Team timekeeping portal for JCIT Services operations."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://jcit.digital/TiTo/" />
+    <meta property="og:image" content="https://jcit.digital/assets/logo.webp" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/assets/styles.css" />
+    <link rel="stylesheet" href="/assets/page-redesign.css" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png" />
+    <style>
+      body[data-page="tito"] main {
+        max-width: 1180px;
+        padding: 34px 20px 72px;
+      }
+
+      .tito-shell {
+        display: grid;
+        gap: 18px;
+      }
+
+      .tito-topbar {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 20px;
+        align-items: center;
+        padding: 18px 0 8px;
+      }
+
+      .tito-title {
+        display: grid;
+        gap: 8px;
+      }
+
+      .tito-title h2 {
+        font-size: clamp(1.75rem, 4vw, 3.05rem);
+        line-height: 1;
+        letter-spacing: 0;
+      }
+
+      .tito-title p {
+        max-width: 700px;
+        color: var(--text-2);
+      }
+
+      .tito-brand-chip {
+        display: inline-grid;
+        grid-template-columns: 40px auto;
+        align-items: center;
+        gap: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 8px;
+        background: rgba(2, 8, 12, 0.78);
+        padding: 10px 12px;
+        min-width: 230px;
+      }
+
+      .tito-brand-chip img {
+        width: 40px;
+        height: 40px;
+        border-radius: 8px;
+      }
+
+      .tito-brand-chip strong,
+      .tito-panel h3,
+      .tito-module h3 {
+        line-height: 1.15;
+      }
+
+      .tito-brand-chip span,
+      .tito-small,
+      .tito-meta,
+      .tito-hint {
+        color: var(--text-2);
+        font-size: 0.9rem;
+      }
+
+      .tito-grid {
+        display: grid;
+        grid-template-columns: minmax(270px, 0.56fr) minmax(0, 1.44fr);
+        gap: 16px;
+        align-items: start;
+      }
+
+      .tito-panel,
+      .tito-module,
+      .tito-status {
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 8px;
+        background: rgba(2, 8, 12, 0.76);
+        box-shadow: 0 18px 45px rgba(0, 0, 0, 0.28);
+      }
+
+      .tito-panel,
+      .tito-module {
+        padding: 20px;
+      }
+
+      .tito-panel {
+        display: grid;
+        gap: 16px;
+      }
+
+      .tito-form,
+      .tito-dashboard,
+      .tito-fieldset {
+        display: grid;
+        gap: 14px;
+      }
+
+      .tito-field {
+        display: grid;
+        gap: 7px;
+      }
+
+      .tito-field label,
+      .tito-fieldset legend {
+        color: rgba(232, 251, 255, 0.86);
+        font-size: 0.82rem;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+
+      .tito-field input,
+      .tito-field select,
+      .tito-field textarea {
+        width: 100%;
+        min-height: 48px;
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        border-radius: 8px;
+        background: rgba(1, 9, 14, 0.88);
+        color: var(--text-1);
+        font: inherit;
+        padding: 11px 12px;
+      }
+
+      .tito-field textarea {
+        min-height: 94px;
+        resize: vertical;
+      }
+
+      .tito-field input::placeholder,
+      .tito-field textarea::placeholder {
+        color: rgba(182, 214, 230, 0.55);
+      }
+
+      .tito-row {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .tito-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        align-items: center;
+      }
+
+      .tito-actions .button,
+      .tito-form .button {
+        border-radius: 8px;
+        min-height: 48px;
+      }
+
+      .tito-actions .button {
+        min-width: 132px;
+      }
+
+      .tito-status {
+        padding: 14px;
+        display: grid;
+        gap: 10px;
+      }
+
+      .tito-status strong {
+        color: var(--accent-2);
+        font-size: 0.86rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .tito-status p {
+        color: var(--text-2);
+      }
+
+      .tito-summary {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 10px;
+      }
+
+      .tito-stat {
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.045);
+        padding: 13px;
+        min-height: 86px;
+      }
+
+      .tito-stat span {
+        display: block;
+        color: var(--text-2);
+        font-size: 0.78rem;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+
+      .tito-stat strong {
+        display: block;
+        margin-top: 8px;
+        color: var(--text-1);
+        font-size: clamp(1rem, 2.5vw, 1.35rem);
+        line-height: 1.15;
+        overflow-wrap: anywhere;
+      }
+
+      .tito-modules {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      .tito-module {
+        display: grid;
+        gap: 14px;
+      }
+
+      .tito-panel--dashboard {
+        min-height: 100%;
+      }
+
+      .tito-tabs {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+        padding-bottom: 12px;
+      }
+
+      .tito-tab-button {
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.045);
+        color: var(--text-1);
+        font: inherit;
+        font-weight: 700;
+        min-height: 46px;
+        padding: 9px 13px;
+      }
+
+      .tito-tab-button[aria-selected="true"] {
+        border-color: rgba(102, 255, 204, 0.5);
+        background: rgba(102, 255, 204, 0.12);
+        color: #ffffff;
+      }
+
+      .tito-tab-panel {
+        display: grid;
+        gap: 16px;
+      }
+
+      .tito-world-clock {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 10px;
+      }
+
+      .tito-clock-card {
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.045);
+        min-height: 84px;
+        padding: 12px;
+      }
+
+      .tito-clock-card span {
+        display: block;
+        color: var(--text-2);
+        font-size: 0.75rem;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+
+      .tito-clock-card strong {
+        display: block;
+        margin-top: 7px;
+        font-size: clamp(0.98rem, 2vw, 1.24rem);
+        line-height: 1.15;
+        overflow-wrap: anywhere;
+      }
+
+      .tito-payslip-card {
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 8px;
+        background: #f8fbff;
+        color: #102331;
+        display: grid;
+        gap: 14px;
+        padding: 18px;
+      }
+
+      .tito-payslip-card h4,
+      .tito-payslip-card p {
+        margin: 0;
+      }
+
+      .tito-payslip-head {
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        align-items: start;
+        border-bottom: 1px solid #dbe8ee;
+        padding-bottom: 12px;
+      }
+
+      .tito-payslip-head img {
+        width: 44px;
+        height: 44px;
+        border-radius: 8px;
+      }
+
+      .tito-payslip-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px 16px;
+      }
+
+      .tito-payslip-line {
+        border-bottom: 1px solid #e3edf2;
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 7px 0;
+      }
+
+      .tito-payslip-line span:first-child {
+        color: #546b78;
+      }
+
+      .tito-payslip-line span:last-child {
+        font-weight: 700;
+        text-align: right;
+      }
+
+      .tito-badge {
+        justify-self: start;
+        border: 1px solid rgba(102, 255, 204, 0.35);
+        border-radius: 8px;
+        color: rgba(232, 251, 255, 0.86);
+        font-family: "Space Mono", monospace;
+        font-size: 0.74rem;
+        letter-spacing: 0.08em;
+        padding: 5px 8px;
+        text-transform: uppercase;
+      }
+
+      .tito-alert {
+        border: 1px solid rgba(255, 207, 102, 0.34);
+        border-radius: 8px;
+        background: rgba(255, 207, 102, 0.08);
+        color: rgba(255, 247, 220, 0.94);
+        padding: 12px;
+      }
+
+      .tito-alert[data-tone="ok"] {
+        border-color: rgba(102, 255, 204, 0.32);
+        background: rgba(102, 255, 204, 0.08);
+      }
+
+      .tito-alert[data-tone="error"] {
+        border-color: rgba(255, 117, 117, 0.36);
+        background: rgba(255, 117, 117, 0.08);
+      }
+
+      .tito-hidden,
+      [hidden] {
+        display: none !important;
+      }
+
+      @media (max-width: 900px) {
+        .tito-topbar,
+        .tito-grid,
+        .tito-modules,
+        .tito-summary,
+        .tito-payslip-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .tito-world-clock {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .tito-brand-chip {
+          min-width: 0;
+        }
+      }
+
+      @media (max-width: 560px) {
+        body[data-page="tito"] main {
+          padding: 22px 14px 58px;
+        }
+
+        .tito-shell {
+          gap: 14px;
+        }
+
+        .tito-topbar {
+          gap: 14px;
+          padding-top: 8px;
+        }
+
+        .tito-title h2 {
+          font-size: 1.9rem;
+        }
+
+        .tito-title p,
+        .tito-meta {
+          font-size: 0.86rem;
+        }
+
+        .tito-panel {
+          padding: 16px;
+        }
+
+        .tito-tabs {
+          display: grid;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .tito-tab-button {
+          width: 100%;
+          padding-inline: 10px;
+        }
+
+        .tito-tab-button:first-child {
+          grid-column: 1 / -1;
+        }
+
+        .tito-row,
+        .tito-actions {
+          grid-template-columns: 1fr;
+        }
+
+        .tito-actions .button {
+          width: 100%;
+        }
+
+        .tito-clock-card {
+          min-height: 74px;
+          padding: 10px;
+        }
+
+        .tito-clock-card strong {
+          font-size: 0.95rem;
+        }
+
+        .tito-payslip-card {
+          padding: 14px;
+        }
+
+        .tito-payslip-line {
+          align-items: flex-start;
+          flex-direction: column;
+          gap: 3px;
+        }
+
+        .tito-payslip-line span:last-child {
+          text-align: left;
+        }
+      }
+
+      @media (max-width: 340px) {
+        .tito-tabs {
+          grid-template-columns: 1fr;
+        }
+
+        .tito-world-clock {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body data-page="tito">
+    <div class="ai-overlay"></div>
+    <div class="ai-grid"></div>
+    <div class="ai-nodes"></div>
+
+    <header>
+      <nav class="nav">
+        <a class="brand" href="/">
+          <img src="/assets/logo.webp" alt="JC IT Services logo" />
+          <div class="brand-text">
+            <h1>JC IT Services</h1>
+            <span>Modern IT &amp; AI Enablement</span>
+          </div>
+        </a>
+        <button class="nav-toggle" type="button" aria-label="Toggle menu" aria-expanded="false" data-nav-toggle>
+          <span></span><span></span><span></span>
+        </button>
+        <div class="nav-links" data-nav-links>
+          <a href="/services/" data-page="services">Services</a>
+          <div class="nav-dropdown">
+            <a class="nav-dropdown-toggle" href="#" data-page="about">About Us</a>
+            <div class="nav-dropdown-menu">
+              <a href="/team/" data-page="team">Team</a>
+              <a href="/about/" data-page="about">About JC</a>
+              <a href="/bubbles/" data-page="bubbles">About Bubbles</a>
+              <a href="/team-login/" data-page="team-login">Team Login</a>
+              <a href="/TiTo/" data-page="tito">TiTo</a>
+              <a href="/bug-blaster/" data-page="bug-blaster">Bug Blaster</a>
+            </div>
+          </div>
+          <a href="/join/" data-page="join">Join Our Team!</a>
+          <a href="/contact/" data-page="contact">Contact Us</a>
+          <a class="nav-social" href="https://www.linkedin.com/company/jc-it-services/" target="_blank" rel="noreferrer" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.37V9h3.41v1.56h.05c.47-.9 1.62-1.85 3.34-1.85 3.57 0 4.23 2.35 4.23 5.41v6.33zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.78C.8 0 0 .78 0 1.74v20.52C0 23.22.8 24 1.78 24h20.44C23.2 24 24 23.22 24 22.26V1.74C24 .78 23.2 0 22.22 0z"/>
+            </svg>
+          </a>
+          <a class="nav-social" href="#" aria-label="Google Business Profile">
+            <img src="/assets/google-business.svg" alt="Google Business Profile" />
+          </a>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section class="tito-shell reveal">
+        <div class="tito-topbar">
+          <div class="tito-title">
+            <h2>TiTo Timekeeping</h2>
+            <p>Team login, daily time records, leave requests, and Sheet-powered payroll data for JCIT Services.</p>
+          </div>
+          <div class="tito-brand-chip" aria-label="JCIT Services operations">
+            <img src="/assets/logo.webp" alt="" />
+            <div>
+              <strong>JCIT Services</strong>
+              <span>Team Operations</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="tito-grid">
+          <section class="tito-panel" aria-labelledby="login-title">
+            <div>
+              <span class="tito-badge">Employee Login</span>
+              <h3 id="login-title">Employee Login</h3>
+              <p class="tito-meta">Authentication uses the username and password saved in the Google Sheet.</p>
+            </div>
+            <form class="tito-form" data-login-form>
+              <div class="tito-field">
+                <label for="tito-username">Username</label>
+                <input id="tito-username" name="username" autocomplete="username" required />
+              </div>
+              <div class="tito-field">
+                <label for="tito-password">Password</label>
+                <input id="tito-password" name="password" type="password" autocomplete="current-password" required />
+              </div>
+              <button class="button" type="submit" data-login-button>Login</button>
+            </form>
+            <div class="tito-alert" data-login-message hidden></div>
+          </section>
+
+          <section class="tito-panel tito-panel--dashboard" aria-labelledby="dashboard-title">
+            <div>
+              <span class="tito-badge">Dashboard</span>
+              <h3 id="dashboard-title">Employee Dashboard</h3>
+              <p class="tito-meta" data-current-time>Loading current time...</p>
+            </div>
+
+            <div class="tito-dashboard" data-dashboard hidden>
+              <div class="tito-summary" aria-live="polite">
+                <div class="tito-stat">
+                  <span>Team Member</span>
+                  <strong data-member-name>-</strong>
+                </div>
+                <div class="tito-stat">
+                  <span>Project</span>
+                  <strong data-active-project>-</strong>
+                </div>
+                <div class="tito-stat">
+                  <span>Status</span>
+                  <strong data-clock-status>Signed out</strong>
+                </div>
+              </div>
+
+              <div class="tito-tabs" role="tablist" aria-label="TiTo dashboard tabs">
+                <button class="tito-tab-button" type="button" role="tab" aria-selected="true" data-tab-target="time">Time In / Time Out</button>
+                <button class="tito-tab-button" type="button" role="tab" aria-selected="false" data-tab-target="leave">Leave Filing</button>
+                <button class="tito-tab-button" type="button" role="tab" aria-selected="false" data-tab-target="payslip">Payslip</button>
+              </div>
+
+              <section class="tito-tab-panel" data-tab-panel="time">
+                <div class="tito-world-clock" aria-label="World clock">
+                  <div class="tito-clock-card">
+                    <span>Manila</span>
+                    <strong data-world-clock="Asia/Manila">--:--</strong>
+                  </div>
+                  <div class="tito-clock-card">
+                    <span>New York</span>
+                    <strong data-world-clock="America/New_York">--:--</strong>
+                  </div>
+                  <div class="tito-clock-card">
+                    <span>Los Angeles</span>
+                    <strong data-world-clock="America/Los_Angeles">--:--</strong>
+                  </div>
+                  <div class="tito-clock-card">
+                    <span>Sydney</span>
+                    <strong data-world-clock="Australia/Sydney">--:--</strong>
+                  </div>
+                </div>
+
+                <form class="tito-form" data-clock-form>
+                  <div class="tito-field">
+                    <label for="tito-project">Project Assigned</label>
+                    <select id="tito-project" name="project"></select>
+                    <input id="tito-project-manual" class="tito-hidden" name="projectManual" placeholder="Project name" />
+                  </div>
+                  <div class="tito-field">
+                    <label for="tito-notes">Notes</label>
+                    <textarea id="tito-notes" name="notes" placeholder="Shift notes, blockers, or handoff items"></textarea>
+                  </div>
+                  <div class="tito-actions">
+                    <button class="button" type="button" data-clock-action="time_in">Time In</button>
+                    <button class="button secondary" type="button" data-clock-action="time_out">Time Out</button>
+                    <button class="button secondary" type="button" data-logout>Logout</button>
+                  </div>
+                </form>
+                <div class="tito-alert" data-clock-message hidden></div>
+              </section>
+
+              <section class="tito-tab-panel" data-tab-panel="leave" hidden>
+                <form class="tito-form" data-leave-form>
+                  <div class="tito-row">
+                    <div class="tito-field">
+                      <label for="leave-type">Leave Type</label>
+                      <select id="leave-type" name="leaveType" required>
+                        <option value="Vacation">Vacation</option>
+                        <option value="Sick">Sick</option>
+                        <option value="Emergency">Emergency</option>
+                      </select>
+                    </div>
+                    <div class="tito-field">
+                      <label for="leave-client-approval">Client Approval</label>
+                      <select id="leave-client-approval" name="clientApproval" required>
+                        <option value="Pending">Pending</option>
+                        <option value="Approved">Approved</option>
+                        <option value="Not Required">Not Required</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="tito-row">
+                    <div class="tito-field">
+                      <label for="leave-start">Start Date</label>
+                      <input id="leave-start" name="startDate" type="date" required />
+                    </div>
+                    <div class="tito-field">
+                      <label for="leave-end">End Date</label>
+                      <input id="leave-end" name="endDate" type="date" required />
+                    </div>
+                  </div>
+                  <div class="tito-field">
+                    <label for="leave-reason">Reason</label>
+                    <textarea id="leave-reason" name="reason" required></textarea>
+                  </div>
+                  <button class="button" type="submit">Submit Leave</button>
+                </form>
+                <div class="tito-alert" data-leave-message hidden></div>
+              </section>
+
+              <section class="tito-tab-panel" data-tab-panel="payslip" hidden>
+                <div class="tito-status">
+                  <strong>Biweekly Pay Scheme</strong>
+                  <p data-pay-period>First pay is June 26, 2026, covering 0610-0622. Coverage end day is assumed paid in full at 8 hours.</p>
+                </div>
+                <div class="tito-actions">
+                  <button class="button" type="button" data-generate-payslip>Generate Official Payslip</button>
+                  <button class="button secondary" type="button" data-print-payslip disabled>Print</button>
+                </div>
+                <div class="tito-alert" data-payslip-message hidden></div>
+                <div data-payslip-output hidden></div>
+              </section>
+            </div>
+
+            <div class="tito-status" data-locked-state>
+              <strong>Session Locked</strong>
+              <p>Employee login is required before dashboard access.</p>
+            </div>
+          </section>
+        </div>
+      </section>
+    </main>
+
+    <div class="cookie-banner" data-cookie-banner>
+      <p>
+        We use cookies and similar technologies to improve site experience and
+        measure performance. By using this site, you agree to our
+        <a href="/privacy/">privacy</a> and
+        <a href="/terms/">cookie/usage</a> policy.
+      </p>
+      <div class="cookie-actions">
+        <button class="button" type="button" data-cookie-accept>Accept</button>
+        <button class="button secondary" type="button" data-cookie-dismiss>Dismiss</button>
+      </div>
+    </div>
+
+    <footer>
+      <div class="footer-grid">
+        <div>
+          <h4>Quicklinks</h4>
+          <div class="footer-links">
+            <a href="/services/">Services</a>
+            <a href="/team/">Team</a>
+            <a href="/join/">Join Our Team</a>
+            <a href="/contact/">Contact Us</a>
+            <a href="/team-login/">Team Login</a>
+            <a href="/TiTo/">TiTo</a>
+          </div>
+        </div>
+        <div>
+          <h4>Legal</h4>
+          <div class="footer-links">
+            <a href="/legal/">Business Registration</a>
+            <a href="/sla/">SLA Agreement</a>
+            <a href="/privacy/">Privacy Policy</a>
+            <a href="/terms/">Terms of Service</a>
+            <a href="/copyright/">Copyright</a>
+          </div>
+        </div>
+        <div>
+          <h4>About JC IT Services</h4>
+          <p>
+            AI-powered IT, PBX/VOIP, and automation delivery for SME clients across
+            the US, AU, and PH.
+          </p>
+          <p class="footer-note">
+            JCIT Services operates under JCO IT SOLUTIONS, a duly registered business in
+            the Republic of the Philippines.
+          </p>
+          <p><a href="/contact/">Contact Us</a></p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="/assets/main.js"></script>
+    <script>
+      (() => {
+        const apiUrl = "https://jcit-recruitment-api.vercel.app/api/tito";
+        const state = {
+          username: "",
+          password: "",
+          member: null,
+          projects: [],
+          activeShift: null,
+          payPeriod: null,
+        };
+
+        const els = {
+          loginForm: document.querySelector("[data-login-form]"),
+          loginButton: document.querySelector("[data-login-button]"),
+          loginMessage: document.querySelector("[data-login-message]"),
+          dashboard: document.querySelector("[data-dashboard]"),
+          locked: document.querySelector("[data-locked-state]"),
+          memberName: document.querySelector("[data-member-name]"),
+          activeProject: document.querySelector("[data-active-project]"),
+          clockStatus: document.querySelector("[data-clock-status]"),
+          project: document.querySelector("#tito-project"),
+          projectManual: document.querySelector("#tito-project-manual"),
+          notes: document.querySelector("#tito-notes"),
+          clockMessage: document.querySelector("[data-clock-message]"),
+          leaveForm: document.querySelector("[data-leave-form]"),
+          leaveMessage: document.querySelector("[data-leave-message]"),
+          currentTime: document.querySelector("[data-current-time]"),
+          logout: document.querySelector("[data-logout]"),
+          tabButtons: document.querySelectorAll("[data-tab-target]"),
+          tabPanels: document.querySelectorAll("[data-tab-panel]"),
+          worldClocks: document.querySelectorAll("[data-world-clock]"),
+          payPeriod: document.querySelector("[data-pay-period]"),
+          payslipButton: document.querySelector("[data-generate-payslip]"),
+          printPayslip: document.querySelector("[data-print-payslip]"),
+          payslipMessage: document.querySelector("[data-payslip-message]"),
+          payslipOutput: document.querySelector("[data-payslip-output]"),
+        };
+
+        const showMessage = (element, message, tone = "") => {
+          if (!element) return;
+          element.textContent = message;
+          if (tone) element.dataset.tone = tone;
+          else delete element.dataset.tone;
+          element.hidden = false;
+        };
+
+        const hideMessage = (element) => {
+          if (!element) return;
+          element.hidden = true;
+          element.textContent = "";
+          delete element.dataset.tone;
+        };
+
+        const setLoading = (button, loading) => {
+          if (!button) return;
+          button.disabled = loading;
+          button.dataset.originalText ||= button.textContent;
+          button.textContent = loading ? "Processing..." : button.dataset.originalText;
+        };
+
+        const api = async (payload) => {
+          const response = await fetch(apiUrl, {
+            method: "POST",
+            headers: { "Content-Type": "application/json", Accept: "application/json" },
+            body: JSON.stringify(payload),
+          });
+          const data = await response.json().catch(() => ({}));
+          if (!response.ok || !data.ok) {
+            throw new Error(data.message || "Request failed.");
+          }
+          return data;
+        };
+
+        const escapeHtml = (value) =>
+          String(value ?? "")
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;");
+
+        const formatDate = (value) => {
+          if (!value) return "-";
+          const date = new Date(value);
+          if (Number.isNaN(date.getTime())) return String(value);
+          return new Intl.DateTimeFormat(undefined, {
+            year: "numeric",
+            month: "short",
+            day: "numeric",
+          }).format(date);
+        };
+
+        const switchTab = (name) => {
+          els.tabButtons.forEach((button) => {
+            button.setAttribute("aria-selected", String(button.dataset.tabTarget === name));
+          });
+          els.tabPanels.forEach((panel) => {
+            panel.hidden = panel.dataset.tabPanel !== name;
+          });
+        };
+
+        els.tabButtons.forEach((button) => {
+          button.addEventListener("click", () => switchTab(button.dataset.tabTarget));
+        });
+
+        const setClockButtons = () => {
+          const isClockedIn = Boolean(state.activeShift);
+          document.querySelectorAll("[data-clock-action]").forEach((button) => {
+            const action = button.dataset.clockAction;
+            button.disabled = action === "time_in" ? isClockedIn : !isClockedIn;
+          });
+        };
+
+        const selectedProject = () => {
+          if (els.projectManual && !els.projectManual.classList.contains("tito-hidden")) {
+            return els.projectManual.value.trim();
+          }
+          return els.project.value.trim();
+        };
+
+        const syncProjectOptions = () => {
+          const projects = Array.isArray(state.projects) ? state.projects : [];
+          const hasProjects = projects.length > 0;
+          els.project.innerHTML = "";
+
+          if (hasProjects) {
+            projects.forEach((project) => {
+              const option = new Option(project, project);
+              els.project.add(option);
+            });
+            els.project.hidden = false;
+            els.projectManual.classList.add("tito-hidden");
+            els.projectManual.required = false;
+          } else {
+            els.project.hidden = true;
+            els.projectManual.classList.remove("tito-hidden");
+            els.projectManual.required = true;
+          }
+        };
+
+        const renderPayPeriod = () => {
+          const period = state.payPeriod || {};
+          if (!period.payDate) return;
+          els.payPeriod.textContent = `Pay date ${formatDate(period.payDate)}. Coverage ${formatDate(period.coverageStart)} - ${formatDate(period.coverageEnd)} (${period.coverageCode}). Coverage end day is paid in full at ${period.coverageEndFullDayHours || 8} hours.`;
+        };
+
+        const renderSession = () => {
+          const member = state.member || {};
+          const active = state.activeShift;
+          els.memberName.textContent = member.name || member.username || state.username || "-";
+          els.activeProject.textContent = active?.project || selectedProject() || "-";
+          els.clockStatus.textContent = active ? "Clocked in" : "Signed out";
+          els.dashboard.hidden = false;
+          els.locked.hidden = true;
+          syncProjectOptions();
+          renderPayPeriod();
+          switchTab("time");
+          setClockButtons();
+        };
+
+        const resetSession = () => {
+          state.username = "";
+          state.password = "";
+          state.member = null;
+          state.projects = [];
+          state.activeShift = null;
+          state.payPeriod = null;
+          els.dashboard.hidden = true;
+          els.locked.hidden = false;
+          els.loginForm.reset();
+          els.payslipOutput.hidden = true;
+          els.payslipOutput.innerHTML = "";
+          els.printPayslip.disabled = true;
+          setClockButtons();
+          hideMessage(els.clockMessage);
+          hideMessage(els.leaveMessage);
+          hideMessage(els.payslipMessage);
+        };
+
+        const updateTime = () => {
+          const now = new Date();
+          els.currentTime.textContent = new Intl.DateTimeFormat(undefined, {
+            dateStyle: "medium",
+            timeStyle: "medium",
+          }).format(now);
+          els.worldClocks.forEach((clock) => {
+            clock.textContent = new Intl.DateTimeFormat(undefined, {
+              timeZone: clock.dataset.worldClock,
+              month: "short",
+              day: "numeric",
+              hour: "numeric",
+              minute: "2-digit",
+            }).format(now);
+          });
+        };
+
+        updateTime();
+        setInterval(updateTime, 1000);
+
+        const renderPayslip = (data) => {
+          const payslip = data.payslip || {};
+          const member = data.member || state.member || {};
+          const period = data.payPeriod || state.payPeriod || {};
+          const lines = Array.isArray(payslip.lines) ? payslip.lines : [];
+          const keyLines = lines
+            .map((line) => `
+              <div class="tito-payslip-line">
+                <span>${escapeHtml(line.label)}</span>
+                <span>${escapeHtml(line.value || "-")}</span>
+              </div>
+            `)
+            .join("");
+
+          els.payslipOutput.innerHTML = `
+            <article class="tito-payslip-card" aria-label="Official payslip">
+              <div class="tito-payslip-head">
+                <div>
+                  <h4>Official Payslip</h4>
+                  <p>JCIT Services</p>
+                </div>
+                <img src="/assets/logo.webp" alt="" />
+              </div>
+              <div class="tito-payslip-grid">
+                <div class="tito-payslip-line"><span>Employee</span><span>${escapeHtml(member.name || member.username || "-")}</span></div>
+                <div class="tito-payslip-line"><span>Username</span><span>${escapeHtml(member.username || "-")}</span></div>
+                <div class="tito-payslip-line"><span>Pay Date</span><span>${escapeHtml(formatDate(period.payDate))}</span></div>
+                <div class="tito-payslip-line"><span>Coverage</span><span>${escapeHtml(period.coverageCode || "-")}</span></div>
+                <div class="tito-payslip-line"><span>Coverage Start</span><span>${escapeHtml(formatDate(period.coverageStart))}</span></div>
+                <div class="tito-payslip-line"><span>Coverage End</span><span>${escapeHtml(formatDate(period.coverageEnd))}</span></div>
+              </div>
+              <div>${keyLines}</div>
+            </article>
+          `;
+          els.payslipOutput.hidden = false;
+          els.printPayslip.disabled = false;
+        };
+
+        els.loginForm.addEventListener("submit", async (event) => {
+          event.preventDefault();
+          hideMessage(els.loginMessage);
+          const form = new FormData(els.loginForm);
+          const username = String(form.get("username") || "").trim();
+          const password = String(form.get("password") || "");
+          setLoading(els.loginButton, true);
+          try {
+            const data = await api({ action: "login", username, password });
+            state.username = username;
+            state.password = password;
+            state.member = data.member;
+            state.projects = data.projects || [];
+            state.activeShift = data.activeShift || null;
+            state.payPeriod = data.payPeriod || null;
+            renderSession();
+            showMessage(els.loginMessage, "Login successful.", "ok");
+          } catch (error) {
+            showMessage(els.loginMessage, error.message, "error");
+          } finally {
+            setLoading(els.loginButton, false);
+          }
+        });
+
+        document.querySelectorAll("[data-clock-action]").forEach((button) => {
+          button.addEventListener("click", async () => {
+            hideMessage(els.clockMessage);
+            const project = selectedProject();
+            if (!project) {
+              showMessage(els.clockMessage, "Select or enter a project before submitting time.", "error");
+              return;
+            }
+            setLoading(button, true);
+            try {
+              const data = await api({
+                action: "clock",
+                clockAction: button.dataset.clockAction,
+                username: state.username,
+                password: state.password,
+                project,
+                notes: els.notes.value.trim(),
+              });
+              state.activeShift = data.activeShift || null;
+              renderSession();
+              showMessage(els.clockMessage, data.message || "Time record saved.", "ok");
+            } catch (error) {
+              showMessage(els.clockMessage, error.message, "error");
+            } finally {
+              setLoading(button, false);
+            }
+          });
+        });
+
+        els.leaveForm.addEventListener("submit", async (event) => {
+          event.preventDefault();
+          hideMessage(els.leaveMessage);
+          const submitButton = els.leaveForm.querySelector("button[type='submit']");
+          const form = new FormData(els.leaveForm);
+          setLoading(submitButton, true);
+          try {
+            const data = await api({
+              action: "leave",
+              username: state.username,
+              password: state.password,
+              leaveType: form.get("leaveType"),
+              startDate: form.get("startDate"),
+              endDate: form.get("endDate"),
+              reason: form.get("reason"),
+              clientApproval: form.get("clientApproval"),
+            });
+            els.leaveForm.reset();
+            showMessage(els.leaveMessage, data.message || "Leave request submitted.", "ok");
+          } catch (error) {
+            showMessage(els.leaveMessage, error.message, "error");
+          } finally {
+            setLoading(submitButton, false);
+          }
+        });
+
+        els.payslipButton.addEventListener("click", async () => {
+          hideMessage(els.payslipMessage);
+          setLoading(els.payslipButton, true);
+          try {
+            const data = await api({
+              action: "payslip",
+              username: state.username,
+              password: state.password,
+            });
+            state.payPeriod = data.payPeriod || state.payPeriod;
+            renderPayPeriod();
+            renderPayslip(data);
+            showMessage(els.payslipMessage, "Payslip generated.", "ok");
+          } catch (error) {
+            showMessage(els.payslipMessage, error.message, "error");
+          } finally {
+            setLoading(els.payslipButton, false);
+          }
+        });
+
+        els.printPayslip.addEventListener("click", () => window.print());
+        els.logout.addEventListener("click", resetSession);
+      })();
+    </script>
+  </body>
+</html>
