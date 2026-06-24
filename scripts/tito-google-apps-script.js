@@ -9,7 +9,7 @@
 const TITO = {
   employeesSheet: "Employees",
   timeSheet: "Time Logs",
-  leaveSheet: "Vacation Leaves",
+  leaveSheet: "Vacation Leave Requests",
   payslipSheet: "Payslip",
   invoiceSheet: "TiTo Client Invoices",
   clientsSheet: "Clients",
