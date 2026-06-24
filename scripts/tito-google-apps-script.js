@@ -8,8 +8,8 @@
 
 const TITO = {
   employeesSheet: "Employees",
-  timeSheet: "TiTo Time Entries",
-  leaveSheet: "TiTo Leave Requests",
+  timeSheet: "Time Logs",
+  leaveSheet: "Vacation Leaves",
   payslipSheet: "Payslip",
   invoiceSheet: "TiTo Client Invoices",
   clientsSheet: "Clients",
@@ -323,10 +323,8 @@ function addDays_(date, days) {
 function ensureSheet_(name, headers) {
   const ss = SpreadsheetApp.getActive();
   let sheet = ss.getSheetByName(name);
-  if (!sheet) sheet = ss.insertSheet(name);
-  const existing = sheet.getRange(1, 1, 1, headers.length).getValues()[0];
-  const needsHeaders = headers.some((header, index) => existing[index] !== header);
-  if (needsHeaders) {
+  if (!sheet) {
+    sheet = ss.insertSheet(name);
     sheet.getRange(1, 1, 1, headers.length).setValues([headers]);
     sheet.setFrozenRows(1);
     sheet.getRange(1, 1, 1, headers.length).setFontWeight("bold");
