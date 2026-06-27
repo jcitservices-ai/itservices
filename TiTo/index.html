@@ -186,6 +186,25 @@
         align-items: center;
       }
 
+      .tito-checks {
+        display: grid;
+        gap: 8px;
+      }
+
+      .tito-checks label {
+        align-items: center;
+        color: rgba(232, 251, 255, 0.88);
+        display: flex;
+        gap: 9px;
+        min-height: 34px;
+      }
+
+      .tito-checks input {
+        accent-color: var(--accent-2);
+        height: 18px;
+        width: 18px;
+      }
+
       .tito-actions .button,
       .tito-form .button {
         border-radius: 8px;
@@ -575,18 +594,21 @@
             <div>
               <span class="tito-badge">Employee Login</span>
               <h3 id="login-title">Employee Login</h3>
-              <p class="tito-meta">Authentication uses the username and password saved in the Google Sheet.</p>
+              <p class="tito-meta">Authentication uses the email address and portal password saved in the Google Sheet.</p>
             </div>
             <form class="tito-form" data-login-form>
               <div class="tito-field">
-                <label for="tito-username">Username</label>
-                <input id="tito-username" name="username" autocomplete="username" required />
+                <label for="tito-email">Email Address</label>
+                <input id="tito-email" name="email" type="email" autocomplete="email" required />
               </div>
               <div class="tito-field">
                 <label for="tito-password">Password</label>
                 <input id="tito-password" name="password" type="password" autocomplete="current-password" required />
               </div>
-              <button class="button" type="submit" data-login-button>Login</button>
+              <div class="tito-actions">
+                <button class="button" type="submit" data-login-button>Login</button>
+                <button class="button secondary" type="button" data-password-reset>Email Password</button>
+              </div>
             </form>
             <div class="tito-alert" data-login-message hidden></div>
           </section>
@@ -647,6 +669,11 @@
                     <input id="tito-project-manual" class="tito-hidden" name="projectManual" placeholder="Project name" />
                   </div>
                   <div class="tito-field">
+                    <label for="tito-activity">Activity</label>
+                    <select id="tito-activity" name="activity"></select>
+                    <input id="tito-activity-manual" class="tito-hidden" name="activityManual" placeholder="Activity" />
+                  </div>
+                  <div class="tito-field">
                     <label for="tito-notes">Notes</label>
                     <textarea id="tito-notes" name="notes" placeholder="Shift notes, blockers, or handoff items"></textarea>
                   </div>
@@ -671,12 +698,8 @@
                       </select>
                     </div>
                     <div class="tito-field">
-                      <label for="leave-client-approval">Client Approval</label>
-                      <select id="leave-client-approval" name="clientApproval" required>
-                        <option value="Pending">Pending</option>
-                        <option value="Approved">Approved</option>
-                        <option value="Not Required">Not Required</option>
-                      </select>
+                      <label for="leave-client-project">Client / Project</label>
+                      <select id="leave-client-project" name="clientProject"></select>
                     </div>
                   </div>
                   <div class="tito-row">
@@ -691,7 +714,15 @@
                   </div>
                   <div class="tito-field">
                     <label for="leave-reason">Reason</label>
-                    <textarea id="leave-reason" name="reason" required></textarea>
+                    <textarea id="leave-reason" name="reason" placeholder="Optional context for JL and Jake"></textarea>
+                  </div>
+                  <div class="tito-field">
+                    <label for="leave-proof">Proof of Leave</label>
+                    <input id="leave-proof" name="proof" type="file" accept=".pdf,image/*" />
+                  </div>
+                  <div class="tito-checks">
+                    <label><input type="checkbox" name="notifyClient" /> Notify Client?</label>
+                    <label><input type="checkbox" name="autoLogTime" /> Auto-Log Time?</label>
                   </div>
                   <button class="button" type="submit">Submit Leave</button>
                 </form>
@@ -701,11 +732,11 @@
               <section class="tito-tab-panel" data-tab-panel="payslip" hidden>
                 <div class="tito-status">
                   <strong>Biweekly Pay Scheme</strong>
-                  <p data-pay-period>First pay is June 26, 2026, covering 0610-0622. Coverage end day is assumed paid in full at 8 hours.</p>
+                  <p data-pay-period>Payslip files are pulled from the Payslip tab when a linked PDF is available.</p>
                 </div>
                 <div class="tito-actions">
-                  <button class="button" type="button" data-generate-payslip>Generate Official Payslip</button>
-                  <button class="button secondary" type="button" data-print-payslip disabled>Print</button>
+                  <button class="button" type="button" data-generate-payslip>Find Payslip File</button>
+                  <button class="button secondary" type="button" data-print-payslip disabled>Open File</button>
                 </div>
                 <div class="tito-alert" data-payslip-message hidden></div>
                 <div data-payslip-output hidden></div>
@@ -777,17 +808,20 @@
       (() => {
         const apiUrl = "https://jcit-tito-api-only.vercel.app/api/tito";
         const state = {
-          username: "",
+          email: "",
           password: "",
           member: null,
           projects: [],
+          activities: [],
           activeShift: null,
           payPeriod: null,
+          payslipFileUrl: "",
         };
 
         const els = {
           loginForm: document.querySelector("[data-login-form]"),
           loginButton: document.querySelector("[data-login-button]"),
+          passwordReset: document.querySelector("[data-password-reset]"),
           loginMessage: document.querySelector("[data-login-message]"),
           dashboard: document.querySelector("[data-dashboard]"),
           locked: document.querySelector("[data-locked-state]"),
@@ -796,9 +830,13 @@
           clockStatus: document.querySelector("[data-clock-status]"),
           project: document.querySelector("#tito-project"),
           projectManual: document.querySelector("#tito-project-manual"),
+          activity: document.querySelector("#tito-activity"),
+          activityManual: document.querySelector("#tito-activity-manual"),
           notes: document.querySelector("#tito-notes"),
           clockMessage: document.querySelector("[data-clock-message]"),
           leaveForm: document.querySelector("[data-leave-form]"),
+          leaveClientProject: document.querySelector("#leave-client-project"),
+          leaveProof: document.querySelector("#leave-proof"),
           leaveMessage: document.querySelector("[data-leave-message]"),
           currentTime: document.querySelector("[data-current-time]"),
           logout: document.querySelector("[data-logout]"),
@@ -893,15 +931,24 @@
           return els.project.value.trim();
         };
 
+        const selectedActivity = () => {
+          if (els.activityManual && !els.activityManual.classList.contains("tito-hidden")) {
+            return els.activityManual.value.trim();
+          }
+          return els.activity.value.trim();
+        };
+
         const syncProjectOptions = () => {
           const projects = Array.isArray(state.projects) ? state.projects : [];
           const hasProjects = projects.length > 0;
           els.project.innerHTML = "";
+          if (els.leaveClientProject) els.leaveClientProject.innerHTML = "";
 
           if (hasProjects) {
             projects.forEach((project) => {
               const option = new Option(project, project);
               els.project.add(option);
+              if (els.leaveClientProject) els.leaveClientProject.add(new Option(project, project));
             });
             els.project.hidden = false;
             els.projectManual.classList.add("tito-hidden");
@@ -910,36 +957,55 @@
             els.project.hidden = true;
             els.projectManual.classList.remove("tito-hidden");
             els.projectManual.required = true;
+            if (els.leaveClientProject) els.leaveClientProject.add(new Option("General Operations", "General Operations"));
+          }
+        };
+
+        const syncActivityOptions = () => {
+          const activities = Array.isArray(state.activities) ? state.activities : [];
+          const hasActivities = activities.length > 0;
+          els.activity.innerHTML = "";
+
+          if (hasActivities) {
+            activities.forEach((activity) => els.activity.add(new Option(activity, activity)));
+            els.activity.hidden = false;
+            els.activityManual.classList.add("tito-hidden");
+            els.activityManual.required = false;
+          } else {
+            els.activity.hidden = true;
+            els.activityManual.classList.remove("tito-hidden");
+            els.activityManual.required = true;
           }
         };
 
         const renderPayPeriod = () => {
-          const period = state.payPeriod || {};
-          if (!period.payDate) return;
-          els.payPeriod.textContent = `Pay date ${formatDate(period.payDate)}. Coverage ${formatDate(period.coverageStart)} - ${formatDate(period.coverageEnd)} (${period.coverageCode}). Coverage end day is paid in full at ${period.coverageEndFullDayHours || 8} hours.`;
+          els.payPeriod.textContent = "Payslip files are pulled from the Payslip tab when a linked PDF is available.";
         };
 
         const renderSession = () => {
           const member = state.member || {};
           const active = state.activeShift;
-          els.memberName.textContent = member.name || member.username || state.username || "-";
+          els.memberName.textContent = member.name || member.email || state.email || "-";
           els.activeProject.textContent = active?.project || selectedProject() || "-";
           els.clockStatus.textContent = active ? "Clocked in" : "Signed out";
           els.dashboard.hidden = false;
           els.locked.hidden = true;
           syncProjectOptions();
+          syncActivityOptions();
           renderPayPeriod();
           switchTab("time");
           setClockButtons();
         };
 
         const resetSession = () => {
-          state.username = "";
+          state.email = "";
           state.password = "";
           state.member = null;
           state.projects = [];
+          state.activities = [];
           state.activeShift = null;
           state.payPeriod = null;
+          state.payslipFileUrl = "";
           els.dashboard.hidden = true;
           els.locked.hidden = false;
           els.loginForm.reset();
@@ -975,9 +1041,10 @@
         const renderPayslip = (data) => {
           const payslip = data.payslip || {};
           const member = data.member || state.member || {};
-          const period = data.payPeriod || state.payPeriod || {};
           const lines = Array.isArray(payslip.lines) ? payslip.lines : [];
+          const fileUrl = payslip.fileUrl || "";
           const keyLines = lines
+            .filter((line) => !/pdf status/i.test(line.label))
             .map((line) => `
               <div class="tito-payslip-line">
                 <span>${escapeHtml(line.label)}</span>
@@ -987,42 +1054,37 @@
             .join("");
 
           els.payslipOutput.innerHTML = `
-            <article class="tito-payslip-card" aria-label="Official payslip">
+            <article class="tito-payslip-card" aria-label="Official payslip file">
               <div class="tito-payslip-head">
                 <div>
-                  <h4>Official Payslip</h4>
-                  <p>JCIT Services</p>
+                  <h4>Payslip File</h4>
+                  <p>${escapeHtml(member.name || member.email || "-")}</p>
                 </div>
                 <img src="/assets/logo.webp" alt="" />
               </div>
-              <div class="tito-payslip-grid">
-                <div class="tito-payslip-line"><span>Employee</span><span>${escapeHtml(member.name || member.username || "-")}</span></div>
-                <div class="tito-payslip-line"><span>Username</span><span>${escapeHtml(member.username || "-")}</span></div>
-                <div class="tito-payslip-line"><span>Pay Date</span><span>${escapeHtml(formatDate(period.payDate))}</span></div>
-                <div class="tito-payslip-line"><span>Coverage</span><span>${escapeHtml(period.coverageCode || "-")}</span></div>
-                <div class="tito-payslip-line"><span>Coverage Start</span><span>${escapeHtml(formatDate(period.coverageStart))}</span></div>
-                <div class="tito-payslip-line"><span>Coverage End</span><span>${escapeHtml(formatDate(period.coverageEnd))}</span></div>
-              </div>
+              ${fileUrl ? `<a class="button" href="${escapeHtml(fileUrl)}" target="_blank" rel="noreferrer">Open Official Payslip</a>` : ""}
               <div>${keyLines}</div>
             </article>
           `;
+          state.payslipFileUrl = fileUrl;
           els.payslipOutput.hidden = false;
-          els.printPayslip.disabled = false;
+          els.printPayslip.disabled = !fileUrl;
         };
 
         els.loginForm.addEventListener("submit", async (event) => {
           event.preventDefault();
           hideMessage(els.loginMessage);
           const form = new FormData(els.loginForm);
-          const username = String(form.get("username") || "").trim();
+          const email = String(form.get("email") || "").trim();
           const password = String(form.get("password") || "");
           setLoading(els.loginButton, true);
           try {
-            const data = await api({ action: "login", username, password });
-            state.username = username;
+            const data = await api({ action: "login", email, password });
+            state.email = email;
             state.password = password;
             state.member = data.member;
             state.projects = data.projects || [];
+            state.activities = data.activities || [];
             state.activeShift = data.activeShift || null;
             state.payPeriod = data.payPeriod || null;
             renderSession();
@@ -1034,12 +1096,59 @@
           }
         });
 
+        els.passwordReset.addEventListener("click", async () => {
+          hideMessage(els.loginMessage);
+          const form = new FormData(els.loginForm);
+          const email = String(form.get("email") || "").trim();
+          if (!email) {
+            showMessage(els.loginMessage, "Enter your email address first.", "error");
+            return;
+          }
+          setLoading(els.passwordReset, true);
+          try {
+            const data = await api({ action: "password_reset", email });
+            showMessage(els.loginMessage, data.message || "Password instructions requested.", "ok");
+          } catch (error) {
+            showMessage(els.loginMessage, error.message, "error");
+          } finally {
+            setLoading(els.passwordReset, false);
+          }
+        });
+
+        const fileToProof = (file) =>
+          new Promise((resolve, reject) => {
+            if (!file) {
+              resolve(null);
+              return;
+            }
+            if (file.size > 4_000_000) {
+              reject(new Error("Leave proof file must be 4 MB or smaller."));
+              return;
+            }
+            const reader = new FileReader();
+            reader.addEventListener("load", () => {
+              const dataUrl = String(reader.result || "");
+              resolve({
+                name: file.name,
+                mimeType: file.type || "application/octet-stream",
+                data: dataUrl.split(",")[1] || "",
+              });
+            });
+            reader.addEventListener("error", () => reject(new Error("Could not read proof file.")));
+            reader.readAsDataURL(file);
+          });
+
         document.querySelectorAll("[data-clock-action]").forEach((button) => {
           button.addEventListener("click", async () => {
             hideMessage(els.clockMessage);
             const project = selectedProject();
+            const activity = selectedActivity();
             if (!project) {
               showMessage(els.clockMessage, "Select or enter a project before submitting time.", "error");
+              return;
+            }
+            if (!activity) {
+              showMessage(els.clockMessage, "Select or enter an activity before submitting time.", "error");
               return;
             }
             setLoading(button, true);
@@ -1047,9 +1156,10 @@
               const data = await api({
                 action: "clock",
                 clockAction: button.dataset.clockAction,
-                username: state.username,
+                email: state.email,
                 password: state.password,
                 project,
+                activity,
                 notes: els.notes.value.trim(),
               });
               state.activeShift = data.activeShift || null;
@@ -1070,15 +1180,20 @@
           const form = new FormData(els.leaveForm);
           setLoading(submitButton, true);
           try {
+            const proofFile = els.leaveProof?.files?.[0] || null;
+            const proof = await fileToProof(proofFile);
             const data = await api({
               action: "leave",
-              username: state.username,
+              email: state.email,
               password: state.password,
               leaveType: form.get("leaveType"),
               startDate: form.get("startDate"),
               endDate: form.get("endDate"),
               reason: form.get("reason"),
-              clientApproval: form.get("clientApproval"),
+              clientProject: form.get("clientProject"),
+              notifyClient: form.get("notifyClient") === "on",
+              autoLogTime: form.get("autoLogTime") === "on",
+              proof,
             });
             els.leaveForm.reset();
             showMessage(els.leaveMessage, data.message || "Leave request submitted.", "ok");
@@ -1095,13 +1210,13 @@
           try {
             const data = await api({
               action: "payslip",
-              username: state.username,
+              email: state.email,
               password: state.password,
             });
             state.payPeriod = data.payPeriod || state.payPeriod;
             renderPayPeriod();
             renderPayslip(data);
-            showMessage(els.payslipMessage, "Payslip generated.", "ok");
+            showMessage(els.payslipMessage, data.payslip?.fileUrl ? "Payslip file found." : "Payslip row found, but no file link is attached.", data.payslip?.fileUrl ? "ok" : "error");
           } catch (error) {
             showMessage(els.payslipMessage, error.message, "error");
           } finally {
@@ -1109,7 +1224,9 @@
           }
         });
 
-        els.printPayslip.addEventListener("click", () => window.print());
+        els.printPayslip.addEventListener("click", () => {
+          if (state.payslipFileUrl) window.open(state.payslipFileUrl, "_blank", "noopener,noreferrer");
+        });
         els.logout.addEventListener("click", resetSession);
       })();
     </script>

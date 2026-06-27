@@ -2,6 +2,7 @@ const {
   authenticate,
   clockAction,
   getPayslip,
+  requestPasswordEmail,
   submitLeave,
   getConfiguredSpreadsheetId,
 } = require("../lib/tito-sheet-store");
@@ -38,7 +39,7 @@ async function readBody(req) {
   for await (const chunk of req) {
     const buffer = Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk);
     total += buffer.length;
-    if (total > 120_000) {
+    if (total > 6_000_000) {
       const error = new Error("Request too large.");
       error.statusCode = 413;
       throw error;
@@ -90,30 +91,43 @@ module.exports = async function handler(req, res) {
     if (action === "login") {
       result = await authenticate({
         username: body.username,
+        email: body.email,
         password: body.password,
       });
     } else if (action === "clock") {
       result = await clockAction({
         username: body.username,
+        email: body.email,
         password: body.password,
         action: body.clockAction,
         project: body.project,
+        activity: body.activity,
         notes: body.notes,
       });
     } else if (action === "leave") {
       result = await submitLeave({
         username: body.username,
+        email: body.email,
         password: body.password,
         leaveType: body.leaveType,
         startDate: body.startDate,
         endDate: body.endDate,
         reason: body.reason,
+        clientProject: body.clientProject,
         clientApproval: body.clientApproval,
+        notifyClient: body.notifyClient,
+        autoLogTime: body.autoLogTime,
+        proof: body.proof,
       });
     } else if (action === "payslip") {
       result = await getPayslip({
         username: body.username,
+        email: body.email,
         password: body.password,
+      });
+    } else if (action === "password_reset") {
+      result = await requestPasswordEmail({
+        email: body.email || body.username,
       });
     } else {
       const error = new Error("Unknown TiTo action.");
