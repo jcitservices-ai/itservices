@@ -2,97 +2,166 @@
  * JCIT TiTo Google Sheets automation.
  *
  * Install in the target Google Sheet:
- * Extensions > Apps Script > paste this file > Save > Run setupTiToSheets once.
- * Optional API mode: Deploy as Web App and set Script Property TITO_PUBLIC_TOKEN.
+ * Extensions > Apps Script > paste this file > Save.
+ *
+ * This mirrors the live portal flow:
+ * - Authentication reads Employees: Email + Portal Password.
+ * - Project/activity options read Settings & Validation.
+ * - Writes are limited to Time Logs and Vacation Leave Requests.
+ * - Time-in creates the employee row plus the paired Jay / Management row.
+ * - Time-out closes both paired rows using the existing Notes column link.
  */
 
 const TITO = {
+  loginSheet: "Login / Logout",
   employeesSheet: "Employees",
+  settingsSheet: "Settings & Validation",
   timeSheet: "Time Logs",
   leaveSheet: "Vacation Leave Requests",
-  payslipSheet: "Payslip",
-  invoiceSheet: "TiTo Client Invoices",
-  clientsSheet: "Clients",
-  projectsSheet: "Projects",
+  timeInCheckbox: "E8",
+  timeOutCheckbox: "E11",
+  teamMemberCell: "C8",
+  projectCell: "C11",
+  activityCell: "C14",
+  managementMember: "Jay",
+  managementActivity: "Management",
   timeHeaders: [
-    "Entry ID",
-    "Username",
+    "Log ID",
+    "Date",
     "Team Member",
     "Project",
+    "Activity",
     "Time In",
     "Time Out",
-    "Hours",
-    "Status",
+    "Total Hours",
     "Notes",
-    "Created At",
-    "Updated At",
   ],
   leaveHeaders: [
-    "Request ID",
-    "Username",
+    "Request Date",
     "Team Member",
     "Leave Type",
     "Start Date",
     "End Date",
-    "Day Count",
-    "Reason",
-    "Client Approval",
-    "Status",
-    "Submitted At",
-    "Reviewed By",
-    "Reviewed At",
-    "Notes",
+    "Total Days",
+    "Client / Project",
+    "Proof of Leave",
+    "Rule Validation",
+    "Manager Status",
+    "Notify Client?",
+    "Auto-Log Time?",
   ],
-  payslipHeaders: [
-    "Payslip ID",
-    "Username",
-    "Team Member",
-    "Period Start",
-    "Period End",
-    "Regular Hours",
-    "Approved Leave Days",
-    "Hourly Rate",
-    "Gross Pay",
-    "Deductions",
-    "Net Pay",
-    "Generated At",
-    "Status",
-  ],
-  invoiceHeaders: [
-    "Invoice ID",
-    "Client",
-    "Project",
-    "Period Start",
-    "Period End",
-    "Billable Hours",
-    "Hourly Rate",
-    "Amount",
-    "Generated At",
-    "Status",
-  ],
-  firstPayDate: "2026-06-26",
-  firstCoverageStart: "2026-06-10",
-  firstCoverageEnd: "2026-06-22",
-  payIntervalDays: 14,
+};
+
+const ALIASES = {
+  logId: ["log id", "entry id", "time log id", "record id", "id"],
+  date: ["date", "log date", "work date"],
+  teamMember: ["team member", "member", "employee", "name"],
+  project: ["project", "project name", "client", "client project"],
+  activity: ["activity", "task", "work type"],
+  timeIn: ["time in", "clock in", "clock-in", "start time"],
+  timeOut: ["time out", "clock out", "clock-out", "end time"],
+  hours: ["total hours", "hours", "work hours", "duration"],
+  notes: ["notes", "note", "remarks", "comments"],
+  email: ["email", "email address", "team email"],
+  password: ["portal password", "password", "passcode", "pin", "team password", "login password"],
+  passwordHash: ["password hash", "password_hash", "sha256", "sha256 password"],
+  assignedProjects: ["project assigned", "assigned project", "assigned projects", "projects", "project"],
+  approvedProjects: ["approved projects"],
+  activities: ["specific activities"],
+  leaveType: ["leave type", "type"],
+  startDate: ["start date", "date start", "from", "date from"],
+  endDate: ["end date", "date end", "to", "date to"],
+  totalDays: ["total days", "day count", "days", "number of days", "leave days"],
+  clientProject: ["client / project", "client/project", "client project", "project", "project name"],
+  proof: ["proof of leave", "proof", "leave proof", "attachment", "file"],
+  ruleValidation: ["rule validation"],
+  managerStatus: ["manager status", "manager approval", "status"],
+  notifyClient: ["notify client?", "notify client", "client notification"],
+  autoLogTime: ["auto-log time?", "auto log time", "auto-log time"],
 };
 
 function onOpen() {
   SpreadsheetApp.getUi()
     .createMenu("JCIT TiTo")
-    .addItem("Initialize TiTo Sheets", "setupTiToSheets")
-    .addSeparator()
-    .addItem("Generate Payslips", "generateTiToPayslips")
-    .addItem("Generate Client Invoices", "generateTiToClientInvoices")
+    .addItem("Initialize Missing TiTo Sheets", "setupTiToSheets")
     .addToUi();
 }
 
 function setupTiToSheets() {
   ensureSheet_(TITO.timeSheet, TITO.timeHeaders);
   ensureSheet_(TITO.leaveSheet, TITO.leaveHeaders);
-  ensureSheet_(TITO.payslipSheet, TITO.payslipHeaders);
-  ensureSheet_(TITO.invoiceSheet, TITO.invoiceHeaders);
-  ensureSheet_(TITO.projectsSheet, ["Project", "Client", "Assigned To", "Hourly Rate", "Status"]);
-  ensureSheet_(TITO.clientsSheet, ["Client", "Billing Contact", "Email", "Default Hourly Rate", "Status"]);
+}
+
+function onEdit(e) {
+  if (!e || !e.range) return;
+
+  const sheet = e.range.getSheet();
+  if (sheet.getName() !== TITO.loginSheet) return;
+
+  const address = e.range.getA1Notation();
+  const checked = e.range.getValue() === true;
+
+  if (address === TITO.timeInCheckbox && checked) {
+    handleSheetTimeIn_(sheet);
+  }
+
+  if (address === TITO.timeOutCheckbox && checked) {
+    handleSheetTimeOut_(sheet);
+  }
+}
+
+function handleSheetTimeIn_(loginSheet) {
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  const teamMember = String(loginSheet.getRange(TITO.teamMemberCell).getValue() || "").trim();
+  const project = String(loginSheet.getRange(TITO.projectCell).getValue() || "").trim();
+  const activity = String(loginSheet.getRange(TITO.activityCell).getValue() || "").trim();
+
+  if (!teamMember || !project || !activity) {
+    resetLoginCheckbox_(loginSheet, TITO.timeInCheckbox);
+    ss.toast("Please select a Team Member, Project, and Activity before logging in.", "Missing Information", 6);
+    return;
+  }
+
+  const lock = LockService.getScriptLock();
+  let locked = false;
+  try {
+    lock.waitLock(15000);
+    locked = true;
+    const result = clockInByTeamMember_(teamMember, project, activity, "");
+    clearLoginForm_(loginSheet);
+    ss.toast(result.message, "Login Successful", 5);
+  } catch (error) {
+    resetLoginCheckbox_(loginSheet, TITO.timeInCheckbox);
+    ss.toast(error.message, "Login Error", 6);
+  } finally {
+    if (locked) lock.releaseLock();
+  }
+}
+
+function handleSheetTimeOut_(loginSheet) {
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  const teamMember = String(loginSheet.getRange(TITO.teamMemberCell).getValue() || "").trim();
+
+  if (!teamMember) {
+    resetLoginCheckbox_(loginSheet, TITO.timeOutCheckbox);
+    ss.toast("Please select your Team Member name to log out.", "Missing Information", 6);
+    return;
+  }
+
+  const lock = LockService.getScriptLock();
+  let locked = false;
+  try {
+    lock.waitLock(15000);
+    locked = true;
+    const result = clockOutByTeamMember_(teamMember, "");
+    clearLoginForm_(loginSheet);
+    ss.toast(result.message, "Logout Successful", 5);
+  } catch (error) {
+    resetLoginCheckbox_(loginSheet, TITO.timeOutCheckbox);
+    ss.toast(error.message, "Logout Error", 6);
+  } finally {
+    if (locked) lock.releaseLock();
+  }
 }
 
 function doPost(e) {
@@ -112,212 +181,353 @@ function doPost(e) {
 }
 
 function handleLogin_(payload) {
-  const member = findMember_(payload.username, payload.password);
-  const projects = projectsForMember_(member);
-  const activeShift = findActiveShift_(member.username);
-  return { ok: true, member: safeMember_(member), projects, activeShift };
+  const member = findMember_(payload.email || payload.username, payload.password);
+  return {
+    ok: true,
+    member: safeMember_(member),
+    projects: projectsForMember_(member),
+    activities: activitiesForPortal_(),
+    activeShift: findActiveShiftForMember_(member.teamMember),
+  };
 }
 
 function handleClock_(payload) {
-  const member = findMember_(payload.username, payload.password);
+  const member = findMember_(payload.email || payload.username, payload.password);
   const action = String(payload.clockAction || payload.actionType || "").toLowerCase();
   const project = String(payload.project || "").trim();
+  const activity = String(payload.activity || "Client Work").trim();
   const notes = String(payload.notes || "").trim();
-  ensureSheet_(TITO.timeSheet, TITO.timeHeaders);
 
   if (action === "time_in") {
     if (!project) throw new Error("Project is required.");
-    if (findActiveShift_(member.username)) throw new Error("You are already clocked in.");
-    const now = new Date();
-    const row = [
-      makeId_("TITO"),
-      member.username,
-      member.name,
-      project,
-      now,
-      "",
-      "",
-      "Open",
-      notes,
-      now,
-      now,
-    ];
-    SpreadsheetApp.getActive().getSheetByName(TITO.timeSheet).appendRow(row);
-    return {
-      ok: true,
-      message: "Time in saved.",
-      activeShift: {
-        entryId: row[0],
-        username: row[1],
-        teamMember: row[2],
-        project: row[3],
-        timeIn: row[4],
-        notes: row[8],
-      },
-    };
+    if (!activity) throw new Error("Activity is required.");
+    const result = clockInByTeamMember_(member.teamMember, project, activity, notes);
+    return { ok: true, message: result.message, activeShift: result.activeShift };
   }
 
   if (action === "time_out") {
-    const active = findActiveShift_(member.username);
-    if (!active) throw new Error("No open time entry found.");
-    const now = new Date();
-    const hours = Math.round(((now.getTime() - new Date(active.timeIn).getTime()) / 3_600_000) * 100) / 100;
-    const sheet = SpreadsheetApp.getActive().getSheetByName(TITO.timeSheet);
-    sheet.getRange(active.rowNumber, 6, 1, 6).setValues([[
-      now,
-      hours,
-      "Closed",
-      notes || active.notes || "",
-      active.createdAt || active.timeIn,
-      now,
-    ]]);
-    return { ok: true, message: "Time out saved. Total hours: " + hours + ".", activeShift: null };
+    const result = clockOutByTeamMember_(member.teamMember, notes);
+    return { ok: true, message: result.message, activeShift: null };
   }
 
   throw new Error("Clock action must be time_in or time_out.");
 }
 
 function handleLeave_(payload) {
-  const member = findMember_(payload.username, payload.password);
-  const type = String(payload.leaveType || "").trim();
-  if (["Vacation", "Sick", "Emergency"].indexOf(type) === -1) throw new Error("Invalid leave type.");
+  const member = findMember_(payload.email || payload.username, payload.password);
+  const leaveType = String(payload.leaveType || "").trim();
+  if (["Vacation", "Sick", "Emergency"].indexOf(leaveType) === -1) {
+    throw new Error("Leave type must be Vacation, Sick, or Emergency.");
+  }
+
   const start = new Date(String(payload.startDate || "") + "T00:00:00");
   const end = new Date(String(payload.endDate || "") + "T00:00:00");
-  if (end < start) throw new Error("Leave end date must be on or after the start date.");
-  const days = Math.round((end.getTime() - start.getTime()) / 86_400_000) + 1;
-  ensureSheet_(TITO.leaveSheet, TITO.leaveHeaders);
-  SpreadsheetApp.getActive().getSheetByName(TITO.leaveSheet).appendRow([
-    makeId_("LEAVE"),
-    member.username,
-    member.name,
-    type,
-    payload.startDate,
-    payload.endDate,
+  if (!isFinite(start.getTime()) || !isFinite(end.getTime()) || end < start) {
+    throw new Error("Leave end date must be on or after the start date.");
+  }
+
+  const days = Math.round((end.getTime() - start.getTime()) / 86400000) + 1;
+  appendLeaveRequest_(member, {
+    leaveType,
+    startDate: payload.startDate,
+    endDate: payload.endDate,
     days,
-    String(payload.reason || "").trim(),
-    String(payload.clientApproval || "Pending").trim(),
-    "Submitted",
-    new Date(),
-    "",
-    "",
-    "",
-  ]);
+    clientProject: String(payload.clientProject || "").trim(),
+    proofUrl: String(payload.proofUrl || "").trim(),
+    notifyClient: payload.notifyClient ? "TRUE" : "FALSE",
+    autoLogTime: payload.autoLogTime ? "TRUE" : "FALSE",
+  });
+
   return { ok: true, message: "Leave request submitted." };
 }
 
-function generateTiToPayslips() {
-  setupTiToSheets();
-  const ss = SpreadsheetApp.getActive();
-  const timeRows = tableRows_(ss.getSheetByName(TITO.timeSheet));
-  const leaveRows = tableRows_(ss.getSheetByName(TITO.leaveSheet));
-  const paySheet = ss.getSheetByName(TITO.payslipSheet);
-  const period = getTiToPayPeriod_(new Date());
-  const periodStart = period.coverageStartDate;
-  const periodEnd = period.coverageEndDate;
-  const grouped = {};
+function clockInByTeamMember_(teamMember, project, activity, notes) {
+  const sheet = ensureSheet_(TITO.timeSheet, TITO.timeHeaders);
+  if (findActiveShiftForMember_(teamMember)) {
+    throw new Error(teamMember + " is already logged in. Please log out of the active session first.");
+  }
 
-  timeRows.forEach((row) => {
-    if (String(row.Status || "").toLowerCase() !== "closed") return;
-    const timeIn = new Date(row["Time In"]);
-    if (timeIn < periodStart || timeIn > periodEnd) return;
-    const key = row.Username;
-    grouped[key] = grouped[key] || { name: row["Team Member"], hours: 0, leaveDays: 0 };
-    grouped[key].hours += Number(row.Hours || 0);
-  });
-
-  leaveRows.forEach((row) => {
-    if (String(row.Status || "").toLowerCase() !== "approved") return;
-    const start = new Date(row["Start Date"]);
-    if (start < periodStart || start > periodEnd) return;
-    const key = row.Username;
-    grouped[key] = grouped[key] || { name: row["Team Member"], hours: 0, leaveDays: 0 };
-    grouped[key].leaveDays += Number(row["Day Count"] || 0);
-  });
-
-  Object.keys(grouped).forEach((username) => {
-    const item = grouped[username];
-    const rate = hourlyRateFor_(username);
-    const gross = Math.round(item.hours * rate * 100) / 100;
-    paySheet.appendRow([
-      makeId_("PAY"),
-      username,
-      item.name,
-      periodStart,
-      periodEnd,
-      item.hours,
-      item.leaveDays,
-      rate,
-      gross,
-      0,
-      gross,
-      new Date(),
-      "Generated",
-    ]);
-  });
-}
-
-function generateTiToClientInvoices() {
-  setupTiToSheets();
-  const ss = SpreadsheetApp.getActive();
-  const timeRows = tableRows_(ss.getSheetByName(TITO.timeSheet));
-  const invoiceSheet = ss.getSheetByName(TITO.invoiceSheet);
+  const ids = nextLogIds_(sheet);
   const now = new Date();
-  const periodStart = startOfMonth_(now);
-  const periodEnd = endOfMonth_(now);
-  const grouped = {};
+  const row = {
+    logId: ids.memberLogId,
+    date: formatDate_(now),
+    teamMember,
+    project,
+    activity,
+    timeIn: formatTime_(now),
+    timeOut: "",
+    hours: "",
+    notes,
+  };
 
-  timeRows.forEach((row) => {
-    if (String(row.Status || "").toLowerCase() !== "closed") return;
-    const timeIn = new Date(row["Time In"]);
-    if (timeIn < periodStart || timeIn > periodEnd) return;
-    const project = row.Project || "General Operations";
-    grouped[project] = grouped[project] || { hours: 0, client: clientForProject_(project), rate: rateForProject_(project) };
-    grouped[project].hours += Number(row.Hours || 0);
-  });
+  appendTimeLog_(sheet, row);
 
-  Object.keys(grouped).forEach((project) => {
-    const item = grouped[project];
-    const amount = Math.round(item.hours * item.rate * 100) / 100;
-    invoiceSheet.appendRow([
-      makeId_("INV"),
-      item.client,
+  const hasManagementPair = !isManagementMember_(teamMember);
+  if (hasManagementPair) {
+    appendTimeLog_(sheet, {
+      logId: ids.managementLogId,
+      date: row.date,
+      teamMember: TITO.managementMember,
       project,
-      periodStart,
-      periodEnd,
-      item.hours,
-      item.rate,
-      amount,
-      new Date(),
-      "Draft",
-    ]);
-  });
-}
+      activity: TITO.managementActivity,
+      timeIn: row.timeIn,
+      timeOut: "",
+      hours: "",
+      notes: ids.memberLogId,
+    });
+  }
 
-function getTiToPayPeriod_(referenceDate) {
-  const firstPay = dateOnly_(TITO.firstPayDate).getTime();
-  const current = dateOnly_(referenceDate).getTime();
-  const intervalMs = TITO.payIntervalDays * 86_400_000;
-  const cycle = Math.max(0, Math.ceil((current - firstPay) / intervalMs));
-  const offset = cycle * TITO.payIntervalDays;
-  const coverageStartDate = addDays_(dateOnly_(TITO.firstCoverageStart), offset);
-  const coverageEndDate = addDays_(dateOnly_(TITO.firstCoverageEnd), offset);
-  const payDate = addDays_(dateOnly_(TITO.firstPayDate), offset);
   return {
-    payDate,
-    coverageStartDate,
-    coverageEndDate,
-    coverageCode: Utilities.formatDate(coverageStartDate, Session.getScriptTimeZone(), "MMdd") + "-" + Utilities.formatDate(coverageEndDate, Session.getScriptTimeZone(), "MMdd"),
-    coverageEndFullDayHours: 8,
+    message: "Logged Time In for " + teamMember + (hasManagementPair ? " (+ Management session)" : ""),
+    activeShift: {
+      entryId: ids.memberLogId,
+      managementEntryId: hasManagementPair ? ids.managementLogId : "",
+      teamMember,
+      project,
+      activity,
+      timeIn: now,
+      notes,
+    },
   };
 }
 
-function dateOnly_(value) {
-  const date = value instanceof Date ? value : new Date(String(value) + "T00:00:00");
-  return new Date(date.getFullYear(), date.getMonth(), date.getDate());
+function clockOutByTeamMember_(teamMember, notes) {
+  const sheet = ensureSheet_(TITO.timeSheet, TITO.timeHeaders);
+  const active = findActiveShiftForMember_(teamMember);
+  if (!active) throw new Error("No active Time In record found for " + teamMember + ".");
+
+  const now = new Date();
+  const timeOut = formatTime_(now);
+  closeTimeLog_(sheet, active.rowNumber, timeOut, notes || active.notes || "");
+
+  const management = isManagementMember_(teamMember) ? null : findOpenManagementShift_(sheet, active);
+  if (management) {
+    closeTimeLog_(sheet, management.rowNumber, timeOut, management.notes || active.entryId);
+  }
+
+  return {
+    message: "Successfully logged Time Out for " + teamMember + (management ? " and finalized Management session." : ""),
+  };
 }
 
-function addDays_(date, days) {
-  return new Date(date.getFullYear(), date.getMonth(), date.getDate() + days);
+function appendLeaveRequest_(member, request) {
+  const sheet = ensureSheet_(TITO.leaveSheet, TITO.leaveHeaders);
+  const headers = getHeaders_(sheet);
+  const row = blankRow_(headers);
+
+  setValue_(row, headers, ["request date", "submitted at", "created at"], formatDate_(new Date()));
+  setValue_(row, headers, ALIASES.teamMember, member.teamMember);
+  setValue_(row, headers, ALIASES.leaveType, request.leaveType);
+  setValue_(row, headers, ALIASES.startDate, request.startDate);
+  setValue_(row, headers, ALIASES.endDate, request.endDate);
+  setValue_(row, headers, ALIASES.totalDays, request.days);
+  setValue_(row, headers, ALIASES.clientProject, request.clientProject);
+  setValue_(row, headers, ALIASES.proof, request.proofUrl);
+  setValue_(row, headers, ALIASES.ruleValidation, "");
+  setValue_(row, headers, ALIASES.managerStatus, "Pending");
+  setValue_(row, headers, ALIASES.notifyClient, request.notifyClient);
+  setValue_(row, headers, ALIASES.autoLogTime, request.autoLogTime);
+
+  sheet.appendRow(trimTrailing_(row));
+}
+
+function appendTimeLog_(sheet, values) {
+  const headers = getHeaders_(sheet);
+  const row = blankRow_(headers);
+
+  setValue_(row, headers, ALIASES.logId, values.logId);
+  setValue_(row, headers, ALIASES.date, values.date);
+  setValue_(row, headers, ALIASES.teamMember, values.teamMember);
+  setValue_(row, headers, ALIASES.project, values.project);
+  setValue_(row, headers, ALIASES.activity, values.activity);
+  setValue_(row, headers, ALIASES.timeIn, values.timeIn);
+  setValue_(row, headers, ALIASES.timeOut, values.timeOut);
+  setValue_(row, headers, ALIASES.hours, values.hours);
+  setValue_(row, headers, ALIASES.notes, values.notes);
+
+  sheet.appendRow(trimTrailing_(row));
+}
+
+function closeTimeLog_(sheet, rowNumber, timeOut, notes) {
+  const headers = getHeaders_(sheet);
+  const timeOutCol = findColumn_(headers, ALIASES.timeOut);
+  const hoursCol = findColumn_(headers, ALIASES.hours);
+  const notesCol = findColumn_(headers, ALIASES.notes);
+
+  if (timeOutCol === -1 || hoursCol === -1) throw new Error("Time Logs tab is missing Time Out or Total Hours.");
+
+  sheet.getRange(rowNumber, timeOutCol + 1).setValue(timeOut);
+  sheet.getRange(rowNumber, hoursCol + 1).setFormula(durationFormula_(headers, rowNumber));
+  if (notesCol !== -1) sheet.getRange(rowNumber, notesCol + 1).setValue(notes);
+}
+
+function findActiveShiftForMember_(teamMember) {
+  const sheet = SpreadsheetApp.getActive().getSheetByName(TITO.timeSheet);
+  if (!sheet || sheet.getLastRow() < 2) return null;
+
+  const headers = getHeaders_(sheet);
+  const teamCol = findColumn_(headers, ALIASES.teamMember);
+  const activityCol = findColumn_(headers, ALIASES.activity);
+  const timeOutCol = findColumn_(headers, ALIASES.timeOut);
+  const notesCol = findColumn_(headers, ALIASES.notes);
+  const logIdCol = findColumn_(headers, ALIASES.logId);
+  const projectCol = findColumn_(headers, ALIASES.project);
+  const timeInCol = findColumn_(headers, ALIASES.timeIn);
+  const dateCol = findColumn_(headers, ALIASES.date);
+
+  if (teamCol === -1 || timeOutCol === -1) return null;
+
+  const values = sheet.getRange(2, 1, sheet.getLastRow() - 1, headers.length).getValues();
+  const target = normalize_(teamMember);
+  const targetIsManagement = isManagementMember_(teamMember);
+
+  for (let index = values.length - 1; index >= 0; index -= 1) {
+    const row = values[index];
+    const rowMember = normalize_(row[teamCol]);
+    const activity = activityCol === -1 ? "" : normalize_(row[activityCol]);
+    const notes = notesCol === -1 ? "" : String(row[notesCol] || "").trim();
+
+    if (rowMember !== target) continue;
+    if (row[timeOutCol]) continue;
+    if (targetIsManagement && activity === normalize_(TITO.managementActivity) && notes) continue;
+
+    return {
+      rowNumber: index + 2,
+      entryId: logIdCol === -1 ? "" : String(row[logIdCol] || "").trim(),
+      teamMember: row[teamCol],
+      project: projectCol === -1 ? "" : row[projectCol],
+      activity: activityCol === -1 ? "" : row[activityCol],
+      timeIn: sheetDateTime_(dateCol === -1 ? "" : row[dateCol], timeInCol === -1 ? "" : row[timeInCol]),
+      notes,
+    };
+  }
+
+  return null;
+}
+
+function findOpenManagementShift_(sheet, active) {
+  const headers = getHeaders_(sheet);
+  const teamCol = findColumn_(headers, ALIASES.teamMember);
+  const projectCol = findColumn_(headers, ALIASES.project);
+  const timeOutCol = findColumn_(headers, ALIASES.timeOut);
+  const notesCol = findColumn_(headers, ALIASES.notes);
+  const logIdCol = findColumn_(headers, ALIASES.logId);
+
+  if (teamCol === -1 || timeOutCol === -1 || notesCol === -1 || sheet.getLastRow() < 2) return null;
+
+  const values = sheet.getRange(2, 1, sheet.getLastRow() - 1, headers.length).getValues();
+  const activeId = normalize_(active.entryId);
+  const activeProject = normalize_(active.project);
+
+  for (let index = values.length - 1; index >= 0; index -= 1) {
+    const row = values[index];
+    if (!isManagementMember_(row[teamCol])) continue;
+    if (row[timeOutCol]) continue;
+    if (normalize_(row[notesCol]) !== activeId) continue;
+    return {
+      rowNumber: index + 2,
+      entryId: logIdCol === -1 ? "" : String(row[logIdCol] || "").trim(),
+      notes: String(row[notesCol] || "").trim(),
+    };
+  }
+
+  for (let index = values.length - 1; index >= 0; index -= 1) {
+    const row = values[index];
+    if (!isManagementMember_(row[teamCol])) continue;
+    if (row[timeOutCol]) continue;
+    if (projectCol === -1 || normalize_(row[projectCol]) !== activeProject) continue;
+    return {
+      rowNumber: index + 2,
+      entryId: logIdCol === -1 ? "" : String(row[logIdCol] || "").trim(),
+      notes: String(row[notesCol] || "").trim(),
+    };
+  }
+
+  return null;
+}
+
+function nextLogIds_(sheet) {
+  const headers = getHeaders_(sheet);
+  const logIdCol = findColumn_(headers, ALIASES.logId);
+  let max = 1000;
+
+  if (logIdCol !== -1 && sheet.getLastRow() > 1) {
+    const values = sheet.getRange(2, logIdCol + 1, sheet.getLastRow() - 1, 1).getValues();
+    values.forEach((row) => {
+      const match = String(row[0] || "").trim().match(/^LOG-(\d+)$/i);
+      if (!match) return;
+      const value = Number(match[1]);
+      if (isFinite(value)) max = Math.max(max, value);
+    });
+  }
+
+  return {
+    memberLogId: "LOG-" + (max + 1),
+    managementLogId: "LOG-" + (max + 2),
+  };
+}
+
+function findMember_(email, password) {
+  const login = String(email || "").trim().toLowerCase();
+  const sheet = SpreadsheetApp.getActive().getSheetByName(TITO.employeesSheet);
+  if (!sheet) throw new Error("Employees tab was not found.");
+  if (!login || !password) throw new Error("Email address and password are required.");
+
+  const rows = tableRows_(sheet);
+  for (let i = 0; i < rows.length; i += 1) {
+    const row = rows[i];
+    const user = valueFor_(row, ALIASES.email);
+    if (!user || user.toLowerCase() !== login) continue;
+
+    const stored = valueFor_(row, ALIASES.password);
+    const hash = valueFor_(row, ALIASES.passwordHash).replace(/^sha256:/i, "").trim();
+    const valid = hash ? sha256_(password) === hash.toLowerCase() : stored && stored === String(password || "");
+    if (!valid) continue;
+
+    const name = String(row.values.Name || row.values["Full Name"] || row.values["Team Member"] || user).trim();
+    const teamMember = String(row.values["Team Member"] || row.values.Name || user).trim();
+
+    return {
+      username: user,
+      email: user,
+      name,
+      teamMember,
+      assignedProjects: split_(valueFor_(row, ALIASES.assignedProjects)),
+    };
+  }
+
+  throw new Error("Invalid email address or password.");
+}
+
+function projectsForMember_(member) {
+  const found = {};
+  member.assignedProjects.forEach((project) => {
+    if (project) found[project] = true;
+  });
+
+  const sheet = SpreadsheetApp.getActive().getSheetByName(TITO.settingsSheet);
+  if (sheet) {
+    tableRows_(sheet).forEach((row) => {
+      const project = valueFor_(row, ALIASES.approvedProjects);
+      if (project) found[project] = true;
+    });
+  }
+
+  return Object.keys(found).sort();
+}
+
+function activitiesForPortal_() {
+  const sheet = SpreadsheetApp.getActive().getSheetByName(TITO.settingsSheet);
+  const found = {};
+  if (!sheet) return [];
+
+  tableRows_(sheet).forEach((row) => {
+    const activity = valueFor_(row, ALIASES.activities);
+    if (activity) found[activity] = true;
+  });
+
+  return Object.keys(found).sort();
 }
 
 function ensureSheet_(name, headers) {
@@ -332,100 +542,99 @@ function ensureSheet_(name, headers) {
   return sheet;
 }
 
-function findMember_(username, password) {
-  const ss = SpreadsheetApp.getActive();
-  const login = String(username || "").trim().toLowerCase();
-  const sheet = ss.getSheetByName(TITO.employeesSheet);
-  if (!sheet) throw new Error("Employees tab was not found.");
-  const rows = tableRows_(sheet);
-  for (let i = 0; i < rows.length; i += 1) {
-    const row = rows[i];
-    const user = String(row.Username || row.Email || row["Email Address"] || row.Name || "").trim();
-    if (user.toLowerCase() !== login) continue;
-    const stored = String(row.Password || row.Passcode || row.PIN || "").trim();
-    const hash = String(row["Password Hash"] || row.password_hash || "").replace(/^sha256:/i, "").trim();
-    const valid = hash ? sha256_(password) === hash.toLowerCase() : stored && stored === String(password || "");
-    if (!valid) continue;
-    if (["inactive", "disabled", "suspended"].indexOf(String(row.Status || "").toLowerCase()) !== -1) continue;
-    return {
-      username: user,
-      name: row.Name || row["Full Name"] || row["Team Member"] || user,
-      email: row.Email || row["Email Address"] || "",
-      role: row.Role || row.Position || "",
-      hourlyRate: Number(row["Hourly Rate"] || row.Rate || 0),
-      assignedProjects: split_(row["Project Assigned"] || row["Assigned Projects"] || row.Projects || row.Project),
-    };
-  }
-  throw new Error("Invalid username or password.");
-}
-
-function projectsForMember_(member) {
-  const ss = SpreadsheetApp.getActive();
-  const found = {};
-  member.assignedProjects.forEach((project) => {
-    if (project) found[project] = true;
-  });
-  const sheet = ss.getSheetByName(TITO.projectsSheet);
-  if (sheet) {
-    tableRows_(sheet).forEach((row) => {
-      const project = row.Project || row["Project Name"];
-      if (!project) return;
-      const status = String(row.Status || "").toLowerCase();
-      if (["inactive", "closed", "archived", "completed"].indexOf(status) !== -1) return;
-      const assigned = String(row["Assigned To"] || row.Assignee || "").toLowerCase();
-      if (!assigned || assigned.indexOf(member.username.toLowerCase()) !== -1 || assigned.indexOf(member.name.toLowerCase()) !== -1) {
-        found[project] = true;
-      }
-    });
-  }
-  return Object.keys(found).sort();
-}
-
-function findActiveShift_(username) {
-  const sheet = SpreadsheetApp.getActive().getSheetByName(TITO.timeSheet);
-  if (!sheet) return null;
-  const values = sheet.getDataRange().getValues();
-  const login = String(username || "").trim().toLowerCase();
-  for (let i = values.length - 1; i >= 1; i -= 1) {
-    const row = values[i];
-    if (String(row[1] || "").trim().toLowerCase() === login && !row[5] && String(row[7] || "").toLowerCase() !== "closed") {
-      return {
-        rowNumber: i + 1,
-        entryId: row[0],
-        username: row[1],
-        teamMember: row[2],
-        project: row[3],
-        timeIn: row[4],
-        notes: row[8],
-        createdAt: row[9],
-      };
-    }
-  }
-  return null;
+function getHeaders_(sheet) {
+  return sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0].map(String);
 }
 
 function tableRows_(sheet) {
   const values = sheet.getDataRange().getValues();
-  const headers = values.shift() || [];
-  return values.map((row) => {
-    const item = {};
-    headers.forEach((header, index) => {
-      item[header] = row[index];
+  const headers = (values.shift() || []).map(String);
+  return values.map((row, index) => {
+    const item = { rowNumber: index + 2, headers, values: {} };
+    headers.forEach((header, column) => {
+      item.values[header] = row[column];
     });
     return item;
   });
 }
 
-function safeMember_(member) {
-  return { username: member.username, name: member.name, email: member.email, role: member.role };
+function valueFor_(row, aliases) {
+  const header = row.headers.find((item) => aliases.some((alias) => normalize_(alias) === normalize_(item)));
+  return header ? String(row.values[header] || "").trim() : "";
 }
 
-function makeId_(prefix) {
-  return prefix + "-" + Utilities.formatDate(new Date(), Session.getScriptTimeZone(), "yyyyMMddHHmmss") + "-" + Utilities.getUuid().slice(0, 6).toUpperCase();
+function findColumn_(headers, aliases) {
+  for (let i = 0; i < headers.length; i += 1) {
+    if (aliases.some((alias) => normalize_(alias) === normalize_(headers[i]))) return i;
+  }
+  return -1;
+}
+
+function setValue_(row, headers, aliases, value) {
+  const index = findColumn_(headers, aliases);
+  if (index !== -1) row[index] = value;
+}
+
+function blankRow_(headers) {
+  return new Array(headers.length).fill("");
+}
+
+function trimTrailing_(row) {
+  let last = row.length - 1;
+  while (last > 0 && row[last] === "") last -= 1;
+  return row.slice(0, last + 1);
+}
+
+function durationFormula_(headers, rowNumber) {
+  const timeInCol = findColumn_(headers, ALIASES.timeIn);
+  const timeOutCol = findColumn_(headers, ALIASES.timeOut);
+  return "=(" + columnLetter_(timeOutCol) + rowNumber + "-" + columnLetter_(timeInCol) + rowNumber + ")*24";
+}
+
+function columnLetter_(index) {
+  let value = index + 1;
+  let letters = "";
+  while (value > 0) {
+    const remainder = (value - 1) % 26;
+    letters = String.fromCharCode(65 + remainder) + letters;
+    value = Math.floor((value - 1) / 26);
+  }
+  return letters;
+}
+
+function formatDate_(date) {
+  return Utilities.formatDate(date, SpreadsheetApp.getActive().getSpreadsheetTimeZone(), "yyyy-MM-dd");
+}
+
+function formatTime_(date) {
+  return Utilities.formatDate(date, SpreadsheetApp.getActive().getSpreadsheetTimeZone(), "HH:mm:ss");
+}
+
+function sheetDateTime_(dateValue, timeValue) {
+  const dateText = dateValue instanceof Date ? formatDate_(dateValue) : String(dateValue || "");
+  const timeText = timeValue instanceof Date ? formatTime_(timeValue) : String(timeValue || "");
+  return new Date((dateText + " " + timeText).trim());
+}
+
+function isManagementMember_(value) {
+  return normalize_(value) === normalize_(TITO.managementMember);
+}
+
+function normalize_(value) {
+  return String(value || "").trim().toLowerCase().replace(/[^a-z0-9]+/g, "");
 }
 
 function split_(value) {
   return String(value || "").split(/[,;\n|]+/).map((item) => item.trim()).filter(Boolean);
+}
+
+function safeMember_(member) {
+  return {
+    username: member.username,
+    name: member.name,
+    teamMember: member.teamMember,
+    email: member.email,
+  };
 }
 
 function sha256_(value) {
@@ -443,36 +652,14 @@ function json_(payload) {
   return ContentService.createTextOutput(JSON.stringify(payload)).setMimeType(ContentService.MimeType.JSON);
 }
 
-function startOfMonth_(date) {
-  return new Date(date.getFullYear(), date.getMonth(), 1);
+function resetLoginCheckbox_(sheet, cell) {
+  sheet.getRange(cell).setValue(false);
 }
 
-function endOfMonth_(date) {
-  return new Date(date.getFullYear(), date.getMonth() + 1, 0, 23, 59, 59);
-}
-
-function hourlyRateFor_(username) {
-  const ss = SpreadsheetApp.getActive();
-  const login = String(username || "").trim().toLowerCase();
-  const sheet = ss.getSheetByName(TITO.employeesSheet);
-  if (!sheet) return 0;
-  const rows = tableRows_(sheet);
-  for (let i = 0; i < rows.length; i += 1) {
-    const row = rows[i];
-    const user = String(row.Username || row.Email || row["Email Address"] || row.Name || "").trim().toLowerCase();
-    if (user === login) return Number(row["Hourly Rate"] || row.Rate || 0);
-  }
-  return 0;
-}
-
-function clientForProject_(project) {
-  const rows = tableRows_(SpreadsheetApp.getActive().getSheetByName(TITO.projectsSheet));
-  const match = rows.find((row) => String(row.Project || "") === String(project || ""));
-  return (match && match.Client) || "Unassigned Client";
-}
-
-function rateForProject_(project) {
-  const rows = tableRows_(SpreadsheetApp.getActive().getSheetByName(TITO.projectsSheet));
-  const match = rows.find((row) => String(row.Project || "") === String(project || ""));
-  return Number((match && match["Hourly Rate"]) || 0);
+function clearLoginForm_(sheet) {
+  resetLoginCheckbox_(sheet, TITO.timeInCheckbox);
+  resetLoginCheckbox_(sheet, TITO.timeOutCheckbox);
+  sheet.getRange(TITO.teamMemberCell).clearContent();
+  sheet.getRange(TITO.projectCell).clearContent();
+  sheet.getRange(TITO.activityCell).clearContent();
 }
