@@ -7,7 +7,7 @@
     <title>TiTo Timekeeping | JCIT Services</title>
     <meta
       name="description"
-      content="JCIT Services team timekeeping portal for time, leave, contacts, coaching, and payslips."
+      content="JCIT Services team timekeeping portal for time, leave, coaching, and payslips."
     />
     <meta name="robots" content="noindex,nofollow" />
     <link rel="canonical" href="https://jcit.digital/TiTo/" />
@@ -317,7 +317,7 @@
 
       .tito-stats {
         display: grid;
-        grid-template-columns: repeat(4, minmax(0, 1fr));
+        grid-template-columns: repeat(3, minmax(0, 1fr));
         gap: 12px;
       }
 
@@ -519,7 +519,7 @@
         }
 
         .tito-nav {
-          grid-template-columns: repeat(5, minmax(0, 1fr));
+          grid-template-columns: repeat(4, minmax(0, 1fr));
         }
 
         .tito-nav-button {
@@ -596,7 +596,7 @@
             </div>
             <div>
               <h2>TiTo Timekeeping</h2>
-              <p>Time, leave, contacts, coaching, and payslip records for the JCIT team.</p>
+              <p>Time, leave, coaching, and payslip records for the JCIT team.</p>
             </div>
           </div>
 
@@ -655,14 +655,11 @@
                   <button class="tito-nav-button" type="button" aria-selected="false" data-tab-target="leave">
                     <span>Leave</span><span>02</span>
                   </button>
-                  <button class="tito-nav-button" type="button" aria-selected="false" data-tab-target="contacts">
-                    <span>Contacts</span><span>03</span>
-                  </button>
                   <button class="tito-nav-button" type="button" aria-selected="false" data-tab-target="coaching">
-                    <span>Coaching</span><span>04</span>
+                    <span>Coaching</span><span>03</span>
                   </button>
                   <button class="tito-nav-button" type="button" aria-selected="false" data-tab-target="payslip">
-                    <span>Payslips</span><span>05</span>
+                    <span>Payslips</span><span>04</span>
                   </button>
                 </nav>
                 <button class="button secondary" type="button" data-logout>Logout</button>
@@ -678,10 +675,6 @@
                 <div class="tito-stat">
                   <span class="tito-label">Status</span>
                   <strong data-clock-status>Signed out</strong>
-                </div>
-                <div class="tito-stat">
-                  <span class="tito-label">Contacts</span>
-                  <strong data-contact-count>0</strong>
                 </div>
                 <div class="tito-stat">
                   <span class="tito-label">Coaching</span>
@@ -793,20 +786,6 @@
                 </section>
               </section>
 
-              <section class="tito-view" data-tab-panel="contacts" hidden>
-                <section class="tito-panel">
-                  <div class="tito-panel-head">
-                    <div>
-                      <h3>Contact Management</h3>
-                      <p>Client and project contacts from the Client Database.</p>
-                    </div>
-                    <button class="button secondary" type="button" data-refresh-contacts>Refresh</button>
-                  </div>
-                  <div class="tito-list" data-contacts-output></div>
-                  <div class="tito-alert" data-contacts-message hidden></div>
-                </section>
-              </section>
-
               <section class="tito-view" data-tab-panel="coaching" hidden>
                 <section class="tito-panel">
                   <div class="tito-panel-head">
@@ -849,7 +828,6 @@
           member: null,
           projects: [],
           activities: [],
-          contacts: [],
           coaching: [],
           payslips: [],
           activeShift: null,
@@ -872,7 +850,6 @@
           clockStatus: document.querySelector("[data-clock-status]"),
           clockStatusPill: document.querySelector("[data-clock-status-pill]"),
           activeShiftText: document.querySelector("[data-active-shift-text]"),
-          contactCount: document.querySelector("[data-contact-count]"),
           coachingCount: document.querySelector("[data-coaching-count]"),
           project: document.querySelector("#tito-project"),
           projectManual: document.querySelector("#tito-project-manual"),
@@ -893,9 +870,6 @@
           refreshPayslips: document.querySelector("[data-refresh-payslips]"),
           payslipMessage: document.querySelector("[data-payslip-message]"),
           payslipOutput: document.querySelector("[data-payslip-output]"),
-          refreshContacts: document.querySelector("[data-refresh-contacts]"),
-          contactsMessage: document.querySelector("[data-contacts-message]"),
-          contactsOutput: document.querySelector("[data-contacts-output]"),
           refreshCoaching: document.querySelector("[data-refresh-coaching]"),
           coachingMessage: document.querySelector("[data-coaching-message]"),
           coachingOutput: document.querySelector("[data-coaching-output]"),
@@ -1061,36 +1035,6 @@
           els.payPeriod.textContent = `${state.payPeriod.schedule || "Biweekly"} coverage ${state.payPeriod.coverageCode || ""}`;
         };
 
-        const renderContacts = () => {
-          const contacts = Array.isArray(state.contacts) ? state.contacts : [];
-          els.contactCount.textContent = String(contacts.length);
-          if (!contacts.length) {
-            els.contactsOutput.innerHTML = `<div class="tito-empty">No contacts found.</div>`;
-            return;
-          }
-
-          els.contactsOutput.innerHTML = contacts
-            .map((contact) => `
-              <article class="tito-card">
-                <div class="tito-card-main">
-                  <div>
-                    <h4>${escapeHtml(contact.project || contact.company || contact.clientName || "Contact")}</h4>
-                    <p>${escapeHtml(contact.clientName || contact.company || "-")}</p>
-                  </div>
-                  <span class="tito-pill">${escapeHtml(contact.status || "Active")}</span>
-                </div>
-                <div class="tito-table-grid">
-                  <div><span class="tito-table-label">Email</span><div class="tito-table-value">${contact.email ? `<a href="mailto:${escapeHtml(contact.email)}">${escapeHtml(contact.email)}</a>` : "-"}</div></div>
-                  <div><span class="tito-table-label">Phone</span><div class="tito-table-value">${escapeHtml(contact.phone || "-")}</div></div>
-                  <div><span class="tito-table-label">Company</span><div class="tito-table-value">${escapeHtml(contact.company || "-")}</div></div>
-                  <div><span class="tito-table-label">Pay Scheme</span><div class="tito-table-value">${escapeHtml(contact.payScheme || "-")}</div></div>
-                </div>
-                ${contact.projectDetails ? `<p>${escapeHtml(contact.projectDetails)}</p>` : ""}
-              </article>
-            `)
-            .join("");
-        };
-
         const renderCoaching = () => {
           const coaching = Array.isArray(state.coaching) ? state.coaching : [];
           els.coachingCount.textContent = String(coaching.filter((item) => !item.acknowledged).length);
@@ -1167,7 +1111,6 @@
           syncProjectOptions();
           syncActivityOptions();
           renderPayPeriod();
-          renderContacts();
           renderCoaching();
           setClockButtons();
         };
@@ -1178,7 +1121,6 @@
           state.member = null;
           state.projects = [];
           state.activities = [];
-          state.contacts = [];
           state.coaching = [];
           state.payslips = [];
           state.activeShift = null;
@@ -1191,7 +1133,6 @@
           hideMessage(els.clockMessage);
           hideMessage(els.leaveMessage);
           hideMessage(els.payslipMessage);
-          hideMessage(els.contactsMessage);
           hideMessage(els.coachingMessage);
         };
 
@@ -1210,21 +1151,6 @@
               minute: "2-digit",
             }).format(now);
           });
-        };
-
-        const loadContacts = async () => {
-          hideMessage(els.contactsMessage);
-          setLoading(els.refreshContacts, true);
-          try {
-            const data = await api(authedPayload({ action: "contacts" }));
-            state.contacts = data.contacts || [];
-            renderContacts();
-            showMessage(els.contactsMessage, "Contacts refreshed.", "ok");
-          } catch (error) {
-            showMessage(els.contactsMessage, error.message, "error");
-          } finally {
-            setLoading(els.refreshContacts, false);
-          }
         };
 
         const loadCoaching = async () => {
@@ -1277,7 +1203,6 @@
             state.member = data.member;
             state.projects = data.projects || [];
             state.activities = data.activities || [];
-            state.contacts = data.contacts || [];
             state.coaching = data.coaching || [];
             state.activeShift = data.activeShift || null;
             state.payPeriod = data.payPeriod || null;
@@ -1398,12 +1323,6 @@
           }
         });
 
-        els.contactsOutput.addEventListener("click", (event) => {
-          const anchor = event.target.closest("a[href^='mailto:']");
-          if (!anchor) return;
-          anchor.blur();
-        });
-
         els.coachingOutput.addEventListener("click", async (event) => {
           const button = event.target.closest("[data-ack-coaching]");
           if (!button) return;
@@ -1429,7 +1348,6 @@
           }
         });
 
-        els.refreshContacts.addEventListener("click", loadContacts);
         els.refreshCoaching.addEventListener("click", loadCoaching);
         els.refreshPayslips.addEventListener("click", loadPayslips);
         els.logout.addEventListener("click", resetSession);
