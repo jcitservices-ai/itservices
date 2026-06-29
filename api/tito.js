@@ -1,6 +1,9 @@
 const {
   authenticate,
+  acknowledgeCoaching,
   clockAction,
+  getCoaching,
+  getContacts,
   getPayslip,
   requestPasswordEmail,
   submitLeave,
@@ -124,6 +127,26 @@ module.exports = async function handler(req, res) {
         username: body.username,
         email: body.email,
         password: body.password,
+      });
+    } else if (action === "contacts") {
+      result = await getContacts({
+        username: body.username,
+        email: body.email,
+        password: body.password,
+      });
+    } else if (action === "coaching") {
+      result = await getCoaching({
+        username: body.username,
+        email: body.email,
+        password: body.password,
+      });
+    } else if (action === "acknowledge_coaching") {
+      result = await acknowledgeCoaching({
+        username: body.username,
+        email: body.email,
+        password: body.password,
+        coachingId: body.coachingId,
+        rowNumber: body.rowNumber,
       });
     } else if (action === "password_reset") {
       result = await requestPasswordEmail({

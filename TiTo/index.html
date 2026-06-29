@@ -3,19 +3,16 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#06121d" />
-    <title>TiTo Timekeeping | JC IT Services</title>
+    <meta name="theme-color" content="#071014" />
+    <title>TiTo Timekeeping | JCIT Services</title>
     <meta
       name="description"
-      content="JCIT Services team timekeeping portal for time in, time out, and leave requests."
+      content="JCIT Services team timekeeping portal for time, leave, contacts, coaching, and payslips."
     />
     <meta name="robots" content="noindex,nofollow" />
     <link rel="canonical" href="https://jcit.digital/TiTo/" />
-    <meta property="og:title" content="TiTo Timekeeping | JC IT Services" />
-    <meta
-      property="og:description"
-      content="Team timekeeping portal for JCIT Services operations."
-    />
+    <meta property="og:title" content="TiTo Timekeeping | JCIT Services" />
+    <meta property="og:description" content="Team operations portal for JCIT Services." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://jcit.digital/TiTo/" />
     <meta property="og:image" content="https://jcit.digital/assets/logo.webp" />
@@ -23,7 +20,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
     <link
@@ -37,101 +34,127 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png" />
     <style>
+      :root {
+        --tito-bg: #071014;
+        --tito-surface: rgba(11, 22, 27, 0.92);
+        --tito-surface-2: rgba(18, 30, 35, 0.94);
+        --tito-line: rgba(220, 239, 243, 0.13);
+        --tito-line-strong: rgba(220, 239, 243, 0.22);
+        --tito-text: #f3fbfc;
+        --tito-muted: #aac1c8;
+        --tito-soft: #d7e7eb;
+        --tito-accent: #29d7c7;
+        --tito-accent-2: #8bd46d;
+        --tito-warn: #f4bd63;
+        --tito-info: #8fa8ff;
+        --tito-danger: #ff7b7b;
+      }
+
+      body[data-page="tito"] {
+        background:
+          radial-gradient(circle at 12% 5%, rgba(41, 215, 199, 0.13), transparent 30rem),
+          radial-gradient(circle at 90% 10%, rgba(143, 168, 255, 0.13), transparent 34rem),
+          var(--tito-bg);
+      }
+
       body[data-page="tito"] main {
-        max-width: 1180px;
-        padding: 34px 20px 72px;
+        max-width: none;
+        min-height: calc(100vh - 88px);
+        padding: 18px;
       }
 
       .tito-shell {
+        margin: 0 auto;
+        max-width: 1440px;
+      }
+
+      .tito-login-screen {
+        align-items: center;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(340px, 440px);
+        gap: 24px;
+        min-height: calc(100vh - 150px);
+      }
+
+      .tito-login-copy {
         display: grid;
         gap: 18px;
+        max-width: 760px;
       }
 
-      .tito-topbar {
+      .tito-login-copy h2,
+      .tito-app-title h2 {
+        color: var(--tito-text);
+        font-size: 3.1rem;
+        line-height: 1.02;
+        margin: 0;
+      }
+
+      .tito-login-copy p,
+      .tito-app-title p,
+      .tito-muted {
+        color: var(--tito-muted);
+      }
+
+      .tito-login-copy p {
+        font-size: 1.05rem;
+        line-height: 1.7;
+        margin: 0;
+        max-width: 620px;
+      }
+
+      .tito-brand-row,
+      .tito-user-card,
+      .tito-card,
+      .tito-panel,
+      .tito-login-card,
+      .tito-stat,
+      .tito-clock-card {
+        border: 1px solid var(--tito-line);
+        border-radius: 8px;
+        background: var(--tito-surface);
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.28);
+      }
+
+      .tito-login-card {
         display: grid;
-        grid-template-columns: minmax(0, 1fr) auto;
-        gap: 20px;
+        gap: 18px;
+        padding: 22px;
+      }
+
+      .tito-brand-row {
         align-items: center;
-        padding: 18px 0 8px;
-      }
-
-      .tito-title {
-        display: grid;
-        gap: 8px;
-      }
-
-      .tito-title h2 {
-        font-size: clamp(1.75rem, 4vw, 3.05rem);
-        line-height: 1;
-        letter-spacing: 0;
-      }
-
-      .tito-title p {
-        max-width: 700px;
-        color: var(--text-2);
-      }
-
-      .tito-brand-chip {
         display: inline-grid;
-        grid-template-columns: 40px auto;
-        align-items: center;
-        gap: 10px;
-        border: 1px solid rgba(255, 255, 255, 0.12);
+        grid-template-columns: 44px minmax(0, 1fr);
+        gap: 12px;
+        justify-self: start;
+        padding: 12px;
+      }
+
+      .tito-brand-row img,
+      .tito-user-avatar img {
         border-radius: 8px;
-        background: rgba(2, 8, 12, 0.78);
-        padding: 10px 12px;
-        min-width: 230px;
+        height: 44px;
+        width: 44px;
       }
 
-      .tito-brand-chip img {
-        width: 40px;
-        height: 40px;
-        border-radius: 8px;
+      .tito-brand-row strong,
+      .tito-user-card strong {
+        color: var(--tito-text);
+        display: block;
+        line-height: 1.2;
       }
 
-      .tito-brand-chip strong,
-      .tito-panel h3,
-      .tito-module h3 {
-        line-height: 1.15;
+      .tito-brand-row span,
+      .tito-user-card span,
+      .tito-label,
+      .tito-table-label {
+        color: var(--tito-muted);
+        display: block;
+        font-size: 0.82rem;
       }
 
-      .tito-brand-chip span,
-      .tito-small,
-      .tito-meta,
-      .tito-hint {
-        color: var(--text-2);
-        font-size: 0.9rem;
-      }
-
-      .tito-grid {
-        display: grid;
-        grid-template-columns: minmax(270px, 0.56fr) minmax(0, 1.44fr);
-        gap: 16px;
-        align-items: start;
-      }
-
-      .tito-panel,
-      .tito-module,
-      .tito-status {
-        border: 1px solid rgba(255, 255, 255, 0.12);
-        border-radius: 8px;
-        background: rgba(2, 8, 12, 0.76);
-        box-shadow: 0 18px 45px rgba(0, 0, 0, 0.28);
-      }
-
-      .tito-panel,
-      .tito-module {
-        padding: 20px;
-      }
-
-      .tito-panel {
-        display: grid;
-        gap: 16px;
-      }
-
-      .tito-form,
-      .tito-dashboard,
-      .tito-fieldset {
+      .tito-form {
         display: grid;
         gap: 14px;
       }
@@ -141,171 +164,209 @@
         gap: 7px;
       }
 
-      .tito-field label,
-      .tito-fieldset legend {
-        color: rgba(232, 251, 255, 0.86);
+      .tito-field label {
+        color: var(--tito-soft);
         font-size: 0.82rem;
-        font-weight: 700;
-        letter-spacing: 0.06em;
+        font-weight: 800;
         text-transform: uppercase;
       }
 
       .tito-field input,
       .tito-field select,
       .tito-field textarea {
-        width: 100%;
-        min-height: 48px;
-        border: 1px solid rgba(255, 255, 255, 0.14);
+        background: rgba(4, 10, 13, 0.95);
+        border: 1px solid var(--tito-line-strong);
         border-radius: 8px;
-        background: rgba(1, 9, 14, 0.88);
-        color: var(--text-1);
+        color: var(--tito-text);
+        color-scheme: dark;
         font: inherit;
+        min-height: 48px;
         padding: 11px 12px;
+        width: 100%;
       }
 
       .tito-field textarea {
-        min-height: 94px;
+        min-height: 96px;
         resize: vertical;
       }
 
       .tito-field input::placeholder,
       .tito-field textarea::placeholder {
-        color: rgba(182, 214, 230, 0.55);
+        color: rgba(170, 193, 200, 0.58);
       }
 
-      .tito-row {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 12px;
-      }
-
-      .tito-actions {
+      .tito-actions,
+      .tito-button-row {
+        align-items: center;
         display: flex;
         flex-wrap: wrap;
         gap: 10px;
-        align-items: center;
       }
 
-      .tito-checks {
+      .tito-actions .button,
+      .tito-button-row .button,
+      .tito-form .button {
+        border-radius: 8px;
+        min-height: 46px;
+      }
+
+      .tito-app {
+        display: grid;
+        gap: 16px;
+      }
+
+      .tito-app-bar {
+        align-items: center;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 16px;
+        padding: 8px 0;
+      }
+
+      .tito-app-title {
+        display: grid;
+        gap: 6px;
+      }
+
+      .tito-app-title h2 {
+        font-size: 2rem;
+      }
+
+      .tito-app-title p {
+        margin: 0;
+      }
+
+      .tito-app-grid {
+        display: grid;
+        grid-template-columns: 280px minmax(0, 1fr);
+        gap: 16px;
+        align-items: start;
+      }
+
+      .tito-sidebar {
+        display: grid;
+        gap: 14px;
+        position: sticky;
+        top: 12px;
+      }
+
+      .tito-user-card {
+        display: grid;
+        gap: 14px;
+        padding: 16px;
+      }
+
+      .tito-user-main {
+        align-items: center;
+        display: grid;
+        grid-template-columns: 44px minmax(0, 1fr);
+        gap: 12px;
+      }
+
+      .tito-user-avatar {
+        align-items: center;
+        background: linear-gradient(135deg, var(--tito-accent), var(--tito-info));
+        border-radius: 8px;
+        color: #041013;
+        display: grid;
+        font-weight: 800;
+        height: 44px;
+        justify-items: center;
+        width: 44px;
+      }
+
+      .tito-nav {
         display: grid;
         gap: 8px;
       }
 
-      .tito-checks label {
+      .tito-nav-button {
         align-items: center;
-        color: rgba(232, 251, 255, 0.88);
-        display: flex;
-        gap: 9px;
-        min-height: 34px;
-      }
-
-      .tito-checks input {
-        accent-color: var(--accent-2);
-        height: 18px;
-        width: 18px;
-      }
-
-      .tito-actions .button,
-      .tito-form .button {
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid var(--tito-line);
         border-radius: 8px;
-        min-height: 48px;
-      }
-
-      .tito-actions .button {
-        min-width: 132px;
-      }
-
-      .tito-status {
-        padding: 14px;
+        color: var(--tito-soft);
         display: grid;
-        gap: 10px;
+        font: inherit;
+        font-weight: 800;
+        grid-template-columns: minmax(0, 1fr) auto;
+        min-height: 46px;
+        padding: 10px 12px;
+        text-align: left;
       }
 
-      .tito-status strong {
-        color: var(--accent-2);
-        font-size: 0.86rem;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
+      .tito-nav-button span:last-child {
+        color: var(--tito-muted);
+        font-family: "Space Mono", monospace;
+        font-size: 0.72rem;
       }
 
-      .tito-status p {
-        color: var(--text-2);
+      .tito-nav-button[aria-selected="true"] {
+        background: rgba(41, 215, 199, 0.12);
+        border-color: rgba(41, 215, 199, 0.42);
+        color: #ffffff;
       }
 
-      .tito-summary {
+      .tito-workspace {
         display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 10px;
+        gap: 14px;
+        min-width: 0;
+      }
+
+      .tito-stats {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 12px;
       }
 
       .tito-stat {
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 8px;
-        background: rgba(255, 255, 255, 0.045);
-        padding: 13px;
-        min-height: 86px;
-      }
-
-      .tito-stat span {
-        display: block;
-        color: var(--text-2);
-        font-size: 0.78rem;
-        letter-spacing: 0.06em;
-        text-transform: uppercase;
+        min-height: 90px;
+        padding: 14px;
       }
 
       .tito-stat strong {
+        color: var(--tito-text);
         display: block;
+        font-size: 1.08rem;
+        line-height: 1.2;
         margin-top: 8px;
-        color: var(--text-1);
-        font-size: clamp(1rem, 2.5vw, 1.35rem);
-        line-height: 1.15;
         overflow-wrap: anywhere;
       }
 
-      .tito-modules {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 16px;
-      }
-
-      .tito-module {
+      .tito-view {
         display: grid;
         gap: 14px;
       }
 
-      .tito-panel--dashboard {
-        min-height: 100%;
-      }
-
-      .tito-tabs {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-        padding-bottom: 12px;
-      }
-
-      .tito-tab-button {
-        border: 1px solid rgba(255, 255, 255, 0.12);
-        border-radius: 8px;
-        background: rgba(255, 255, 255, 0.045);
-        color: var(--text-1);
-        font: inherit;
-        font-weight: 700;
-        min-height: 46px;
-        padding: 9px 13px;
-      }
-
-      .tito-tab-button[aria-selected="true"] {
-        border-color: rgba(102, 255, 204, 0.5);
-        background: rgba(102, 255, 204, 0.12);
-        color: #ffffff;
-      }
-
-      .tito-tab-panel {
+      .tito-panel {
         display: grid;
         gap: 16px;
+        padding: 18px;
+      }
+
+      .tito-panel-head {
+        align-items: start;
+        display: flex;
+        justify-content: space-between;
+        gap: 14px;
+      }
+
+      .tito-panel-head h3 {
+        color: var(--tito-text);
+        font-size: 1.28rem;
+        line-height: 1.2;
+        margin: 0;
+      }
+
+      .tito-panel-head p {
+        color: var(--tito-muted);
+        margin: 4px 0 0;
+      }
+
+      .tito-grid-2 {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
       }
 
       .tito-world-clock {
@@ -315,110 +376,125 @@
       }
 
       .tito-clock-card {
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 8px;
-        background: rgba(255, 255, 255, 0.045);
-        min-height: 84px;
-        padding: 12px;
-      }
-
-      .tito-clock-card span {
-        display: block;
-        color: var(--text-2);
-        font-size: 0.75rem;
-        letter-spacing: 0.06em;
-        text-transform: uppercase;
+        min-height: 86px;
+        padding: 13px;
       }
 
       .tito-clock-card strong {
+        color: var(--tito-text);
         display: block;
-        margin-top: 7px;
-        font-size: clamp(0.98rem, 2vw, 1.24rem);
-        line-height: 1.15;
-        overflow-wrap: anywhere;
+        font-size: 1rem;
+        line-height: 1.2;
+        margin-top: 8px;
       }
 
-      .tito-payslip-card {
-        border: 1px solid rgba(255, 255, 255, 0.12);
-        border-radius: 8px;
-        background: #f8fbff;
-        color: #102331;
+      .tito-checks {
         display: grid;
-        gap: 14px;
-        padding: 18px;
+        gap: 8px;
       }
 
-      .tito-payslip-card h4,
-      .tito-payslip-card p {
+      .tito-checks label {
+        align-items: center;
+        color: var(--tito-soft);
+        display: flex;
+        gap: 9px;
+        min-height: 34px;
+      }
+
+      .tito-checks input {
+        accent-color: var(--tito-accent);
+        height: 18px;
+        width: 18px;
+      }
+
+      .tito-list {
+        display: grid;
+        gap: 10px;
+      }
+
+      .tito-card {
+        display: grid;
+        gap: 10px;
+        padding: 14px;
+      }
+
+      .tito-card-main {
+        align-items: start;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 12px;
+      }
+
+      .tito-card h4 {
+        color: var(--tito-text);
+        font-size: 1rem;
+        line-height: 1.2;
         margin: 0;
       }
 
-      .tito-payslip-head {
-        display: flex;
-        justify-content: space-between;
-        gap: 16px;
-        align-items: start;
-        border-bottom: 1px solid #dbe8ee;
-        padding-bottom: 12px;
+      .tito-card p {
+        color: var(--tito-muted);
+        line-height: 1.55;
+        margin: 0;
       }
 
-      .tito-payslip-head img {
-        width: 44px;
-        height: 44px;
-        border-radius: 8px;
-      }
-
-      .tito-payslip-grid {
+      .tito-table-grid {
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 8px 16px;
+        gap: 8px 12px;
       }
 
-      .tito-payslip-line {
-        border-bottom: 1px solid #e3edf2;
-        display: flex;
-        justify-content: space-between;
-        gap: 12px;
-        padding: 7px 0;
+      .tito-table-value {
+        color: var(--tito-soft);
+        overflow-wrap: anywhere;
       }
 
-      .tito-payslip-line span:first-child {
-        color: #546b78;
+      .tito-pill {
+        align-items: center;
+        border: 1px solid var(--tito-line);
+        border-radius: 999px;
+        color: var(--tito-soft);
+        display: inline-flex;
+        font-size: 0.78rem;
+        font-weight: 800;
+        min-height: 28px;
+        padding: 5px 10px;
+        white-space: nowrap;
       }
 
-      .tito-payslip-line span:last-child {
-        font-weight: 700;
-        text-align: right;
+      .tito-pill[data-tone="ok"] {
+        border-color: rgba(139, 212, 109, 0.4);
+        color: #c7f6ba;
       }
 
-      .tito-badge {
-        justify-self: start;
-        border: 1px solid rgba(102, 255, 204, 0.35);
-        border-radius: 8px;
-        color: rgba(232, 251, 255, 0.86);
-        font-family: "Space Mono", monospace;
-        font-size: 0.74rem;
-        letter-spacing: 0.08em;
-        padding: 5px 8px;
-        text-transform: uppercase;
+      .tito-pill[data-tone="warn"] {
+        border-color: rgba(244, 189, 99, 0.42);
+        color: #ffe4ac;
       }
 
       .tito-alert {
-        border: 1px solid rgba(255, 207, 102, 0.34);
+        border: 1px solid rgba(244, 189, 99, 0.36);
         border-radius: 8px;
-        background: rgba(255, 207, 102, 0.08);
-        color: rgba(255, 247, 220, 0.94);
+        background: rgba(244, 189, 99, 0.09);
+        color: #fff0cd;
         padding: 12px;
       }
 
       .tito-alert[data-tone="ok"] {
-        border-color: rgba(102, 255, 204, 0.32);
-        background: rgba(102, 255, 204, 0.08);
+        border-color: rgba(41, 215, 199, 0.38);
+        background: rgba(41, 215, 199, 0.1);
       }
 
       .tito-alert[data-tone="error"] {
-        border-color: rgba(255, 117, 117, 0.36);
-        background: rgba(255, 117, 117, 0.08);
+        border-color: rgba(255, 123, 123, 0.4);
+        background: rgba(255, 123, 123, 0.1);
+      }
+
+      .tito-empty {
+        border: 1px dashed var(--tito-line-strong);
+        border-radius: 8px;
+        color: var(--tito-muted);
+        padding: 18px;
       }
 
       .tito-hidden,
@@ -426,105 +502,76 @@
         display: none !important;
       }
 
-      @media (max-width: 900px) {
-        .tito-topbar,
-        .tito-grid,
-        .tito-modules,
-        .tito-summary,
-        .tito-payslip-grid {
-          grid-template-columns: 1fr;
-        }
-
-        .tito-world-clock {
-          grid-template-columns: repeat(2, minmax(0, 1fr));
-        }
-
-        .tito-brand-chip {
-          min-width: 0;
-        }
-      }
-
-      @media (max-width: 560px) {
+      @media (max-width: 1100px) {
         body[data-page="tito"] main {
-          padding: 22px 14px 58px;
-        }
-
-        .tito-shell {
-          gap: 14px;
-        }
-
-        .tito-topbar {
-          gap: 14px;
-          padding-top: 8px;
-        }
-
-        .tito-title h2 {
-          font-size: 1.9rem;
-        }
-
-        .tito-title p,
-        .tito-meta {
-          font-size: 0.86rem;
-        }
-
-        .tito-panel {
-          padding: 16px;
-        }
-
-        .tito-tabs {
-          display: grid;
-          grid-template-columns: repeat(2, minmax(0, 1fr));
-        }
-
-        .tito-tab-button {
-          width: 100%;
-          padding-inline: 10px;
-        }
-
-        .tito-tab-button:first-child {
-          grid-column: 1 / -1;
-        }
-
-        .tito-row,
-        .tito-actions {
-          grid-template-columns: 1fr;
-        }
-
-        .tito-actions .button {
-          width: 100%;
-        }
-
-        .tito-clock-card {
-          min-height: 74px;
-          padding: 10px;
-        }
-
-        .tito-clock-card strong {
-          font-size: 0.95rem;
-        }
-
-        .tito-payslip-card {
           padding: 14px;
         }
 
-        .tito-payslip-line {
-          align-items: flex-start;
-          flex-direction: column;
-          gap: 3px;
+        .tito-login-screen,
+        .tito-app-grid {
+          grid-template-columns: 1fr;
         }
 
-        .tito-payslip-line span:last-child {
-          text-align: left;
+        .tito-sidebar {
+          position: static;
+        }
+
+        .tito-nav {
+          grid-template-columns: repeat(5, minmax(0, 1fr));
+        }
+
+        .tito-nav-button {
+          grid-template-columns: 1fr;
+          justify-items: center;
+          text-align: center;
+        }
+
+        .tito-stats {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
         }
       }
 
-      @media (max-width: 340px) {
-        .tito-tabs {
+      @media (max-width: 720px) {
+        body[data-page="tito"] main {
+          padding: 10px;
+        }
+
+        .tito-login-screen {
+          align-items: start;
+          min-height: auto;
+          padding: 8px 0 24px;
+        }
+
+        .tito-login-copy h2 {
+          font-size: 2.2rem;
+        }
+
+        .tito-app-bar,
+        .tito-panel-head,
+        .tito-card-main {
+          display: grid;
           grid-template-columns: 1fr;
         }
 
-        .tito-world-clock {
+        .tito-brand-row {
+          width: 100%;
+        }
+
+        .tito-nav {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .tito-stats,
+        .tito-world-clock,
+        .tito-grid-2,
+        .tito-table-grid {
           grid-template-columns: 1fr;
+        }
+
+        .tito-actions .button,
+        .tito-button-row .button,
+        .tito-form .button {
+          width: 100%;
         }
       }
     </style>
@@ -534,67 +581,27 @@
     <div class="ai-grid"></div>
     <div class="ai-nodes"></div>
 
-    <header>
-      <nav class="nav">
-        <a class="brand" href="/">
-          <img src="/assets/logo.webp" alt="JC IT Services logo" />
-          <div class="brand-text">
-            <h1>JC IT Services</h1>
-            <span>Modern IT &amp; AI Enablement</span>
-          </div>
-        </a>
-        <button class="nav-toggle" type="button" aria-label="Toggle menu" aria-expanded="false" data-nav-toggle>
-          <span></span><span></span><span></span>
-        </button>
-        <div class="nav-links" data-nav-links>
-          <a href="/services/" data-page="services">Services</a>
-          <div class="nav-dropdown">
-            <a class="nav-dropdown-toggle" href="#" data-page="about">About Us</a>
-            <div class="nav-dropdown-menu">
-              <a href="/team/" data-page="team">Team</a>
-              <a href="/about/" data-page="about">About JC</a>
-              <a href="/bubbles/" data-page="bubbles">About Bubbles</a>
-              <a href="/team-login/" data-page="team-login">Team Login</a>
-              <a href="/TiTo/" data-page="tito">TiTo</a>
-              <a href="/bug-blaster/" data-page="bug-blaster">Bug Blaster</a>
-            </div>
-          </div>
-          <a href="/join/" data-page="join">Join Our Team!</a>
-          <a href="/contact/" data-page="contact">Contact Us</a>
-          <a class="nav-social" href="https://www.linkedin.com/company/jc-it-services/" target="_blank" rel="noreferrer" aria-label="LinkedIn">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.37V9h3.41v1.56h.05c.47-.9 1.62-1.85 3.34-1.85 3.57 0 4.23 2.35 4.23 5.41v6.33zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.78C.8 0 0 .78 0 1.74v20.52C0 23.22.8 24 1.78 24h20.44C23.2 24 24 23.22 24 22.26V1.74C24 .78 23.2 0 22.22 0z"/>
-            </svg>
-          </a>
-          <a class="nav-social" href="#" aria-label="Google Business Profile">
-            <img src="/assets/google-business.svg" alt="Google Business Profile" />
-          </a>
-        </div>
-      </nav>
-    </header>
-
     <main>
       <section class="tito-shell reveal">
-        <div class="tito-topbar">
-          <div class="tito-title">
-            <h2>TiTo Timekeeping</h2>
-            <p>Team login, daily time records, leave requests, and Sheet-powered payroll data for JCIT Services.</p>
-          </div>
-          <div class="tito-brand-chip" aria-label="JCIT Services operations">
-            <img src="/assets/logo.webp" alt="" />
+        <section class="tito-login-screen" data-login-screen>
+          <div class="tito-login-copy">
+            <div class="tito-brand-row">
+              <img src="/assets/logo.webp" alt="" />
+              <div>
+                <strong>JCIT Services</strong>
+                <span>TiTo Operations</span>
+              </div>
+            </div>
             <div>
-              <strong>JCIT Services</strong>
-              <span>Team Operations</span>
+              <h2>TiTo Timekeeping</h2>
+              <p>Time, leave, contacts, coaching, and payslip records for the JCIT team.</p>
             </div>
           </div>
-        </div>
 
-        <div class="tito-grid">
-          <section class="tito-panel" aria-labelledby="login-title">
+          <section class="tito-login-card" aria-labelledby="login-title">
             <div>
-              <span class="tito-badge">Employee Login</span>
-              <h3 id="login-title">Employee Login</h3>
-              <p class="tito-meta">Authentication uses the email address and portal password saved in the Google Sheet.</p>
+              <span class="tito-pill">Employee Login</span>
+              <h3 id="login-title">Sign In</h3>
             </div>
             <form class="tito-form" data-login-form>
               <div class="tito-field">
@@ -612,198 +619,225 @@
             </form>
             <div class="tito-alert" data-login-message hidden></div>
           </section>
+        </section>
 
-          <section class="tito-panel tito-panel--dashboard" aria-labelledby="dashboard-title">
-            <div>
-              <span class="tito-badge">Dashboard</span>
-              <h3 id="dashboard-title">Employee Dashboard</h3>
-              <p class="tito-meta" data-current-time>Loading current time...</p>
+        <section class="tito-app" data-app hidden>
+          <div class="tito-app-bar">
+            <div class="tito-app-title">
+              <h2>TiTo Workspace</h2>
+              <p data-current-time>Loading current time...</p>
             </div>
+            <div class="tito-brand-row">
+              <img src="/assets/logo.webp" alt="" />
+              <div>
+                <strong>JCIT Services</strong>
+                <span>Team Operations</span>
+              </div>
+            </div>
+          </div>
 
-            <div class="tito-dashboard" data-dashboard hidden>
-              <div class="tito-summary" aria-live="polite">
-                <div class="tito-stat">
-                  <span>Team Member</span>
-                  <strong data-member-name>-</strong>
+          <div class="tito-app-grid">
+            <aside class="tito-sidebar" aria-label="TiTo navigation">
+              <section class="tito-user-card">
+                <div class="tito-user-main">
+                  <div class="tito-user-avatar" data-user-initials>JC</div>
+                  <div>
+                    <strong data-member-name>-</strong>
+                    <span data-member-email>-</span>
+                  </div>
                 </div>
+                <nav class="tito-nav">
+                  <button class="tito-nav-button" type="button" aria-selected="true" data-tab-target="time">
+                    <span>Time</span><span>01</span>
+                  </button>
+                  <button class="tito-nav-button" type="button" aria-selected="false" data-tab-target="leave">
+                    <span>Leave</span><span>02</span>
+                  </button>
+                  <button class="tito-nav-button" type="button" aria-selected="false" data-tab-target="contacts">
+                    <span>Contacts</span><span>03</span>
+                  </button>
+                  <button class="tito-nav-button" type="button" aria-selected="false" data-tab-target="coaching">
+                    <span>Coaching</span><span>04</span>
+                  </button>
+                  <button class="tito-nav-button" type="button" aria-selected="false" data-tab-target="payslip">
+                    <span>Payslips</span><span>05</span>
+                  </button>
+                </nav>
+                <button class="button secondary" type="button" data-logout>Logout</button>
+              </section>
+            </aside>
+
+            <section class="tito-workspace">
+              <div class="tito-stats" aria-live="polite">
                 <div class="tito-stat">
-                  <span>Project</span>
+                  <span class="tito-label">Project</span>
                   <strong data-active-project>-</strong>
                 </div>
                 <div class="tito-stat">
-                  <span>Status</span>
+                  <span class="tito-label">Status</span>
                   <strong data-clock-status>Signed out</strong>
                 </div>
+                <div class="tito-stat">
+                  <span class="tito-label">Contacts</span>
+                  <strong data-contact-count>0</strong>
+                </div>
+                <div class="tito-stat">
+                  <span class="tito-label">Coaching</span>
+                  <strong data-coaching-count>0</strong>
+                </div>
               </div>
 
-              <div class="tito-tabs" role="tablist" aria-label="TiTo dashboard tabs">
-                <button class="tito-tab-button" type="button" role="tab" aria-selected="true" data-tab-target="time">Time In / Time Out</button>
-                <button class="tito-tab-button" type="button" role="tab" aria-selected="false" data-tab-target="leave">Leave Filing</button>
-                <button class="tito-tab-button" type="button" role="tab" aria-selected="false" data-tab-target="payslip">Payslip</button>
-              </div>
-
-              <section class="tito-tab-panel" data-tab-panel="time">
-                <div class="tito-world-clock" aria-label="World clock">
-                  <div class="tito-clock-card">
-                    <span>Manila</span>
-                    <strong data-world-clock="Asia/Manila">--:--</strong>
+              <section class="tito-view" data-tab-panel="time">
+                <section class="tito-panel">
+                  <div class="tito-panel-head">
+                    <div>
+                      <h3>Time In / Time Out</h3>
+                      <p data-active-shift-text>No active shift.</p>
+                    </div>
+                    <span class="tito-pill" data-clock-status-pill>Signed out</span>
                   </div>
-                  <div class="tito-clock-card">
-                    <span>New York</span>
-                    <strong data-world-clock="America/New_York">--:--</strong>
+                  <div class="tito-world-clock" aria-label="World clock">
+                    <div class="tito-clock-card">
+                      <span class="tito-label">Manila</span>
+                      <strong data-world-clock="Asia/Manila">--:--</strong>
+                    </div>
+                    <div class="tito-clock-card">
+                      <span class="tito-label">New York</span>
+                      <strong data-world-clock="America/New_York">--:--</strong>
+                    </div>
+                    <div class="tito-clock-card">
+                      <span class="tito-label">Los Angeles</span>
+                      <strong data-world-clock="America/Los_Angeles">--:--</strong>
+                    </div>
+                    <div class="tito-clock-card">
+                      <span class="tito-label">Sydney</span>
+                      <strong data-world-clock="Australia/Sydney">--:--</strong>
+                    </div>
                   </div>
-                  <div class="tito-clock-card">
-                    <span>Los Angeles</span>
-                    <strong data-world-clock="America/Los_Angeles">--:--</strong>
-                  </div>
-                  <div class="tito-clock-card">
-                    <span>Sydney</span>
-                    <strong data-world-clock="Australia/Sydney">--:--</strong>
-                  </div>
-                </div>
-
-                <form class="tito-form" data-clock-form>
-                  <div class="tito-field">
-                    <label for="tito-project">Project Assigned</label>
-                    <select id="tito-project" name="project"></select>
-                    <input id="tito-project-manual" class="tito-hidden" name="projectManual" placeholder="Project name" />
-                  </div>
-                  <div class="tito-field">
-                    <label for="tito-activity">Activity</label>
-                    <select id="tito-activity" name="activity"></select>
-                    <input id="tito-activity-manual" class="tito-hidden" name="activityManual" placeholder="Activity" />
-                  </div>
-                  <div class="tito-field">
-                    <label for="tito-notes">Notes</label>
-                    <textarea id="tito-notes" name="notes" placeholder="Shift notes, blockers, or handoff items"></textarea>
-                  </div>
-                  <div class="tito-actions">
-                    <button class="button" type="button" data-clock-action="time_in">Time In</button>
-                    <button class="button secondary" type="button" data-clock-action="time_out">Time Out</button>
-                    <button class="button secondary" type="button" data-logout>Logout</button>
-                  </div>
-                </form>
-                <div class="tito-alert" data-clock-message hidden></div>
+                  <form class="tito-form" data-clock-form>
+                    <div class="tito-grid-2">
+                      <div class="tito-field">
+                        <label for="tito-project">Project Assigned</label>
+                        <select id="tito-project" name="project"></select>
+                        <input id="tito-project-manual" class="tito-hidden" name="projectManual" placeholder="Project name" />
+                      </div>
+                      <div class="tito-field">
+                        <label for="tito-activity">Activity</label>
+                        <select id="tito-activity" name="activity"></select>
+                        <input id="tito-activity-manual" class="tito-hidden" name="activityManual" placeholder="Activity" />
+                      </div>
+                    </div>
+                    <div class="tito-field">
+                      <label for="tito-notes">Notes</label>
+                      <textarea id="tito-notes" name="notes" placeholder="Shift notes, blockers, or handoff items"></textarea>
+                    </div>
+                    <div class="tito-actions">
+                      <button class="button" type="button" data-clock-action="time_in">Time In</button>
+                      <button class="button secondary" type="button" data-clock-action="time_out">Time Out</button>
+                    </div>
+                  </form>
+                  <div class="tito-alert" data-clock-message hidden></div>
+                </section>
               </section>
 
-              <section class="tito-tab-panel" data-tab-panel="leave" hidden>
-                <form class="tito-form" data-leave-form>
-                  <div class="tito-row">
-                    <div class="tito-field">
-                      <label for="leave-type">Leave Type</label>
-                      <select id="leave-type" name="leaveType" required>
-                        <option value="Vacation">Vacation</option>
-                        <option value="Sick">Sick</option>
-                        <option value="Emergency">Emergency</option>
-                      </select>
-                    </div>
-                    <div class="tito-field">
-                      <label for="leave-client-project">Client / Project</label>
-                      <select id="leave-client-project" name="clientProject"></select>
+              <section class="tito-view" data-tab-panel="leave" hidden>
+                <section class="tito-panel">
+                  <div class="tito-panel-head">
+                    <div>
+                      <h3>Leave Filing</h3>
+                      <p>Vacation, sick, and emergency leave requests.</p>
                     </div>
                   </div>
-                  <div class="tito-row">
-                    <div class="tito-field">
-                      <label for="leave-start">Start Date</label>
-                      <input id="leave-start" name="startDate" type="date" required />
+                  <form class="tito-form" data-leave-form>
+                    <div class="tito-grid-2">
+                      <div class="tito-field">
+                        <label for="leave-type">Leave Type</label>
+                        <select id="leave-type" name="leaveType" required>
+                          <option value="Vacation">Vacation</option>
+                          <option value="Sick">Sick</option>
+                          <option value="Emergency">Emergency</option>
+                        </select>
+                      </div>
+                      <div class="tito-field">
+                        <label for="leave-client-project">Client / Project</label>
+                        <select id="leave-client-project" name="clientProject"></select>
+                      </div>
+                    </div>
+                    <div class="tito-grid-2">
+                      <div class="tito-field">
+                        <label for="leave-start">Start Date</label>
+                        <input id="leave-start" name="startDate" type="date" required />
+                      </div>
+                      <div class="tito-field">
+                        <label for="leave-end">End Date</label>
+                        <input id="leave-end" name="endDate" type="date" required />
+                      </div>
                     </div>
                     <div class="tito-field">
-                      <label for="leave-end">End Date</label>
-                      <input id="leave-end" name="endDate" type="date" required />
+                      <label for="leave-reason">Reason</label>
+                      <textarea id="leave-reason" name="reason" placeholder="Context for the request"></textarea>
                     </div>
-                  </div>
-                  <div class="tito-field">
-                    <label for="leave-reason">Reason</label>
-                    <textarea id="leave-reason" name="reason" placeholder="Optional context for JL and Jake"></textarea>
-                  </div>
-                  <div class="tito-field">
-                    <label for="leave-proof">Proof of Leave</label>
-                    <input id="leave-proof" name="proof" type="file" accept=".pdf,image/*" />
-                  </div>
-                  <div class="tito-checks">
-                    <label><input type="checkbox" name="notifyClient" /> Notify Client?</label>
-                    <label><input type="checkbox" name="autoLogTime" /> Auto-Log Time?</label>
-                  </div>
-                  <button class="button" type="submit">Submit Leave</button>
-                </form>
-                <div class="tito-alert" data-leave-message hidden></div>
+                    <div class="tito-field">
+                      <label for="leave-proof">Proof of Leave</label>
+                      <input id="leave-proof" name="proof" type="file" accept=".pdf,image/*" />
+                    </div>
+                    <div class="tito-checks">
+                      <label><input type="checkbox" name="notifyClient" /> Notify Client?</label>
+                      <label><input type="checkbox" name="autoLogTime" /> Auto-Log Time?</label>
+                    </div>
+                    <button class="button" type="submit">Submit Leave</button>
+                  </form>
+                  <div class="tito-alert" data-leave-message hidden></div>
+                </section>
               </section>
 
-              <section class="tito-tab-panel" data-tab-panel="payslip" hidden>
-                <div class="tito-status">
-                  <strong>Biweekly Pay Scheme</strong>
-                  <p data-pay-period>Payslip files are pulled from the Payslip tab when a linked PDF is available.</p>
-                </div>
-                <div class="tito-actions">
-                  <button class="button" type="button" data-generate-payslip>Find Payslip File</button>
-                  <button class="button secondary" type="button" data-print-payslip disabled>Open File</button>
-                </div>
-                <div class="tito-alert" data-payslip-message hidden></div>
-                <div data-payslip-output hidden></div>
+              <section class="tito-view" data-tab-panel="contacts" hidden>
+                <section class="tito-panel">
+                  <div class="tito-panel-head">
+                    <div>
+                      <h3>Contact Management</h3>
+                      <p>Client and project contacts from the Client Database.</p>
+                    </div>
+                    <button class="button secondary" type="button" data-refresh-contacts>Refresh</button>
+                  </div>
+                  <div class="tito-list" data-contacts-output></div>
+                  <div class="tito-alert" data-contacts-message hidden></div>
+                </section>
               </section>
-            </div>
 
-            <div class="tito-status" data-locked-state>
-              <strong>Session Locked</strong>
-              <p>Employee login is required before dashboard access.</p>
-            </div>
-          </section>
-        </div>
+              <section class="tito-view" data-tab-panel="coaching" hidden>
+                <section class="tito-panel">
+                  <div class="tito-panel-head">
+                    <div>
+                      <h3>Coaching</h3>
+                      <p>Coaching records from the Coaching Database.</p>
+                    </div>
+                    <button class="button secondary" type="button" data-refresh-coaching>Refresh</button>
+                  </div>
+                  <div class="tito-list" data-coaching-output></div>
+                  <div class="tito-alert" data-coaching-message hidden></div>
+                </section>
+              </section>
+
+              <section class="tito-view" data-tab-panel="payslip" hidden>
+                <section class="tito-panel">
+                  <div class="tito-panel-head">
+                    <div>
+                      <h3>Payslips</h3>
+                      <p data-pay-period>Official payslip files from the Payslip tab.</p>
+                    </div>
+                    <button class="button secondary" type="button" data-refresh-payslips>Refresh</button>
+                  </div>
+                  <div class="tito-list" data-payslip-output></div>
+                  <div class="tito-alert" data-payslip-message hidden></div>
+                </section>
+              </section>
+            </section>
+          </div>
+        </section>
       </section>
     </main>
 
-    <div class="cookie-banner" data-cookie-banner>
-      <p>
-        We use cookies and similar technologies to improve site experience and
-        measure performance. By using this site, you agree to our
-        <a href="/privacy/">privacy</a> and
-        <a href="/terms/">cookie/usage</a> policy.
-      </p>
-      <div class="cookie-actions">
-        <button class="button" type="button" data-cookie-accept>Accept</button>
-        <button class="button secondary" type="button" data-cookie-dismiss>Dismiss</button>
-      </div>
-    </div>
-
-    <footer>
-      <div class="footer-grid">
-        <div>
-          <h4>Quicklinks</h4>
-          <div class="footer-links">
-            <a href="/services/">Services</a>
-            <a href="/team/">Team</a>
-            <a href="/join/">Join Our Team</a>
-            <a href="/contact/">Contact Us</a>
-            <a href="/team-login/">Team Login</a>
-            <a href="/TiTo/">TiTo</a>
-          </div>
-        </div>
-        <div>
-          <h4>Legal</h4>
-          <div class="footer-links">
-            <a href="/legal/">Business Registration</a>
-            <a href="/sla/">SLA Agreement</a>
-            <a href="/privacy/">Privacy Policy</a>
-            <a href="/terms/">Terms of Service</a>
-            <a href="/copyright/">Copyright</a>
-          </div>
-        </div>
-        <div>
-          <h4>About JC IT Services</h4>
-          <p>
-            AI-powered IT, PBX/VOIP, and automation delivery for SME clients across
-            the US, AU, and PH.
-          </p>
-          <p class="footer-note">
-            JCIT Services operates under JCO IT SOLUTIONS, a duly registered business in
-            the Republic of the Philippines.
-          </p>
-          <p><a href="/contact/">Contact Us</a></p>
-        </div>
-      </div>
-    </footer>
-
-    <script src="/assets/main.js"></script>
     <script>
       (() => {
         const apiUrl = "https://jcit-tito-api-only.vercel.app/api/tito";
@@ -813,21 +847,31 @@
           member: null,
           projects: [],
           activities: [],
+          contacts: [],
+          coaching: [],
+          payslips: [],
           activeShift: null,
           payPeriod: null,
-          payslipFileUrl: "",
+          currentTab: "time",
+          payslipsLoaded: false,
         };
 
         const els = {
+          loginScreen: document.querySelector("[data-login-screen]"),
+          app: document.querySelector("[data-app]"),
           loginForm: document.querySelector("[data-login-form]"),
           loginButton: document.querySelector("[data-login-button]"),
           passwordReset: document.querySelector("[data-password-reset]"),
           loginMessage: document.querySelector("[data-login-message]"),
-          dashboard: document.querySelector("[data-dashboard]"),
-          locked: document.querySelector("[data-locked-state]"),
           memberName: document.querySelector("[data-member-name]"),
+          memberEmail: document.querySelector("[data-member-email]"),
+          userInitials: document.querySelector("[data-user-initials]"),
           activeProject: document.querySelector("[data-active-project]"),
           clockStatus: document.querySelector("[data-clock-status]"),
+          clockStatusPill: document.querySelector("[data-clock-status-pill]"),
+          activeShiftText: document.querySelector("[data-active-shift-text]"),
+          contactCount: document.querySelector("[data-contact-count]"),
+          coachingCount: document.querySelector("[data-coaching-count]"),
           project: document.querySelector("#tito-project"),
           projectManual: document.querySelector("#tito-project-manual"),
           activity: document.querySelector("#tito-activity"),
@@ -844,10 +888,15 @@
           tabPanels: document.querySelectorAll("[data-tab-panel]"),
           worldClocks: document.querySelectorAll("[data-world-clock]"),
           payPeriod: document.querySelector("[data-pay-period]"),
-          payslipButton: document.querySelector("[data-generate-payslip]"),
-          printPayslip: document.querySelector("[data-print-payslip]"),
+          refreshPayslips: document.querySelector("[data-refresh-payslips]"),
           payslipMessage: document.querySelector("[data-payslip-message]"),
           payslipOutput: document.querySelector("[data-payslip-output]"),
+          refreshContacts: document.querySelector("[data-refresh-contacts]"),
+          contactsMessage: document.querySelector("[data-contacts-message]"),
+          contactsOutput: document.querySelector("[data-contacts-output]"),
+          refreshCoaching: document.querySelector("[data-refresh-coaching]"),
+          coachingMessage: document.querySelector("[data-coaching-message]"),
+          coachingOutput: document.querySelector("[data-coaching-output]"),
         };
 
         const showMessage = (element, message, tone = "") => {
@@ -879,11 +928,15 @@
             body: JSON.stringify(payload),
           });
           const data = await response.json().catch(() => ({}));
-          if (!response.ok || !data.ok) {
-            throw new Error(data.message || "Request failed.");
-          }
+          if (!response.ok || !data.ok) throw new Error(data.message || "Request failed.");
           return data;
         };
+
+        const authedPayload = (extra = {}) => ({
+          email: state.email,
+          password: state.password,
+          ...extra,
+        });
 
         const escapeHtml = (value) =>
           String(value ?? "")
@@ -903,26 +956,39 @@
           }).format(date);
         };
 
-        const switchTab = (name) => {
+        const formatDateTime = (value) => {
+          if (!value) return "-";
+          const date = new Date(value);
+          if (Number.isNaN(date.getTime())) return String(value);
+          return new Intl.DateTimeFormat(undefined, {
+            dateStyle: "medium",
+            timeStyle: "short",
+          }).format(date);
+        };
+
+        const initials = (value) =>
+          String(value || "JC")
+            .split(/\s+/)
+            .filter(Boolean)
+            .slice(0, 2)
+            .map((part) => part[0])
+            .join("")
+            .toUpperCase();
+
+        const switchTab = async (name) => {
+          state.currentTab = name;
           els.tabButtons.forEach((button) => {
             button.setAttribute("aria-selected", String(button.dataset.tabTarget === name));
           });
           els.tabPanels.forEach((panel) => {
             panel.hidden = panel.dataset.tabPanel !== name;
           });
+          if (name === "payslip" && !state.payslipsLoaded) await loadPayslips();
         };
 
         els.tabButtons.forEach((button) => {
           button.addEventListener("click", () => switchTab(button.dataset.tabTarget));
         });
-
-        const setClockButtons = () => {
-          const isClockedIn = Boolean(state.activeShift);
-          document.querySelectorAll("[data-clock-action]").forEach((button) => {
-            const action = button.dataset.clockAction;
-            button.disabled = action === "time_in" ? isClockedIn : !isClockedIn;
-          });
-        };
 
         const selectedProject = () => {
           if (els.projectManual && !els.projectManual.classList.contains("tito-hidden")) {
@@ -938,6 +1004,14 @@
           return els.activity.value.trim();
         };
 
+        const setClockButtons = () => {
+          const isClockedIn = Boolean(state.activeShift);
+          document.querySelectorAll("[data-clock-action]").forEach((button) => {
+            const action = button.dataset.clockAction;
+            button.disabled = action === "time_in" ? isClockedIn : !isClockedIn;
+          });
+        };
+
         const syncProjectOptions = () => {
           const projects = Array.isArray(state.projects) ? state.projects : [];
           const hasProjects = projects.length > 0;
@@ -946,8 +1020,7 @@
 
           if (hasProjects) {
             projects.forEach((project) => {
-              const option = new Option(project, project);
-              els.project.add(option);
+              els.project.add(new Option(project, project));
               if (els.leaveClientProject) els.leaveClientProject.add(new Option(project, project));
             });
             els.project.hidden = false;
@@ -979,21 +1052,121 @@
         };
 
         const renderPayPeriod = () => {
-          els.payPeriod.textContent = "Payslip files are pulled from the Payslip tab when a linked PDF is available.";
+          if (!state.payPeriod) {
+            els.payPeriod.textContent = "Official payslip files from the Payslip tab.";
+            return;
+          }
+          els.payPeriod.textContent = `${state.payPeriod.schedule || "Biweekly"} coverage ${state.payPeriod.coverageCode || ""}`;
+        };
+
+        const renderContacts = () => {
+          const contacts = Array.isArray(state.contacts) ? state.contacts : [];
+          els.contactCount.textContent = String(contacts.length);
+          if (!contacts.length) {
+            els.contactsOutput.innerHTML = `<div class="tito-empty">No contacts found.</div>`;
+            return;
+          }
+
+          els.contactsOutput.innerHTML = contacts
+            .map((contact) => `
+              <article class="tito-card">
+                <div class="tito-card-main">
+                  <div>
+                    <h4>${escapeHtml(contact.project || contact.company || contact.clientName || "Contact")}</h4>
+                    <p>${escapeHtml(contact.clientName || contact.company || "-")}</p>
+                  </div>
+                  <span class="tito-pill">${escapeHtml(contact.status || "Active")}</span>
+                </div>
+                <div class="tito-table-grid">
+                  <div><span class="tito-table-label">Email</span><div class="tito-table-value">${contact.email ? `<a href="mailto:${escapeHtml(contact.email)}">${escapeHtml(contact.email)}</a>` : "-"}</div></div>
+                  <div><span class="tito-table-label">Phone</span><div class="tito-table-value">${escapeHtml(contact.phone || "-")}</div></div>
+                  <div><span class="tito-table-label">Company</span><div class="tito-table-value">${escapeHtml(contact.company || "-")}</div></div>
+                  <div><span class="tito-table-label">Pay Scheme</span><div class="tito-table-value">${escapeHtml(contact.payScheme || "-")}</div></div>
+                </div>
+                ${contact.projectDetails ? `<p>${escapeHtml(contact.projectDetails)}</p>` : ""}
+              </article>
+            `)
+            .join("");
+        };
+
+        const renderCoaching = () => {
+          const coaching = Array.isArray(state.coaching) ? state.coaching : [];
+          els.coachingCount.textContent = String(coaching.filter((item) => !item.acknowledged).length);
+          if (!coaching.length) {
+            els.coachingOutput.innerHTML = `<div class="tito-empty">No coaching records found.</div>`;
+            return;
+          }
+
+          els.coachingOutput.innerHTML = coaching
+            .map((item) => `
+              <article class="tito-card">
+                <div class="tito-card-main">
+                  <div>
+                    <h4>${escapeHtml(item.topic || item.type || "Coaching Record")}</h4>
+                    <p>${escapeHtml(formatDate(item.date))} ${item.coach ? `- ${escapeHtml(item.coach)}` : ""}</p>
+                  </div>
+                  <span class="tito-pill" data-tone="${item.acknowledged ? "ok" : "warn"}">${item.acknowledged ? "Acknowledged" : "Pending"}</span>
+                </div>
+                ${item.notes ? `<p>${escapeHtml(item.notes)}</p>` : ""}
+                ${item.actionPlan ? `<p><strong>Action Plan:</strong> ${escapeHtml(item.actionPlan)}</p>` : ""}
+                <div class="tito-button-row">
+                  ${item.acknowledged ? `<span class="tito-muted">Acknowledged ${escapeHtml(formatDateTime(item.acknowledgedAt))}</span>` : `<button class="button" type="button" data-ack-coaching="${escapeHtml(item.id)}" data-row-number="${escapeHtml(item.rowNumber)}">Acknowledge</button>`}
+                </div>
+              </article>
+            `)
+            .join("");
+        };
+
+        const renderPayslips = (preferredFileUrl = "") => {
+          const payslips = Array.isArray(state.payslips) ? state.payslips : [];
+          if (!payslips.length) {
+            els.payslipOutput.innerHTML = `<div class="tito-empty">No payslips found.</div>`;
+            return;
+          }
+
+          els.payslipOutput.innerHTML = payslips
+            .map((payslip) => {
+              const title = payslip.payDate || payslip.coverage || `Payslip row ${payslip.rowNumber}`;
+              const coverage = payslip.coverage || [payslip.coverageStart, payslip.coverageEnd].filter(Boolean).join(" to ");
+              const selected = preferredFileUrl && payslip.fileUrl === preferredFileUrl;
+              return `
+                <article class="tito-card">
+                  <div class="tito-card-main">
+                    <div>
+                      <h4>${escapeHtml(title)}</h4>
+                      <p>${escapeHtml(coverage || "Official payslip")}</p>
+                    </div>
+                    <span class="tito-pill" data-tone="${payslip.fileUrl ? "ok" : "warn"}">${payslip.fileUrl ? "PDF Ready" : "No PDF"}</span>
+                  </div>
+                  ${selected ? `<p>Current pay period match.</p>` : ""}
+                  <div class="tito-button-row">
+                    ${payslip.fileUrl ? `<a class="button" href="${escapeHtml(payslip.fileUrl)}" target="_blank" rel="noreferrer">Open Payslip</a>` : ""}
+                  </div>
+                </article>
+              `;
+            })
+            .join("");
         };
 
         const renderSession = () => {
           const member = state.member || {};
           const active = state.activeShift;
-          els.memberName.textContent = member.name || member.email || state.email || "-";
+          const displayName = member.name || member.email || state.email || "-";
+          els.memberName.textContent = displayName;
+          els.memberEmail.textContent = member.email || state.email || "-";
+          els.userInitials.textContent = initials(displayName);
           els.activeProject.textContent = active?.project || selectedProject() || "-";
           els.clockStatus.textContent = active ? "Clocked in" : "Signed out";
-          els.dashboard.hidden = false;
-          els.locked.hidden = true;
+          els.clockStatusPill.textContent = active ? "Clocked in" : "Signed out";
+          els.clockStatusPill.dataset.tone = active ? "ok" : "warn";
+          els.activeShiftText.textContent = active
+            ? `${active.project || "Project"} started ${formatDateTime(active.timeIn)}`
+            : "No active shift.";
           syncProjectOptions();
           syncActivityOptions();
           renderPayPeriod();
-          switchTab("time");
+          renderContacts();
+          renderCoaching();
           setClockButtons();
         };
 
@@ -1003,19 +1176,21 @@
           state.member = null;
           state.projects = [];
           state.activities = [];
+          state.contacts = [];
+          state.coaching = [];
+          state.payslips = [];
           state.activeShift = null;
           state.payPeriod = null;
-          state.payslipFileUrl = "";
-          els.dashboard.hidden = true;
-          els.locked.hidden = false;
+          state.currentTab = "time";
+          state.payslipsLoaded = false;
           els.loginForm.reset();
-          els.payslipOutput.hidden = true;
-          els.payslipOutput.innerHTML = "";
-          els.printPayslip.disabled = true;
-          setClockButtons();
+          els.loginScreen.hidden = false;
+          els.app.hidden = true;
           hideMessage(els.clockMessage);
           hideMessage(els.leaveMessage);
           hideMessage(els.payslipMessage);
+          hideMessage(els.contactsMessage);
+          hideMessage(els.coachingMessage);
         };
 
         const updateTime = () => {
@@ -1035,41 +1210,56 @@
           });
         };
 
+        const loadContacts = async () => {
+          hideMessage(els.contactsMessage);
+          setLoading(els.refreshContacts, true);
+          try {
+            const data = await api(authedPayload({ action: "contacts" }));
+            state.contacts = data.contacts || [];
+            renderContacts();
+            showMessage(els.contactsMessage, "Contacts refreshed.", "ok");
+          } catch (error) {
+            showMessage(els.contactsMessage, error.message, "error");
+          } finally {
+            setLoading(els.refreshContacts, false);
+          }
+        };
+
+        const loadCoaching = async () => {
+          hideMessage(els.coachingMessage);
+          setLoading(els.refreshCoaching, true);
+          try {
+            const data = await api(authedPayload({ action: "coaching" }));
+            state.coaching = data.coaching || [];
+            renderCoaching();
+            showMessage(els.coachingMessage, "Coaching refreshed.", "ok");
+          } catch (error) {
+            showMessage(els.coachingMessage, error.message, "error");
+          } finally {
+            setLoading(els.refreshCoaching, false);
+          }
+        };
+
+        const loadPayslips = async () => {
+          hideMessage(els.payslipMessage);
+          setLoading(els.refreshPayslips, true);
+          try {
+            const data = await api(authedPayload({ action: "payslip" }));
+            state.payPeriod = data.payPeriod || state.payPeriod;
+            state.payslips = data.payslips || (data.payslip ? [data.payslip] : []);
+            state.payslipsLoaded = true;
+            renderPayPeriod();
+            renderPayslips(data.payslip?.fileUrl || "");
+            showMessage(els.payslipMessage, state.payslips.length ? "Payslips loaded." : "No payslips found.", state.payslips.length ? "ok" : "error");
+          } catch (error) {
+            showMessage(els.payslipMessage, error.message, "error");
+          } finally {
+            setLoading(els.refreshPayslips, false);
+          }
+        };
+
         updateTime();
         setInterval(updateTime, 1000);
-
-        const renderPayslip = (data) => {
-          const payslip = data.payslip || {};
-          const member = data.member || state.member || {};
-          const lines = Array.isArray(payslip.lines) ? payslip.lines : [];
-          const fileUrl = payslip.fileUrl || "";
-          const keyLines = lines
-            .filter((line) => !/pdf status/i.test(line.label))
-            .map((line) => `
-              <div class="tito-payslip-line">
-                <span>${escapeHtml(line.label)}</span>
-                <span>${escapeHtml(line.value || "-")}</span>
-              </div>
-            `)
-            .join("");
-
-          els.payslipOutput.innerHTML = `
-            <article class="tito-payslip-card" aria-label="Official payslip file">
-              <div class="tito-payslip-head">
-                <div>
-                  <h4>Payslip File</h4>
-                  <p>${escapeHtml(member.name || member.email || "-")}</p>
-                </div>
-                <img src="/assets/logo.webp" alt="" />
-              </div>
-              ${fileUrl ? `<a class="button" href="${escapeHtml(fileUrl)}" target="_blank" rel="noreferrer">Open Official Payslip</a>` : ""}
-              <div>${keyLines}</div>
-            </article>
-          `;
-          state.payslipFileUrl = fileUrl;
-          els.payslipOutput.hidden = false;
-          els.printPayslip.disabled = !fileUrl;
-        };
 
         els.loginForm.addEventListener("submit", async (event) => {
           event.preventDefault();
@@ -1085,10 +1275,16 @@
             state.member = data.member;
             state.projects = data.projects || [];
             state.activities = data.activities || [];
+            state.contacts = data.contacts || [];
+            state.coaching = data.coaching || [];
             state.activeShift = data.activeShift || null;
             state.payPeriod = data.payPeriod || null;
+            state.payslips = [];
+            state.payslipsLoaded = false;
+            els.loginScreen.hidden = true;
+            els.app.hidden = false;
+            await switchTab("time");
             renderSession();
-            showMessage(els.loginMessage, "Login successful.", "ok");
           } catch (error) {
             showMessage(els.loginMessage, error.message, "error");
           } finally {
@@ -1153,15 +1349,13 @@
             }
             setLoading(button, true);
             try {
-              const data = await api({
+              const data = await api(authedPayload({
                 action: "clock",
                 clockAction: button.dataset.clockAction,
-                email: state.email,
-                password: state.password,
                 project,
                 activity,
                 notes: els.notes.value.trim(),
-              });
+              }));
               state.activeShift = data.activeShift || null;
               renderSession();
               showMessage(els.clockMessage, data.message || "Time record saved.", "ok");
@@ -1182,10 +1376,8 @@
           try {
             const proofFile = els.leaveProof?.files?.[0] || null;
             const proof = await fileToProof(proofFile);
-            const data = await api({
+            const data = await api(authedPayload({
               action: "leave",
-              email: state.email,
-              password: state.password,
               leaveType: form.get("leaveType"),
               startDate: form.get("startDate"),
               endDate: form.get("endDate"),
@@ -1194,7 +1386,7 @@
               notifyClient: form.get("notifyClient") === "on",
               autoLogTime: form.get("autoLogTime") === "on",
               proof,
-            });
+            }));
             els.leaveForm.reset();
             showMessage(els.leaveMessage, data.message || "Leave request submitted.", "ok");
           } catch (error) {
@@ -1204,29 +1396,40 @@
           }
         });
 
-        els.payslipButton.addEventListener("click", async () => {
-          hideMessage(els.payslipMessage);
-          setLoading(els.payslipButton, true);
+        els.contactsOutput.addEventListener("click", (event) => {
+          const anchor = event.target.closest("a[href^='mailto:']");
+          if (!anchor) return;
+          anchor.blur();
+        });
+
+        els.coachingOutput.addEventListener("click", async (event) => {
+          const button = event.target.closest("[data-ack-coaching]");
+          if (!button) return;
+          hideMessage(els.coachingMessage);
+          setLoading(button, true);
           try {
-            const data = await api({
-              action: "payslip",
-              email: state.email,
-              password: state.password,
-            });
-            state.payPeriod = data.payPeriod || state.payPeriod;
-            renderPayPeriod();
-            renderPayslip(data);
-            showMessage(els.payslipMessage, data.payslip?.fileUrl ? "Payslip file found." : "Payslip row found, but no file link is attached.", data.payslip?.fileUrl ? "ok" : "error");
+            const data = await api(authedPayload({
+              action: "acknowledge_coaching",
+              coachingId: button.dataset.ackCoaching,
+              rowNumber: button.dataset.rowNumber,
+            }));
+            state.coaching = state.coaching.map((item) =>
+              String(item.rowNumber) === String(data.coaching?.rowNumber) || item.id === data.coaching?.id
+                ? { ...item, ...data.coaching }
+                : item
+            );
+            renderCoaching();
+            showMessage(els.coachingMessage, data.message || "Coaching acknowledged.", "ok");
           } catch (error) {
-            showMessage(els.payslipMessage, error.message, "error");
+            showMessage(els.coachingMessage, error.message, "error");
           } finally {
-            setLoading(els.payslipButton, false);
+            setLoading(button, false);
           }
         });
 
-        els.printPayslip.addEventListener("click", () => {
-          if (state.payslipFileUrl) window.open(state.payslipFileUrl, "_blank", "noopener,noreferrer");
-        });
+        els.refreshContacts.addEventListener("click", loadContacts);
+        els.refreshCoaching.addEventListener("click", loadCoaching);
+        els.refreshPayslips.addEventListener("click", loadPayslips);
         els.logout.addEventListener("click", resetSession);
       })();
     </script>
