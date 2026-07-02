@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1040" role="img" aria-labelledby="title desc">
+  <title id="title">Colorful AI delivery team visual</title>
+  <desc id="desc">A vivid pod-based delivery map showing team lanes connected by AI-assisted handoffs.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#041a22"/>
+      <stop offset=".4" stop-color="#23305f"/>
+      <stop offset=".74" stop-color="#0e4d43"/>
+      <stop offset="1" stop-color="#4a1c4d"/>
+    </linearGradient>
+    <radialGradient id="a" cx=".22" cy=".32" r=".45"><stop stop-color="#a9ff68"/><stop offset=".5" stop-color="#a9ff68" stop-opacity=".2"/><stop offset="1" stop-color="#a9ff68" stop-opacity="0"/></radialGradient>
+    <radialGradient id="b" cx=".78" cy=".24" r=".42"><stop stop-color="#2bdcff"/><stop offset=".48" stop-color="#2bdcff" stop-opacity=".22"/><stop offset="1" stop-color="#2bdcff" stop-opacity="0"/></radialGradient>
+    <radialGradient id="c" cx=".68" cy=".82" r=".44"><stop stop-color="#ff7a66"/><stop offset=".48" stop-color="#ff7a66" stop-opacity=".24"/><stop offset="1" stop-color="#ff7a66" stop-opacity="0"/></radialGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="28" stdDeviation="28" flood-color="#000" flood-opacity=".34"/>
+    </filter>
+  </defs>
+  <rect width="1600" height="1040" fill="url(#bg)"/>
+  <rect width="1600" height="1040" fill="url(#a)"/>
+  <rect width="1600" height="1040" fill="url(#b)"/>
+  <rect width="1600" height="1040" fill="url(#c)"/>
+  <g opacity=".17" stroke="#fff" stroke-width="2">
+    <path d="M180 250h1240M180 520h1240M180 790h1240M330 126v788M590 126v788M850 126v788M1110 126v788M1370 126v788"/>
+  </g>
+  <g filter="url(#shadow)">
+    <rect x="238" y="210" width="260" height="260" rx="44" fill="#102820" stroke="#a9ff68" stroke-opacity=".62" stroke-width="4"/>
+    <rect x="670" y="152" width="260" height="260" rx="44" fill="#0c2638" stroke="#2bdcff" stroke-opacity=".62" stroke-width="4"/>
+    <rect x="1102" y="210" width="260" height="260" rx="44" fill="#2a1320" stroke="#ff7a66" stroke-opacity=".62" stroke-width="4"/>
+    <rect x="454" y="618" width="260" height="260" rx="44" fill="#271f0f" stroke="#ffd166" stroke-opacity=".64" stroke-width="4"/>
+    <rect x="886" y="618" width="260" height="260" rx="44" fill="#201438" stroke="#b98cff" stroke-opacity=".64" stroke-width="4"/>
+  </g>
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="12">
+    <path d="M498 340h172M930 282h172M368 470l216 148M800 412 584 618M930 412l86 206" stroke="#f7fbf7" stroke-opacity=".48"/>
+    <path d="M368 340c94 42 92 88 0 130" stroke="#a9ff68"/>
+    <path d="M800 282c92 44 92 88 0 130" stroke="#2bdcff"/>
+    <path d="M1232 340c92 44 92 88 0 130" stroke="#ff7a66"/>
+    <path d="M584 748c92-78 184-78 276 0" stroke="#ffd166"/>
+    <path d="M1016 748c84-84 166-84 246 0" stroke="#b98cff"/>
+  </g>
+  <g>
+    <circle cx="368" cy="340" r="44" fill="#a9ff68"/>
+    <circle cx="368" cy="470" r="30" fill="#23f7d4"/>
+    <circle cx="800" cy="282" r="44" fill="#2bdcff"/>
+    <circle cx="800" cy="412" r="30" fill="#35f2ff"/>
+    <circle cx="1232" cy="340" r="44" fill="#ff7a66"/>
+    <circle cx="1232" cy="470" r="30" fill="#ffd166"/>
+    <circle cx="584" cy="748" r="44" fill="#ffd166"/>
+    <circle cx="1016" cy="748" r="44" fill="#b98cff"/>
+  </g>
+  <g opacity=".78" fill="#fff">
+    <rect x="300" y="260" width="136" height="12" rx="6"/>
+    <rect x="300" y="536" width="114" height="12" rx="6" opacity=".58"/>
+    <rect x="732" y="202" width="136" height="12" rx="6"/>
+    <rect x="1134" y="260" width="136" height="12" rx="6"/>
+    <rect x="516" y="668" width="136" height="12" rx="6"/>
+    <rect x="948" y="668" width="136" height="12" rx="6"/>
+  </g>
+</svg>

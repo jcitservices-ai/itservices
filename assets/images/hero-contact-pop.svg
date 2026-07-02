@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1040" role="img" aria-labelledby="title desc">
+  <title id="title">Colorful project intake routing visual</title>
+  <desc id="desc">A vivid intake workflow where project signals route through validation, notification, archive, and handoff paths.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#071528"/>
+      <stop offset=".36" stop-color="#143b57"/>
+      <stop offset=".7" stop-color="#4a1a55"/>
+      <stop offset="1" stop-color="#402a0b"/>
+    </linearGradient>
+    <radialGradient id="a" cx=".25" cy=".2" r=".45"><stop stop-color="#ffd166"/><stop offset=".45" stop-color="#ffd166" stop-opacity=".22"/><stop offset="1" stop-color="#ffd166" stop-opacity="0"/></radialGradient>
+    <radialGradient id="b" cx=".76" cy=".28" r=".42"><stop stop-color="#1de2cc"/><stop offset=".46" stop-color="#1de2cc" stop-opacity=".24"/><stop offset="1" stop-color="#1de2cc" stop-opacity="0"/></radialGradient>
+    <radialGradient id="c" cx=".66" cy=".82" r=".44"><stop stop-color="#ff4fd8"/><stop offset=".5" stop-color="#ff4fd8" stop-opacity=".2"/><stop offset="1" stop-color="#ff4fd8" stop-opacity="0"/></radialGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="28" stdDeviation="28" flood-color="#000" flood-opacity=".34"/>
+    </filter>
+  </defs>
+  <rect width="1600" height="1040" fill="url(#bg)"/>
+  <rect width="1600" height="1040" fill="url(#a)"/>
+  <rect width="1600" height="1040" fill="url(#b)"/>
+  <rect width="1600" height="1040" fill="url(#c)"/>
+  <g opacity=".18" stroke="#fff" stroke-width="2" fill="none">
+    <path d="M190 200h1220M190 350h1220M190 500h1220M190 650h1220M190 800h1220"/>
+    <path d="M270 132v776M540 132v776M810 132v776M1080 132v776M1350 132v776"/>
+  </g>
+  <g filter="url(#shadow)">
+    <rect x="220" y="270" width="330" height="500" rx="46" fill="#111b23" stroke="#ffd166" stroke-opacity=".62" stroke-width="4"/>
+    <rect x="722" y="150" width="220" height="220" rx="110" fill="#08282d" stroke="#1de2cc" stroke-opacity=".72" stroke-width="5"/>
+    <rect x="722" y="410" width="220" height="220" rx="110" fill="#2c1530" stroke="#ff4fd8" stroke-opacity=".68" stroke-width="5"/>
+    <rect x="722" y="670" width="220" height="220" rx="110" fill="#17260f" stroke="#a9ff68" stroke-opacity=".68" stroke-width="5"/>
+    <rect x="1080" y="314" width="270" height="412" rx="44" fill="#081619" stroke="#2bdcff" stroke-opacity=".58" stroke-width="4"/>
+  </g>
+  <g fill="none" stroke-linecap="round" stroke-width="14">
+    <path d="M550 402c92-102 116-142 172-142M550 520h172M550 638c92 100 116 142 172 142M942 260c112 24 146 88 138 164M942 520h138M942 780c112-24 146-88 138-164" stroke="#f7fbf7" stroke-opacity=".44"/>
+    <path d="M320 398h148M320 520h148M320 642h148" stroke="#ffd166"/>
+    <path d="M776 260c36-30 76-30 112 0" stroke="#1de2cc"/>
+    <path d="M776 520c36-30 76-30 112 0" stroke="#ff4fd8"/>
+    <path d="M776 780c36-30 76-30 112 0" stroke="#a9ff68"/>
+    <path d="M1152 430h126M1152 520h126M1152 610h126" stroke="#2bdcff"/>
+  </g>
+  <g>
+    <circle cx="468" cy="402" r="28" fill="#ffd166"/>
+    <circle cx="468" cy="520" r="28" fill="#ff7a66"/>
+    <circle cx="468" cy="642" r="28" fill="#a9ff68"/>
+    <circle cx="832" cy="260" r="34" fill="#1de2cc"/>
+    <circle cx="832" cy="520" r="34" fill="#ff4fd8"/>
+    <circle cx="832" cy="780" r="34" fill="#a9ff68"/>
+    <circle cx="1215" cy="520" r="52" fill="#2bdcff"/>
+  </g>
+  <g opacity=".76" fill="#fff">
+    <rect x="300" y="330" width="160" height="12" rx="6"/>
+    <rect x="300" y="704" width="180" height="12" rx="6" opacity=".58"/>
+    <rect x="1138" y="370" width="150" height="12" rx="6"/>
+    <rect x="1138" y="668" width="150" height="12" rx="6" opacity=".6"/>
+  </g>
+</svg>

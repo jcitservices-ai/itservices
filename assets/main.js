@@ -6,7 +6,7 @@ const attachLoader = () => {
     <div class="site-loader-panel">
       <img class="site-loader-logo" src="/assets/logo.webp" alt="" />
       <div class="site-loader-ring"></div>
-      <span class="site-loader-text">Booting AI Systems</span>
+      <span class="site-loader-text">Loading JCIT</span>
     </div>
   `;
   document.body.classList.add("loader-active");
@@ -123,7 +123,7 @@ const setupCustomCursor = () => {
   });
 };
 
-setupCustomCursor();
+// Native cursors feel calmer and more professional across the full site.
 
 const updateScrollState = () => {
   const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
@@ -220,7 +220,7 @@ window.addEventListener("mousemove", (event) => {
 
 const canUsePointerEffects = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
 const tiltTargets = document.querySelectorAll(
-  ".card, .stat, .timeline-item, .hero-card, .game-promo-grid, .status-card, .status-kpi, .job-card, .job-brief, .job-visual-card"
+  ".card, .stat, .timeline-item, .hero-card, .game-promo-grid, .status-card, .status-kpi, .job-card, .job-brief, .job-visual-card, .path-card, .solution-tab, .solution-panel, .role-link, .home-cta-card, .ai2-flow-card, .ai2-product-card, .ai2-stage, .ai2-signal-card"
 );
 
 if (canUsePointerEffects && !prefersReducedMotion.matches) {
@@ -236,6 +236,28 @@ if (canUsePointerEffects && !prefersReducedMotion.matches) {
     target.addEventListener("mouseleave", () => {
       target.style.removeProperty("--tilt-rx");
       target.style.removeProperty("--tilt-ry");
+    });
+  });
+}
+
+const aiMaps = document.querySelectorAll("[data-ai-map]");
+if (aiMaps.length && canUsePointerEffects && !prefersReducedMotion.matches) {
+  aiMaps.forEach((map) => {
+    map.addEventListener("pointermove", (event) => {
+      const rect = map.getBoundingClientRect();
+      const x = (event.clientX - rect.left) / rect.width - 0.5;
+      const y = (event.clientY - rect.top) / rect.height - 0.5;
+      map.style.setProperty("--ai2-x", x.toFixed(3));
+      map.style.setProperty("--ai2-y", y.toFixed(3));
+      map.style.setProperty("--ai2-tilt-x", (x * 3).toFixed(2));
+      map.style.setProperty("--ai2-tilt-y", (y * 3).toFixed(2));
+    });
+
+    map.addEventListener("pointerleave", () => {
+      map.style.removeProperty("--ai2-x");
+      map.style.removeProperty("--ai2-y");
+      map.style.removeProperty("--ai2-tilt-x");
+      map.style.removeProperty("--ai2-tilt-y");
     });
   });
 }
@@ -272,6 +294,54 @@ const statObserver = new IntersectionObserver(
 );
 
 statNumbers.forEach((stat) => statObserver.observe(stat));
+
+const solutionTabs = Array.from(document.querySelectorAll("[data-solution-tab]"));
+const solutionPanels = Array.from(document.querySelectorAll("[data-solution-panel]"));
+
+if (solutionTabs.length && solutionPanels.length) {
+  const activateSolution = (nextTab, shouldFocus = false) => {
+    const key = nextTab.dataset.solutionTab;
+
+    solutionTabs.forEach((tab) => {
+      const isActive = tab === nextTab;
+      tab.classList.toggle("is-active", isActive);
+      tab.setAttribute("aria-selected", String(isActive));
+      tab.tabIndex = isActive ? 0 : -1;
+    });
+
+    solutionPanels.forEach((panel) => {
+      const isActive = panel.dataset.solutionPanel === key;
+      panel.classList.toggle("is-active", isActive);
+      panel.hidden = !isActive;
+    });
+
+    if (shouldFocus) nextTab.focus();
+  };
+
+  solutionTabs.forEach((tab, index) => {
+    tab.tabIndex = tab.classList.contains("is-active") ? 0 : -1;
+
+    tab.addEventListener("click", () => {
+      activateSolution(tab);
+    });
+
+    tab.addEventListener("keydown", (event) => {
+      const moves = {
+        ArrowRight: 1,
+        ArrowDown: 1,
+        ArrowLeft: -1,
+        ArrowUp: -1,
+      };
+
+      if (!(event.key in moves)) return;
+      event.preventDefault();
+
+      const nextIndex =
+        (index + moves[event.key] + solutionTabs.length) % solutionTabs.length;
+      activateSolution(solutionTabs[nextIndex], true);
+    });
+  });
+}
 
 const formResponse = document.querySelector("[data-form-response]");
 if (formResponse) {

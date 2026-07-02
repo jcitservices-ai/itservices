@@ -1,0 +1,123 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1600" y2="900" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#EAF4FF"/>
+      <stop offset="1" stop-color="#F9FBFF"/>
+    </linearGradient>
+    <linearGradient id="tower" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#FFD243"/>
+      <stop offset="1" stop-color="#F5A300"/>
+    </linearGradient>
+    <filter id="shadow" x="-40" y="-40" width="1680" height="980" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="18" stdDeviation="20" flood-color="#0A2E60" flood-opacity="0.16"/>
+    </filter>
+  </defs>
+
+  <rect width="1600" height="900" rx="28" fill="url(#bg)"/>
+  <circle cx="138" cy="156" r="180" fill="#DDEEFF"/>
+  <circle cx="1480" cy="100" r="140" fill="#E8F0FF"/>
+  <circle cx="120" cy="760" r="170" fill="#EAF3FF"/>
+
+  <g filter="url(#shadow)">
+    <rect x="996" y="36" width="540" height="760" rx="36" fill="white"/>
+    <path d="M996 72C996 52.1178 1012.12 36 1032 36H1500C1519.88 36 1536 52.1178 1536 72V158H996V72Z" fill="#0F4DA0"/>
+  </g>
+
+  <text x="108" y="116" fill="#0A2E60" font-family="Arial, sans-serif" font-weight="900" font-size="92">OPEN FOR</text>
+  <rect x="88" y="142" width="700" height="124" rx="12" fill="#FFC71F"/>
+  <text x="115" y="232" fill="#0A2E60" font-family="Arial, sans-serif" font-weight="900" font-size="86">DIRECT PAG-IBIG</text>
+  <text x="174" y="378" fill="#0A2E60" font-family="Brush Script MT, cursive" font-size="108">Financing!</text>
+  <path d="M185 392C295 360 457 354 600 380" stroke="#FFC71F" stroke-width="14" stroke-linecap="round"/>
+
+  <g>
+    <rect x="44" y="324" width="242" height="430" rx="22" fill="#FFFFFF" opacity="0.72"/>
+    <rect x="58" y="336" width="72" height="358" fill="url(#tower)"/>
+    <rect x="136" y="336" width="72" height="358" fill="#0F7AD1"/>
+    <rect x="214" y="336" width="58" height="358" fill="#E0E9F6"/>
+    <g fill="#F8FBFF">
+      <rect x="74" y="366" width="12" height="16"/><rect x="94" y="366" width="12" height="16"/><rect x="114" y="366" width="12" height="16"/>
+      <rect x="74" y="400" width="12" height="16"/><rect x="94" y="400" width="12" height="16"/><rect x="114" y="400" width="12" height="16"/>
+      <rect x="74" y="434" width="12" height="16"/><rect x="94" y="434" width="12" height="16"/><rect x="114" y="434" width="12" height="16"/>
+      <rect x="152" y="366" width="12" height="16"/><rect x="172" y="366" width="12" height="16"/><rect x="192" y="366" width="12" height="16"/>
+      <rect x="152" y="400" width="12" height="16"/><rect x="172" y="400" width="12" height="16"/><rect x="192" y="400" width="12" height="16"/>
+      <rect x="152" y="434" width="12" height="16"/><rect x="172" y="434" width="12" height="16"/><rect x="192" y="434" width="12" height="16"/>
+    </g>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="700" y="314" width="308" height="362" rx="28" fill="white"/>
+  </g>
+  <rect x="796" y="358" width="120" height="90" rx="16" fill="#0F4DA0"/>
+  <rect x="816" y="338" width="16" height="42" rx="8" fill="#FFC71F"/>
+  <rect x="880" y="338" width="16" height="42" rx="8" fill="#FFC71F"/>
+  <g fill="#F7F1E8">
+    <rect x="826" y="390" width="18" height="18" rx="4"/><rect x="854" y="390" width="18" height="18" rx="4"/><rect x="882" y="390" width="18" height="18" rx="4"/>
+    <rect x="826" y="418" width="18" height="18" rx="4"/><rect x="854" y="418" width="18" height="18" rx="4"/><rect x="882" y="418" width="18" height="18" rx="4"/>
+  </g>
+  <circle cx="944" cy="452" r="38" fill="#0F4DA0"/>
+  <path d="M927 452L940 465L962 440" stroke="white" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="760" y="512" fill="#0A2E60" font-family="Arial, sans-serif" font-weight="800" font-size="34">AT LEAST</text>
+  <text x="730" y="594" fill="#0A2E60" font-family="Arial, sans-serif" font-weight="900" font-size="78">24 MONTHS</text>
+  <text x="796" y="646" fill="#0A2E60" font-family="Arial, sans-serif" font-weight="700" font-size="34">of Pag-IBIG</text>
+  <text x="792" y="690" fill="#0A2E60" font-family="Arial, sans-serif" font-weight="700" font-size="34">contributions</text>
+  <text x="830" y="734" fill="#0A2E60" font-family="Arial, sans-serif" font-weight="700" font-size="34">required.</text>
+
+  <g transform="translate(440 388)">
+    <path d="M0 70L90 0L180 70V182C180 196 168 208 154 208H26C12 208 0 196 0 182V70Z" fill="#0F4DA0"/>
+    <circle cx="90" cy="95" r="58" fill="#FFC71F"/>
+    <text x="90" y="90" text-anchor="middle" fill="#C3221A" font-family="Arial, sans-serif" font-weight="900" font-size="30">Pag-</text>
+    <text x="90" y="124" text-anchor="middle" fill="#C3221A" font-family="Arial, sans-serif" font-weight="900" font-size="30">IBIG</text>
+    <text x="90" y="152" text-anchor="middle" fill="#0A2E60" font-family="Arial, sans-serif" font-weight="700" font-size="20">FUND</text>
+    <circle cx="144" cy="42" r="22" fill="#33B4F1"/>
+  </g>
+
+  <text x="1140" y="116" fill="white" font-family="Arial, sans-serif" font-weight="900" font-size="76">LOCATIONS</text>
+  <text x="1208" y="170" fill="#FFC71F" font-family="Brush Script MT, cursive" font-size="76">we offer</text>
+  <line x1="1068" y1="133" x2="1194" y2="133" stroke="#FFC71F" stroke-width="6"/>
+  <line x1="1380" y1="133" x2="1496" y2="133" stroke="#FFC71F" stroke-width="6"/>
+
+  <g fill="#0A2E60">
+    <circle cx="1090" cy="246" r="48"/><circle cx="1090" cy="376" r="48"/><circle cx="1090" cy="506" r="48"/><circle cx="1090" cy="636" r="48"/><circle cx="1090" cy="748" r="48"/>
+  </g>
+  <g fill="#FFC71F">
+    <path d="M1090 214C1068 214 1050 232 1050 254C1050 285 1090 314 1090 314C1090 314 1130 285 1130 254C1130 232 1112 214 1090 214ZM1090 268C1082 268 1076 262 1076 254C1076 246 1082 240 1090 240C1098 240 1104 246 1104 254C1104 262 1098 268 1090 268Z"/>
+    <path d="M1090 344C1068 344 1050 362 1050 384C1050 415 1090 444 1090 444C1090 444 1130 415 1130 384C1130 362 1112 344 1090 344ZM1090 398C1082 398 1076 392 1076 384C1076 376 1082 370 1090 370C1098 370 1104 376 1104 384C1104 392 1098 398 1090 398Z"/>
+    <rect x="1068" y="478" width="12" height="38"/><rect x="1084" y="468" width="12" height="48"/><rect x="1100" y="452" width="12" height="64"/><rect x="1116" y="486" width="12" height="30"/>
+    <rect x="1060" y="684" width="60" height="36" rx="8"/><rect x="1072" y="658" width="36" height="22" rx="6"/><circle cx="1078" cy="724" r="6"/><circle cx="1102" cy="724" r="6"/>
+    <rect x="1064" y="716" width="52" height="6" rx="3"/>
+    <rect x="1066" y="724" width="10" height="24"/><rect x="1081" y="704" width="10" height="44"/><rect x="1096" y="688" width="10" height="60"/><rect x="1111" y="710" width="10" height="38"/>
+  </g>
+
+  <g fill="#0A2E60" font-family="Arial, sans-serif" font-weight="900">
+    <text x="1180" y="260" font-size="58">ORTIGAS</text>
+    <text x="1180" y="390" font-size="58">BULACAN</text>
+    <text x="1180" y="522" font-size="58">BULACAN</text>
+    <text x="1180" y="650" font-size="58">CUBAO</text>
+    <text x="1180" y="762" font-size="58">MANILA</text>
+  </g>
+  <g fill="#24314C" font-family="Arial, sans-serif" font-weight="700">
+    <text x="1180" y="438" font-size="34">Marilao &amp; Meycauayan</text>
+    <text x="1180" y="572" font-size="34">Evara Malolos</text>
+    <text x="1180" y="602" font-size="28" fill="#2F62B4">(Pre-Selling)</text>
+    <text x="1180" y="810" font-size="34">Tondo</text>
+  </g>
+
+  <g transform="translate(84 760)">
+    <circle cx="80" cy="0" r="48" fill="#0A2E60"/><path d="M56 8L80 -14L104 8V34H56V8Z" fill="white"/><rect x="73" y="12" width="14" height="22" fill="#0A2E60"/>
+    <circle cx="278" cy="0" r="48" fill="#0A2E60"/><rect x="252" y="-24" width="52" height="64" rx="8" fill="white"/><rect x="264" y="-10" width="28" height="8" fill="#0A2E60"/><rect x="264" y="4" width="28" height="8" fill="#0A2E60"/><path d="M262 24L274 36L296 10" stroke="#0A2E60" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="476" cy="0" r="48" fill="#0A2E60"/><path d="M448 -6L476 -28L504 -6V24C504 38 492 50 478 50H474C460 50 448 38 448 24V-6Z" fill="white"/><path d="M460 8L472 20L492 -2" stroke="#0A2E60" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="674" cy="0" r="48" fill="#0A2E60"/><circle cx="658" cy="-4" r="12" fill="white"/><circle cx="690" cy="-4" r="12" fill="white"/><circle cx="674" cy="16" r="12" fill="white"/>
+  </g>
+
+  <g fill="#0A2E60" font-family="Arial, sans-serif" font-weight="800" font-size="28">
+    <text x="52" y="846">Direct</text>
+    <text x="48" y="880">Pag-IBIG</text>
+    <text x="34" y="914">Financing</text>
+    <text x="222" y="846">Hassle-Free</text>
+    <text x="248" y="880">Process</text>
+    <text x="444" y="846">Secure &amp;</text>
+    <text x="458" y="880">Trusted</text>
+    <text x="640" y="846">Affordable</text>
+    <text x="620" y="880">Housing Solution</text>
+  </g>
+</svg>

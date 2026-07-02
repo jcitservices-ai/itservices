@@ -5,6 +5,8 @@ const DEFAULT_POSITION = "Social Media Manager (Sports Focus)";
 const DEFAULT_NOTIFY_EMAIL = "jake@jcit.digital";
 const DEFAULT_REPLY_TO = "jake@jcit.digital";
 const SOURCE_LABEL = "jcit.digital/smm";
+const UPSTREAM_APPLICATION_ENDPOINT =
+  "https://jcit-recruitment-api.vercel.app/api/virtual-assistant-apply";
 const { verifyRecaptchaV2 } = require("../lib/recaptcha");
 
 function sendJson(res, statusCode, payload) {
@@ -415,6 +417,57 @@ async function forwardToFormspree({ fields, resumeFile }) {
     error.serviceStatus = response.status;
     throw error;
   }
+}
+
+async function forwardToRecruitmentApi({ fields, resumeFile }) {
+  const endpoint = String(process.env.SMM_UPSTREAM_APPLICATION_ENDPOINT || UPSTREAM_APPLICATION_ENDPOINT).trim();
+  const form = new FormData();
+  const message = [
+    fields.message || "",
+    "",
+    "SMM application details:",
+    `Portfolio / managed account: ${toSafeLine(fields.portfolio_url) || "N/A"}`,
+    `Editing / scheduling tools: ${toSafeLine(fields.tools_experience) || "N/A"}`,
+    `Sports focus / communities: ${toSafeLine(fields.sports_experience) || "N/A"}`,
+    `Role acknowledgement: ${toSafeLine(fields.role_acknowledgement) || "N/A"}`,
+    `Source: ${SOURCE_LABEL}`,
+  ].join("\n");
+  const toolsExperience = [
+    toSafeLine(fields.tools_experience),
+    toSafeLine(fields.portfolio_url) ? `Portfolio: ${toSafeLine(fields.portfolio_url)}` : "",
+    toSafeLine(fields.sports_experience) ? `Sports: ${toSafeLine(fields.sports_experience)}` : "",
+  ]
+    .filter(Boolean)
+    .join(" | ");
+
+  form.append("position", DEFAULT_POSITION);
+  form.append("name", fields.name || "");
+  form.append("email", normalizeEmail(fields.email));
+  form.append("contact_number", fields.contact_number || "");
+  form.append("location", fields.location || "");
+  form.append("tools_experience", toolsExperience);
+  form.append("message", message);
+  form.append(
+    "resume_file",
+    new Blob([resumeFile.content], { type: resumeFile.contentType || "application/octet-stream" }),
+    resumeFile.filename
+  );
+
+  const response = await fetch(endpoint, {
+    method: "POST",
+    body: form,
+    headers: { Accept: "application/json" },
+  });
+  const payload = await response.json().catch(() => ({}));
+
+  if (!response.ok || payload.ok === false) {
+    const error = new Error(payload?.message || `Recruitment API failed with ${response.status}.`);
+    error.statusCode = response.status >= 500 ? 502 : response.status;
+    error.serviceStatus = response.status;
+    throw error;
+  }
+
+  return payload;
 }
 
 async function handleApplication(req, res) {

@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex,nofollow" />
+    <title>JCIT Admin</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand-block">
+          <div class="brand-mark">J</div>
+          <div>
+            <strong>JCIT Admin</strong>
+            <span>Team Management</span>
+          </div>
+        </div>
+
+        <nav class="nav-list" aria-label="Admin sections">
+          <button type="button" class="nav-item is-active" data-view="overview">
+            <span>Overview</span>
+          </button>
+          <button type="button" class="nav-item" data-view="employees">
+            <span>Employees</span>
+          </button>
+          <button type="button" class="nav-item" data-view="projects">
+            <span>Clients & Projects</span>
+          </button>
+          <button type="button" class="nav-item" data-view="time">
+            <span>Time Logs</span>
+          </button>
+          <button type="button" class="nav-item" data-view="leave">
+            <span>Leave</span>
+          </button>
+          <button type="button" class="nav-item" data-view="payroll">
+            <span>Payroll</span>
+          </button>
+          <button type="button" class="nav-item" data-view="coaching">
+            <span>Coaching</span>
+          </button>
+          <button type="button" class="nav-item" data-view="settings">
+            <span>Setup</span>
+          </button>
+        </nav>
+
+        <div class="sidebar-footer">
+          <div class="sync-dot" data-connection-dot></div>
+          <span data-connection-label>Demo mode</span>
+        </div>
+      </aside>
+
+      <main class="workspace">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow" data-current-period>Admin Workspace</p>
+            <h1 data-view-title>Overview</h1>
+          </div>
+          <div class="topbar-actions">
+            <div class="search-wrap">
+              <input type="search" placeholder="Search records" data-search />
+            </div>
+            <button type="button" class="button ghost" data-refresh>Refresh</button>
+            <button type="button" class="button" data-open-employee>New Employee</button>
+          </div>
+        </header>
+
+        <section class="notice" data-notice hidden></section>
+
+        <section class="view is-active" data-panel="overview">
+          <div class="metric-grid" data-metrics></div>
+          <div class="split-grid">
+            <section class="panel">
+              <div class="panel-head">
+                <h2>Leave Queue</h2>
+                <span class="count-pill" data-leave-count>0</span>
+              </div>
+              <div data-leave-queue></div>
+            </section>
+            <section class="panel">
+              <div class="panel-head">
+                <h2>Recent Time Logs</h2>
+                <span class="count-pill" data-time-count>0</span>
+              </div>
+              <div data-recent-time></div>
+            </section>
+          </div>
+        </section>
+
+        <section class="view" data-panel="employees">
+          <section class="panel">
+            <div class="panel-head">
+              <h2>Employees</h2>
+              <span class="count-pill" data-employees-count>0</span>
+            </div>
+            <div data-table="employees"></div>
+          </section>
+        </section>
+
+        <section class="view" data-panel="projects">
+          <div class="split-grid">
+            <section class="panel">
+              <div class="panel-head">
+                <h2>Clients</h2>
+                <span class="count-pill" data-clients-count>0</span>
+              </div>
+              <div data-table="clients"></div>
+            </section>
+            <section class="panel">
+              <div class="panel-head">
+                <h2>Projects</h2>
+                <span class="count-pill" data-projects-count>0</span>
+              </div>
+              <div data-table="projects"></div>
+            </section>
+          </div>
+        </section>
+
+        <section class="view" data-panel="time">
+          <section class="panel">
+            <div class="panel-head">
+              <h2>Time Logs</h2>
+              <span class="count-pill" data-time-logs-count>0</span>
+            </div>
+            <div class="filter-row">
+              <select data-filter="employee">
+                <option value="">All employees</option>
+              </select>
+              <select data-filter="project">
+                <option value="">All projects</option>
+              </select>
+              <input type="date" data-filter="startDate" />
+              <input type="date" data-filter="endDate" />
+            </div>
+            <div data-table="time"></div>
+          </section>
+        </section>
+
+        <section class="view" data-panel="leave">
+          <section class="panel">
+            <div class="panel-head">
+              <h2>Leave Requests</h2>
+              <span class="count-pill" data-leave-requests-count>0</span>
+            </div>
+            <div class="filter-row">
+              <select data-filter="leaveStatus">
+                <option value="">All statuses</option>
+                <option value="pending">Pending</option>
+                <option value="approved">Approved</option>
+                <option value="rejected">Rejected</option>
+                <option value="needs 5-day notice">Needs 5-day notice</option>
+                <option value="needs proof">Needs proof</option>
+              </select>
+            </div>
+            <div data-table="leave"></div>
+          </section>
+        </section>
+
+        <section class="view" data-panel="payroll">
+          <div class="split-grid">
+            <section class="panel">
+              <div class="panel-head">
+                <h2>Payslips</h2>
+                <span class="count-pill" data-payslips-count>0</span>
+              </div>
+              <div data-table="payslips"></div>
+            </section>
+            <section class="panel">
+              <div class="panel-head">
+                <h2>Invoices</h2>
+                <span class="count-pill" data-invoices-count>0</span>
+              </div>
+              <div data-table="invoices"></div>
+            </section>
+          </div>
+        </section>
+
+        <section class="view" data-panel="coaching">
+          <section class="panel">
+            <div class="panel-head">
+              <h2>Coaching Sessions</h2>
+              <span class="count-pill" data-coaching-count>0</span>
+            </div>
+            <div data-table="coaching"></div>
+          </section>
+        </section>
+
+        <section class="view" data-panel="settings">
+          <div class="settings-grid">
+            <section class="panel">
+              <div class="panel-head">
+                <h2>Supabase Connection</h2>
+                <span class="count-pill" data-config-status>Not connected</span>
+              </div>
+              <form class="form-grid" data-config-form>
+                <label>
+                  Supabase URL
+                  <input type="url" name="supabaseUrl" placeholder="https://project.supabase.co" autocomplete="off" />
+                </label>
+                <label>
+                  Anon key
+                  <input type="password" name="anonKey" autocomplete="off" />
+                </label>
+                <label>
+                  Email
+                  <input type="email" name="email" autocomplete="email" />
+                </label>
+                <label>
+                  Password
+                  <input type="password" name="password" autocomplete="current-password" />
+                </label>
+                <div class="inline-actions">
+                  <button type="submit" class="button">Sign In</button>
+                  <button type="button" class="button ghost" data-use-demo>Use Demo Data</button>
+                  <button type="button" class="button danger" data-sign-out>Sign Out</button>
+                </div>
+              </form>
+            </section>
+
+            <section class="panel">
+              <div class="panel-head">
+                <h2>Migration Status</h2>
+                <span class="count-pill" data-import-status>Waiting</span>
+              </div>
+              <div class="status-stack">
+                <div>
+                  <span>Schema</span>
+                  <strong>supabase/migrations/202606300001_admin_schema.sql</strong>
+                </div>
+                <div>
+                  <span>Importer</span>
+                  <strong>scripts/migrate-sheet-to-supabase.mjs</strong>
+                </div>
+                <div>
+                  <span>Passwords</span>
+                  <strong>Excluded from import</strong>
+                </div>
+              </div>
+            </section>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <dialog class="record-dialog" data-employee-dialog>
+      <form method="dialog" class="dialog-card" data-employee-form>
+        <div class="panel-head">
+          <h2>New Employee</h2>
+          <button type="button" class="icon-button" data-close-dialog aria-label="Close">x</button>
+        </div>
+        <div class="form-grid two">
+          <label>
+            Name
+            <input name="name" required />
+          </label>
+          <label>
+            Email
+            <input name="email" type="email" />
+          </label>
+          <label>
+            Team code
+            <input name="team_code" />
+          </label>
+          <label>
+            Role
+            <select name="role">
+              <option value="team_member">Team member</option>
+              <option value="manager">Manager</option>
+              <option value="admin">Admin</option>
+            </select>
+          </label>
+          <label>
+            Salary USD
+            <input name="salary_usd" type="number" step="0.01" min="0" />
+          </label>
+          <label>
+            Allowances USD
+            <input name="allowances_usd" type="number" step="0.01" min="0" />
+          </label>
+        </div>
+        <div class="inline-actions end">
+          <button type="button" class="button ghost" data-close-dialog>Cancel</button>
+          <button type="submit" class="button">Create</button>
+        </div>
+      </form>
+    </dialog>
+
+    <script src="./app.js" type="module"></script>
+  </body>
+</html>

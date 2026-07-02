@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1040" role="img" aria-labelledby="title desc">
+  <title id="title">Colorful AI careers and talent visual</title>
+  <desc id="desc">A bright remote talent cloud with candidate signals, role paths, and connected delivery lanes.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#091428"/>
+      <stop offset=".38" stop-color="#3b2267"/>
+      <stop offset=".68" stop-color="#064f56"/>
+      <stop offset="1" stop-color="#3b300a"/>
+    </linearGradient>
+    <radialGradient id="a" cx=".24" cy=".28" r=".48"><stop stop-color="#b98cff"/><stop offset=".5" stop-color="#b98cff" stop-opacity=".24"/><stop offset="1" stop-color="#b98cff" stop-opacity="0"/></radialGradient>
+    <radialGradient id="b" cx=".78" cy=".24" r=".42"><stop stop-color="#a9ff68"/><stop offset=".46" stop-color="#a9ff68" stop-opacity=".22"/><stop offset="1" stop-color="#a9ff68" stop-opacity="0"/></radialGradient>
+    <radialGradient id="c" cx=".58" cy=".84" r=".48"><stop stop-color="#ff7a66"/><stop offset=".5" stop-color="#ff7a66" stop-opacity=".22"/><stop offset="1" stop-color="#ff7a66" stop-opacity="0"/></radialGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="28" stdDeviation="28" flood-color="#000" flood-opacity=".34"/>
+    </filter>
+  </defs>
+  <rect width="1600" height="1040" fill="url(#bg)"/>
+  <rect width="1600" height="1040" fill="url(#a)"/>
+  <rect width="1600" height="1040" fill="url(#b)"/>
+  <rect width="1600" height="1040" fill="url(#c)"/>
+  <g opacity=".16" stroke="#fff" stroke-width="2" fill="none">
+    <path d="M188 190c180 90 300 110 460 52 202-73 336-20 518 92 86 53 170 76 256 66"/>
+    <path d="M188 850c186-90 314-110 480-44 196 78 340 24 510-92 76-52 156-78 244-70"/>
+    <path d="M210 520h1180"/>
+  </g>
+  <g filter="url(#shadow)">
+    <circle cx="804" cy="516" r="190" fill="#07181c" stroke="#1de2cc" stroke-opacity=".68" stroke-width="5"/>
+    <rect x="266" y="250" width="260" height="210" rx="42" fill="#26153a" stroke="#b98cff" stroke-opacity=".65" stroke-width="4"/>
+    <rect x="1076" y="250" width="260" height="210" rx="42" fill="#17270f" stroke="#a9ff68" stroke-opacity=".65" stroke-width="4"/>
+    <rect x="266" y="594" width="260" height="210" rx="42" fill="#321813" stroke="#ff7a66" stroke-opacity=".65" stroke-width="4"/>
+    <rect x="1076" y="594" width="260" height="210" rx="42" fill="#102a36" stroke="#2bdcff" stroke-opacity=".65" stroke-width="4"/>
+  </g>
+  <g fill="none" stroke-linecap="round" stroke-width="12">
+    <path d="M526 356c112 18 184 70 214 160M1076 356c-112 18-184 70-214 160M526 698c112-18 184-70 214-160M1076 698c-112-18-184-70-214-160" stroke="#f7fbf7" stroke-opacity=".42"/>
+    <path d="M704 516c54-76 146-86 208-18" stroke="#1de2cc"/>
+    <path d="M724 580c66 50 148 52 214 4" stroke="#ffd166"/>
+    <path d="M352 356h90M1160 356h90M352 698h90M1160 698h90" stroke="#f7fbf7" stroke-opacity=".52"/>
+  </g>
+  <g>
+    <circle cx="396" cy="356" r="48" fill="#b98cff"/>
+    <circle cx="1206" cy="356" r="48" fill="#a9ff68"/>
+    <circle cx="396" cy="698" r="48" fill="#ff7a66"/>
+    <circle cx="1206" cy="698" r="48" fill="#2bdcff"/>
+    <circle cx="804" cy="516" r="58" fill="#1de2cc"/>
+    <circle cx="760" cy="604" r="30" fill="#ffd166"/>
+    <circle cx="884" cy="604" r="30" fill="#ff4fd8"/>
+  </g>
+  <g opacity=".78" fill="#fff">
+    <rect x="326" y="292" width="132" height="12" rx="6"/>
+    <rect x="326" y="410" width="150" height="12" rx="6" opacity=".58"/>
+    <rect x="1136" y="292" width="132" height="12" rx="6"/>
+    <rect x="1136" y="410" width="150" height="12" rx="6" opacity=".58"/>
+    <rect x="326" y="636" width="132" height="12" rx="6"/>
+    <rect x="326" y="754" width="150" height="12" rx="6" opacity=".58"/>
+    <rect x="1136" y="636" width="132" height="12" rx="6"/>
+    <rect x="1136" y="754" width="150" height="12" rx="6" opacity=".58"/>
+  </g>
+</svg>

@@ -1,0 +1,28 @@
+<svg width="1400" height="980" viewBox="0 0 1400 980" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg1" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#F4E8D5"/>
+      <stop offset="1" stop-color="#FFF8EE"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#F7CB5E"/>
+      <stop offset="1" stop-color="#D3AE64"/>
+    </linearGradient>
+  </defs>
+  <rect width="1400" height="980" rx="40" fill="url(#bg1)"/>
+  <rect x="58" y="80" width="660" height="820" rx="38" fill="#C18652"/>
+  <rect x="738" y="80" width="604" height="396" rx="38" fill="#E9DFD0"/>
+  <rect x="738" y="504" width="604" height="396" rx="38" fill="#F2E4CB"/>
+  <rect x="104" y="126" width="286" height="604" rx="28" fill="#E8D9C6"/>
+  <rect x="420" y="126" width="252" height="256" rx="28" fill="#A5643B"/>
+  <rect x="420" y="410" width="252" height="320" rx="28" fill="#193D6C"/>
+  <rect x="102" y="756" width="570" height="94" rx="28" fill="#F7F1E8"/>
+  <rect x="782" y="126" width="246" height="304" rx="28" fill="#0F4DA0"/>
+  <rect x="1050" y="126" width="246" height="304" rx="28" fill="url(#gold)"/>
+  <rect x="782" y="548" width="514" height="304" rx="28" fill="#C9463C"/>
+  <circle cx="1180" cy="654" r="84" fill="#F7F1E8" fill-opacity="0.16"/>
+  <path d="M880 648L1030 518L1180 648" stroke="#F7F1E8" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M926 648V584H968V618" stroke="#F7F1E8" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="132" y="828" fill="#0A2E60" font-family="Arial, sans-serif" font-weight="800" font-size="42">Styled visual collage</text>
+  <text x="132" y="788" fill="#617086" font-family="Arial, sans-serif" font-size="28">Warm interiors · city-ready homes</text>
+</svg>

@@ -40,6 +40,7 @@
       gtag('config', 'G-YYFC0NYBXB');
     </script>
     <link rel="stylesheet" href="/assets/page-redesign.css" />
+    <link rel="stylesheet" href="/assets/jcit-ai-2.css" />
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png" />
@@ -127,6 +128,100 @@
         padding: 24px;
       }
 
+      .infographic-panel {
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        border-radius: 24px;
+        background: #f7f4ed;
+        box-shadow: var(--shadow);
+      }
+
+      .infographic-panel img {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+
+      .training-schedule {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 16px;
+        margin-top: 18px;
+      }
+
+      .schedule-card {
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.04);
+      }
+
+      .schedule-card img,
+      .module-visual img {
+        display: block;
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+      }
+
+      .schedule-card div {
+        padding: 16px;
+      }
+
+      .schedule-card span,
+      .video-card span {
+        display: block;
+        margin-bottom: 8px;
+        color: var(--accent-2);
+        font-family: "Space Mono", monospace;
+        font-size: 0.76rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .schedule-card h4,
+      .video-card h4 {
+        margin: 0 0 8px;
+      }
+
+      .module-visual {
+        overflow: hidden;
+        margin: 18px 0;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.04);
+      }
+
+      .module-visual div {
+        padding: 16px 18px;
+      }
+
+      .video-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 16px;
+        margin-top: 18px;
+      }
+
+      .video-card {
+        display: flex;
+        min-height: 170px;
+        flex-direction: column;
+        justify-content: space-between;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.04);
+        padding: 18px;
+      }
+
+      .video-card a {
+        align-self: flex-start;
+        margin-top: 16px;
+        color: var(--accent-2);
+        font-weight: 700;
+        text-decoration: none;
+      }
+
       .training-panel h3 {
         margin-bottom: 10px;
       }
@@ -205,6 +300,23 @@
         .training-sidebar {
           position: static;
         }
+
+        .training-schedule,
+        .video-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      @media (max-width: 640px) {
+        .training-schedule,
+        .video-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .schedule-card img,
+        .module-visual img {
+          height: 210px;
+        }
       }
     </style>
   </head>
@@ -218,7 +330,7 @@
           <img src="/assets/logo.webp" alt="JC IT Services logo" />
           <div class="brand-text">
             <h1>JC IT Services</h1>
-            <span>Modern IT &amp; AI Enablement</span>
+            <span>AI-led IT Delivery</span>
           </div>
         </a>
         <button class="nav-toggle" type="button" aria-label="Toggle menu" aria-expanded="false" data-nav-toggle>
@@ -226,8 +338,9 @@
         </button>
         <div class="nav-links" data-nav-links>
           <a href="/services/" data-page="services">Services</a>
+          <a href="/work/" data-page="work">Work</a>
           <div class="nav-dropdown">
-            <a class="nav-dropdown-toggle" href="#" data-page="about">About Us</a>
+            <a class="nav-dropdown-toggle" href="#" data-page="about">Company</a>
             <div class="nav-dropdown-menu">
               <a href="/team/" data-page="team">Team</a>
               <a href="/about/" data-page="about">About JC</a>
@@ -236,8 +349,8 @@
               <a href="/bug-blaster/" data-page="bug-blaster">Bug Blaster</a>
             </div>
           </div>
-          <a href="/join/" data-page="join">Join Our Team!</a>
-          <a href="/contact/" data-page="contact">Contact Us</a>
+          <a href="/join/" data-page="join">Careers</a>
+          <a href="/contact/" data-page="contact">Start Project</a>
           <a class="nav-social" href="https://www.linkedin.com/company/jc-it-services/" target="_blank" rel="noreferrer" aria-label="LinkedIn">
             <svg viewBox="0 0 24 24" aria-hidden="true">
               <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.37V9h3.41v1.56h.05c.47-.9 1.62-1.85 3.34-1.85 3.57 0 4.23 2.35 4.23 5.41v6.33zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.78C.8 0 0 .78 0 1.74v20.52C0 23.22.8 24 1.78 24h20.44C23.2 24 24 23.22 24 22.26V1.74C24 .78 23.2 0 22.22 0z"/>
@@ -254,6 +367,16 @@
       <div class="orb" style="top: 140px; right: 120px"></div>
       <div class="orb two" style="top: 520px; left: 60px"></div>
       <div class="orb three" style="top: 1020px; right: 160px"></div>
+
+      <section class="section reveal" aria-label="JCIT AI and IT infographic">
+        <div class="infographic-panel">
+          <img
+            src="/assets/images/sme-ai-it-solutions.png"
+            alt="JCIT Services modern AI and IT enablement for SMEs infographic"
+            fetchpriority="high"
+          />
+        </div>
+      </section>
 
       <section class="hero">
         <div class="reveal">
@@ -302,9 +425,59 @@
 
       <section class="section reveal" aria-label="Training Modules">
         <h3 class="section-title">Training Modules</h3>
+        <div class="training-panel" style="margin-bottom: 22px">
+          <h3>Four-Hour SDR Training Flow</h3>
+          <p>
+            Use this page as the live training handout. Each hour combines the core lesson, a visual example,
+            a practice prompt, and supporting YouTube research links.
+          </p>
+          <div class="training-schedule" aria-label="Four hour training schedule">
+            <article class="schedule-card">
+              <img src="/assets/images/service-mind-check.jpg" alt="Research and compliance preparation for SDRs" loading="lazy" />
+              <div>
+                <span>Hour 1</span>
+                <h4>Grey Market Fundamentals</h4>
+                <p>Understand legal-but-unofficial distribution, buyer motivation, risk language, and trust cues.</p>
+              </div>
+            </article>
+            <article class="schedule-card">
+              <img src="/assets/images/service-ai.jpg" alt="AI and service enablement dashboard" loading="lazy" />
+              <div>
+                <span>Hour 2</span>
+                <h4>JCIT Services + Products</h4>
+                <p>Connect client problems to websites, apps, storefronts, fulfillment, and partner product education.</p>
+              </div>
+            </article>
+            <article class="schedule-card">
+              <img src="/assets/images/service-telegram.jpg" alt="Messaging and social media channels for lead generation" loading="lazy" />
+              <div>
+                <span>Hour 3</span>
+                <h4>Marketing Channels</h4>
+                <p>Practice sourcing leads through Facebook, X, Telegram, referrals, and partner communities.</p>
+              </div>
+            </article>
+            <article class="schedule-card">
+              <img src="/assets/images/service-ops.jpg" alt="Operations dashboard for sales tracking" loading="lazy" />
+              <div>
+                <span>Hour 4</span>
+                <h4>Sales + Commissions</h4>
+                <p>Run qualification, pitch, close, follow-up, and commission tracking with clean records.</p>
+              </div>
+            </article>
+          </div>
+        </div>
         <div class="training-grid">
           <div class="training-panel">
             <h3 id="module-1">Module 1: Introduction to the Grey Market</h3>
+            <figure class="module-visual">
+              <img src="/assets/images/service-mind-check.jpg" alt="Desk setup for SDR product research and compliance review" loading="lazy" />
+              <div>
+                <p>
+                  <strong>Training focus:</strong> Learn how to explain grey market products clearly without creating legal,
+                  health, or platform risk.
+                </p>
+              </div>
+            </figure>
             <h4>What is the Grey Market?</h4>
             <p>
               The grey market refers to products that are legally manufactured but sold through unofficial or unauthorized channels.
@@ -345,6 +518,7 @@
               <a href="#module-2"><small>Module 2</small>JCIT Services + Products</a>
               <a href="#module-3"><small>Module 3</small>Marketing Fundamentals</a>
               <a href="#module-4"><small>Module 4</small>Sales + Commission Tracking</a>
+              <a href="#youtube-links"><small>Videos</small>YouTube Review Links</a>
               <a href="#service-agreement"><small>Policy</small>Service Agreement Summary</a>
               <a href="#final-objectives"><small>Finish</small>Final SDR Objectives</a>
             </div>
@@ -355,6 +529,15 @@
       <section class="section reveal">
         <div class="training-panel">
           <h3 id="module-2">Module 2: JCIT Products &amp; Services (Tech)</h3>
+          <figure class="module-visual">
+            <img src="/assets/images/service-ai.jpg" alt="Modern AI operations and digital service dashboard" loading="lazy" />
+            <div>
+              <p>
+                <strong>Training focus:</strong> Position JCIT as the technical engine behind a client’s sales process,
+                customer operations, and online revenue channels.
+              </p>
+            </div>
+          </figure>
           <p>
             JCIT provides digital solutions for businesses operating online. Your job is to listen for the business problem,
             then connect it to an outcome-oriented service offer.
@@ -427,6 +610,15 @@
       <section class="section reveal">
         <div class="training-panel">
           <h3 id="module-3">Module 3: Marketing Fundamentals</h3>
+          <figure class="module-visual">
+            <img src="/assets/images/service-telegram.jpg" alt="Mobile messaging channels used for sales conversations" loading="lazy" />
+            <div>
+              <p>
+                <strong>Training focus:</strong> Turn social conversations into qualified leads while keeping records,
+                avoiding banned terms, and moving serious buyers into the correct handoff channel.
+              </p>
+            </div>
+          </figure>
           <h4>What are Leads?</h4>
           <p>A lead is a person who may be interested in buying a product, using a service, or learning more about the brand.</p>
 
@@ -468,6 +660,15 @@
       <section class="section reveal">
         <div class="training-panel">
           <h3 id="module-4">Module 4: Sales &amp; Commission Tracking</h3>
+          <figure class="module-visual">
+            <img src="/assets/images/service-ops.jpg" alt="Sales operations dashboard for tracking performance" loading="lazy" />
+            <div>
+              <p>
+                <strong>Training focus:</strong> Keep every lead, close, payment, markup, and commission traceable from first touch
+                through payout.
+              </p>
+            </div>
+          </figure>
           <h4>SDR Sales Process</h4>
           <ul>
             <li><strong>Lead Generation:</strong> Find potential customers.</li>
@@ -649,6 +850,66 @@
 
       <section class="section reveal">
         <div class="training-panel">
+          <h3 id="youtube-links">YouTube Links for Review</h3>
+          <p>
+            These links support the training hour by hour. Use them for discussion, roleplay preparation,
+            and self-study between live coaching sessions.
+          </p>
+          <div class="video-grid" aria-label="YouTube training resources">
+            <article class="video-card">
+              <div>
+                <span>Hour 1</span>
+                <h4>Grey Market Basics</h4>
+                <p>Review how unofficial distribution differs from counterfeit products and why careful language matters.</p>
+              </div>
+              <a href="https://www.youtube.com/results?search_query=grey+market+products+explained" target="_blank" rel="noreferrer">Open YouTube</a>
+            </article>
+            <article class="video-card">
+              <div>
+                <span>Hour 2</span>
+                <h4>AI + IT Services for SMEs</h4>
+                <p>Study examples of small-business automation, websites, apps, and customer operations.</p>
+              </div>
+              <a href="https://www.youtube.com/results?search_query=AI+automation+for+small+business+websites+apps" target="_blank" rel="noreferrer">Open YouTube</a>
+            </article>
+            <article class="video-card">
+              <div>
+                <span>Hour 3</span>
+                <h4>Lead Generation Playbooks</h4>
+                <p>Watch practical approaches to prospecting, social selling, Messenger follow-up, and lead qualification.</p>
+              </div>
+              <a href="https://www.youtube.com/results?search_query=SDR+lead+generation+social+selling+training" target="_blank" rel="noreferrer">Open YouTube</a>
+            </article>
+            <article class="video-card">
+              <div>
+                <span>Hour 4</span>
+                <h4>Commission Tracking</h4>
+                <p>Review basic sales pipeline tracking, conversion metrics, and commission spreadsheet workflows.</p>
+              </div>
+              <a href="https://www.youtube.com/results?search_query=sales+commission+tracking+spreadsheet+training" target="_blank" rel="noreferrer">Open YouTube</a>
+            </article>
+            <article class="video-card">
+              <div>
+                <span>Practice</span>
+                <h4>Cold Calling + Qualification</h4>
+                <p>Use roleplay videos to practice opening lines, discovery questions, objection handling, and next steps.</p>
+              </div>
+              <a href="https://www.youtube.com/results?search_query=SDR+cold+calling+roleplay+qualification+questions" target="_blank" rel="noreferrer">Open YouTube</a>
+            </article>
+            <article class="video-card">
+              <div>
+                <span>Compliance</span>
+                <h4>Responsible Claims</h4>
+                <p>Review ad policy and compliance concepts before posting or pitching regulated-adjacent products.</p>
+              </div>
+              <a href="https://www.youtube.com/results?search_query=marketing+compliance+avoid+medical+claims+training" target="_blank" rel="noreferrer">Open YouTube</a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section reveal">
+        <div class="training-panel">
           <h3 id="final-objectives">Final SDR Objectives</h3>
           <p>By the end of training, SDRs should be able to:</p>
           <ul>
@@ -673,9 +934,10 @@
           <h4>Quicklinks</h4>
           <div class="footer-links">
             <a href="/services/">Services</a>
+            <a href="/work/">Work</a>
             <a href="/team/">Team</a>
-            <a href="/join/">Join Our Team</a>
-            <a href="/contact/">Contact Us</a>
+            <a href="/join/">Careers</a>
+            <a href="/contact/">Start Project</a>
             <a href="/storefront/">StoreFront</a>
           </div>
         </div>
@@ -691,11 +953,11 @@
         </div>
         <div>
           <h4>About JC IT Services</h4>
-          <p>AI-powered IT, PBX/VOIP, and automation delivery for SME clients across the US, AU, and PH.</p>
+          <p>AI-led IT, PBX/VOIP, automation, and remote operations delivery for SMEs across the US, AU, and PH.</p>
           <p class="footer-note">
             JCIT Services operates under JCO IT SOLUTIONS, a duly registered business in the Republic of the Philippines.
           </p>
-          <p><a href="/contact/">Contact Us</a></p>
+          <p><a href="/contact/">Start Project</a></p>
         </div>
       </div>
     </footer>

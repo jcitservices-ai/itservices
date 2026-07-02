@@ -1,14 +1,19 @@
-/* Final JCIT brand pass loaded after page-local styles. */
+/* JCIT 2026 experience layer: restrained, cohesive, AI-led operations. */
 :root {
-  --jc-bg: #03080b;
-  --jc-surface: rgba(4, 14, 18, 0.82);
-  --jc-surface-soft: rgba(255, 255, 255, 0.045);
-  --jc-line: rgba(242, 242, 242, 0.14);
-  --jc-line-strong: rgba(29, 226, 204, 0.44);
+  --jc-ink: #f7fbf7;
+  --jc-muted: #b9c7c0;
+  --jc-soft: #eef3e7;
+  --jc-dark: #020606;
+  --jc-mid: #081111;
+  --jc-panel: rgba(10, 18, 18, 0.88);
+  --jc-panel-soft: rgba(255, 255, 255, 0.045);
+  --jc-line: rgba(247, 251, 247, 0.13);
+  --jc-line-strong: rgba(29, 226, 204, 0.46);
   --jc-teal: #1de2cc;
-  --jc-teal-deep: #0dbbbb;
-  --jc-ink: #f7fbfb;
-  --jc-muted: #b6c8cc;
+  --jc-lime: #a9ff68;
+  --jc-amber: #ffd166;
+  --jc-coral: #ff7a66;
+  --jc-shadow: 0 18px 50px rgba(0, 0, 0, 0.34);
 }
 
 html body,
@@ -17,18 +22,188 @@ html body * {
 }
 
 html body {
-  background:
-    linear-gradient(116deg, transparent 0 61%, rgba(29, 226, 204, 0.12) 61.1% 61.7%, transparent 61.8%),
-    linear-gradient(180deg, #020609 0%, #061016 44%, #020609 100%) !important;
   color: var(--jc-ink);
+  background:
+    linear-gradient(125deg, rgba(29, 226, 204, 0.16), transparent 28%, rgba(255, 122, 102, 0.09) 52%, transparent 66%, rgba(169, 255, 104, 0.1)),
+    linear-gradient(90deg, rgba(29, 226, 204, 0.08) 0 1px, transparent 1px 100%),
+    linear-gradient(180deg, rgba(169, 255, 104, 0.035) 0 1px, transparent 1px 100%),
+    linear-gradient(180deg, #020606 0%, #081111 46%, #030707 100%) !important;
+  background-size: auto, 96px 96px, 96px 96px, auto !important;
   font-family: "Poppins", "Inter", "Helvetica Neue", Arial, sans-serif !important;
 }
 
+html body::before,
+html body::after,
+html body .ai-overlay,
+html body .ai-grid,
+html body .ai-nodes,
+html body .orb {
+  display: none !important;
+}
+
 html body main {
+  max-width: 1180px;
+  padding: 42px 24px 92px;
   isolation: isolate;
 }
 
-html body .nav,
+html body header {
+  background: rgba(2, 6, 6, 0.86) !important;
+  border-bottom: 1px solid var(--jc-line) !important;
+  backdrop-filter: blur(18px);
+}
+
+html body .nav {
+  max-width: 1220px;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+html body .brand img {
+  width: 46px;
+  height: 46px;
+  border-radius: 8px !important;
+  box-shadow: none !important;
+}
+
+html body .brand-text h1 {
+  font-size: 0.95rem;
+  font-weight: 800;
+}
+
+html body .brand-text span,
+html body p,
+html body .section-copy,
+html body .hero-meta span,
+html body .footer-note,
+html body .manual-list,
+html body .manual-steps,
+html body .job-list article p,
+html body .proposal-list article p {
+  color: var(--jc-muted) !important;
+}
+
+html body .nav-links {
+  gap: 6px;
+}
+
+html body .nav-links a,
+html body .nav-dropdown-menu a {
+  border-radius: 8px !important;
+  padding: 8px 10px;
+  color: rgba(247, 251, 247, 0.82);
+}
+
+html body .nav-links a:hover,
+html body .nav-links a.active,
+html body .nav-links a[data-page="bug-blaster"].active {
+  border-color: rgba(29, 226, 204, 0.44) !important;
+  background: rgba(29, 226, 204, 0.08) !important;
+  box-shadow: none !important;
+}
+
+html body .nav-dropdown-menu {
+  border-radius: 8px !important;
+  background: rgba(5, 12, 12, 0.98) !important;
+  border: 1px solid var(--jc-line) !important;
+  box-shadow: var(--jc-shadow) !important;
+}
+
+html body .nav-social {
+  width: 36px;
+  min-width: 36px;
+}
+
+html body .hero,
+html body .job-hero,
+html body .proposal-hero,
+html body .posting-hero {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.02fr) minmax(300px, 0.98fr);
+  gap: 28px;
+  align-items: stretch;
+  min-height: 520px;
+  padding: 0 !important;
+}
+
+html body .hero > .reveal:first-child,
+html body .job-hero > .reveal:first-child,
+html body .proposal-hero > .reveal:first-child,
+html body .posting-hero > .reveal:first-child {
+  display: grid;
+  align-content: end;
+  min-height: 520px;
+  border-radius: 8px;
+  padding: clamp(28px, 5vw, 54px);
+  background:
+    linear-gradient(135deg, rgba(29, 226, 204, 0.14), transparent 38%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.025)),
+    var(--jc-panel);
+  border: 1px solid var(--jc-line);
+  box-shadow: var(--jc-shadow);
+}
+
+html body .hero h2,
+html body .job-hero h2,
+html body .proposal-hero h2,
+html body .posting-hero h2 {
+  max-width: 880px;
+  margin: 0;
+  color: var(--jc-ink);
+  font-size: clamp(2.45rem, 5.5vw, 5.15rem) !important;
+  line-height: 0.95 !important;
+  text-wrap: balance;
+}
+
+html body .hero p,
+html body .job-hero p,
+html body .proposal-hero p,
+html body .posting-hero p {
+  max-width: 680px;
+  font-size: 1rem;
+}
+
+html body .hero-stack,
+html body .job-visual,
+html body .proposal-visual {
+  min-width: 0;
+  gap: 14px;
+}
+
+html body .hero-media,
+html body .job-visual-frame,
+html body .proposal-visual-frame {
+  min-height: 340px;
+  max-height: none;
+  border-radius: 8px !important;
+  border: 1px solid var(--jc-line) !important;
+  box-shadow: var(--jc-shadow) !important;
+  background:
+    linear-gradient(180deg, rgba(2, 6, 6, 0), rgba(2, 6, 6, 0.52)),
+    #0b1515 !important;
+}
+
+html body .hero-media img,
+html body .proposal-visual-frame img,
+html body .card-media {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(0.86) contrast(1.06);
+  animation: none !important;
+}
+
+html body .hero-media::before,
+html body .hero-media::after,
+html body .card::before,
+html body .card::after,
+html body .section::before,
+html body .section::after {
+  display: none !important;
+}
+
 html body .hero-card,
 html body .card,
 html body .stat,
@@ -37,9 +212,9 @@ html body .contact-panel > *,
 html body .role-routing-note,
 html body .manual-note,
 html body .manual-grid .card,
-html body .job-visual-card,
 html body .job-card,
 html body .job-brief,
+html body .job-visual-card,
 html body .proposal-proof article,
 html body .proposal-brief,
 html body .proposal-box,
@@ -49,18 +224,145 @@ html body .proposal-timeline .timeline-item,
 html body .comp-card,
 html body .game-panel,
 html body .status-kpi,
-html body .status-card {
+html body .status-card,
+html body .customer-logo-card,
+html body .cta-section {
   border: 1px solid var(--jc-line) !important;
   border-radius: 8px !important;
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.02)),
-    var(--jc-surface) !important;
-  box-shadow: 0 18px 54px rgba(0, 0, 0, 0.34) !important;
+    linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02)),
+    var(--jc-panel) !important;
+  box-shadow: none !important;
+  animation: none !important;
 }
 
+html body .hero-card,
+html body .job-brief,
+html body .job-visual-card {
+  padding: 22px !important;
+}
+
+html body .hero-card h3,
+html body .card h3,
+html body .job-card h3,
+html body .job-brief h3,
+html body .timeline-item strong,
+html body .status-pill--up,
+html body .proposal-proof strong,
+html body .proposal-price strong {
+  color: var(--jc-ink) !important;
+}
+
+html body .hero-meta {
+  gap: 10px;
+}
+
+html body .hero-meta span,
+html body .job-brief dl div,
+html body .proposal-brief div {
+  border-top: 1px solid rgba(247, 251, 247, 0.1);
+  padding-top: 10px;
+}
+
+html body .image-led-hero {
+  grid-template-columns: minmax(260px, 0.68fr) minmax(440px, 1.32fr);
+  gap: 24px;
+  min-height: 500px;
+}
+
+html body .image-led-hero > .reveal:first-child {
+  min-height: 500px;
+  align-content: center;
+  padding: 20px 8px 20px 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+html body .image-led-hero h2 {
+  max-width: 11ch;
+  font-size: 4.55rem !important;
+  line-height: 0.94 !important;
+}
+
+html body .image-led-hero p {
+  max-width: 460px;
+  font-size: 1.04rem;
+}
+
+html body .image-led-hero .hero-stack {
+  display: flex;
+  min-height: 500px;
+}
+
+html body .image-led-hero .hero-media {
+  width: 100%;
+  min-height: 500px;
+  overflow: hidden;
+  border-color: rgba(247, 251, 247, 0.22) !important;
+  background:
+    linear-gradient(135deg, rgba(29, 226, 204, 0.18), rgba(185, 140, 255, 0.16) 44%, rgba(255, 209, 102, 0.16)),
+    #071112 !important;
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, 0.38),
+    0 0 0 1px rgba(29, 226, 204, 0.12) inset !important;
+}
+
+html body .image-led-hero .hero-media img {
+  display: block;
+  filter: saturate(1.24) contrast(1.08);
+  transform: scale(1.01);
+}
+
+html body .image-led-hero .hero-card {
+  display: none !important;
+}
+
+html body .section {
+  margin-top: 72px;
+}
+
+html body .section-title {
+  margin-bottom: 18px;
+  color: var(--jc-ink);
+  font-size: clamp(1.5rem, 3vw, 2.3rem);
+  line-height: 1.08;
+  text-wrap: balance;
+}
+
+html body .section-heading,
+html body .section-heading--split {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 22px;
+}
+
+html body .cards {
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 14px !important;
+}
+
+html body .card {
+  padding: 20px !important;
+  gap: 12px !important;
+}
+
+html body .card:hover,
+html body .stat:hover,
+html body .timeline-item:hover,
+html body .job-card:hover,
+html body .path-card:hover,
+html body .home-cta-card:hover {
+  transform: translateY(-2px) !important;
+  border-color: rgba(29, 226, 204, 0.34) !important;
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.24) !important;
+}
+
+html body .card-media-wrap,
 html body .proposal-visual-frame,
 html body .job-visual-frame,
-html body .hero-media,
 html body .media-card,
 html body .device,
 html body .glass-card,
@@ -70,27 +372,73 @@ html body .ops-card,
 html body .spotlight,
 html body .showcase-card,
 html body .stack-card,
-html body .cta-section,
-html body .customer-logo-card,
-html body .manual-note {
+html body .job-upload {
   border-radius: 8px !important;
   border-color: var(--jc-line) !important;
 }
 
-html body .proposal-visual-frame,
-html body .job-visual-frame {
-  background:
-    linear-gradient(116deg, transparent 0 64%, rgba(29, 226, 204, 0.28) 64.1% 64.8%, transparent 64.9%),
-    linear-gradient(180deg, rgba(2, 6, 9, 0.06), rgba(2, 6, 9, 0.78)),
-    var(--proposal-image, none),
-    linear-gradient(180deg, #0a2d36, #061016) !important;
-  background-position: center !important;
-  background-size: cover !important;
+html body .card .card-media {
+  height: 148px;
 }
 
-html body .proposal-visual-frame img {
+html body .button,
+html body button,
+html body .job-public-link,
+html body .customer-logo-card,
+html body input,
+html body textarea,
+html body select {
   border-radius: 8px !important;
-  filter: saturate(0.92) contrast(1.08);
+}
+
+html body .button,
+html body button,
+html body .job-public-link {
+  min-height: 44px;
+  font-weight: 700;
+  transition:
+    transform 160ms ease,
+    border-color 160ms ease,
+    background 160ms ease,
+    opacity 160ms ease !important;
+}
+
+html body .button:not(.secondary):not(.button--secondary) {
+  color: #021010 !important;
+  background: linear-gradient(135deg, var(--jc-teal), var(--jc-lime)) !important;
+  border-color: rgba(169, 255, 104, 0.56) !important;
+  box-shadow: none !important;
+}
+
+html body .button.secondary,
+html body .button--secondary,
+html body .job-public-link {
+  color: var(--jc-ink) !important;
+  background: rgba(255, 255, 255, 0.035) !important;
+  border-color: rgba(247, 251, 247, 0.25) !important;
+  box-shadow: none !important;
+}
+
+html body .button:hover,
+html body button:hover,
+html body .job-public-link:hover {
+  transform: translateY(-2px) !important;
+  border-color: var(--jc-line-strong) !important;
+  filter: none !important;
+  animation: none !important;
+}
+
+html body input,
+html body textarea,
+html body select {
+  border: 1px solid var(--jc-line) !important;
+  background: rgba(3, 7, 7, 0.82) !important;
+  color: var(--jc-ink) !important;
+}
+
+html body input::placeholder,
+html body textarea::placeholder {
+  color: rgba(185, 199, 192, 0.72);
 }
 
 html body .proposal-kicker,
@@ -98,59 +446,119 @@ html body .job-kicker,
 html body .eyebrow,
 html body .manual-code,
 html body .feature-card__number,
-html body .job-public-link,
-html body .proposal-price small {
-  border-radius: 8px !important;
-  border-color: rgba(29, 226, 204, 0.34) !important;
+html body .proposal-price small,
+html body .home-eyebrow {
   color: var(--jc-teal) !important;
   font-family: "Space Mono", "SFMono-Regular", Consolas, monospace !important;
+  text-transform: uppercase;
 }
 
-html body .proposal-proof strong,
-html body .proposal-price strong,
+html body .chip-row,
+html body .micro-labels {
+  display: none !important;
+}
+
+html body .stats,
+html body .status-kpis {
+  gap: 14px !important;
+}
+
+html body .stat,
+html body .status-kpi {
+  text-align: left !important;
+}
+
 html body .stat h4,
-html body .timeline-item strong,
-html body .manual-code,
-html body .status-pill--up {
+html body .status-kpi h3 {
   color: var(--jc-teal) !important;
+  font-size: clamp(1.45rem, 3vw, 2.2rem);
 }
 
-html body .proposal-list article,
+html body .timeline {
+  gap: 10px;
+}
+
+html body .timeline-item {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 18px;
+  align-items: start;
+}
+
+html body .contact-panel,
+html body .job-grid,
+html body .proposal-grid,
+html body .posting-grid,
+html body .proposal-next,
+html body .manual-grid,
+html body .comp-grid {
+  gap: 16px !important;
+  align-items: stretch;
+}
+
+html body .job-list,
+html body .proposal-list {
+  gap: 10px !important;
+}
+
 html body .job-list article,
+html body .proposal-list article,
 html body .panel-stat,
 html body .miniapp__card,
 html body .stack-card,
 html body .role-routing-note {
-  border: 1px solid rgba(242, 242, 242, 0.12) !important;
+  border: 1px solid rgba(247, 251, 247, 0.1) !important;
   border-radius: 8px !important;
-  background: rgba(255, 255, 255, 0.045) !important;
-}
-
-html body .button,
-html body .job-upload,
-html body .customer-logo-card {
-  border-radius: 8px !important;
-}
-
-html body .button:not(.secondary):not(.button--secondary) {
-  background: linear-gradient(135deg, var(--jc-teal), var(--jc-teal-deep)) !important;
-  border-color: rgba(29, 226, 204, 0.58) !important;
-  color: #001313 !important;
-}
-
-html body .button.secondary,
-html body .button--secondary,
-html body .job-public-link {
   background: rgba(255, 255, 255, 0.035) !important;
-  border-color: rgba(242, 242, 242, 0.28) !important;
-  color: var(--jc-ink) !important;
+  padding: 14px !important;
 }
 
-html body .button:hover,
-html body .customer-logo-card:hover,
-html body .job-public-link:hover {
-  border-color: var(--jc-line-strong) !important;
-  transform: translateY(-2px);
+html body .job-required {
+  border-left: 3px solid var(--jc-teal);
+  padding-left: 16px;
+}
+
+html body .job-actions,
+html body .proposal-actions,
+html body .hero-actions,
+html body .cookie-actions,
+html body .game-controls {
+  gap: 10px !important;
+}
+
+html body footer {
+  border-top: 1px solid var(--jc-line) !important;
+  background: rgba(2, 6, 6, 0.72);
+}
+
+html body .footer-grid {
+  gap: 24px;
+}
+
+html body .footer-links a:hover {
+  color: var(--jc-teal) !important;
+}
+
+html body .site-loader {
+  background: #020606 !important;
+}
+
+html body .site-loader-panel,
+html body .cookie-banner {
+  border-radius: 8px !important;
+  border-color: var(--jc-line) !important;
+  background: rgba(5, 12, 12, 0.96) !important;
+  box-shadow: var(--jc-shadow) !important;
+}
+
+html body .site-loader-ring {
+  border-top-color: var(--jc-teal) !important;
+  border-right-color: var(--jc-lime) !important;
+}
+
+.jc-cursor,
+.jc-cursor-dot {
+  display: none !important;
 }
 
 html body a,
@@ -172,33 +580,6 @@ html body select {
   cursor: text;
 }
 
-html body .button,
-html body button,
-html body .job-public-link {
-  min-height: 44px;
-  transition:
-    transform 180ms ease,
-    border-color 180ms ease,
-    box-shadow 180ms ease,
-    background 180ms ease,
-    opacity 180ms ease !important;
-}
-
-html body .button:active,
-html body button:active,
-html body .job-public-link:active {
-  transform: translateY(0) scale(0.98) !important;
-}
-
-html body .button:disabled,
-html body button:disabled,
-html body .button[aria-disabled="true"],
-html body .job-public-link[aria-disabled="true"] {
-  cursor: not-allowed !important;
-  opacity: 0.56 !important;
-  transform: none !important;
-}
-
 html body a:focus-visible,
 html body button:focus-visible,
 html body .button:focus-visible,
@@ -210,202 +591,130 @@ html body [role="button"]:focus-visible,
 html body .job-public-link:focus-visible {
   outline: 2px solid var(--jc-teal) !important;
   outline-offset: 3px !important;
-  box-shadow:
-    0 0 0 6px rgba(29, 226, 204, 0.16),
-    0 16px 44px rgba(29, 226, 204, 0.14) !important;
+  box-shadow: 0 0 0 6px rgba(29, 226, 204, 0.16) !important;
 }
 
-.jc-cursor,
-.jc-cursor-dot {
-  display: none;
-}
-
-@media (hover: hover) and (pointer: fine) {
-  html body.has-custom-cursor,
-  html body.has-custom-cursor a,
-  html body.has-custom-cursor button,
-  html body.has-custom-cursor .button,
-  html body.has-custom-cursor [role="button"],
-  html body.has-custom-cursor input,
-  html body.has-custom-cursor textarea,
-  html body.has-custom-cursor select,
-  html body.has-custom-cursor summary,
-  html body.has-custom-cursor label,
-  html body.has-custom-cursor .nav-toggle,
-  html body.has-custom-cursor .nav-dropdown-toggle,
-  html body.has-custom-cursor .customer-logo-card,
-  html body.has-custom-cursor .job-public-link {
-    cursor: none !important;
-  }
-
-  .jc-cursor,
-  .jc-cursor-dot {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 2147483000;
-    display: block;
-    pointer-events: none;
-    translate: -50% -50%;
-    will-change: transform, width, height, opacity;
-  }
-
-  .jc-cursor {
-    width: 26px;
-    height: 26px;
-    border: 1px solid rgba(29, 226, 204, 0.82);
-    border-radius: 999px;
-    background: rgba(29, 226, 204, 0.06);
-    box-shadow:
-      0 0 0 1px rgba(255, 255, 255, 0.06),
-      0 0 22px rgba(29, 226, 204, 0.26);
-    transition:
-      width 150ms ease,
-      height 150ms ease,
-      border-radius 150ms ease,
-      background 150ms ease,
-      opacity 150ms ease;
-  }
-
-  .jc-cursor-dot {
-    width: 7px;
-    height: 7px;
-    border-radius: 999px;
-    background: var(--jc-teal);
-    box-shadow: 0 0 18px rgba(29, 226, 204, 0.62);
-    transition: opacity 150ms ease, transform 150ms ease;
-  }
-
-  .jc-cursor.is-hovering {
-    width: 46px;
-    height: 46px;
-    background: rgba(29, 226, 204, 0.14);
-    border-color: var(--jc-teal);
-  }
-
-  .jc-cursor.is-pressed {
-    width: 34px;
-    height: 34px;
-    background: rgba(255, 255, 255, 0.16);
-  }
-
-  .jc-cursor.is-text-field {
-    width: 3px;
-    height: 34px;
-    border-radius: 2px;
-    background: var(--jc-teal);
-    border-color: var(--jc-teal);
-  }
-
-  .jc-cursor-dot.is-hovering,
-  .jc-cursor-dot.is-text-field {
-    opacity: 0;
-  }
-
-  .jc-cursor.is-hidden,
-  .jc-cursor-dot.is-hidden {
-    opacity: 0;
-  }
-}
-
-html body input,
-html body textarea,
-html body select,
-html body .job-upload {
-  border-radius: 8px !important;
-  border-color: var(--jc-line) !important;
-  background: rgba(2, 8, 12, 0.86) !important;
-}
-
-html body .proposal-grid,
-html body .job-grid,
-html body .section-heading--split {
-  align-items: stretch;
-}
-
-html body .proposal-next,
-html body .comp-grid,
-html body .manual-grid,
-html body .job-list,
-html body .proposal-list {
-  gap: 16px !important;
-}
-
-html body .section-title,
-html body .proposal-hero h2,
-html body .job-hero h2,
-html body .hero h2 {
-  text-wrap: balance;
-}
-
-html body .proposal-shell,
-html body .job-shell,
-html body .manual-wrap {
-  gap: 36px !important;
-}
-
-html body .manual-list,
-html body .manual-steps {
-  color: var(--jc-muted);
-}
-
-html body .chip-row,
-html body .micro-labels {
-  display: none !important;
-}
-
-html body .site-loader-panel,
-html body .cookie-banner {
-  border-radius: 8px !important;
-}
-
-@media (max-width: 980px) {
-  html body .proposal-grid,
+@media (max-width: 1040px) {
+  html body .hero,
+  html body .job-hero,
+  html body .proposal-hero,
+  html body .posting-hero,
+  html body .contact-panel,
   html body .job-grid,
-  html body .proposal-proof,
-  html body .comp-grid,
+  html body .proposal-grid,
+  html body .posting-grid,
+  html body .proposal-next,
+  html body .section-heading,
   html body .section-heading--split {
     grid-template-columns: 1fr !important;
   }
 
-  html body .proposal-actions,
-  html body .job-actions {
-    flex-direction: column;
-    align-items: stretch;
+  html body .hero > .reveal:first-child,
+  html body .job-hero > .reveal:first-child,
+  html body .proposal-hero > .reveal:first-child,
+  html body .posting-hero > .reveal:first-child {
+    min-height: 420px;
   }
 
-  html body .proposal-actions .button,
-  html body .job-actions .button {
-    width: 100%;
+  html body .section-heading,
+  html body .section-heading--split {
+    align-items: start;
+    display: grid;
+  }
+
+  html body .image-led-hero {
+    min-height: auto;
+  }
+
+  html body .image-led-hero .hero-stack {
+    order: -1;
+    min-height: 420px;
+  }
+
+  html body .image-led-hero .hero-media {
+    min-height: 420px;
+  }
+
+  html body .image-led-hero > .reveal:first-child {
+    min-height: auto;
+    padding: 6px 0 0 !important;
+  }
+
+  html body .image-led-hero h2 {
+    max-width: 12ch;
+    font-size: 3.55rem !important;
   }
 }
 
-@media (max-width: 520px) {
-  html body .proposal-brief div {
-    display: grid !important;
-    gap: 4px !important;
+@media (max-width: 980px) {
+  html body .nav-links {
+    background: rgba(2, 6, 6, 0.96) !important;
+    border-radius: 8px !important;
   }
 
-  html body .proposal-brief dd {
-    text-align: left !important;
+  html body .nav-dropdown-menu {
+    box-shadow: none !important;
   }
 
-  html body .proposal-proof article,
-  html body .proposal-brief,
-  html body .proposal-box,
-  html body .proposal-price,
-  html body .proposal-next article,
-  html body .job-card,
-  html body .job-brief,
-  html body .job-visual-card {
-    padding: 18px !important;
+  html body .button,
+  html body .job-public-link {
+    width: 100%;
+  }
+
+  html body main {
+    padding: 28px 16px 72px;
+  }
+}
+
+@media (max-width: 640px) {
+  html body .hero,
+  html body .job-hero,
+  html body .proposal-hero,
+  html body .posting-hero {
+    min-height: auto;
+  }
+
+  html body .hero > .reveal:first-child,
+  html body .job-hero > .reveal:first-child,
+  html body .proposal-hero > .reveal:first-child,
+  html body .posting-hero > .reveal:first-child {
+    min-height: 0;
+    padding: 26px 20px;
+  }
+
+  html body .hero h2,
+  html body .job-hero h2,
+  html body .proposal-hero h2,
+  html body .posting-hero h2 {
+    font-size: clamp(2rem, 12vw, 3.25rem) !important;
+  }
+
+  html body .hero-media,
+  html body .job-visual-frame,
+  html body .proposal-visual-frame {
+    min-height: 240px;
+  }
+
+  html body .image-led-hero .hero-stack,
+  html body .image-led-hero .hero-media {
+    min-height: 270px;
+  }
+
+  html body .image-led-hero h2 {
+    font-size: 2.55rem !important;
+  }
+
+  html body .timeline-item {
+    grid-template-columns: 1fr;
+    gap: 8px;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  html body .button,
-  html body button,
-  html body .job-public-link {
+  html body *,
+  html body *::before,
+  html body *::after {
+    animation: none !important;
     transition: none !important;
   }
 }

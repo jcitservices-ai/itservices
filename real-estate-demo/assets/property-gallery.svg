@@ -1,0 +1,15 @@
+<svg width="1200" height="760" viewBox="0 0 1200 760" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="760" rx="36" fill="#EAF3FF"/>
+  <rect x="40" y="40" width="340" height="680" rx="30" fill="#0F4DA0"/>
+  <rect x="430" y="40" width="340" height="680" rx="30" fill="#D3AE64"/>
+  <rect x="820" y="40" width="340" height="680" rx="30" fill="#C9463C"/>
+  <rect x="70" y="72" width="280" height="420" rx="24" fill="#F7F1E8" fill-opacity="0.22"/>
+  <rect x="460" y="72" width="280" height="420" rx="24" fill="#F7F1E8" fill-opacity="0.18"/>
+  <rect x="850" y="72" width="280" height="420" rx="24" fill="#F7F1E8" fill-opacity="0.16"/>
+  <text x="88" y="560" fill="#F7F1E8" font-family="Arial, sans-serif" font-weight="800" font-size="56">Ortigas</text>
+  <text x="88" y="618" fill="#F7F1E8" font-family="Arial, sans-serif" font-size="28">Compact city living</text>
+  <text x="478" y="560" fill="#0A2E60" font-family="Arial, sans-serif" font-weight="800" font-size="56">Cubao</text>
+  <text x="478" y="618" fill="#0A2E60" font-family="Arial, sans-serif" font-size="28">Transit-led investment</text>
+  <text x="868" y="560" fill="#F7F1E8" font-family="Arial, sans-serif" font-weight="800" font-size="56">Tondo</text>
+  <text x="868" y="618" fill="#F7F1E8" font-family="Arial, sans-serif" font-size="28">Family-first location</text>
+</svg>

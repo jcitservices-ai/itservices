@@ -1,0 +1,13 @@
+<svg width="320" height="320" viewBox="0 0 320 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="320" height="320" rx="36" fill="#0F4DA0"/>
+  <path d="M68 181L160 102L252 181" stroke="#F7F1E8" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M98 182V137H123V161" stroke="#F7F1E8" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M126 182L193 125L246 174" stroke="#D3AE64" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/>
+  <line x1="73" y1="220" x2="248" y2="220" stroke="#D3AE64" stroke-width="4" stroke-linecap="round"/>
+  <text x="160" y="247" text-anchor="middle" fill="#F7F1E8" font-size="22" font-family="Georgia, serif" letter-spacing="2">
+    MANJARES REALTY
+  </text>
+  <text x="160" y="274" text-anchor="middle" fill="#D8C7A1" font-size="12" font-family="Arial, sans-serif" letter-spacing="4">
+    PROPERTY SALES
+  </text>
+</svg>
