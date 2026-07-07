@@ -103,6 +103,13 @@ html body .nav-links a[data-page="bug-blaster"].active {
   box-shadow: none !important;
 }
 
+html body .nav-links a.nav-call {
+  border-color: rgba(29, 226, 204, 0.5) !important;
+  background: linear-gradient(120deg, rgba(29, 226, 204, 0.17), rgba(254, 217, 76, 0.12)) !important;
+  color: var(--jc-text) !important;
+  font-weight: 700;
+}
+
 html body .nav-dropdown-menu {
   border-radius: 8px !important;
   background: rgba(5, 12, 12, 0.98) !important;

@@ -297,6 +297,18 @@ header {
   background: rgba(102, 255, 204, 0.08);
 }
 
+.nav-links a.nav-call {
+  border-color: rgba(102, 255, 204, 0.5);
+  background: linear-gradient(120deg, rgba(102, 255, 204, 0.16), rgba(27, 212, 255, 0.1));
+  color: var(--text-1);
+  font-weight: 700;
+}
+
+.nav-links a.nav-call:hover {
+  border-color: rgba(102, 255, 204, 0.8);
+  background: linear-gradient(120deg, rgba(102, 255, 204, 0.24), rgba(27, 212, 255, 0.16));
+}
+
 .nav-links a:hover,
 .nav-links a.active {
   border-color: var(--accent-2);
