@@ -1265,13 +1265,15 @@
         document.querySelectorAll("[data-clock-action]").forEach((button) => {
           button.addEventListener("click", async () => {
             hideMessage(els.clockMessage);
+            const clockAction = button.dataset.clockAction;
+            const isTimeIn = clockAction === "time_in";
             const project = selectedProject();
             const activity = selectedActivity();
-            if (!project) {
+            if (isTimeIn && !project) {
               showMessage(els.clockMessage, "Select or enter a project before submitting time.", "error");
               return;
             }
-            if (!activity) {
+            if (isTimeIn && !activity) {
               showMessage(els.clockMessage, "Select or enter an activity before submitting time.", "error");
               return;
             }
@@ -1279,9 +1281,9 @@
             try {
               const data = await api(authedPayload({
                 action: "clock",
-                clockAction: button.dataset.clockAction,
-                project,
-                activity,
+                clockAction,
+                project: isTimeIn ? project : project || state.activeShift?.project || "",
+                activity: isTimeIn ? activity : activity || state.activeShift?.activity || "",
                 notes: els.notes.value.trim(),
               }));
               state.activeShift = data.activeShift || null;
