@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#06121d" />
+    <title>Applicant Typing &amp; Internet Check | JCIT Services</title>
+    <meta name="description" content="Complete the JCIT Services applicant typing and internet connection checks before submitting your application." />
+    <meta name="robots" content="noindex,nofollow" />
+    <link rel="stylesheet" href="/assets/styles.css" />
+    <link rel="stylesheet" href="/assets/page-redesign.css" />
+    <link rel="stylesheet" href="/assets/jcit-ai-2.css" />
+    <link rel="stylesheet" href="/assets/applicant-assessment.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+  </head>
+  <body data-page="applicant-check">
+    <div class="ai-overlay"></div>
+    <div class="ai-grid"></div>
+    <header>
+      <nav class="nav">
+        <a class="brand" href="/">
+          <img src="/assets/logo.webp" alt="JC IT Services logo" />
+          <div class="brand-text"><h1>JC IT Services</h1><span>AI-Powered. People-Driven.</span></div>
+        </a>
+        <a class="button secondary" href="/join/">Careers</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="section assessment-shell" aria-labelledby="assessment-title">
+        <div class="assessment-intro reveal">
+          <p class="eyebrow">Required applicant checks</p>
+          <h2 id="assessment-title">Typing and internet readiness</h2>
+          <p>Complete both checks on the device and connection you expect to use for work. Results are saved in this browser for 30 days and attached to your application when you return.</p>
+        </div>
+
+        <div class="assessment-progress" aria-label="Assessment progress">
+          <div class="assessment-step" data-step="typing"><strong>1. Typing check</strong><br />60-second maximum</div>
+          <div class="assessment-step" data-step="speed"><strong>2. Internet check</strong><br />Approximate download and latency</div>
+        </div>
+
+        <article class="assessment-card reveal" aria-labelledby="typing-title">
+          <div>
+            <p class="eyebrow">Step 1</p>
+            <h3 id="typing-title">Typing test</h3>
+          </div>
+          <p>Type the passage exactly as shown. Pasting is disabled. The test ends automatically at 60 seconds, and you may finish after 30 seconds.</p>
+          <div class="typing-passage" data-typing-passage aria-label="Typing test passage"></div>
+          <textarea class="typing-input" data-typing-input aria-label="Type the passage here" placeholder="Select Start Typing Test, then begin typing here…" disabled></textarea>
+          <div class="assessment-metrics">
+            <div class="assessment-metric"><span>Time remaining</span><strong data-typing-time>60 seconds</strong></div>
+            <div class="assessment-metric"><span>Words per minute</span><strong data-metric="wpm">—</strong></div>
+            <div class="assessment-metric"><span>Accuracy</span><strong data-metric="accuracy">—</strong></div>
+          </div>
+          <div class="assessment-actions">
+            <button class="button" type="button" data-start-typing>Start Typing Test</button>
+            <button class="button secondary" type="button" data-finish-typing disabled>Finish Typing Test</button>
+            <span class="assessment-status" data-typing-status aria-live="polite">Not started.</span>
+          </div>
+        </article>
+
+        <article class="assessment-card reveal" aria-labelledby="speed-title">
+          <div>
+            <p class="eyebrow">Step 2</p>
+            <h3 id="speed-title">Internet connection check</h3>
+          </div>
+          <p>This lightweight check downloads one JCIT test asset to estimate connection latency and download speed. It does not inspect browsing history, files, passwords, or other device data.</p>
+          <div class="assessment-metrics">
+            <div class="assessment-metric"><span>Download</span><strong data-metric="download">—</strong></div>
+            <div class="assessment-metric"><span>Latency</span><strong data-metric="latency">—</strong></div>
+            <div class="assessment-metric"><span>Browser connection</span><strong data-metric="connection">—</strong></div>
+          </div>
+          <div class="assessment-actions">
+            <button class="button" type="button" data-run-speed>Run Internet Check</button>
+            <span class="assessment-status" data-speed-status aria-live="polite">Not started.</span>
+          </div>
+        </article>
+
+        <section class="assessment-complete reveal" data-assessment-complete hidden aria-labelledby="complete-title">
+          <p class="eyebrow">Checks complete</p>
+          <h3 id="complete-title">Return to your application</h3>
+          <p>Your results are saved locally and will be added to the application when you submit it.</p>
+          <a class="button" href="/join/#apply" data-return-link>Return to Application</a>
+        </section>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-grid">
+        <div><h4>Applicant support</h4><p>If either check fails to run, refresh the page, disable data-saving mode, or try your intended work device and connection.</p></div>
+        <div><h4>Privacy</h4><div class="footer-links"><a href="/privacy/">Privacy Policy</a><a href="/terms/">Terms of Service</a></div></div>
+        <div><h4>JCIT Services</h4><p>AI-powered, people-driven delivery with human judgment and accountability.</p></div>
+      </div>
+    </footer>
+    <script src="/assets/main.js"></script>
+    <script src="/assets/applicant-check.js"></script>
+  </body>
+</html>
