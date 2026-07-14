@@ -2,7 +2,7 @@ const MAX_UPLOAD_BYTES = 8 * 1024 * 1024;
 const CALENDAR_URL = "https://calendar.app.google/7G1fBBC59ULfXQAr5";
 const FORMSPREE_ENDPOINT = "https://formspree.io/f/xreabold";
 const DEFAULT_POSITION = "Web Designer and Developer";
-const DEFAULT_NOTIFY_EMAIL = "jake@jcit.digital";
+const DEFAULT_NOTIFY_EMAIL = "talents@jcit.digital";
 const DEFAULT_REPLY_TO = "jake@jcit.digital";
 const { verifyRecaptchaV2 } = require("../lib/recaptcha");
 
