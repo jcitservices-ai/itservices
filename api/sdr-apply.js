@@ -2,7 +2,7 @@ const MAX_UPLOAD_BYTES = 8 * 1024 * 1024;
 const CALENDAR_URL = "https://calendar.app.google/7G1fBBC59ULfXQAr5";
 const FORMSPREE_ENDPOINT = "https://formspree.io/f/xreabold";
 const DEFAULT_POSITION = "Sales Development Representative";
-const DEFAULT_NOTIFY_EMAIL = "talents@jcit.digital";
+const DEFAULT_NOTIFY_EMAIL = "jake@jcit.digital";
 const DEFAULT_REPLY_TO = "jake@jcit.digital";
 const APPLICATION_PAGE_URL = "https://jcit.digital/sdr-generic/";
 const APPLICATION_SOURCE = "jcit.digital/sdr-generic";
@@ -133,7 +133,7 @@ function getEmailConfig() {
     process.env.JCIT_RECRUITMENT_FROM_EMAIL ||
       process.env.SESSION_SUMMARY_FROM_EMAIL ||
       process.env.RESEND_FROM_EMAIL ||
-      "JC IT Services <noreplymightcheck@jcit.digital>"
+      "JC IT Services <talents@jcit.digital>"
   ).trim();
 
   return {
@@ -352,7 +352,7 @@ function buildInternalEmail({ fields, resumeFile }) {
   return { subject, text, html };
 }
 
-async function sendResendEmail({ to, subject, text, html, attachments = [] }) {
+async function sendResendEmail({ to, subject, text, html, attachments = [], replyTo: replyToOverride }) {
   const { apiKey, from, replyTo } = getEmailConfig();
   if (!apiKey) {
     throw new Error("RESEND_API_KEY is not configured.");
@@ -367,7 +367,7 @@ async function sendResendEmail({ to, subject, text, html, attachments = [] }) {
     body: JSON.stringify({
       from,
       to: Array.isArray(to) ? to : [to],
-      ...(replyTo ? { reply_to: replyTo } : {}),
+      ...(replyToOverride || replyTo ? { reply_to: replyToOverride || replyTo } : {}),
       subject,
       text,
       html,
@@ -512,6 +512,7 @@ async function handleApplication(req, res) {
         label: "Internal applicant email failed",
         promise: sendResendEmail({
           to: notifyEmail,
+          replyTo: email,
           ...internalEmail,
           attachments: [attachment],
         }),
