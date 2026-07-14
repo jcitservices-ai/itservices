@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#06121d" />
+    <title>Join the Talent Pool | JC IT Services</title>
+    <meta name="description" content="Meet JCIT at an event? Join our talent pool and stay connected to future opportunities." />
+    <meta name="robots" content="index,follow" />
+    <link rel="canonical" href="https://jcit.digital/talents/" />
+    <meta property="og:title" content="Join the JCIT Talent Pool" />
+    <meta property="og:description" content="Share your details and stay connected to future opportunities at JC IT Services." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://jcit.digital/talents/" />
+    <meta property="og:image" content="https://jcit.digital/assets/images/hero-join.jpg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="stylesheet" href="/assets/talents.css" />
+  </head>
+  <body>
+    <div class="page-grid" aria-hidden="true"></div>
+    <header class="site-header">
+      <a class="brand" href="/" aria-label="JC IT Services home">
+        <img src="/assets/logo.webp" alt="" />
+        <span><strong>JC IT Services</strong><small>AI-Powered. People-Driven.</small></span>
+      </a>
+      <a class="careers-link" href="/join/">View careers <span aria-hidden="true">↗</span></a>
+    </header>
+
+    <main class="talent-shell">
+      <section class="welcome-panel" aria-labelledby="talent-title">
+        <div class="event-pill"><span></span> JCIT Talent Pool</div>
+        <p class="eyebrow">Welcome — we’re glad you stopped by.</p>
+        <h1 id="talent-title">Let’s keep the conversation going.</h1>
+        <p class="intro">
+          Share a few details and tell us where your skills fit. We’ll add you to our talent community and send the next application step to your inbox.
+        </p>
+
+        <div class="steps" aria-label="What happens next">
+          <div class="step"><span>01</span><p><strong>Join the pool</strong>Complete this short form.</p></div>
+          <div class="step"><span>02</span><p><strong>Check your inbox</strong>Get a link to the full application.</p></div>
+          <div class="step"><span>03</span><p><strong>Stay connected</strong>HR may reach out when a role fits.</p></div>
+        </div>
+
+        <p class="welcome-note">No opening today? No problem. Great teams start with the right connections.</p>
+      </section>
+
+      <section class="form-card" aria-labelledby="form-title">
+        <div class="form-heading">
+          <p class="form-kicker">Takes about 60 seconds</p>
+          <h2 id="form-title">Join the JCIT talent community</h2>
+          <p>All fields are required.</p>
+        </div>
+
+        <form data-talent-form novalidate>
+          <div class="honeypot" aria-hidden="true">
+            <label>Company <input type="text" name="company" tabindex="-1" autocomplete="off" /></label>
+          </div>
+          <input type="hidden" name="source" value="jcit.digital/talents - event QR" />
+
+          <label class="field">
+            <span>Name</span>
+            <input type="text" name="name" autocomplete="name" placeholder="Your full name" maxlength="120" required />
+            <small class="field-error" data-error-for="name"></small>
+          </label>
+
+          <label class="field">
+            <span>Email address</span>
+            <input type="email" name="email" autocomplete="email" inputmode="email" placeholder="you@example.com" maxlength="180" required />
+            <small class="field-error" data-error-for="email"></small>
+          </label>
+
+          <label class="field">
+            <span>Phone number</span>
+            <input type="tel" name="phone" autocomplete="tel" inputmode="tel" placeholder="+63 912 345 6789" maxlength="40" required />
+            <small class="field-error" data-error-for="phone"></small>
+          </label>
+
+          <label class="field">
+            <span>Position</span>
+            <select name="position" required>
+              <option value="" selected disabled>Select an area of interest</option>
+              <option>Web Designer and Developer</option>
+              <option>Sales Development Representative</option>
+              <option>Virtual Assistant</option>
+              <option>Social Media Manager</option>
+              <option>AV Technician</option>
+              <option>Surveillance Operator</option>
+              <option>CAD Designer</option>
+              <option>AI Engineer</option>
+              <option>PBX Engineer</option>
+              <option>Help Desk</option>
+              <option>Other / Future Opportunity</option>
+            </select>
+            <small class="field-error" data-error-for="position"></small>
+          </label>
+
+          <div class="privacy-box">
+            <p><strong>How we use your information</strong></p>
+            <p>
+              JCIT will store these details in its recruiting records and use them to contact you about the application process and current or future opportunities. Access is limited to authorized team members. Joining the pool does not guarantee employment.
+            </p>
+            <label class="consent-row">
+              <input type="checkbox" name="consent" required />
+              <span>I consent to JCIT collecting and using my information for recruitment and talent-pool communications as described above and in the <a href="/privacy/" target="_blank" rel="noreferrer">Privacy Policy</a>.</span>
+            </label>
+            <small class="field-error" data-error-for="consent"></small>
+          </div>
+
+          <button class="submit-button" type="submit">
+            <span data-button-label>Join the talent pool</span>
+            <span class="button-arrow" aria-hidden="true">→</span>
+          </button>
+          <p class="form-status" data-form-status role="status" aria-live="polite"></p>
+        </form>
+
+        <div class="success-panel" data-success-panel hidden tabindex="-1">
+          <div class="success-icon" aria-hidden="true">✓</div>
+          <p class="form-kicker">You’re on the list</p>
+          <h2>Welcome to the JCIT Talent Pool.</h2>
+          <p data-success-message>Check your email for the link to complete your full application.</p>
+          <a class="submit-button success-link" href="/join/">Continue to the application <span aria-hidden="true">→</span></a>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>© 2026 JC IT Services · JCO IT SOLUTIONS</p>
+      <div><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a><a href="mailto:jake@jcit.digital">Questions?</a></div>
+    </footer>
+    <script src="/assets/talents.js" defer></script>
+  </body>
+</html>
