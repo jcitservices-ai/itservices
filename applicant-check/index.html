@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#06121d" />
-    <title>Applicant Typing &amp; Internet Check | JCIT Services</title>
-    <meta name="description" content="Complete the JCIT Services applicant typing and internet connection checks before submitting your application." />
+    <title>Applicant Readiness Assessment | JCIT Services</title>
+    <meta name="description" content="Complete the JCIT Services 15-minute applicant readiness assessment before submitting your application." />
     <meta name="robots" content="noindex,nofollow" />
     <link rel="stylesheet" href="/assets/styles.css" />
     <link rel="stylesheet" href="/assets/page-redesign.css" />
@@ -33,13 +33,15 @@
       <section class="section assessment-shell" aria-labelledby="assessment-title">
         <div class="assessment-intro reveal">
           <p class="eyebrow">Required applicant checks</p>
-          <h2 id="assessment-title">Typing and internet readiness</h2>
-          <p>Complete both checks on the device and connection you expect to use for work. Results are saved in this browser for 30 days and attached to your application when you return.</p>
+          <h2 id="assessment-title">15-minute applicant readiness assessment</h2>
+          <p>Complete all four short checks on the device and connection you expect to use for work. Results are saved in this browser for 30 days and attached to your application when you return.</p>
         </div>
 
         <div class="assessment-progress" aria-label="Assessment progress">
           <div class="assessment-step" data-step="typing"><strong>1. Typing check</strong><br />60-second maximum</div>
           <div class="assessment-step" data-step="speed"><strong>2. Internet check</strong><br />Approximate download and latency</div>
+          <div class="assessment-step" data-step="disc"><strong>3. Work-style profile</strong><br />About 4 minutes</div>
+          <div class="assessment-step" data-step="english"><strong>4. English screening</strong><br />About 6 minutes</div>
         </div>
 
         <article class="assessment-card reveal" aria-labelledby="typing-title">
@@ -79,8 +81,90 @@
           </div>
         </article>
 
+        <article class="assessment-card reveal" aria-labelledby="disc-title">
+          <div>
+            <p class="eyebrow">Step 3</p>
+            <h3 id="disc-title">DISC-style work preferences</h3>
+          </div>
+          <p>Choose the response most like you at work. This short, unlicensed questionnaire is a work-style indicator—not a clinical or psychological assessment—and has no inherently “good” or “bad” profile.</p>
+          <form class="assessment-questionnaire" data-disc-form>
+            <fieldset class="assessment-question"><legend>1. When a new project begins, I usually…</legend><div class="assessment-options">
+              <label><input type="radio" name="disc_1" value="D" /> set a clear target and move quickly.</label>
+              <label><input type="radio" name="disc_1" value="I" /> build enthusiasm and get people involved.</label>
+              <label><input type="radio" name="disc_1" value="S" /> make sure everyone feels supported.</label>
+              <label><input type="radio" name="disc_1" value="C" /> clarify requirements and create a careful plan.</label>
+            </div></fieldset>
+            <fieldset class="assessment-question"><legend>2. Under a tight deadline, I tend to…</legend><div class="assessment-options">
+              <label><input type="radio" name="disc_2" value="C" /> check details and protect quality.</label>
+              <label><input type="radio" name="disc_2" value="S" /> stay calm and keep a steady pace.</label>
+              <label><input type="radio" name="disc_2" value="D" /> prioritize fast and make firm decisions.</label>
+              <label><input type="radio" name="disc_2" value="I" /> keep energy high through communication.</label>
+            </div></fieldset>
+            <fieldset class="assessment-question"><legend>3. In team discussions, I am most likely to…</legend><div class="assessment-options">
+              <label><input type="radio" name="disc_3" value="I" /> connect ideas and encourage participation.</label>
+              <label><input type="radio" name="disc_3" value="D" /> challenge the group to reach a decision.</label>
+              <label><input type="radio" name="disc_3" value="C" /> test assumptions with facts and questions.</label>
+              <label><input type="radio" name="disc_3" value="S" /> listen closely and help build agreement.</label>
+            </div></fieldset>
+            <fieldset class="assessment-question"><legend>4. A client changes priorities unexpectedly. I first…</legend><div class="assessment-options">
+              <label><input type="radio" name="disc_4" value="S" /> listen patiently and confirm their concern.</label>
+              <label><input type="radio" name="disc_4" value="C" /> assess the impact on scope and requirements.</label>
+              <label><input type="radio" name="disc_4" value="I" /> discuss options in an upbeat, collaborative way.</label>
+              <label><input type="radio" name="disc_4" value="D" /> recommend the fastest practical path forward.</label>
+            </div></fieldset>
+            <fieldset class="assessment-question"><legend>5. My preferred work environment is…</legend><div class="assessment-options">
+              <label><input type="radio" name="disc_5" value="D" /> challenging, independent, and outcome-driven.</label>
+              <label><input type="radio" name="disc_5" value="S" /> stable, cooperative, and predictable.</label>
+              <label><input type="radio" name="disc_5" value="C" /> organized, accurate, and standards-based.</label>
+              <label><input type="radio" name="disc_5" value="I" /> social, flexible, and idea-rich.</label>
+            </div></fieldset>
+            <fieldset class="assessment-question"><legend>6. When resolving a mistake, I focus first on…</legend><div class="assessment-options">
+              <label><input type="radio" name="disc_6" value="C" /> finding the exact cause and preventing recurrence.</label>
+              <label><input type="radio" name="disc_6" value="I" /> communicating openly and restoring confidence.</label>
+              <label><input type="radio" name="disc_6" value="D" /> correcting it immediately and regaining momentum.</label>
+              <label><input type="radio" name="disc_6" value="S" /> helping affected teammates and clients feel supported.</label>
+            </div></fieldset>
+            <fieldset class="assessment-question"><legend>7. Others often rely on me to provide…</legend><div class="assessment-options">
+              <label><input type="radio" name="disc_7" value="S" /> patience, consistency, and dependable support.</label>
+              <label><input type="radio" name="disc_7" value="D" /> direction, urgency, and decisive action.</label>
+              <label><input type="radio" name="disc_7" value="I" /> encouragement, connection, and fresh energy.</label>
+              <label><input type="radio" name="disc_7" value="C" /> analysis, precision, and quality control.</label>
+            </div></fieldset>
+            <fieldset class="assessment-question"><legend>8. Before handing off completed work, I prefer to…</legend><div class="assessment-options">
+              <label><input type="radio" name="disc_8" value="I" /> explain it clearly and invite discussion.</label>
+              <label><input type="radio" name="disc_8" value="C" /> verify it against every requirement.</label>
+              <label><input type="radio" name="disc_8" value="S" /> ensure the next person has what they need.</label>
+              <label><input type="radio" name="disc_8" value="D" /> confirm the outcome and move to the next priority.</label>
+            </div></fieldset>
+            <div class="assessment-metrics"><div class="assessment-metric"><span>Primary work style</span><strong data-metric="disc">—</strong></div></div>
+            <div class="assessment-actions"><button class="button" type="submit">Score Work-Style Profile</button><span class="assessment-status" data-disc-status aria-live="polite">Not started.</span></div>
+          </form>
+        </article>
+
+        <article class="assessment-card reveal" aria-labelledby="english-title">
+          <div>
+            <p class="eyebrow">Step 4</p>
+            <h3 id="english-title">English proficiency screening</h3>
+          </div>
+          <p>Choose the best answer without using translation or writing-assistance tools. This is a brief internal screening, not a certified language examination.</p>
+          <form class="assessment-questionnaire" data-english-form>
+            <fieldset class="assessment-question"><legend>1. Please send the revised report ___ Friday afternoon.</legend><div class="assessment-options"><label><input type="radio" name="english_1" value="a" /> at</label><label><input type="radio" name="english_1" value="b" /> by</label><label><input type="radio" name="english_1" value="c" /> during</label><label><input type="radio" name="english_1" value="d" /> since</label></div></fieldset>
+            <fieldset class="assessment-question"><legend>2. If the client ___ the proposal today, we can begin on Monday.</legend><div class="assessment-options"><label><input type="radio" name="english_2" value="a" /> approve</label><label><input type="radio" name="english_2" value="b" /> approved</label><label><input type="radio" name="english_2" value="c" /> approves</label><label><input type="radio" name="english_2" value="d" /> approving</label></div></fieldset>
+            <fieldset class="assessment-question"><legend>3. Which sentence is clearest and most professional?</legend><div class="assessment-options"><label><input type="radio" name="english_3" value="a" /> I have attached the updated schedule for your review.</label><label><input type="radio" name="english_3" value="b" /> Attached schedule updated, review it.</label><label><input type="radio" name="english_3" value="c" /> Here is schedule which I updated you see.</label><label><input type="radio" name="english_3" value="d" /> Kindly be reviewing attached schedule yesterday.</label></div></fieldset>
+            <fieldset class="assessment-question"><legend>4. “The issue is intermittent” means the issue…</legend><div class="assessment-options"><label><input type="radio" name="english_4" value="a" /> cannot be repaired.</label><label><input type="radio" name="english_4" value="b" /> affects every user.</label><label><input type="radio" name="english_4" value="c" /> is caused by the internet.</label><label><input type="radio" name="english_4" value="d" /> occurs at irregular intervals.</label></div></fieldset>
+            <fieldset class="assessment-question"><legend>5. The instructions were detailed; ___, several steps remained unclear.</legend><div class="assessment-options"><label><input type="radio" name="english_5" value="a" /> therefore</label><label><input type="radio" name="english_5" value="b" /> however</label><label><input type="radio" name="english_5" value="c" /> similarly</label><label><input type="radio" name="english_5" value="d" /> for example</label></div></fieldset>
+            <fieldset class="assessment-question"><legend>6. Choose the correct sentence.</legend><div class="assessment-options"><label><input type="radio" name="english_6" value="a" /> Neither of the files are complete.</label><label><input type="radio" name="english_6" value="b" /> Neither of the file is complete.</label><label><input type="radio" name="english_6" value="c" /> Neither of the files is complete.</label><label><input type="radio" name="english_6" value="d" /> Neither files are completed.</label></div></fieldset>
+            <fieldset class="assessment-question"><legend>7. A customer writes: “I still cannot log in after resetting my password.” What is the best first response?</legend><div class="assessment-options"><label><input type="radio" name="english_7" value="a" /> I’m sorry the reset did not resolve it. Please share the exact error message so I can investigate.</label><label><input type="radio" name="english_7" value="b" /> You probably reset it wrong. Try again.</label><label><input type="radio" name="english_7" value="c" /> Login issues happen sometimes.</label><label><input type="radio" name="english_7" value="d" /> We already sent you instructions.</label></div></fieldset>
+            <fieldset class="assessment-question"><legend>8. “Please keep me apprised of any changes” means…</legend><div class="assessment-options"><label><input type="radio" name="english_8" value="a" /> approve every change.</label><label><input type="radio" name="english_8" value="b" /> prevent further changes.</label><label><input type="radio" name="english_8" value="c" /> record changes privately.</label><label><input type="radio" name="english_8" value="d" /> keep me informed about changes.</label></div></fieldset>
+            <fieldset class="assessment-question"><legend>9. By the time the meeting started, the team ___ the issue.</legend><div class="assessment-options"><label><input type="radio" name="english_9" value="a" /> resolves</label><label><input type="radio" name="english_9" value="b" /> had resolved</label><label><input type="radio" name="english_9" value="c" /> has resolving</label><label><input type="radio" name="english_9" value="d" /> was resolve</label></div></fieldset>
+            <fieldset class="assessment-question"><legend>10. Which version is the most concise without changing the meaning?</legend><div class="assessment-options"><label><input type="radio" name="english_10" value="a" /> Due to the fact that the server was unavailable, the upload could not proceed.</label><label><input type="radio" name="english_10" value="b" /> The upload, it could not proceed because the server was unavailable at that time.</label><label><input type="radio" name="english_10" value="c" /> The upload could not proceed because the server was unavailable.</label><label><input type="radio" name="english_10" value="d" /> The unavailable server was the reason why the upload could not be able to proceed.</label></div></fieldset>
+            <div class="assessment-metrics"><div class="assessment-metric"><span>English screening score</span><strong data-metric="english">—</strong></div></div>
+            <div class="assessment-actions"><button class="button" type="submit">Score English Screening</button><span class="assessment-status" data-english-status aria-live="polite">Not started.</span></div>
+          </form>
+        </article>
+
         <section class="assessment-complete reveal" data-assessment-complete hidden aria-labelledby="complete-title">
-          <p class="eyebrow">Checks complete</p>
+          <p class="eyebrow">Assessment complete</p>
           <h3 id="complete-title">Return to your application</h3>
           <p>Your results are saved locally and will be added to the application when you submit it.</p>
           <a class="button" href="/join/#apply" data-return-link>Return to Application</a>
@@ -90,7 +174,7 @@
 
     <footer>
       <div class="footer-grid">
-        <div><h4>Applicant support</h4><p>If either check fails to run, refresh the page, disable data-saving mode, or try your intended work device and connection.</p></div>
+        <div><h4>Applicant support</h4><p>If a check fails to run, refresh the page, disable data-saving mode, or try your intended work device and connection.</p></div>
         <div><h4>Privacy</h4><div class="footer-links"><a href="/privacy/">Privacy Policy</a><a href="/terms/">Terms of Service</a></div></div>
         <div><h4>JCIT Services</h4><p>AI-powered, people-driven delivery with human judgment and accountability.</p></div>
       </div>

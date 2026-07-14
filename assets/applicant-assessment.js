@@ -15,7 +15,7 @@
       const result = JSON.parse(localStorage.getItem(STORAGE_KEY) || "null");
       const completedAt = Date.parse(result?.completedAt || "");
       if (!result || !Number.isFinite(completedAt) || Date.now() - completedAt > MAX_AGE_MS) return null;
-      if (!result.typing?.completed || !result.speed?.completed) return null;
+      if (!result.typing?.completed || !result.speed?.completed || !result.disc?.completed || !result.english?.completed) return null;
       return result;
     } catch (_error) {
       return null;
@@ -45,6 +45,10 @@
     ensureField(form, "internet_download_mbps", result.speed.downloadMbps);
     ensureField(form, "internet_latency_ms", result.speed.latencyMs);
     ensureField(form, "internet_connection_type", result.speed.connectionType || "Not reported");
+    ensureField(form, "disc_primary_style", result.disc.primary);
+    ensureField(form, "disc_scores", Object.entries(result.disc.scores).map(([key, value]) => `${key}:${value}`).join(", "));
+    ensureField(form, "english_score_percent", result.english.percent);
+    ensureField(form, "english_proficiency_level", result.english.level);
     ensureField(form, "assessment_completed_at", result.completedAt);
 
     const message = form.querySelector('textarea[name="message"]');
@@ -56,6 +60,8 @@
         `Typing: ${result.typing.wpm} WPM at ${result.typing.accuracy}% accuracy (${result.typing.seconds}s)`,
         `Internet: ${result.speed.downloadMbps} Mbps download, ${result.speed.latencyMs} ms latency`,
         `Connection: ${result.speed.connectionType || "Not reported"}`,
+        `DISC-style work profile: ${result.disc.primary} (${Object.entries(result.disc.scores).map(([key, value]) => `${key}:${value}`).join(", ")})`,
+        `English screening: ${result.english.correct}/${result.english.total} (${result.english.percent}%) — ${result.english.level}`,
         `Completed: ${result.completedAt}`,
       ].join("\n");
       message.value = `${clean}\n\n${summary}`.trim();
@@ -74,8 +80,8 @@
 
     const copy = document.createElement("span");
     copy.textContent = result
-      ? `${result.typing.wpm} WPM · ${result.typing.accuracy}% accuracy · ${result.speed.downloadMbps} Mbps download · ${result.speed.latencyMs} ms latency`
-      : "Complete the JCIT typing and internet checks before submitting this application.";
+      ? `${result.typing.wpm} WPM · ${result.typing.accuracy}% accuracy · ${result.speed.downloadMbps} Mbps · DISC ${result.disc.primary} · English ${result.english.percent}%`
+      : "Complete the 15-minute JCIT typing, internet, work-style, and English checks before submitting this application.";
 
     const link = document.createElement("a");
     link.className = "button secondary";

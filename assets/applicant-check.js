@@ -3,7 +3,14 @@
 
   const STORAGE_KEY = "jcitApplicantAssessmentV1";
   const PASSAGE = "Clear communication keeps technical work moving. At JCIT Services, people use modern tools to organize information, solve problems, support clients, and follow through on every commitment with care and accountability. Strong team members ask useful questions, document important details, raise blockers early, and make thoughtful decisions instead of relying on automation alone. Reliable work combines speed with accuracy, sound judgment, respect for the client, and consistent ownership from the first handoff through final delivery.";
-  const state = { typing: null, speed: null, timer: null, startedAt: 0 };
+  const state = { typing: null, speed: null, disc: null, english: null, timer: null, startedAt: 0 };
+  const DISC_LABELS = {
+    D: "Dominance — direct and results-focused",
+    I: "Influence — expressive and people-focused",
+    S: "Steadiness — patient and supportive",
+    C: "Conscientiousness — careful and quality-focused",
+  };
+  const ENGLISH_ANSWERS = ["b", "c", "a", "d", "b", "c", "a", "d", "b", "c"];
 
   const passage = document.querySelector("[data-typing-passage]");
   const input = document.querySelector("[data-typing-input]");
@@ -13,6 +20,10 @@
   const typingStatus = document.querySelector("[data-typing-status]");
   const speedButton = document.querySelector("[data-run-speed]");
   const speedStatus = document.querySelector("[data-speed-status]");
+  const discForm = document.querySelector("[data-disc-form]");
+  const discStatus = document.querySelector("[data-disc-status]");
+  const englishForm = document.querySelector("[data-english-form]");
+  const englishStatus = document.querySelector("[data-english-status]");
   const completePanel = document.querySelector("[data-assessment-complete]");
   const returnLink = document.querySelector("[data-return-link]");
 
@@ -33,13 +44,17 @@
   function updateCompletion() {
     document.querySelector('[data-step="typing"]').classList.toggle("is-complete", Boolean(state.typing));
     document.querySelector('[data-step="speed"]').classList.toggle("is-complete", Boolean(state.speed));
-    if (!state.typing || !state.speed) return;
+    document.querySelector('[data-step="disc"]').classList.toggle("is-complete", Boolean(state.disc));
+    document.querySelector('[data-step="english"]').classList.toggle("is-complete", Boolean(state.english));
+    if (!state.typing || !state.speed || !state.disc || !state.english) return;
 
     const result = {
       version: 1,
       completedAt: new Date().toISOString(),
       typing: state.typing,
       speed: state.speed,
+      disc: state.disc,
+      english: state.english,
     };
     localStorage.setItem(STORAGE_KEY, JSON.stringify(result));
     completePanel.hidden = false;
@@ -140,4 +155,49 @@
   }
 
   speedButton.addEventListener("click", runSpeedTest);
+
+  discForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const data = new FormData(discForm);
+    const answers = Array.from({ length: 8 }, (_, index) => data.get(`disc_${index + 1}`));
+    if (answers.some((answer) => !answer)) {
+      discStatus.textContent = "Please answer all 8 work-style questions.";
+      discStatus.classList.add("is-error");
+      return;
+    }
+
+    const scores = { D: 0, I: 0, S: 0, C: 0 };
+    answers.forEach((answer) => { scores[answer] += 1; });
+    const highest = Math.max(...Object.values(scores));
+    const primaryCodes = Object.keys(scores).filter((code) => scores[code] === highest);
+    const primary = primaryCodes.join("/");
+
+    state.disc = { completed: true, primary, scores };
+    metric("disc", primary);
+    discStatus.classList.remove("is-error");
+    discStatus.textContent = `Completed: ${primaryCodes.map((code) => DISC_LABELS[code]).join("; ")}.`;
+    discForm.querySelector('button[type="submit"]').textContent = "Update Work-Style Result";
+    updateCompletion();
+  });
+
+  englishForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const data = new FormData(englishForm);
+    const answers = ENGLISH_ANSWERS.map((_, index) => data.get(`english_${index + 1}`));
+    if (answers.some((answer) => !answer)) {
+      englishStatus.textContent = "Please answer all 10 English questions.";
+      englishStatus.classList.add("is-error");
+      return;
+    }
+
+    const correct = answers.reduce((total, answer, index) => total + Number(answer === ENGLISH_ANSWERS[index]), 0);
+    const percent = correct * 10;
+    const level = percent >= 90 ? "Advanced" : percent >= 70 ? "Upper-intermediate" : percent >= 50 ? "Intermediate" : "Developing";
+    state.english = { completed: true, correct, total: 10, percent, level };
+    metric("english", `${percent}%`);
+    englishStatus.classList.remove("is-error");
+    englishStatus.textContent = `Completed: ${correct}/10 correct — ${level}.`;
+    englishForm.querySelector('button[type="submit"]').textContent = "Update English Result";
+    updateCompletion();
+  });
 })();

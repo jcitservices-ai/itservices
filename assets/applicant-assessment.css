@@ -9,7 +9,7 @@
 
 .assessment-progress {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 12px;
 }
 
@@ -41,6 +41,43 @@
 .assessment-card h3,
 .assessment-card p {
   margin: 0;
+}
+
+.assessment-questionnaire {
+  display: grid;
+  gap: 18px;
+}
+
+.assessment-question {
+  margin: 0;
+  padding: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+}
+
+.assessment-question legend {
+  padding: 0 6px;
+  color: var(--text-1);
+  font-weight: 600;
+}
+
+.assessment-options {
+  display: grid;
+  gap: 9px;
+  margin-top: 10px;
+}
+
+.assessment-options label {
+  display: flex;
+  gap: 9px;
+  align-items: flex-start;
+  color: var(--text-2);
+  cursor: pointer;
+}
+
+.assessment-options input {
+  width: auto;
+  margin-top: 4px;
 }
 
 .typing-passage {
@@ -131,5 +168,11 @@
 @media (max-width: 620px) {
   .assessment-progress {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 621px) and (max-width: 980px) {
+  .assessment-progress {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
