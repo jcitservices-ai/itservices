@@ -69,7 +69,7 @@
     } catch (error) {
       status.textContent = error.message || "We couldn’t save your details. Please try again.";
       submitButton.disabled = false;
-      buttonLabel.textContent = "Join the talent pool";
+      buttonLabel.textContent = "We want to hear from you";
     }
   });
 })();

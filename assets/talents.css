@@ -58,12 +58,86 @@ a { color: inherit; }
 .careers-link { color: var(--muted); font: 700 11px/1 "Space Mono", monospace; letter-spacing: .08em; text-decoration: none; text-transform: uppercase; }
 .careers-link:hover { color: var(--mint); }
 
+.campaign-hero {
+  position: relative;
+  z-index: 1;
+  width: min(1440px, calc(100% - 40px));
+  height: clamp(520px, 56vw, 720px);
+  margin: 32px auto 0;
+  overflow: hidden;
+  border: 1px solid rgba(102,255,204,.24);
+  border-radius: 28px;
+  background: #03121c;
+  box-shadow: 0 34px 110px rgba(0,0,0,.42), 0 0 80px rgba(0,199,221,.08);
+}
+.campaign-hero > img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center 42%;
+}
+.campaign-shade {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(2,12,20,.82) 0%, rgba(2,12,20,.18) 48%, rgba(2,12,20,.06) 72%),
+    linear-gradient(0deg, rgba(2,12,20,.95) 0%, rgba(2,12,20,.2) 52%, rgba(2,12,20,.18) 100%);
+}
+.campaign-copy {
+  position: absolute;
+  inset: auto clamp(24px, 5vw, 76px) clamp(28px, 5vw, 68px);
+  max-width: 900px;
+}
+.campaign-copy .event-pill { margin-bottom: 20px; }
+.campaign-kicker {
+  margin: 0 0 10px;
+  color: var(--mint);
+  font: 700 clamp(10px, 1.2vw, 13px)/1.4 "Space Mono", monospace;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+.campaign-copy h1 {
+  max-width: none;
+  margin: 0;
+  font-size: clamp(66px, 10.5vw, 150px);
+  line-height: .78;
+  letter-spacing: -.072em;
+  text-shadow: 0 8px 36px rgba(0,0,0,.5);
+}
+.campaign-copy h1 em { color: var(--mint); font-style: normal; }
+.campaign-copy > p:not(.campaign-kicker) {
+  margin: 24px 0 0;
+  color: #d8e6e3;
+  font-size: clamp(13px, 1.6vw, 19px);
+  font-weight: 600;
+  letter-spacing: .015em;
+}
+.hero-cta {
+  width: fit-content;
+  margin-top: 24px;
+  display: inline-flex;
+  align-items: center;
+  gap: 24px;
+  border: 1px solid rgba(102,255,204,.45);
+  border-radius: 999px;
+  padding: 13px 18px;
+  background: rgba(4,19,26,.64);
+  color: var(--mint);
+  font: 700 11px/1 "Space Mono", monospace;
+  letter-spacing: .08em;
+  text-decoration: none;
+  text-transform: uppercase;
+  backdrop-filter: blur(12px);
+}
+.hero-cta:hover { background: var(--mint); color: #04131a; }
+
 .talent-shell {
   position: relative;
   z-index: 1;
   width: min(1180px, calc(100% - 40px));
   margin: 0 auto;
-  padding: clamp(44px, 7vw, 96px) 0 84px;
+  padding: clamp(58px, 7vw, 92px) 0 84px;
   display: grid;
   grid-template-columns: minmax(0, 1.05fr) minmax(390px, .8fr);
   gap: clamp(44px, 8vw, 110px);
@@ -85,7 +159,7 @@ a { color: inherit; }
 }
 .event-pill span { width: 7px; height: 7px; border-radius: 50%; background: var(--mint); box-shadow: 0 0 16px var(--mint); }
 .eyebrow, .form-kicker { margin: 26px 0 14px; color: var(--mint-2); font: 700 11px/1.4 "Space Mono", monospace; letter-spacing: .12em; text-transform: uppercase; }
-h1 { max-width: 720px; margin: 0; font-size: clamp(42px, 6vw, 76px); line-height: .98; letter-spacing: -.052em; }
+.welcome-panel h2 { max-width: 720px; margin: 0; font-size: clamp(38px, 5vw, 64px); line-height: 1; letter-spacing: -.052em; }
 .intro { max-width: 650px; margin: 26px 0 34px; color: #c4d6d2; font-size: clamp(16px, 2vw, 19px); line-height: 1.75; }
 .steps { display: grid; gap: 2px; border: 1px solid var(--line); border-radius: 17px; overflow: hidden; background: var(--line); }
 .step { display: grid; grid-template-columns: 44px 1fr; gap: 12px; padding: 17px 19px; background: rgba(7, 23, 34, .94); }
@@ -169,6 +243,8 @@ footer a { text-decoration: none; }
 footer a:hover { color: var(--mint); }
 
 @media (max-width: 900px) {
+  .campaign-hero { width: min(100% - 28px, 1440px); height: clamp(500px, 76vw, 620px); margin-top: 22px; }
+  .campaign-shade { background: linear-gradient(0deg, rgba(2,12,20,.96) 0%, rgba(2,12,20,.3) 62%, rgba(2,12,20,.08) 100%); }
   .talent-shell { grid-template-columns: 1fr; align-items: start; gap: 48px; }
   .welcome-panel { max-width: 680px; }
   .form-card { max-width: 680px; width: 100%; }
@@ -179,8 +255,15 @@ footer a:hover { color: var(--mint); }
   .brand img { width: 40px; height: 40px; }
   .brand strong { font-size: 13px; }
   .careers-link { font-size: 9px; }
+  .campaign-hero { height: 500px; border-radius: 20px; }
+  .campaign-hero > img { object-position: center center; }
+  .campaign-copy { inset: auto 20px 24px; }
+  .campaign-copy .event-pill { margin-bottom: 15px; }
+  .campaign-copy h1 { font-size: clamp(58px, 19vw, 76px); line-height: .82; }
+  .campaign-copy > p:not(.campaign-kicker) { max-width: 310px; margin-top: 18px; font-size: 12px; line-height: 1.55; }
+  .hero-cta { margin-top: 18px; }
   .talent-shell { padding: 38px 0 56px; gap: 38px; }
-  h1 { font-size: clamp(39px, 13vw, 58px); }
+  .welcome-panel h2 { font-size: clamp(36px, 11vw, 52px); }
   .intro { margin-top: 20px; }
   .form-card { border-radius: 18px; }
   footer { padding: 22px 0; flex-direction: column; align-items: flex-start; gap: 13px; }
