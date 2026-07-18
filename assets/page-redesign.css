@@ -29,7 +29,7 @@ html body {
     linear-gradient(180deg, rgba(169, 255, 104, 0.035) 0 1px, transparent 1px 100%),
     linear-gradient(180deg, #020606 0%, #081111 46%, #030707 100%) !important;
   background-size: auto, 96px 96px, 96px 96px, auto !important;
-  font-family: "Poppins", "Inter", "Helvetica Neue", Arial, sans-serif !important;
+  font-family: var(--body-font, "Roboto", "Helvetica Neue", Arial, sans-serif) !important;
 }
 
 html body::before,

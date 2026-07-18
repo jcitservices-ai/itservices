@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&family=Space+Grotesk:wght@400;500;600;700&display=swap");
+
 :root {
   --bg: #06121d;
   --bg-soft: #0c1c2a;
@@ -11,7 +13,8 @@
   --accent-2: #75f2c8;
   --accent-warm: #ffd369;
   --shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
-  --font-display: "Poppins", "Helvetica Neue", sans-serif;
+  --font-display: "Space Grotesk", "Roboto", "Helvetica Neue", sans-serif;
+  --font-body: "Roboto", "Helvetica Neue", Arial, sans-serif;
   --font-mono: "Space Mono", monospace;
   --radius-xl: 34px;
   --radius-lg: 24px;
@@ -33,6 +36,10 @@ body {
     radial-gradient(circle at top, rgba(107, 230, 255, 0.08), transparent 30%),
     linear-gradient(180deg, #08131f 0%, #06121d 35%, #081520 100%);
   color: var(--text);
+  font-family: var(--font-body);
+}
+
+h1, h2, h3, h4, h5, h6, .brand, button {
   font-family: var(--font-display);
 }
 

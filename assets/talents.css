@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&family=Space+Grotesk:wght@400;500;600;700&display=swap");
+
 :root {
   color-scheme: dark;
   --ink: #06121d;
@@ -23,7 +25,11 @@ body {
     radial-gradient(circle at 94% 65%, rgba(54, 110, 255, 0.12), transparent 30rem),
     var(--ink);
   color: var(--text);
-  font-family: "Poppins", sans-serif;
+  font-family: "Roboto", "Helvetica Neue", Arial, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6, .brand, .careers-link, button {
+  font-family: "Space Grotesk", "Roboto", "Helvetica Neue", Arial, sans-serif;
 }
 
 a { color: inherit; }
